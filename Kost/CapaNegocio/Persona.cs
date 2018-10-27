@@ -31,13 +31,13 @@ namespace CapaNegocio
             this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
 
             if (!this.Error){
-                nombre = pnombre;
-                apellido = papellido;
-                direccion = pdireccion;
-                mail = pmail;
-                cuil = pcuil;
-                nacimiento = pnacimiento;
-               this.Guardar(this);
+                Nombre = pnombre;
+                Apellido = papellido;
+                Direccion = pdireccion;
+                Mail = pmail;
+                Cuil = pcuil;
+                Nacimiento = pnacimiento;
+               this.Guardar();
             } else {
                 //Mandar mensaje
             }
@@ -185,12 +185,12 @@ namespace CapaNegocio
 
         }
 
-        protected void Guardar(Persona p) //string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
+        protected void Guardar() //string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
         {
             //Esto de abajo es por si hay un error al guardar
-            if (!CapaDatos.PersonaBD.existe(p.Cuil))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
+            if (!CapaDatos.PersonaBD.existe(Cuil))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
             {
-                String msjGuardar = CapaDatos.PersonaBD.guardar(p.Cuil, p.Nombre, p.Apellido, p.Mail, p.Nacimiento, p.Direccion);
+                String msjGuardar = CapaDatos.PersonaBD.guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
                 if (msjGuardar.Equals("OK"))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
                 {
                     this.Error = false;
