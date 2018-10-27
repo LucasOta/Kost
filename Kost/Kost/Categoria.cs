@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaNegocio;
 
 namespace Kost
 {
     public partial class Categoria : UserControl
     {
         Boolean banderaGuardar = true;
+        CapaNegocio.Categoria cat;
+
         public Categoria()
         {
             InitializeComponent();
@@ -57,11 +60,25 @@ namespace Kost
             }
         }
 
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Clear();
+            pnlCategoria.Enabled = true;
+
+            int idCat = Convert.ToInt32(dgvCategorias.CurrentRow.Cells["ID"].Value);
+            cat = CapaNegocio.Categoria.TraerUnaCat(idCat);
+
+            txtNombre.Text = cat.Nombre;
+        }
+
         //Métodos
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Categoria.ModificarCateg(Convert.ToInt32(dgvCategorias.CurrentRow.Cells["ID"].Value), txtNombre.Text))
+            cat.Nombre = txtNombre.Text;
+            cat.Id = Convert.ToInt32(dgvCategorias.CurrentRow.Cells["ID"].Value);
+
+            if (cat.ModificarCateg())
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios se guardaron correctamente");
                 banderaGuardar = true;
@@ -69,6 +86,12 @@ namespace Kost
                 pnlCategoria.Enabled = false;
             }
             dgvCategorias.DataSource = CapaNegocio.Categoria.ListarTodos();
+        }
+
+        public void Clear()
+        {
+            txtNombre.Text = "";
+            pnlCategoria.Enabled = false;
         }
     }
 }

@@ -73,6 +73,7 @@
             this.btnModificar.TabIndex = 23;
             this.btnModificar.Text = "Modificar Categoía";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -193,7 +194,7 @@
             this.Controls.Add(this.pnlCategoria);
             this.Controls.Add(this.dgvCategorias);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Categoria";
             this.Size = new System.Drawing.Size(825, 530);
             this.pnlCategoria.ResumeLayout(false);

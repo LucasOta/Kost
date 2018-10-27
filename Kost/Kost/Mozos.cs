@@ -14,6 +14,7 @@ namespace Kost
     public partial class Mozos : UserControl
     {
         Boolean banderaGuardar = true;
+        Mozo mozo;
 
         public Mozos()
         {
@@ -42,15 +43,15 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Mozo mozo = new CapaNegocio.Mozo(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, Convert.ToInt64(txtCuil.Text.Replace("-", "")), dtpNacimiento.Value);
-                if (mozo.Error)
+                CapaNegocio.Mozo mozo1 = new CapaNegocio.Mozo(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, Convert.ToInt64(txtCuil.Text.Replace("-", "")), dtpNacimiento.Value);
+                if (mozo1.Error)
                 {
-                    if (mozo.Mensaje == "Cuil existente no activo")
+                    if (mozo1.Mensaje == "Cuil existente no activo")
                     {
                         if (CapaNegocio.Funciones.mConsulta(this, "Existe un mozo no activo con este cuil, ¿Desea ver esos datos para soobreescribirlos?, de ser la respuesta no, se creara un nuevo mozo con los datos que ingreso."))
                         {
                             banderaGuardar = false;
-                            MostrarDatosMozo(mozo.Cuil);
+                            MostrarDatosMozo(mozo1.Cuil);
                         }
                         else
                         {
@@ -59,7 +60,7 @@ namespace Kost
                     }
                     else
                     {
-                        CapaNegocio.Funciones.mError(this, mozo.Mensaje);
+                        CapaNegocio.Funciones.mError(this, mozo1.Mensaje);
                     }
 
                 }
@@ -124,7 +125,7 @@ namespace Kost
                 banderaGuardar = false;
 
                 long cuil = Convert.ToInt64(dgvMozos.CurrentRow.Cells["cuil"].Value);
-                Mozo mozo = CapaNegocio.Mozo.TraerUnMozo(cuil);
+                mozo = CapaNegocio.Mozo.TraerUnMozo(cuil);
 
                 txtApellido.Text = mozo.Apellido;
                 txtCuil.Text = mozo.Cuil.ToString();
@@ -219,7 +220,14 @@ namespace Kost
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Mozo.ModificarMozo(Convert.ToInt64(txtCuil.Text.Replace("-", "")), txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, dtpNacimiento.Value))
+            mozo.Cuil = Convert.ToInt64(txtCuil.Text.Replace("-", ""));
+            mozo.Nombre = txtNombre.Text;
+            mozo.Apellido = txtApellido.Text;
+            mozo.Direccion = txtDireccion.Text;
+            mozo.Mail = txtMail.Text;
+            mozo.Nacimiento = dtpNacimiento.Value;
+
+            if (mozo.ModificarMozo())
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al mozo se guardaron correctamente");
                 dgvMozos.DataSource = Mozo.ListarTodos();

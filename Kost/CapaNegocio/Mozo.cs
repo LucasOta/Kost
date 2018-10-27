@@ -26,7 +26,14 @@ namespace CapaNegocio
                 this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
                 if (!Error)
                 {
-                    this.Guardar(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
+                    Nombre = pnombre;
+                    Apellido = papellido;
+                    Direccion = pdireccion;
+                    Mail = pmail;
+                    Cuil = pcuil;
+                    Nacimiento = pnacimiento;
+
+                    this.Guardar(this);
                 }
                 else
                 {
@@ -41,22 +48,12 @@ namespace CapaNegocio
 
 
         //Funciones
-
-        private void Validar(string valuser)
+        public void Guardar(Mozo m)
         {
-            if (Validaciones.Usuario(valuser))
-            {
-                this.Error = true;
-                this.Mensaje = "El mozo ya existe";
-            }
-        }
-
-        public void Guardar(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
-        {
-            base.Guardar(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
+            base.Guardar(m);
             if (!Error)
             {
-                if (CapaDatos.MozoBD.guardar(Cuil))
+                if (CapaDatos.MozoBD.guardar(m.Cuil))
                 {
                     this.Error = false;
                     this.Mensaje = "Mozo Guardado";
@@ -69,11 +66,11 @@ namespace CapaNegocio
             }
             else
             {
-                if (CapaDatos.MozoBD.existe(pcuil))
+                if (CapaDatos.MozoBD.existe(m.Cuil))
                 {
                     this.Error = true;
                     this.Mensaje = "Ya existe un mozo cargado en el sistema con ese cuil";
-                    if (!CapaDatos.PersonaBD.PersonaActiva(pcuil))
+                    if (!CapaDatos.PersonaBD.PersonaActiva(m.Cuil))
                     {
                         this.Mensaje = "Cuil existente no activo";
                     }
@@ -92,11 +89,11 @@ namespace CapaNegocio
             //Ver lo de cascada con haspert
         }
 
-        public static Boolean ModificarMozo(long cuil, string pnombre, string papellido, string pdireccion, string pmail, DateTime pnacimiento)
+        public Boolean ModificarMozo()
         {
-            Boolean moz = CapaDatos.MozoBD.modificar(cuil);
+            Boolean moz = CapaDatos.MozoBD.modificar(this.Cuil);
 
-            Boolean per = Persona.ModificarPersona(pnombre, papellido, pdireccion, pmail, cuil, pnacimiento);
+            Boolean per = this.ModificarPersona();
 
             if (moz && per)
             {
