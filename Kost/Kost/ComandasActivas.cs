@@ -19,6 +19,7 @@ namespace Kost
 
         Boolean banderaGuardar = true;
         int ComandaMod;
+        CapaNegocio.Comanda comm;
 
         public ComandasActivas()
         {
@@ -70,14 +71,13 @@ namespace Kost
         private void btnModificar_Click_1(object sender, EventArgs e)
         {           
             Clear();
-            if (CapaNegocio.Funciones.RowSeleccionado(
-                dgvComandasActivas.SelectedRows.Count, "una comanda", "modificarla.", this))
+            if (CapaNegocio.Funciones.RowSeleccionado(dgvComandasActivas.SelectedRows.Count, "una comanda", "modificarla.", this))
             {
                 pnlComanda.Enabled = true;
                 banderaGuardar = false;
 
                 ComandaMod = Convert.ToInt32(dgvComandasActivas.CurrentRow.Cells["N_Comanda"].Value);
-                CapaNegocio.Comanda comm = CapaNegocio.Comanda.TraerComanda(ComandaMod);
+                comm = CapaNegocio.Comanda.TraerComanda(ComandaMod);
 
                 cbxMesa.SelectedValue = comm.NroMesa;
                 cbxMozo.SelectedValue = comm.CuilMozo;
@@ -87,8 +87,7 @@ namespace Kost
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
             
-            if (CapaNegocio.Funciones.RowSeleccionado( 
-                dgvComandasActivas.SelectedRows.Count, "una comanda", "eliminarla.", this))
+            if (CapaNegocio.Funciones.RowSeleccionado(dgvComandasActivas.SelectedRows.Count, "una comanda", "eliminarla.", this))
             {                
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Esta seguro de que desea eliminar la comanda?"))
                 {
@@ -157,7 +156,11 @@ namespace Kost
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Comanda.ModificarComanda(Convert.ToInt32(cbxMesa.SelectedValue), Convert.ToInt64(cbxMozo.SelectedValue), ComandaMod))
+            comm.NroMesa = Convert.ToInt32(cbxMesa.SelectedValue);
+            comm.CuilMozo = Convert.ToInt64(cbxMozo.SelectedValue);
+            comm.NroComanda = ComandaMod;
+
+            if (comm.ModificarComanda())
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios a la comanda se guardaron correctamente");
                 dgvComandasActivas.DataSource = CapaNegocio.Comanda.ComandasActivas();

@@ -116,7 +116,13 @@ namespace Kost
 
         private void btnCerrarComanda_Click(object sender, EventArgs e)
         {
-            CapaNegocio.Comanda.CerrarComanda(numeroComanda, (Convert.ToSingle(txtDescuento.Text) + Convert.ToSingle(lblTotal.Text.Replace("$", ""))), Convert.ToSingle(txtDescuento.Text), Convert.ToSingle(lblTotal.Text.Replace("$", "")));
+            CapaNegocio.Comanda coman = CapaNegocio.Comanda.TraerComanda(numeroComanda);
+
+            coman.Total = (Convert.ToSingle(txtDescuento.Text) + Convert.ToSingle(lblTotal.Text.Replace("$", "")));
+            coman.Descuento = Convert.ToSingle(txtDescuento.Text);
+            coman.PrecioFinal = Convert.ToSingle(lblTotal.Text.Replace("$", ""));
+
+            coman.CerrarComanda();
 
             this.cerrarComanda();
 
