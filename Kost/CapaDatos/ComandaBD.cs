@@ -80,7 +80,7 @@ namespace CapaDatos
 
         public static Boolean modificar(int nroMesa, long cuilMozo, int nroComanda)
         {
-            string sql = "UPDATE Comandas SET nroMesa = @nroMesa, cuilMozo = @cuilMozo WHERE nroComanda = @nroComanda and activa=1 and baja=0;";
+            string sql = "UPDATE Comandas SET nroMesa = @nroMesa, cuilMozo = @cuilMozo WHERE nroComanda = @nroComanda and activa = 1 and baja = 0;";
 
             try
             {
@@ -118,7 +118,7 @@ namespace CapaDatos
 
         public static Boolean eliminar(int nroComanda)
         {
-            string sql = "UPDATE Comandas SET baja = 1, activa = 1 WHERE nroComanda = @nroComanda;";
+            string sql = "UPDATE Comandas SET baja = 1, activa = 0 WHERE nroComanda = @nroComanda;";
 
             try
             {
@@ -152,7 +152,7 @@ namespace CapaDatos
         {
             DataTable comandas = new DataTable("comandasActivas");
 
-            string sql = "SELECT CONCAT(P.nombre,' ', P.apellido)as nya, C.nroComanda, C.fecha, C.nroMesa, C.activa, C.total, C.descuento, C.precioFinal, C.cuilMozo FROM Personas P INNER JOIN Comandas C ON P.cuil = C.cuilMozo WHERE P.baja = 0 AND C.baja = 0 AND C.activa = 0";
+            string sql = "SELECT CONCAT(P.nombre,' ', P.apellido)as nya, C.nroComanda, C.fecha, C.nroMesa, C.activa, C.total, C.descuento, C.precioFinal, C.cuilMozo FROM Personas P INNER JOIN Comandas C ON P.cuil = C.cuilMozo WHERE P.baja = 0 AND C.baja = 0 AND C.activa = 1";
 
             try
             {
@@ -174,7 +174,7 @@ namespace CapaDatos
 
         public static Boolean cerrarComanda(int nroComanda, float total, float descuento, float precioFinal)
         {
-            string sql = "UPDATE Comandas SET total = @total, descuento = @descuento, precioFinal = @precioFinal, activa = 1 WHERE nroComanda = @nroComanda;";
+            string sql = "UPDATE Comandas SET total = @total, descuento = @descuento, precioFinal = @precioFinal, activa = 0 WHERE nroComanda = @nroComanda;";
 
             try
             {
@@ -241,7 +241,6 @@ namespace CapaDatos
             return comanda;
         }
 
-
         public static String nombreMozo(long cuil)
         {
             string sql = "SELECT CONCAT(nombre,' ', apellido) as nya FROM Personas WHERE cuil = @cuil";
@@ -280,7 +279,7 @@ namespace CapaDatos
 
         public static Boolean comandaDeMesaActiva(int nroMesa)
         {
-            string sql = "SELECT baja FROM Comandas WHERE nroMesa = @nroMesa AND activa = 0";
+            string sql = "SELECT baja FROM Comandas WHERE nroMesa = @nroMesa AND activa = 1";
             try
             {
                 Conexion cx = new Conexion();
