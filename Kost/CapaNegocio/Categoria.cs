@@ -8,6 +8,7 @@ using CapaDatos;
 
 namespace CapaNegocio
 {
+    //Comentario en dev
     public class Categoria
     {
         private bool error;
