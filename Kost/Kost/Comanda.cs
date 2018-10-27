@@ -47,18 +47,20 @@ namespace Kost
         {
             Clear();
 
-            string preciounitario = "Precio unit.        ";
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvComanda.SelectedRows.Count, "un detalle", "modificarlo.", this))
+            {
+                pnlDetalle.Enabled = true;
 
-            pnlDetalle.Enabled = true;
+                banderaGuardar = false;
 
-            banderaGuardar = false;
+                int nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["nroDetalle"].Value);
+                Detalle detal = CapaNegocio.Detalle.TraerUnDetalle(nroD);
 
-            int nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["nroDetalle"].Value);
-            Detalle detal = CapaNegocio.Detalle.TraerUnDetalle(nroD);
-
-            cbxProducto.SelectedValue = detal.CodProducto;
-            txtCantidad.Text = detal.Cantidad.ToString();
-            lblPrecioUnitario.Text = preciounitario += detal.PrecioUnitario.ToString();
+                cbxProducto.SelectedValue = detal.CodProducto;
+                txtCantidad.Text = detal.Cantidad.ToString();
+                lblPrecioUnitario.Text = detal.PrecioUnitario.ToString();
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -67,18 +69,22 @@ namespace Kost
 
             Clear();
 
-            if (CapaNegocio.Funciones.mConsulta(this, "¿Esta seguro de que desea eliminar el detalle?"))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvComanda.SelectedRows.Count, "un detalle", "eliminarlo.", this))
             {
-                int nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["nroDetalle"].Value);
-                if (Detalle.Eliminar(nroD))
+                if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el detalle?"))
                 {
-                    Funciones.mOk(this, "Se eliminó correctamente el detalle.");
-                    dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
-                    CalcularTotal();
-                }
-                else
-                {
-                    Funciones.mError(this, "Error al eliminar el detalle.");
+                    int nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["nroDetalle"].Value);
+                    if (Detalle.Eliminar(nroD))
+                    {
+                        Funciones.mOk(this, "Se eliminó correctamente el detalle.");
+                        dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
+                        CalcularTotal();
+                    }
+                    else
+                    {
+                        Funciones.mError(this, "Error al eliminar el detalle.");
+                    }
                 }
             }
         }
@@ -87,7 +93,7 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.SelectedText, Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lblPrecioUnitario.Text.Replace("Precio unit.        ", "")));
+                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.SelectedText, Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lbl1.Text.Replace("Precio unit.        ", "")));
                 if (!detal.Error)
                 {
                     CapaNegocio.Funciones.mOk(this, "Se guardo el detalle exitosamente");
@@ -126,13 +132,13 @@ namespace Kost
         //Funciones
         private void Clear()
         {
-            lblPrecioUnitario.Text = "Precio unit.        .........";
+            lblPrecioUnitario.Text = "";
             txtCantidad.Text = "";
         }
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Detalle.Modificar(Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lblPrecioUnitario.Text.Replace("Precio unit.        ", "")), cbxProducto.SelectedText))
+            if (CapaNegocio.Detalle.Modificar(Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lbl1.Text.Replace("Precio unit.        ", "")), cbxProducto.SelectedText))
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al detalle se guardaron correctamente");
                 dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
@@ -163,23 +169,15 @@ namespace Kost
 
         public void setComanda(int nroCom)
         {
-            numeroComanda = nroCom;
+            CapaNegocio.Comanda comm = CapaNegocio.Comanda.TraerComanda(nroCom);
 
-            string txtNroCom = "N° Comanda: ";
+            lblNumeroComanda.Text = "N° Comanda: " + comm.NroComanda.ToString();
 
-            string txtNroMesa = "N° Mesa: ";
+            lblNumeroMesa.Text = "N° Mesa: " + comm.NroMesa.ToString();
 
-            string txtMozo = "Mozo: ";
+            lblMozo.Text = "Mozo: " +  CapaNegocio.Comanda.NombreMozo(comm.CuilMozo);
 
-            CapaNegocio.Comanda comm = CapaNegocio.Comanda.TraerComanda(numeroComanda);
-
-            lblNumeroComanda.Text = txtNroCom += comm.NroComanda.ToString();
-
-            lblNumeroMesa.Text = txtNroMesa += comm.NroMesa.ToString();
-
-            lblMozo.Text = txtMozo += CapaNegocio.Comanda.NombreMozo(comm.CuilMozo);
-
-            dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
+            dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(nroCom);
 
             CalcularTotal();
         }

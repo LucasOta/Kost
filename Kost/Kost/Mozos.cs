@@ -99,7 +99,6 @@ namespace Kost
             if (CapaNegocio.Funciones.RowSeleccionado(
                 dgvMozos.SelectedRows.Count, "un mozo", "eliminarlo.", this))
             {
-                Clear();
                 pnlMozo.Enabled = false;
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el mozo?"))
                 {
@@ -144,17 +143,17 @@ namespace Kost
         //TextBoxs
         private void txtNombre_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            e.Handled = soloLetras(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.soloLetras(e.KeyChar);
         }
 
         private void txtApellido_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            e.Handled = soloLetras(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.soloLetras(e.KeyChar);
         }
 
         private void txtMail_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            e.Handled = sinEspacios(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.sinEspacios(e.KeyChar);
         }
 
 
@@ -168,46 +167,6 @@ namespace Kost
             txtNombre.Text = "";
             dtpNacimiento.Value = DateTime.Today;
             pnlMozo.Enabled = false;
-        }
-
-        private Boolean soloLetras(char e)
-        {
-            Boolean result = false;
-            if (Char.IsLetter(e))
-            {
-                result = false;
-            }
-            else if (Char.IsControl(e))
-            {
-                result = false;
-            }
-            else if (Char.IsSeparator(e))
-            {
-                result = false;
-            }
-            else
-            {
-                result = true;
-            }
-
-            return result;
-        }
-
-        private Boolean sinEspacios(char e)
-        {
-
-
-            Boolean result = false;
-            if (Char.IsSeparator(e))
-            {
-                result = true;
-            }
-            else
-            {
-                result = false;
-            }
-
-            return result;
         }
 
         private void MostrarDatosMozo(long cuil)

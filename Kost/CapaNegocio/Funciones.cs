@@ -56,5 +56,45 @@ namespace CapaNegocio
                 return false;
             }
         }
+
+        //Textboxs
+        public static Boolean soloLetras(char e)
+        {
+            Boolean result = false;
+            if (Char.IsLetter(e))
+            {
+                result = false;
+            }
+            else if (Char.IsControl(e))
+            {
+                result = false;
+            }
+            else if (Char.IsSeparator(e))
+            {
+                result = false;
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
+        public static Boolean sinEspacios(char e)
+        {
+
+
+            Boolean result = false;
+            if (Char.IsSeparator(e))
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
     }
 }

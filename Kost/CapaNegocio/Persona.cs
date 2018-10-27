@@ -22,7 +22,6 @@ namespace CapaNegocio
         private string mensaje;
 
         //Constructores
-
         public Persona() { }
 
         public Persona(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
@@ -43,8 +42,9 @@ namespace CapaNegocio
             }
         }
 
-        //Getters y Setters
 
+
+        //Getters y Setters
         public bool Error
         {
             get
@@ -149,8 +149,8 @@ namespace CapaNegocio
             }
         }
 
-        //Funciones
 
+        //Funciones
         protected void ValidarPers(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
         {
             if (!Validaciones.Nombre(pnombre)) {
@@ -185,13 +185,13 @@ namespace CapaNegocio
 
         }
 
-        protected void Guardar(Persona p) //string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
+        protected void Guardar(Persona p) 
         {
             //Esto de abajo es por si hay un error al guardar
-            if (!CapaDatos.PersonaBD.existe(p.Cuil))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
+            if (!CapaDatos.PersonaBD.existe(p.Cuil))
             {
                 String msjGuardar = CapaDatos.PersonaBD.guardar(p.Cuil, p.Nombre, p.Apellido, p.Mail, p.Nacimiento, p.Direccion);
-                if (msjGuardar.Equals("OK"))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
+                if (msjGuardar.Equals("OK"))
                 {
                     this.Error = false;
                     this.Mensaje = "Persona Guardada";

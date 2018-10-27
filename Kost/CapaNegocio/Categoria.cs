@@ -32,6 +32,8 @@ namespace CapaNegocio
             }
         }
 
+
+        //Getters y Setters
         public bool Error
         {
             get
@@ -71,7 +73,20 @@ namespace CapaNegocio
             }
         }
 
-        public int Id { get => id; set => id = value; }
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+
 
         //Funciones
 

@@ -34,5 +34,25 @@ namespace Kost
         {
             this.btnIrSimple();
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvProductos.SelectedRows.Count, "un producto", "modificarlo.", this))
+            {
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvProductos.SelectedRows.Count, "un producto", "eliminarlo.", this))
+            {
+                if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el producto?"))
+                {
+                }
+            }
+
+        }
     }
 }
