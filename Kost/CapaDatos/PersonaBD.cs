@@ -36,7 +36,9 @@ namespace CapaDatos
                     return false;
                 }
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return true; //Habría que ver qué mandar si hay un error con la conexión
             }
@@ -66,7 +68,9 @@ namespace CapaDatos
                     return false;
                 }
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return true; //Habría que ver qué mandar si hay un error con la conexión
             }
@@ -162,7 +166,9 @@ namespace CapaDatos
             return false;
 
         }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
         catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
         {
             return false;
         }
@@ -195,7 +201,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -216,7 +224,9 @@ namespace CapaDatos
                 sqlDat.Fill(ds);
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 ds = null;
             }
@@ -240,7 +250,9 @@ namespace CapaDatos
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
                 sqlDat.Fill(persona);
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             }catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 persona = null;
             }

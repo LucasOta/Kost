@@ -30,13 +30,13 @@ namespace CapaNegocio
             this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
 
             if (!this.Error){
-                nombre = pnombre;
-                apellido = papellido;
-                direccion = pdireccion;
-                mail = pmail;
-                cuil = pcuil;
-                nacimiento = pnacimiento;
-               this.Guardar(this);
+                Nombre = pnombre;
+                Apellido = papellido;
+                Direccion = pdireccion;
+                Mail = pmail;
+                Cuil = pcuil;
+                Nacimiento = pnacimiento;
+               this.Guardar();
             } else {
                 //Mandar mensaje
             }

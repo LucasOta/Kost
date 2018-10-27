@@ -78,7 +78,7 @@ namespace CapaNegocio
                     Cuil = pcuil;
                     Nacimiento = pnacimiento;
 
-                    this.Guardar(this);
+                    this.Guardar();
                 }
                 else
                 {
@@ -101,14 +101,14 @@ namespace CapaNegocio
             }
         }
 
-        public void Guardar(Usuario u)
+        public void GuardarUser()
         {
-            base.Guardar(u);
+            base.Guardar();
             if (!Error)
             {
-                if (!CapaDatos.UsuarioBD.existe(u.User))
+                if (!CapaDatos.UsuarioBD.existe(User))
                 {
-                    if (CapaDatos.UsuarioBD.guardar(u.User, u.Password, u.Nivel, u.Cuil))
+                    if (CapaDatos.UsuarioBD.guardar(User, Password, Nivel, Cuil))
                     {
                         this.Error = false;
                         this.Mensaje = "Usuario Guardado";
@@ -128,7 +128,7 @@ namespace CapaNegocio
             else {
                 if(this.Mensaje == "Ya existe una persona cargada en el sistema con ese nro de Cuil")
                 {
-                    if (!CapaDatos.PersonaBD.PersonaActiva(u.Cuil))
+                    if (!CapaDatos.PersonaBD.PersonaActiva(Cuil))
                     {
                         this.Mensaje = "Persona no activa";
                     }

@@ -33,7 +33,7 @@ namespace CapaNegocio
                     Cuil = pcuil;
                     Nacimiento = pnacimiento;
 
-                    this.Guardar(this);
+                    this.Guardar();
                 }
                 else
                 {
@@ -48,12 +48,12 @@ namespace CapaNegocio
 
 
         //Funciones
-        public void Guardar(Mozo m)
+        public void GuardarMozo()
         {
-            base.Guardar(m);
+            base.Guardar();
             if (!Error)
             {
-                if (CapaDatos.MozoBD.guardar(m.Cuil))
+                if (CapaDatos.MozoBD.guardar(Cuil))
                 {
                     this.Error = false;
                     this.Mensaje = "Mozo Guardado";
@@ -66,11 +66,11 @@ namespace CapaNegocio
             }
             else
             {
-                if (CapaDatos.MozoBD.existe(m.Cuil))
+                if (CapaDatos.MozoBD.existe(Cuil))
                 {
                     this.Error = true;
                     this.Mensaje = "Ya existe un mozo cargado en el sistema con ese cuil";
-                    if (!CapaDatos.PersonaBD.PersonaActiva(m.Cuil))
+                    if (!CapaDatos.PersonaBD.PersonaActiva(Cuil))
                     {
                         this.Mensaje = "Cuil existente no activo";
                     }
