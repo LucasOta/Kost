@@ -85,7 +85,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -115,7 +117,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -140,7 +144,9 @@ namespace CapaDatos
                 sqlDat.Fill(detalles);
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 detalles = null;
             }
@@ -165,7 +171,9 @@ namespace CapaDatos
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
                 sqlDat.Fill(detalle);
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 detalle = null;
             }

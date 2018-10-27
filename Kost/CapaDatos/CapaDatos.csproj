@@ -45,6 +45,7 @@
     <Compile Include="ComandaBD.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="DetalleBD.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MozoBD.cs" />
     <Compile Include="PersonaBD.cs" />
     <Compile Include="ProdSimpleBD.cs" />
