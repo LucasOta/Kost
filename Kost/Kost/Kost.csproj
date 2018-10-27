@@ -46,16 +46,134 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
+    <Compile Include="AgregarCompuesto.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AgregarCompuesto.designer.cs">
+      <DependentUpon>AgregarCompuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarSimple.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AgregarSimple.designer.cs">
+      <DependentUpon>AgregarSimple.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Categoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Categoria.designer.cs">
+      <DependentUpon>Categoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comanda.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Comanda.designer.cs">
+      <DependentUpon>Comanda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComandasActivas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComandasActivas.designer.cs">
+      <DependentUpon>ComandasActivas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsumosUtilizados.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InsumosUtilizados.designer.cs">
+      <DependentUpon>InsumosUtilizados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mozos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Mozos.designer.cs">
+      <DependentUpon>Mozos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrecioPorCategoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PrecioPorCategoria.designer.cs">
+      <DependentUpon>PrecioPorCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoCompuesto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductoCompuesto.designer.cs">
+      <DependentUpon>ProductoCompuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Productos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Productos.designer.cs">
+      <DependentUpon>Productos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoSimple.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductoSimple.designer.cs">
+      <DependentUpon>ProductoSimple.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Stocks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stocks.designer.cs">
+      <DependentUpon>Stocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Usuarios.designer.cs">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentasPorDia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VentasPorDia.designer.cs">
+      <DependentUpon>VentasPorDia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VentasPorMozo.designer.cs" />
+    <EmbeddedResource Include="AgregarCompuesto.resx">
+      <DependentUpon>AgregarCompuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AgregarSimple.resx">
+      <DependentUpon>AgregarSimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Categoria.resx">
+      <DependentUpon>Categoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comanda.resx">
+      <DependentUpon>Comanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComandasActivas.resx">
+      <DependentUpon>ComandasActivas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsumosUtilizados.resx">
+      <DependentUpon>InsumosUtilizados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mozos.resx">
+      <DependentUpon>Mozos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrecioPorCategoria.resx">
+      <DependentUpon>PrecioPorCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductoCompuesto.resx">
+      <DependentUpon>ProductoCompuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Productos.resx">
+      <DependentUpon>Productos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductoSimple.resx">
+      <DependentUpon>ProductoSimple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +184,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Stocks.resx">
+      <DependentUpon>Stocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios.resx">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentasPorDia.resx">
+      <DependentUpon>VentasPorDia.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
