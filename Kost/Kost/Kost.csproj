@@ -76,6 +76,12 @@
     <Compile Include="ComandasActivas.designer.cs">
       <DependentUpon>ComandasActivas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="InsumosUtilizados.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,7 +144,12 @@
     <Compile Include="VentasPorDia.designer.cs">
       <DependentUpon>VentasPorDia.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentasPorMozo.designer.cs" />
+    <Compile Include="VentasPorMozo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VentasPorMozo.designer.cs">
+      <DependentUpon>VentasPorMozo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AgregarCompuesto.resx">
       <DependentUpon>AgregarCompuesto.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComandasActivas.resx">
       <DependentUpon>ComandasActivas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsumosUtilizados.resx">
       <DependentUpon>InsumosUtilizados.cs</DependentUpon>
@@ -192,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VentasPorDia.resx">
       <DependentUpon>VentasPorDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentasPorMozo.resx">
+      <DependentUpon>VentasPorMozo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
