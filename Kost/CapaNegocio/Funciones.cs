@@ -14,7 +14,7 @@ namespace CapaNegocio
         {
             MessageBox.Show(actual, mensaje, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-        //Para mostrar mensaje de confirmación
+        //Para mostrar mensaje de confirmación.
         public static void mOk(UserControl actual, string mensaje)
         {
             MessageBox.Show(actual, mensaje, "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Information);
