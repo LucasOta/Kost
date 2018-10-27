@@ -16,6 +16,8 @@ namespace Kost
     public partial class Usuarios : UserControl
     {
         Boolean banderaGuardar = true;
+        Usuario user;
+
         public Usuarios()
         {
             InitializeComponent();
@@ -123,7 +125,7 @@ namespace Kost
                 banderaGuardar = false;
 
                 long cuil = Convert.ToInt64(dgvUsuarios.CurrentRow.Cells["cuil"].Value);
-                Usuario user = CapaNegocio.Usuario.TraerUnUsuario(cuil);
+                user = CapaNegocio.Usuario.TraerUnUsuario(cuil);
 
                 txtApellido.Text = user.Apellido;
                 txtContraseña.Text = user.Password;
@@ -262,7 +264,17 @@ namespace Kost
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Usuario.ModificarUsuario(txtUsuario.Text, txtContraseña.Text, Convert.ToInt32(cbxNivel.SelectedValue), Convert.ToInt64(txtCuil.Text.Replace("-", "")), txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, dtpNacimiento.Value))
+            user.User = txtUsuario.Text;
+            user.Password = txtContraseña.Text;
+            user.Nivel = Convert.ToInt32(cbxNivel.SelectedValue);
+            user.Cuil = Convert.ToInt64(txtCuil.Text.Replace("-", ""));
+            user.Nombre = txtNombre.Text;
+            user.Apellido = txtApellido.Text;
+            user.Direccion = txtDireccion.Text;
+            user.Mail = txtMail.Text;
+            user.Nacimiento = dtpNacimiento.Value;
+
+            if (user.ModificarUsuario())
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al usuario se guardaron correctamente");
                 dgvUsuarios.DataSource = Usuario.ListarTodos();

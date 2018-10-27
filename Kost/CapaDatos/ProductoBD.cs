@@ -145,9 +145,9 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion)
+        public static Boolean modificar(int codProd, string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto)
         {
-            string sql = "UPDATE Personas SET nombre=@nombre, apellido=@apellido, mail=@mail, fechaNacimiento=@fechaNacimiento, direccion=@direccion, baja=0 WHERE cuil=@CUIL;";
+            string sql = "UPDATE Productos SET pnombre=@nombre, pprecio=@precioVenta, pidCategoria=@idCategoria, pdescripcion=@descripProd, compuesto=@compuesto, baja=0 WHERE codProd=@codProd;";
 
             try
             {
@@ -156,26 +156,26 @@ namespace CapaDatos
                 Cx.setComandoTexto();
                 Cx.setSQL(sql);
 
-
-
                 Cx.sqlCmd.Parameters.Add("nombre", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[0].Value = pNombre;
+                Cx.sqlCmd.Parameters[0].Value = pnombre;
 
-                Cx.sqlCmd.Parameters.Add("apellido", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[1].Value = pApellido;
+                Cx.sqlCmd.Parameters.Add("precioVenta", SqlDbType.Float);
+                Cx.sqlCmd.Parameters[1].Value = pprecio;
 
-                Cx.sqlCmd.Parameters.Add("mail", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[2].Value = pMail;
+                Cx.sqlCmd.Parameters.Add("idCategoria", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[2].Value = pidCategoria;
 
-                Cx.sqlCmd.Parameters.Add("fechaNacimiento", SqlDbType.Date);
-                Cx.sqlCmd.Parameters[3].Value = pFechaNac;
+                Cx.sqlCmd.Parameters.Add("descripProd", SqlDbType.VarChar);
+                Cx.sqlCmd.Parameters[3].Value = pdescripcion;
 
-                Cx.sqlCmd.Parameters.Add("direccion", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[4].Value = pDireccion;
+                Cx.sqlCmd.Parameters.Add("compuesto", SqlDbType.Bit);
+                Cx.sqlCmd.Parameters[4].Value = compuesto;
 
-                Cx.sqlCmd.Parameters.Add("CUIL", SqlDbType.BigInt);
-                Cx.sqlCmd.Parameters[5].Value = pCuil;
+                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
+                Cx.sqlCmd.Parameters[5].Value = 0;
 
+                Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[6].Value = 0;
 
                 Cx.abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -193,9 +193,9 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminar(long pCuil)
+        public static Boolean eliminar(int cod)
         {
-            string sql = "UPDATE Personas SET baja=@baja WHERE cuil=@CUIL;";
+            string sql = "UPDATE Productos SET baja=@baja WHERE codProd=@codProd;";
 
             try
             {
@@ -204,8 +204,8 @@ namespace CapaDatos
                 Cx.setComandoTexto();
                 Cx.setSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("CUIL", SqlDbType.BigInt);
-                Cx.sqlCmd.Parameters[1].Value = pCuil;
+                Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[1].Value = cod;
 
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[0].Value = 1;
@@ -226,11 +226,11 @@ namespace CapaDatos
             }
         }
 
-        public static DataTable DataGridUsuarios()
+        public static DataTable DataGridProductos()
         {
-            DataTable ds = new DataTable("dataGridUsuarios");
+            DataTable ds = new DataTable("dataGridProductos");
 
-            string sql = "SELECT idMedio, medioDePago, borrado FROM Personas WHERE baja=0";
+            string sql = "SELECT codProd, nombre, descripProd, idCategoría, precioVenta FROM Productos WHERE cuil = @cuil and baja=0";
 
             try
             {
@@ -248,11 +248,11 @@ namespace CapaDatos
             return ds;
         }
 
-        public static DataTable TraerUnaPersona(long cuil)
+        public static DataTable TraerUnProducto(int cod)
         {
-            DataTable persona = new DataTable("Usuarios");
+            DataTable producto = new DataTable("Productos");
 
-            string sql = "SELECT * FROM Personas WHERE cuil = @cuil";
+            string sql = "SELECT codProd, nombre, descripProd, idCategoría, precioVenta, compuesto FROM Productos WHERE cuil = @cuil and baja=0";
 
             try
             {
@@ -260,18 +260,18 @@ namespace CapaDatos
                 Cx.setComandoTexto();
                 Cx.setSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("cuil", SqlDbType.BigInt);
-                Cx.sqlCmd.Parameters[0].Value = cuil;
+                Cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = cod;
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
-                sqlDat.Fill(persona);
+                sqlDat.Fill(producto);
             }
             catch (Exception e)
             {
-                persona = null;
+                producto = null;
             }
 
-            return persona;
+            return producto;
         }
     }
 }
