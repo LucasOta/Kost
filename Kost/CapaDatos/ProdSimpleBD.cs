@@ -43,7 +43,7 @@ namespace CapaDatos
 
         public static bool guardar(int pCod, int pStock, bool pInsumo)
         {
-            string sql = "INSERT INTO ProdSimples (pCod, stock, insumo, baja) values (@pCod, @pStock, @pInsumo, @baja)";
+            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, baja) values (@pCod, @pStock, @pInsumo, @baja)";
 
             try
             {
