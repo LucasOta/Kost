@@ -29,7 +29,9 @@ namespace Kost
         private void btnVer_Click_1(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvMozos.SelectedRows.Count, "ver los detalles del mismo.")) {
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvMozos.SelectedRows.Count, "un mozo", "ver los detalles del mismo.", this))
+            {
                 pnlMozo.Enabled = true;
                 btnCancelar.Enabled = false;
                 btnGuardar.Enabled = false;
@@ -93,7 +95,8 @@ namespace Kost
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvMozos.SelectedRows.Count, "eliminarlo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvMozos.SelectedRows.Count, "un mozo", "eliminarlo.", this))
             {
                 Clear();
                 pnlMozo.Enabled = false;
@@ -116,7 +119,8 @@ namespace Kost
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvMozos.SelectedRows.Count, "modificarlo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvMozos.SelectedRows.Count, "un mozo", "ver los detalles del mismo.", this))
             {
                 pnlMozo.Enabled = true;
                 btnCancelar.Enabled = true;
@@ -219,6 +223,7 @@ namespace Kost
 
         private void GuardarModificacion()
         {
+           
             if (CapaNegocio.Mozo.ModificarMozo(Convert.ToInt64(txtCuil.Text.Replace("-", "")), txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, dtpNacimiento.Value))
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al mozo se guardaron correctamente");
@@ -228,23 +233,6 @@ namespace Kost
                 pnlMozo.Enabled = false;
             }
             dgvMozos.DataSource = Mozo.ListarTodos();
-        }
-
-        private Boolean RowSeleccionado(int c, string msj) {
-            if (c == 1)
-            {
-                return true;
-            }
-            else if (c == 0)
-            {
-                Funciones.mAdvertencia(this, "Debe seleccionar un mozo para poder " + msj);
-                return false;
-            }
-            else
-            {
-                Funciones.mAdvertencia(this, "Debe seleccionar sólo un mozo.");
-                return false;
-            }
         }
 
     }
