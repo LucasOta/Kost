@@ -14,12 +14,11 @@ namespace CapaNegocio
         {
             MessageBox.Show(actual, mensaje, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-        //Para mostrar mensaje de confirmación.
+
         public static void mOk(UserControl actual, string mensaje)
         {
             MessageBox.Show(actual, mensaje, "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
 
         public static bool mConsulta(UserControl actual, string mensaje)
         {
@@ -31,8 +30,6 @@ namespace CapaNegocio
             {
                 return false;
             }
-            // MessageBox.Show(actual, mensaje, "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            // MessageBox.Show ("Do you want to exit?", "My Application",  MessageBoxButtons.YesNo, MessageBoxIcon.Question)  
         }
 
         public static void mAdvertencia(UserControl actual, string mensaje)
