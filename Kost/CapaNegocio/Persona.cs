@@ -185,12 +185,12 @@ namespace CapaNegocio
 
         }
 
-        protected void Guardar(Persona p) 
+        protected void Guardar()
         {
-            //Esto de abajo es por si hay un error al guardar
-            if (!CapaDatos.PersonaBD.existe(p.Cuil))
+
+            if (!CapaDatos.PersonaBD.existe(Cuil))
             {
-                String msjGuardar = CapaDatos.PersonaBD.guardar(p.Cuil, p.Nombre, p.Apellido, p.Mail, p.Nacimiento, p.Direccion);
+                String msjGuardar = CapaDatos.PersonaBD.guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
                 if (msjGuardar.Equals("OK"))
                 {
                     this.Error = false;

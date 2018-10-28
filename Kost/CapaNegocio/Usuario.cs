@@ -78,7 +78,7 @@ namespace CapaNegocio
                     Cuil = pcuil;
                     Nacimiento = pnacimiento;
 
-                    this.Guardar();
+                    GuardarUser();
                 }
                 else
                 {
