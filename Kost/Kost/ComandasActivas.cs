@@ -25,38 +25,7 @@ namespace Kost
         {
             InitializeComponent();
 
-            CargarDGV();
-
-            int cont;
-
-            DataTable mesas = new DataTable();
-
-            mesas.Clear();
-            mesas.Columns.Add("nroMesa");
-
-            DataRow row;
-
-            for (cont = 1; cont < 16; cont++)
-            {
-                row = mesas.NewRow();
-                row["nroMesa"] = cont.ToString();
-                mesas.Rows.Add(row);
-            }
-
-            cbxMesa.DataSource = mesas.DefaultView;
-            cbxMesa.ValueMember = "nroMesa";
-            cbxMesa.DisplayMember = "nroMesa";
-            cbxMesa.BindingContext = this.BindingContext;
-
-            DataTable mozos = CapaNegocio.Mozo.ListarTodos();
-
-            cbxMozo.DataSource = mozos.DefaultView;
-            cbxMozo.ValueMember = "cuil";
-            cbxMozo.DisplayMember = "nya";
-            cbxMozo.BindingContext = this.BindingContext;
-
-            pnlComanda.Enabled = false;
-            dgvComandasActivas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ActualizarPantalla();                       
         }
 
 
@@ -177,6 +146,48 @@ namespace Kost
         public void CargarDGV()
         {
             dgvComandasActivas.DataSource = CapaNegocio.Comanda.ComandasActivas();
+        }
+
+        public void CargarCBX()
+        {
+            //Harcodeo cantidad de mesas
+            int cont;
+            
+            DataTable mesas = new DataTable();
+
+            mesas.Clear();
+            mesas.Columns.Add("nroMesa");
+
+            DataRow row;
+
+            for (cont = 1; cont < 16; cont++)
+            {
+                row = mesas.NewRow();
+                row["nroMesa"] = cont.ToString();
+                mesas.Rows.Add(row);
+            }
+
+            cbxMesa.DataSource = mesas.DefaultView;
+            cbxMesa.ValueMember = "nroMesa";
+            cbxMesa.DisplayMember = "nroMesa";
+            cbxMesa.BindingContext = this.BindingContext;
+
+            DataTable mozos = CapaNegocio.Mozo.ListarTodos();
+
+            cbxMozo.DataSource = mozos.DefaultView;
+            cbxMozo.ValueMember = "cuil";
+            cbxMozo.DisplayMember = "nya";
+            cbxMozo.BindingContext = this.BindingContext;
+        }
+
+        public void ActualizarPantalla()
+        {
+            CargarDGV();
+
+            CargarCBX();
+
+            pnlComanda.Enabled = false;
+            dgvComandasActivas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
     }
 }

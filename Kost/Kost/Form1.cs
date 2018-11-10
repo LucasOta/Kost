@@ -44,7 +44,8 @@ namespace Kost
 
             indicadorBtn.Height = btnComandas.Height;
             indicadorBtn.Top = btnComandas.Top;
-            comandasActivas1.BringToFront();
+            comandasActivas1.ActualizarPantalla();
+            comandasActivas1.BringToFront();    
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)

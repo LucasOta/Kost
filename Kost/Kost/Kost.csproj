@@ -107,23 +107,11 @@
     <Compile Include="PrecioPorCategoria.designer.cs">
       <DependentUpon>PrecioPorCategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductoCompuesto.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ProductoCompuesto.designer.cs">
-      <DependentUpon>ProductoCompuesto.cs</DependentUpon>
-    </Compile>
     <Compile Include="Productos.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Productos.designer.cs">
       <DependentUpon>Productos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ProductoSimple.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ProductoSimple.designer.cs">
-      <DependentUpon>ProductoSimple.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -181,14 +169,8 @@
     <EmbeddedResource Include="PrecioPorCategoria.resx">
       <DependentUpon>PrecioPorCategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductoCompuesto.resx">
-      <DependentUpon>ProductoCompuesto.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Productos.resx">
       <DependentUpon>Productos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProductoSimple.resx">
-      <DependentUpon>ProductoSimple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
