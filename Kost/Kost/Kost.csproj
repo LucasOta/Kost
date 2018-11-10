@@ -89,6 +89,7 @@
     <Compile Include="InsumosUtilizados.designer.cs">
       <DependentUpon>InsumosUtilizados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaz.cs" />
     <Compile Include="Login.cs">
       <SubType>UserControl</SubType>
     </Compile>

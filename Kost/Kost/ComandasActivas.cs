@@ -13,7 +13,7 @@ namespace Kost
 {
     public delegate void irAComandaEventHandler(int nroComanda);
 
-    public partial class ComandasActivas : UserControl
+    public partial class ComandasActivas : UserControl, Interfaz
     {
         public event irAComandaEventHandler btnIrAComandaCLick;
 
