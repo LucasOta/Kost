@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,22 @@ namespace CapaNegocio
 
         public Producto(int c_codProd, string c_nombre, float c_precioVenta, int c_idCat, string c_descProd, bool c_compuesto)
         {
+            this.ValidarProd(c_codProd, c_nombre);
 
+            if (!this.Error)
+            {
+                CodProd = c_codProd;
+                Nombre = c_nombre;
+                PrecioVenta = c_precioVenta;
+                IdCategoria = c_idCat;
+                DescProd = c_descProd;
+                Compuesto = c_compuesto;
+                this.Guardar();
+            }
+            else
+            {
+                //Retornar mensaje
+            }
         }
 
         //Getters y Setters
@@ -45,6 +61,87 @@ namespace CapaNegocio
 
         //Funciones
 
+        protected void ValidarProd(int codprod, string nombre)
+        {
+            if (CapaDatos.ProductoBD.existecodigo(CodProd))
+            {
+                this.Error = true;
+                this.Mensaje = "Ya existe un producto guardado con este codigo de producto.";
+            }
 
+            if (CapaDatos.ProductoBD.existenombre(Nombre))
+            {
+                this.Error = true;
+                this.Mensaje += "Ya existe un producto guardad con este nombre.";
+            }
+        }
+
+        protected void Guardar()
+        {
+            String msjGuardar = CapaDatos.ProductoBD.guardar(Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
+            if (msjGuardar.Equals("OK"))
+            {
+                this.Error = false;
+                this.Mensaje = "Producto guardado";
+            }
+            else
+            {   
+                this.Error = true;
+                this.Mensaje = msjGuardar;
+            }
+        }
+
+        public static void TraerUnProducto(int codprod, Producto p)
+        {
+            DataTable prod = CapaDatos.ProductoBD.TraerUnProducto(codprod);
+
+            DataRow rowprod = prod.Rows[0];
+
+            p.CodProd = Convert.ToInt32(rowprod["codProd"].ToString());
+            p.DescProd = rowprod["descripProd"].ToString();
+            p.IdCategoria = Convert.ToInt32(rowprod["idCategoría"].ToString());
+            p.Nombre = rowprod["nombre"].ToString();
+            p.PrecioVenta = Convert.ToSingle(rowprod["precioVenta"].ToString());
+            if(Convert.ToInt32(rowprod["compuesto"].ToString()) == 1)
+            {
+                p.Compuesto = true;
+            }
+            else
+            {
+                p.Compuesto = false;
+            }
+            
+        }
+
+        public Boolean ModificarProducto()
+        {
+            Error = false;
+            Mensaje = "";
+            this.ValidarProd(CodProd, Nombre);
+            if (!Error)
+            {
+                return CapaDatos.ProductoBD.modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
+            }
+            else
+            {
+                Mensaje += " No pudieron realizarse los cambios";
+                return false;
+            }
+        }
+
+        public static Boolean EliminarProd(int codprod)
+        {
+            return CapaDatos.ProductoBD.eliminar(codprod);
+        }
+
+        public DataTable ListarTodos()
+        {
+            return CapaDatos.ProductoBD.DataGridProductos();
+        }
+
+        public static Boolean ProductoActivo(int codprod)
+        {
+            return CapaDatos.ProductoBD.ProductoActivo(codprod);
+        }
     }
 }

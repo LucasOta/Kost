@@ -37,7 +37,7 @@ namespace CapaNegocio
                 Mail = pmail;
                 Cuil = pcuil;
                 Nacimiento = pnacimiento;
-               this.Guardar();
+                this.Guardar();
             } else {
                 //Mandar mensaje
             }
@@ -185,13 +185,13 @@ namespace CapaNegocio
 
         }
 
-        protected void Guardar() //string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
+        protected void Guardar() 
         {
-            //Esto de abajo es por si hay un error al guardar
-            if (!CapaDatos.PersonaBD.existe(Cuil))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
+            
+            if (!CapaDatos.PersonaBD.existe(Cuil))
             {
                 String msjGuardar = CapaDatos.PersonaBD.guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
-                if (msjGuardar.Equals("OK"))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
+                if (msjGuardar.Equals("OK"))
                 {
                     this.Error = false;
                     this.Mensaje = "Persona Guardada";
@@ -226,6 +226,7 @@ namespace CapaNegocio
         public Boolean ModificarPersona()
         {
             Error = false;
+            Mensaje = "";
             this.ValidarPers(Nombre, Apellido, Direccion, Mail, Cuil, Nacimiento);
             if (!Error)
             {

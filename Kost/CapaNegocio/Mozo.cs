@@ -33,7 +33,7 @@ namespace CapaNegocio
                     Cuil = pcuil;
                     Nacimiento = pnacimiento;
 
-                    this.Guardar();
+                    this.GuardarMozo();
                 }
                 else
                 {

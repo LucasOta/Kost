@@ -10,7 +10,7 @@ namespace CapaDatos
 {
     public class ProductoBD
     {
-        public static Boolean existe(int codProd)
+        public static Boolean existecodigo(int codProd)
         {
             string sql = "SELECT baja FROM Productos WHERE codProd =  @codProd";
             try
@@ -42,7 +42,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean existe(string nombre)
+        public static Boolean existenombre(string nombre)
         {
             string sql = "SELECT baja FROM Productos WHERE nombre =  @nombre";
             try
@@ -240,7 +240,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("dataGridProductos");
 
-            string sql = "SELECT codProd, nombre, descripProd, idCategoría, precioVenta FROM Productos WHERE cuil = @cuil and baja=0";
+            string sql = "SELECT codProd, nombre, descripProd, idCategoría, precioVenta FROM Productos WHERE baja=0";
 
             try
             {

@@ -156,9 +156,7 @@ namespace CapaDatos
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
                 sqlDat.Fill(mozos); //Llenamos el DataTable
             }
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 mozos = null;
             }
