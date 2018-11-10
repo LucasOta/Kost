@@ -49,12 +49,15 @@
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker4 = new System.ComponentModel.BackgroundWorker();
-            this.login1 = new Kost.Login();
+            this.agregarSimple1 = new Kost.AgregarSimple();
+            this.agregarCompuesto1 = new Kost.AgregarCompuesto();
             this.productos1 = new Kost.Productos();
             this.mozos1 = new Kost.Mozos();
             this.comanda1 = new Kost.Comanda();
             this.comandasActivas1 = new Kost.ComandasActivas();
             this.usuarios1 = new Kost.Usuarios();
+            this.login1 = new Kost.Login();
+            this.stocks1 = new Kost.Stocks();
             this.panel1.SuspendLayout();
             this.desplegableRep.SuspendLayout();
             this.pnlBarra.SuspendLayout();
@@ -308,15 +311,23 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // login1
+            // agregarSimple1
             // 
-            this.login1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(51)))), ((int)(((byte)(59)))));
-            this.login1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.login1.Location = new System.Drawing.Point(0, 0);
-            this.login1.Margin = new System.Windows.Forms.Padding(5);
-            this.login1.Name = "login1";
-            this.login1.Size = new System.Drawing.Size(1000, 562);
-            this.login1.TabIndex = 8;
+            this.agregarSimple1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agregarSimple1.ForeColor = System.Drawing.Color.Black;
+            this.agregarSimple1.Location = new System.Drawing.Point(175, 33);
+            this.agregarSimple1.Name = "agregarSimple1";
+            this.agregarSimple1.Size = new System.Drawing.Size(825, 530);
+            this.agregarSimple1.TabIndex = 10;
+            // 
+            // agregarCompuesto1
+            // 
+            this.agregarCompuesto1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.agregarCompuesto1.ForeColor = System.Drawing.Color.Black;
+            this.agregarCompuesto1.Location = new System.Drawing.Point(175, 33);
+            this.agregarCompuesto1.Name = "agregarCompuesto1";
+            this.agregarCompuesto1.Size = new System.Drawing.Size(825, 530);
+            this.agregarCompuesto1.TabIndex = 9;
             // 
             // productos1
             // 
@@ -333,6 +344,7 @@
             this.mozos1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mozos1.ForeColor = System.Drawing.Color.Black;
             this.mozos1.Location = new System.Drawing.Point(175, 33);
+            this.mozos1.Margin = new System.Windows.Forms.Padding(5);
             this.mozos1.Name = "mozos1";
             this.mozos1.Size = new System.Drawing.Size(825, 530);
             this.mozos1.TabIndex = 6;
@@ -368,11 +380,34 @@
             this.usuarios1.Size = new System.Drawing.Size(1000, 562);
             this.usuarios1.TabIndex = 4;
             // 
+            // login1
+            // 
+            this.login1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(51)))), ((int)(((byte)(59)))));
+            this.login1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login1.Location = new System.Drawing.Point(0, 0);
+            this.login1.Margin = new System.Windows.Forms.Padding(5);
+            this.login1.Name = "login1";
+            this.login1.Size = new System.Drawing.Size(1000, 562);
+            this.login1.TabIndex = 8;
+            // 
+            // stocks1
+            // 
+            this.stocks1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stocks1.ForeColor = System.Drawing.Color.Black;
+            this.stocks1.Location = new System.Drawing.Point(175, 33);
+            this.stocks1.Margin = new System.Windows.Forms.Padding(5);
+            this.stocks1.Name = "stocks1";
+            this.stocks1.Size = new System.Drawing.Size(825, 530);
+            this.stocks1.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 562);
+            this.Controls.Add(this.stocks1);
+            this.Controls.Add(this.agregarSimple1);
+            this.Controls.Add(this.agregarCompuesto1);
             this.Controls.Add(this.productos1);
             this.Controls.Add(this.mozos1);
             this.Controls.Add(this.comanda1);
@@ -423,6 +458,9 @@
         private ComandasActivas comandasActivas1;
         private Login login1;
         private System.Windows.Forms.Button btnCerrarSesion;
+        private AgregarCompuesto agregarCompuesto1;
+        private AgregarSimple agregarSimple1;
+        private Stocks stocks1;
     }
 }
 

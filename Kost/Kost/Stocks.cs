@@ -11,8 +11,12 @@ using CapaNegocio;
 
 namespace Kost
 {
+    public delegate void volverAProductos();
+
     public partial class Stocks : UserControl, Interfaz
     {
+        public event volverAProductos btnIrAtras;
+
         public Stocks()
         {
             InitializeComponent();
@@ -59,5 +63,12 @@ namespace Kost
 
             pnlProducto.Enabled = false;
         }        
+            
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.btnIrAtras();
+        }
     }
 }

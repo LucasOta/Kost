@@ -174,6 +174,7 @@
             this.btnVerStock.TabIndex = 5;
             this.btnVerStock.Text = "Ver Stock";
             this.btnVerStock.UseVisualStyleBackColor = true;
+            this.btnVerStock.Click += new System.EventHandler(this.btnVerStock_Click);
             // 
             // Productos
             // 

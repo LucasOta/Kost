@@ -14,11 +14,14 @@ namespace Kost
 
     public delegate void irProductoSimpleEventHandler();
 
+    public delegate void irVerStockEventHandler();
+
+
     public partial class Productos : UserControl, Interfaz
     {
         public event irProductoCompuestoEventHandler btnIrCompuesto;
-
         public event irProductoSimpleEventHandler btnIrSimple;
+        public event irVerStockEventHandler btnIrStocks;
 
         public Productos()
         {
@@ -53,9 +56,13 @@ namespace Kost
                 {
                 }
             }
-
         }
-           
+
+        private void btnVerStock_Click(object sender, EventArgs e)
+        {
+            this.btnIrStocks();
+        }
+
         //Métodos
         public void Clear()
         {
@@ -66,5 +73,7 @@ namespace Kost
         {
 
         }
+
+        
     }
 }

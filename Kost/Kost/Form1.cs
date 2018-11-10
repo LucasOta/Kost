@@ -21,11 +21,18 @@ namespace Kost
 
             login1.BringToFront();
 
+            //Implementación de Eventos y Delegados
             comandasActivas1.btnIrAComandaCLick += new Kost.irAComandaEventHandler(IrAComanda);
             comanda1.btnIrAAtrasCLick += new Kost.volverAComandasActivasEventHandler(AtrasComanda);
             comanda1.cerrarComanda += new Kost.cerrarComandaEventHandler(CerrarComanda);
             productos1.btnIrCompuesto += new Kost.irProductoCompuestoEventHandler(IrProductoCompuesto);
             productos1.btnIrSimple += new Kost.irProductoSimpleEventHandler(IrProductoSimple);
+            productos1.btnIrStocks += new Kost.irVerStockEventHandler(IrStocks);
+            agregarSimple1.btnIrAtras += new Kost.volverAProductos(irAProductos);
+            agregarCompuesto1.btnIrAtras += new Kost.volverAProductos(irAProductos);
+            stocks1.btnIrAtras += new Kost.volverAProductos(irAProductos);
+
+
 
             login1.Inicio_0 += new Kost.Inicio_0_EventHandler(sinSesion);
             login1.Inicio_1 += new Kost.Inicio_1_EventHandler(admin);
@@ -152,12 +159,21 @@ namespace Kost
 
         private void IrProductoCompuesto()
         {
-
+            agregarCompuesto1.BringToFront();
         }
 
         private void IrProductoSimple()
         {
+            agregarSimple1.BringToFront();
+        }
 
+        private void IrStocks()
+        {
+            stocks1.BringToFront();
+        }
+
+        private void irAProductos() {
+            productos1.BringToFront();             
         }
 
         //Mostrar según Usuario

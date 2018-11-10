@@ -14,8 +14,8 @@ namespace CapaNegocio
         private int stock;
         private bool insumo;
 
-        //Constructores
 
+        //Constructores
         public ProdSimple()
         {
 
@@ -54,14 +54,49 @@ namespace CapaNegocio
             }
         }
 
-        //Getters y Setters
 
-        public int CodProdSimple { get => codProdSimple; set => codProdSimple = value; }
-        public int Stock { get => stock; set => stock = value; }
-        public bool Insumo { get => insumo; set => insumo = value; }
+        //Getters y Setters
+        public int CodProdSimple
+        {
+            get
+            {
+                return codProdSimple;
+            }
+
+            set
+            {
+                codProdSimple = value;
+            }
+        }
+
+        public int Stock
+        {
+            get
+            {
+                return stock;
+            }
+
+            set
+            {
+                stock = value;
+            }
+        }
+
+        public bool Insumo
+        {
+            get
+            {
+                return insumo;
+            }
+
+            set
+            {
+                insumo = value;
+            }
+        }
+
 
         //Funciones 
-
         protected void ValidarSimple(int codPS)
         {
             if (!CapaDatos.ProdSimpleBD.existe(codPS))

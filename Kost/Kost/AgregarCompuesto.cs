@@ -12,6 +12,8 @@ namespace Kost
 {
     public partial class AgregarCompuesto : UserControl, Interfaz
     {
+        public event volverAProductos btnIrAtras;
+
         public AgregarCompuesto()
         {
             InitializeComponent();
@@ -27,6 +29,12 @@ namespace Kost
 
         }
 
+        private void btnAtras_Click_1(object sender, EventArgs e)
+        {
+            this.btnIrAtras();
+        }
+
+
         //Métodos
         public void Clear()
         {
@@ -37,5 +45,7 @@ namespace Kost
         {
             
         }
+
+        
     }
 }

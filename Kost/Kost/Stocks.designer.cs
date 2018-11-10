@@ -69,6 +69,7 @@
             this.btnAtras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAtras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // btnModificar
             // 
