@@ -33,6 +33,7 @@ namespace Kost
             stocks1.btnIrAtras += new Kost.volverAProductos(irAProductos);
 
 
+
             login1.Inicio_0 += new Kost.Inicio_0_EventHandler(sinSesion);
             login1.Inicio_1 += new Kost.Inicio_1_EventHandler(admin);
             login1.Inicio_2 += new Kost.Inicio_2_EventHandler(usuario);
