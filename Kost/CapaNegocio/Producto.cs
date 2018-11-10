@@ -20,6 +20,7 @@ namespace CapaNegocio
 
         private bool error;
         private string mensaje;
+               
 
         //Constructores
 
@@ -49,15 +50,110 @@ namespace CapaNegocio
         }
 
         //Getters y Setters
+        public int CodProd
+        {
+            get
+            {
+                return codProd;
+            }
 
-        public int CodProd { get => codProd; set => codProd = value; }
-        public string Nombre { get => nombre; set => nombre = value; }
-        public float PrecioVenta { get => precioVenta; set => precioVenta = value; }
-        public int IdCategoria { get => idCategoria; set => idCategoria = value; }
-        public string DescProd { get => descProd; set => descProd = value; }
-        public bool Compuesto { get => compuesto; set => compuesto = value; }
-        public bool Error { get => error; set => error = value; }
-        public string Mensaje { get => mensaje; set => mensaje = value; }
+            set
+            {
+                codProd = value;
+            }
+        }
+
+        public string Nombre
+        {
+            get
+            {
+                return nombre;
+            }
+
+            set
+            {
+                nombre = value;
+            }
+        }
+
+        public float PrecioVenta
+        {
+            get
+            {
+                return precioVenta;
+            }
+
+            set
+            {
+                precioVenta = value;
+            }
+        }
+
+        public int IdCategoria
+        {
+            get
+            {
+                return idCategoria;
+            }
+
+            set
+            {
+                idCategoria = value;
+            }
+        }
+
+        public string DescProd
+        {
+            get
+            {
+                return descProd;
+            }
+
+            set
+            {
+                descProd = value;
+            }
+        }
+
+        public bool Compuesto
+        {
+            get
+            {
+                return compuesto;
+            }
+
+            set
+            {
+                compuesto = value;
+            }
+        }
+
+        public bool Error
+        {
+            get
+            {
+                return error;
+            }
+
+            set
+            {
+                error = value;
+            }
+        }
+
+        public string Mensaje
+        {
+            get
+            {
+                return mensaje;
+            }
+
+            set
+            {
+                mensaje = value;
+            }
+        }
+
 
         //Funciones
 

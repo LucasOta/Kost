@@ -26,5 +26,15 @@ namespace Kost
         {
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvComponentes.SelectedRows.Count, "un insumo de la lista", "eliminarlo.", this))
+            {
+                
+            }
+        }
+
     }
 }

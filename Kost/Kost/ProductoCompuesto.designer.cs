@@ -228,10 +228,10 @@
             this.dgvComponentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Insumo,
             this.Cantidad});
-            this.dgvComponentes.Location = new System.Drawing.Point(450, 268);
+            this.dgvComponentes.Location = new System.Drawing.Point(450, 95);
             this.dgvComponentes.Name = "dgvComponentes";
             this.dgvComponentes.ReadOnly = true;
-            this.dgvComponentes.Size = new System.Drawing.Size(371, 173);
+            this.dgvComponentes.Size = new System.Drawing.Size(371, 298);
             this.dgvComponentes.TabIndex = 8;
             this.dgvComponentes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -259,6 +259,7 @@
             this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // ProductoCompuesto
             // 
@@ -285,7 +286,7 @@
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.btnAtras);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ProductoCompuesto";
             this.Size = new System.Drawing.Size(825, 530);
             ((System.ComponentModel.ISupportInitialize)(this.dgvComponentes)).EndInit();

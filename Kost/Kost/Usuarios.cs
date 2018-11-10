@@ -94,7 +94,8 @@ namespace Kost
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvUsuarios.SelectedRows.Count, "eliminarlo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvUsuarios.SelectedRows.Count, "un usuario", "eliminarlo.", this))
             {
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Esta seguro de que desea eliminar el usuario?"))
                 {
@@ -117,7 +118,8 @@ namespace Kost
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvUsuarios.SelectedRows.Count, "modificarlo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvUsuarios.SelectedRows.Count, "un usuario", "modificarlo.", this))
             {
                 pnlUsuario.Enabled = true;
                 btnCancelar.Enabled = true;
@@ -150,7 +152,8 @@ namespace Kost
         private void btnVerUsuario_Click(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvUsuarios.SelectedRows.Count, "ver los detalles del mismo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvUsuarios.SelectedRows.Count, "un usuario", "ver los detalles del mismo.", this))
             {
                 pnlUsuario.Enabled = true;
 
@@ -165,31 +168,33 @@ namespace Kost
         }
 
 
+
         //TextBoxs
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = soloLetras(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.soloLetras(e.KeyChar);
         }
                 
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = soloLetras(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.soloLetras(e.KeyChar);
         }
 
         private void txtMail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = sinEspacios(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.sinEspacios(e.KeyChar);
         }
 
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = sinEspacios(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.sinEspacios(e.KeyChar);
         }
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = sinEspacios(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.sinEspacios(e.KeyChar);
         }
+
 
 
         //Métodos      
@@ -206,46 +211,6 @@ namespace Kost
             cbxNivel.SelectedValue = 1;
             pnlUsuario.Enabled = false;
         }
-
-        private Boolean soloLetras(char e)
-        {
-            Boolean result = false;
-            if (Char.IsLetter(e))
-            {
-                result = false;
-            }
-            else if (Char.IsControl(e))
-            {
-                result = false;
-            }
-            else if (Char.IsSeparator(e))
-            {
-                result = false;
-            }
-            else
-            {
-                result = true;
-            }
-
-            return result;
-        }        
-
-        private Boolean sinEspacios(char e)
-        {
-            
-
-            Boolean result = false;
-            if (Char.IsSeparator(e))
-            {
-                result = true;
-            }
-            else
-            {
-                result = false;
-            }
-
-            return result;
-        }        
 
         private void MostrarDatosDeUsuario(long cuil)
         {
@@ -285,22 +250,5 @@ namespace Kost
             dgvUsuarios.DataSource = Usuario.ListarTodos();
         }
 
-        private Boolean RowSeleccionado(int c, string msj)
-        {
-            if (c == 1)
-            {
-                return true;
-            }
-            else if (c == 0)
-            {
-                Funciones.mAdvertencia(this, "Debe seleccionar un usuario para poder " + msj);
-                return false;
-            }
-            else
-            {
-                Funciones.mAdvertencia(this, "Debe seleccionar sólo un usuario.");
-                return false;
-            }
-        }
     }
 }
