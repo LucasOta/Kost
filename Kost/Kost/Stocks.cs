@@ -38,7 +38,9 @@ namespace Kost
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            pnlProducto.Enabled = true;                      
+            if (CapaNegocio.Funciones.RowSeleccionado(dgvProductos.SelectedRows.Count, "un producto", "modificar el stock.", this))
+            {
+                pnlProducto.Enabled = true;
 
             CapaNegocio.ProdSimple.TraerUnSimple(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), PS);
             
