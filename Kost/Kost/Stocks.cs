@@ -42,10 +42,11 @@ namespace Kost
             {
                 pnlProducto.Enabled = true;
 
-            CapaNegocio.ProdSimple.TraerUnSimple(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), PS);
-            
-            lblNombre.Text = PS.Nombre;
-            lblDescripcion.Text = PS.DescProd;
+                CapaNegocio.ProdSimple.TraerUnSimple(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), PS);
+
+                lblNombre.Text = PS.Nombre;
+                lblDescripcion.Text = PS.DescProd;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
