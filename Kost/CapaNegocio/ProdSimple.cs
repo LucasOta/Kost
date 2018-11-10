@@ -158,20 +158,14 @@ namespace CapaNegocio
 
         public static void TraerUnSimple(int codPS, ProdSimple p)
         {
-            DataTable prod = CapaDatos.ProdSimpleBD.TraerUnProdSimple(codPS);
+            Producto.TraerUnProducto(codPS, p);
 
-            DataRow rowp = prod.Rows[0];
+            DataTable prods = CapaDatos.ProdSimpleBD.TraerUnProdSimple(codPS);
 
-            p.CodProdSimple = Convert.ToInt32(rowp["codProdSimple"].ToString());
-            p.Stock = Convert.ToInt32(rowp["stock"].ToString());
-            if (Convert.ToInt32(rowp["insumo"].ToString()) == 1)
-            {
-                p.Insumo = true;
-            }
-            else
-            {
-                p.Insumo = false;
-            }
+            DataRow rowps = prods.Rows[0];
+
+            p.CodProdSimple = Convert.ToInt32(rowps["codProdSimple"].ToString());
+            p.Stock = Convert.ToInt32(rowps["stock"].ToString());
         }
 
         public static DataTable MostrarStock()

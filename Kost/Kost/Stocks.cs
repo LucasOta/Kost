@@ -26,15 +26,14 @@ namespace Kost
 
         //Botones
         private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            if(txtAgregar.Text != "")
-            {
-                PS.Stock = PS.Stock + Convert.ToInt32(txtAgregar.Text);
-            }
-            if(txtQuitar.Text != "")
-            {
-                PS.Stock = PS.Stock + Convert.ToInt32(txtQuitar.Text);
-            }
+        {           
+            PS.Stock = PS.Stock + Convert.ToInt32(txtAgregar.Text);            
+            
+            PS.Stock = PS.Stock - Convert.ToInt32(txtQuitar.Text);
+
+            ActualizarPantalla();
+
+            pnlProducto.Enabled = false;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -42,7 +41,7 @@ namespace Kost
             pnlProducto.Enabled = true;                      
 
             CapaNegocio.ProdSimple.TraerUnSimple(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), PS);
-
+            
             lblNombre.Text = PS.Nombre;
             lblDescripcion.Text = PS.DescProd;
         }

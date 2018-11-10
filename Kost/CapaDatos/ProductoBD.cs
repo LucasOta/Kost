@@ -264,7 +264,7 @@ namespace CapaDatos
         {
             DataTable producto = new DataTable("Productos");
 
-            string sql = "SELECT codProd, nombre, descripProd, idCategoría, precioVenta, compuesto FROM Productos WHERE cuil = @cuil and baja=0";
+            string sql = "SELECT codProd, nombre, descripProd, idCategoria, precioVenta, compuesto FROM Productos WHERE codProd = @codprod and baja=0";
 
             try
             {

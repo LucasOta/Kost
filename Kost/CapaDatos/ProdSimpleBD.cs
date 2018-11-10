@@ -125,7 +125,7 @@ namespace CapaDatos
 
         public static Boolean eliminar(int cod)
         {
-            string sql = "UPDATE ProdSimple SET baja=@baja WHERE codProdSimple=@codProdSimple;";
+            string sql = "UPDATE ProdSimples SET baja=@baja WHERE codProdSimple=@codProdSimple;";
 
             try
             {
@@ -162,7 +162,7 @@ namespace CapaDatos
         {
             DataTable productoSimple = new DataTable("ProductosSimples");
 
-            string sql = "SELECT codProdSimple, stock, insumo FROM ProdSimple WHERE codProdSimple = @codProdSimple and baja=0";
+            string sql = "SELECT codProdSimple, stock, insumo FROM ProdSimples WHERE codProdSimple = @codProdSimple and baja=0";
 
             try
             {
@@ -190,7 +190,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("mostrarstock");
 
-            string sql = "SELECT S.codProdSimple, S.stock, S.insumo, P.nombre, P.descripProd FROM ProdSimples S INNER JOIN Productos P ON S.codProdSimple = P.codProd WHERE S.baja = 0 AND P.baja = 0";
+            string sql = "SELECT S.codProdSimple, S.stock, P.nombre, P.descripProd FROM ProdSimples S INNER JOIN Productos P ON S.codProdSimple = P.codProd WHERE S.baja = 0 AND P.baja = 0";
 
             try
             {

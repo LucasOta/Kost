@@ -195,10 +195,10 @@ namespace CapaNegocio
 
             p.CodProd = Convert.ToInt32(rowprod["codProd"].ToString());
             p.DescProd = rowprod["descripProd"].ToString();
-            p.IdCategoria = Convert.ToInt32(rowprod["idCategoría"].ToString());
+            p.IdCategoria = Convert.ToInt32(rowprod["idCategoria"].ToString());
             p.Nombre = rowprod["nombre"].ToString();
             p.PrecioVenta = Convert.ToSingle(rowprod["precioVenta"].ToString());
-            if(Convert.ToInt32(rowprod["compuesto"].ToString()) == 1)
+            if (rowprod["compuesto"].ToString() == "1")
             {
                 p.Compuesto = true;
             }
@@ -206,7 +206,7 @@ namespace CapaNegocio
             {
                 p.Compuesto = false;
             }
-            
+
         }
 
         public Boolean ModificarProducto()

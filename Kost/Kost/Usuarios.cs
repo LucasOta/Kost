@@ -95,8 +95,7 @@ namespace Kost
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Clear();
-            if (CapaNegocio.Funciones.RowSeleccionado(
-                dgvUsuarios.SelectedRows.Count, "un usuario", "modificarlo.", this))
+            if (CapaNegocio.Funciones.RowSeleccionado(dgvUsuarios.SelectedRows.Count, "un usuario", "modificarlo.", this))
             {
                 pnlUsuario.Enabled = true;
                 btnCancelar.Enabled = true;
