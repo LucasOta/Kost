@@ -79,6 +79,7 @@
             this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "Modificar Stock";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // pnlProducto
             // 
@@ -107,6 +108,7 @@
             this.btnGuardar.TabIndex = 2;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 
@@ -117,6 +119,7 @@
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtQuitar
             // 
@@ -215,6 +218,7 @@
             // 
             // ID
             // 
+            this.ID.DataPropertyName = "codProdSimple";
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -249,7 +253,7 @@
             this.Controls.Add(this.pnlProducto);
             this.Controls.Add(this.dgvProductos);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Stocks";
             this.Size = new System.Drawing.Size(825, 530);
             this.pnlProducto.ResumeLayout(false);

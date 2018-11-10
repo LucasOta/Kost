@@ -8,7 +8,7 @@ using CapaDatos;
 
 namespace CapaNegocio
 {
-    class ProdSimple : Producto
+    public class ProdSimple : Producto
     {
         private int codProdSimple;
         private int stock;
@@ -139,7 +139,7 @@ namespace CapaNegocio
             }
         }
 
-        public DataTable MostrarStock()
+        public static DataTable MostrarStock()
         {
             return CapaDatos.ProdSimpleBD.MostrarStock();
         }

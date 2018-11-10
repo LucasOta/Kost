@@ -8,7 +8,7 @@ using CapaDatos;
 
 namespace CapaNegocio
 {
-    class Producto
+    public class Producto
     {
         private int codProd;
         private string nombre;
