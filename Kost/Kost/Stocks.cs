@@ -10,8 +10,12 @@ using System.Windows.Forms;
 
 namespace Kost
 {
+    public delegate void volverAProductos();
+
     public partial class Stocks : UserControl, Interfaz
     {
+        public event volverAProductos btnIrAtras;
+
         public Stocks()
         {
             InitializeComponent();
@@ -26,6 +30,11 @@ namespace Kost
         public void ActualizarPantalla()
         {
             
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.btnIrAtras();
         }
     }
 }

@@ -69,6 +69,7 @@
             this.btnAtras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAtras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // btnModificar
             // 
@@ -249,7 +250,7 @@
             this.Controls.Add(this.pnlProducto);
             this.Controls.Add(this.dgvProductos);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Stocks";
             this.Size = new System.Drawing.Size(825, 530);
             this.pnlProducto.ResumeLayout(false);
