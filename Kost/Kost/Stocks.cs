@@ -62,6 +62,11 @@ namespace Kost
             dgvProductos.DataSource = CapaNegocio.ProdSimple.MostrarStock();
 
             pnlProducto.Enabled = false;
-        }        
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.btnIrAtras();
+        }
     }
 }
