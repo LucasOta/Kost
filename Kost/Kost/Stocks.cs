@@ -39,12 +39,15 @@ namespace Kost
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            pnlProducto.Enabled = true;                      
+            if (CapaNegocio.Funciones.RowSeleccionado(dgvProductos.SelectedRows.Count, "un producto", "modificar el stock.", this))
+            {
+                pnlProducto.Enabled = true;
 
-            CapaNegocio.ProdSimple.TraerUnSimple(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), PS);
+                CapaNegocio.ProdSimple.TraerUnSimple(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), PS);
 
-            lblNombre.Text = PS.Nombre;
-            lblDescripcion.Text = PS.DescProd;
+                lblNombre.Text = PS.Nombre;
+                lblDescripcion.Text = PS.DescProd;
+            }            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -250,5 +250,25 @@ namespace Kost
             login1.Visible = true;
             login1.BringToFront();
         }
+
+        private void btnPrecioPorCat_Click(object sender, EventArgs e)
+        {
+            precioPorCategoria1.BringToFront();
+        }
+
+        private void btnInsumos_Click(object sender, EventArgs e)
+        {
+            insumosUtilizados1.BringToFront();
+        }
+
+        private void btnVentasPorMozo_Click(object sender, EventArgs e)
+        {
+            ventasPorMozo1.BringToFront();
+        }
+
+        private void btnVentasDiarias_Click(object sender, EventArgs e)
+        {
+            ventasPorDia1.BringToFront();
+        }
     }
 }

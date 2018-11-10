@@ -58,6 +58,10 @@
             this.usuarios1 = new Kost.Usuarios();
             this.login1 = new Kost.Login();
             this.stocks1 = new Kost.Stocks();
+            this.precioPorCategoria1 = new Kost.PrecioPorCategoria();
+            this.ventasPorMozo1 = new Kost.VentasPorMozo();
+            this.ventasPorDia1 = new Kost.VentasPorDia();
+            this.insumosUtilizados1 = new Kost.InsumosUtilizados();
             this.panel1.SuspendLayout();
             this.desplegableRep.SuspendLayout();
             this.pnlBarra.SuspendLayout();
@@ -137,6 +141,7 @@
             this.btnVentasDiarias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVentasDiarias.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVentasDiarias.UseVisualStyleBackColor = true;
+            this.btnVentasDiarias.Click += new System.EventHandler(this.btnVentasDiarias_Click);
             // 
             // btnVentasPorMozo
             // 
@@ -153,6 +158,7 @@
             this.btnVentasPorMozo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVentasPorMozo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnVentasPorMozo.UseVisualStyleBackColor = true;
+            this.btnVentasPorMozo.Click += new System.EventHandler(this.btnVentasPorMozo_Click);
             // 
             // btnInsumos
             // 
@@ -169,6 +175,7 @@
             this.btnInsumos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInsumos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnInsumos.UseVisualStyleBackColor = true;
+            this.btnInsumos.Click += new System.EventHandler(this.btnInsumos_Click);
             // 
             // btnPrecioPorCat
             // 
@@ -185,6 +192,7 @@
             this.btnPrecioPorCat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrecioPorCat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPrecioPorCat.UseVisualStyleBackColor = true;
+            this.btnPrecioPorCat.Click += new System.EventHandler(this.btnPrecioPorCat_Click);
             // 
             // indicadorBtn
             // 
@@ -400,11 +408,55 @@
             this.stocks1.Size = new System.Drawing.Size(825, 530);
             this.stocks1.TabIndex = 11;
             // 
+            // precioPorCategoria1
+            // 
+            this.precioPorCategoria1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.precioPorCategoria1.ForeColor = System.Drawing.Color.Black;
+            this.precioPorCategoria1.Location = new System.Drawing.Point(175, 33);
+            this.precioPorCategoria1.Margin = new System.Windows.Forms.Padding(5);
+            this.precioPorCategoria1.Name = "precioPorCategoria1";
+            this.precioPorCategoria1.Size = new System.Drawing.Size(825, 530);
+            this.precioPorCategoria1.TabIndex = 12;
+            // 
+            // ventasPorMozo1
+            // 
+            this.ventasPorMozo1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ventasPorMozo1.ForeColor = System.Drawing.Color.Black;
+            this.ventasPorMozo1.Location = new System.Drawing.Point(175, 33);
+            this.ventasPorMozo1.Margin = new System.Windows.Forms.Padding(5);
+            this.ventasPorMozo1.Name = "ventasPorMozo1";
+            this.ventasPorMozo1.Size = new System.Drawing.Size(825, 530);
+            this.ventasPorMozo1.TabIndex = 13;
+            // 
+            // ventasPorDia1
+            // 
+            this.ventasPorDia1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ventasPorDia1.ForeColor = System.Drawing.Color.Black;
+            this.ventasPorDia1.Location = new System.Drawing.Point(175, 33);
+            this.ventasPorDia1.Margin = new System.Windows.Forms.Padding(5);
+            this.ventasPorDia1.Name = "ventasPorDia1";
+            this.ventasPorDia1.Size = new System.Drawing.Size(825, 530);
+            this.ventasPorDia1.TabIndex = 14;
+            // 
+            // insumosUtilizados1
+            // 
+            this.insumosUtilizados1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.insumosUtilizados1.ForeColor = System.Drawing.Color.Black;
+            this.insumosUtilizados1.Location = new System.Drawing.Point(175, 33);
+            this.insumosUtilizados1.Margin = new System.Windows.Forms.Padding(5);
+            this.insumosUtilizados1.Name = "insumosUtilizados1";
+            this.insumosUtilizados1.Size = new System.Drawing.Size(825, 530);
+            this.insumosUtilizados1.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 562);
+            this.Controls.Add(this.insumosUtilizados1);
+            this.Controls.Add(this.ventasPorDia1);
+            this.Controls.Add(this.ventasPorMozo1);
+            this.Controls.Add(this.precioPorCategoria1);
             this.Controls.Add(this.stocks1);
             this.Controls.Add(this.agregarSimple1);
             this.Controls.Add(this.agregarCompuesto1);
@@ -461,6 +513,10 @@
         private AgregarCompuesto agregarCompuesto1;
         private AgregarSimple agregarSimple1;
         private Stocks stocks1;
+        private PrecioPorCategoria precioPorCategoria1;
+        private VentasPorMozo ventasPorMozo1;
+        private VentasPorDia ventasPorDia1;
+        private InsumosUtilizados insumosUtilizados1;
     }
 }
 
