@@ -17,6 +17,8 @@ namespace Kost
     {
         public event volverAProductos btnIrAtras;
 
+        ProdSimple PS = new ProdSimple();
+
         public Stocks()
         {
             InitializeComponent();
@@ -25,14 +27,19 @@ namespace Kost
         //Botones
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-
+            if(txtAgregar.Text != "")
+            {
+                PS.Stock = PS.Stock + Convert.ToInt32(txtAgregar.Text);
+            }
+            if(txtQuitar.Text != "")
+            {
+                PS.Stock = PS.Stock + Convert.ToInt32(txtQuitar.Text);
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            pnlProducto.Enabled = true;
-
-            ProdSimple PS = new ProdSimple();
+            pnlProducto.Enabled = true;                      
 
             CapaNegocio.ProdSimple.TraerUnSimple(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), PS);
 
@@ -68,5 +75,6 @@ namespace Kost
         {
             this.btnIrAtras();
         }
+
     }
 }

@@ -240,7 +240,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("dataGridProductos");
 
-            string sql = "SELECT codProd, nombre, descripProd, idCategoría, precioVenta FROM Productos WHERE baja=0";
+            string sql = "SELECT codProd, nombre, descripProd, idCategoria, precioVenta, compuesto FROM Productos WHERE baja=0";
 
             try
             {

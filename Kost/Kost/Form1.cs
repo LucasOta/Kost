@@ -61,6 +61,7 @@ namespace Kost
 
             indicadorBtn.Height = btnUsuario.Height;
             indicadorBtn.Top = btnUsuario.Top;
+            usuarios1.ActualizarPantalla();
             usuarios1.BringToFront();
         }
 
@@ -70,7 +71,7 @@ namespace Kost
 
             indicadorBtn.Height = btnMozo.Height;
             indicadorBtn.Top = btnMozo.Top;
-
+            mozos1.ActualizarPantalla();
             mozos1.BringToFront();
         }
 
@@ -80,7 +81,7 @@ namespace Kost
 
             indicadorBtn.Height = btnProductos.Height;
             indicadorBtn.Top = btnProductos.Top;
-
+            productos1.ActualizarPantalla();
             productos1.BringToFront();
         }
 
@@ -169,10 +170,12 @@ namespace Kost
 
         private void IrStocks()
         {
+            stocks1.ActualizarPantalla();
             stocks1.BringToFront();
         }
 
         private void irAProductos() {
+            productos1.ActualizarPantalla();
             productos1.BringToFront();             
         }
 

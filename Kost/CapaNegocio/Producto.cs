@@ -230,7 +230,7 @@ namespace CapaNegocio
             return CapaDatos.ProductoBD.eliminar(codprod);
         }
 
-        public DataTable ListarTodos()
+        public static DataTable ListarTodos()
         {
             return CapaDatos.ProductoBD.DataGridProductos();
         }

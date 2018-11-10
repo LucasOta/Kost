@@ -71,9 +71,8 @@ namespace Kost
 
         public void ActualizarPantalla()
         {
-
-        }
-
-        
+            dgvProductos.DataSource = CapaNegocio.Producto.ListarTodos();
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }               
     }
 }
