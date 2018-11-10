@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Kost
 {
-    public partial class AgregarCompuesto : UserControl
+    public partial class AgregarCompuesto : UserControl, Interfaz
     {
         public AgregarCompuesto()
         {
@@ -25,6 +25,17 @@ namespace Kost
         private void lblComponentes_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //Métodos
+        public void Clear()
+        {
+            
+        }
+
+        public void ActualizarPantalla()
+        {
+            
         }
     }
 }

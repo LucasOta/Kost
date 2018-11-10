@@ -23,9 +23,7 @@ namespace Kost
 
         public ComandasActivas()
         {
-            InitializeComponent();
-
-            ActualizarPantalla();                       
+            InitializeComponent();                       
         }
 
 
@@ -117,7 +115,7 @@ namespace Kost
 
 
         //Métodos
-        private void Clear()
+        public void Clear()
         {
             cbxMesa.SelectedValue = 1;
             cbxMozo.SelectedValue = 1;

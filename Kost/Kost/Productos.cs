@@ -14,7 +14,7 @@ namespace Kost
 
     public delegate void irProductoSimpleEventHandler();
 
-    public partial class Productos : UserControl
+    public partial class Productos : UserControl, Interfaz
     {
         public event irProductoCompuestoEventHandler btnIrCompuesto;
 
@@ -25,6 +25,7 @@ namespace Kost
             InitializeComponent();
         }
 
+        //Botones
         private void btnAgregarCompuesto_Click(object sender, EventArgs e)
         {
             this.btnIrCompuesto();
@@ -52,6 +53,17 @@ namespace Kost
                 {
                 }
             }
+
+        }
+           
+        //Métodos
+        public void Clear()
+        {
+            
+        }
+
+        public void ActualizarPantalla()
+        {
 
         }
     }

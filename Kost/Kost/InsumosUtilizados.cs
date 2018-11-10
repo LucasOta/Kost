@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace Kost
 {
-    public partial class InsumosUtilizados : UserControl
+    public partial class InsumosUtilizados : UserControl, Interfaz
     {
         public InsumosUtilizados()
         {
             InitializeComponent();
+        }
+
+        //Métodos
+        public void Clear()
+        {
+            
+        }
+
+        public void ActualizarPantalla()
+        {
+            
         }
     }
 }

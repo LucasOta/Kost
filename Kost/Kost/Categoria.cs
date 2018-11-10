@@ -11,18 +11,14 @@ using CapaNegocio;
 
 namespace Kost
 {
-    public partial class Categoria : UserControl
+    public partial class Categoria : UserControl, Interfaz
     {
         Boolean banderaGuardar = true;
         CapaNegocio.Categoria cat;
 
         public Categoria()
         {
-            InitializeComponent();
-
-            dgvCategorias.DataSource = CapaNegocio.Categoria.ListarTodos();
-            pnlCategoria.Enabled = false;
-            dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            InitializeComponent();            
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -92,6 +88,13 @@ namespace Kost
         {
             txtNombre.Text = "";
             pnlCategoria.Enabled = false;
+        }
+
+        public void ActualizarPantalla()
+        {
+            dgvCategorias.DataSource = CapaNegocio.Categoria.ListarTodos();
+            pnlCategoria.Enabled = false;
+            dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
     }
 }

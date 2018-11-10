@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace Kost
 {
-    public partial class Stocks : UserControl
+    public partial class Stocks : UserControl, Interfaz
     {
         public Stocks()
         {
             InitializeComponent();
+        }
+
+        //Métodos
+        public void Clear()
+        {
+
+        }
+
+        public void ActualizarPantalla()
+        {
+            
         }
     }
 }

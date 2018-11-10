@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Kost
 {
-    public partial class VentasPorMozo : UserControl
+    public partial class VentasPorMozo : UserControl, Interfaz
     {
         public VentasPorMozo()
         {
@@ -18,6 +18,17 @@ namespace Kost
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Métodos
+        public void Clear()
+        {
+
+        }
+
+        public void ActualizarPantalla()
         {
 
         }

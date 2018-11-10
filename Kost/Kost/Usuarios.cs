@@ -13,37 +13,14 @@ using CapaNegocio;
 
 namespace Kost
 {
-    public partial class Usuarios : UserControl
+    public partial class Usuarios : UserControl, Interfaz
     {
         Boolean banderaGuardar = true;
         Usuario user;
 
         public Usuarios()
         {
-            InitializeComponent();
-            dgvUsuarios.DataSource = Usuario.ListarTodos();
-
-            DataTable dt = new DataTable();
-            dt.Clear();
-            dt.Columns.Add("id");
-            dt.Columns.Add("Nivel");
-            DataRow _ravi = dt.NewRow();
-            _ravi["id"] = "1";
-            _ravi["Nivel"] = "Admin";
-            dt.Rows.Add(_ravi);
-
-            _ravi = dt.NewRow();
-            _ravi["id"] = "2";
-            _ravi["Nivel"] = "User";
-            dt.Rows.Add(_ravi);
-
-            cbxNivel.DataSource = dt.DefaultView;
-            cbxNivel.ValueMember = "id";
-            cbxNivel.DisplayMember = "Nivel";
-            cbxNivel.BindingContext = this.BindingContext;
-
-            pnlUsuario.Enabled = false;
-            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            InitializeComponent();            
         }
 
 
@@ -250,5 +227,31 @@ namespace Kost
             dgvUsuarios.DataSource = Usuario.ListarTodos();
         }
 
+        public void ActualizarPantalla()
+        {
+            dgvUsuarios.DataSource = Usuario.ListarTodos();
+
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("id");
+            dt.Columns.Add("Nivel");
+            DataRow _ravi = dt.NewRow();
+            _ravi["id"] = "1";
+            _ravi["Nivel"] = "Admin";
+            dt.Rows.Add(_ravi);
+
+            _ravi = dt.NewRow();
+            _ravi["id"] = "2";
+            _ravi["Nivel"] = "User";
+            dt.Rows.Add(_ravi);
+
+            cbxNivel.DataSource = dt.DefaultView;
+            cbxNivel.ValueMember = "id";
+            cbxNivel.DisplayMember = "Nivel";
+            cbxNivel.BindingContext = this.BindingContext;
+
+            pnlUsuario.Enabled = false;
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
     }
 }

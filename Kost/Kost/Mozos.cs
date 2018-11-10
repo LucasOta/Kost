@@ -11,18 +11,14 @@ using CapaNegocio;
 
 namespace Kost
 {
-    public partial class Mozos : UserControl
+    public partial class Mozos : UserControl, Interfaz
     {
         Boolean banderaGuardar = true;
         Mozo mozo;
 
         public Mozos()
         {
-            InitializeComponent();
-
-            dgvMozos.DataSource = Mozo.ListarTodos();
-            pnlMozo.Enabled = false;
-            dgvMozos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            InitializeComponent();                       
         }        
 
 
@@ -201,6 +197,12 @@ namespace Kost
             dgvMozos.DataSource = Mozo.ListarTodos();
         }
 
+        public void ActualizarPantalla()
+        {
+            dgvMozos.DataSource = Mozo.ListarTodos();
+            pnlMozo.Enabled = false;
+            dgvMozos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
     }
 }
 

@@ -15,7 +15,7 @@ namespace Kost
 
     public delegate void cerrarComandaEventHandler();
 
-    public partial class Comanda : UserControl
+    public partial class Comanda : UserControl, Interfaz
     {
         public event volverAComandasActivasEventHandler btnIrAAtrasCLick;
 
@@ -27,9 +27,7 @@ namespace Kost
 
         public Comanda()
         {
-            InitializeComponent();
-
-            pnlDetalle.Enabled = false;
+            InitializeComponent();            
         }
 
         //Botones
@@ -136,7 +134,7 @@ namespace Kost
         }
 
         //Funciones
-        private void Clear()
+        public void Clear()
         {
             lblPrecioUnitario.Text = "";
             txtCantidad.Text = "";
@@ -186,6 +184,11 @@ namespace Kost
             dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(nroCom);
 
             CalcularTotal();
+        }
+
+        public void ActualizarPantalla()
+        {
+            pnlDetalle.Enabled = false;
         }
     }
 }

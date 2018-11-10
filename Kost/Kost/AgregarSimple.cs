@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Kost
 {
-    public partial class AgregarSimple : UserControl
+    public partial class AgregarSimple : UserControl, Interfaz
     {
         public AgregarSimple()
         {
@@ -25,6 +25,17 @@ namespace Kost
         private void AgregarSimple_Load(object sender, EventArgs e)
         {
 
+        }
+
+        //Métodos
+        public void Clear()
+        {
+            
+        }
+
+        public void ActualizarPantalla()
+        {
+            
         }
     }
 }
