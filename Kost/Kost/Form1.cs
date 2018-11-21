@@ -28,6 +28,8 @@ namespace Kost
             productos1.btnIrCompuesto += new Kost.irProductoCompuestoEventHandler(IrProductoCompuesto);
             productos1.btnIrSimple += new Kost.irProductoSimpleEventHandler(IrProductoSimple);
             productos1.btnIrStocks += new Kost.irVerStockEventHandler(IrStocks);
+            productos1.modificarCompuesto += new Kost.modificarProductoCompuestoEventHandler(ModificarProductoCompuesto);
+            productos1.modificarSimple += new Kost.modificarProductoSimpleEventHandler(ModificarProductoSimple);
             agregarSimple1.btnIrAtras += new Kost.volverAProductos(irAProductos);
             agregarCompuesto1.btnIrAtras += new Kost.volverAProductos(irAProductos);
             stocks1.btnIrAtras += new Kost.volverAProductos(irAProductos);
@@ -163,9 +165,21 @@ namespace Kost
             agregarCompuesto1.BringToFront();
         }
 
+        private void ModificarProductoCompuesto(int id)
+        {
+            agregarCompuesto1.BringToFront();
+            agregarCompuesto1.cargarProd_a_Modificar(id);
+        }
+
         private void IrProductoSimple()
         {
             agregarSimple1.BringToFront();
+        }
+
+        private void ModificarProductoSimple(int id)
+        {
+            agregarSimple1.BringToFront();
+            agregarSimple1.cargarProd_a_Modificar(id);
         }
 
         private void IrStocks()
