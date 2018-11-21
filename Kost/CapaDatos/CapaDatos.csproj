@@ -51,6 +51,7 @@
     <Compile Include="ProdSimpleBD.cs" />
     <Compile Include="ProductoBD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteBD.cs" />
     <Compile Include="UsuarioBD.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
