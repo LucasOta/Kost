@@ -26,10 +26,24 @@ namespace Kost
 
         //Botones
         private void btnGuardar_Click(object sender, EventArgs e)
-        {           
-            PS.Stock = PS.Stock + Convert.ToInt32(txtAgregar.Text);            
-            
-            PS.Stock = PS.Stock - Convert.ToInt32(txtQuitar.Text);
+        {
+            if(txtAgregar.Text != "")
+            {
+                PS.Stock = PS.Stock + Convert.ToInt32(txtAgregar.Text);
+            }
+            else if(txtQuitar.Text != "")
+            {
+                PS.Stock = PS.Stock - Convert.ToInt32(txtQuitar.Text);
+            }                                  
+
+            if (PS.ActualizarStock())
+            {
+                CapaNegocio.Funciones.mOk(this, "Se actualizo el stock correctamente");
+            }
+            else
+            {
+                CapaNegocio.Funciones.mError(this, PS.Mensaje);
+            }
 
             ActualizarPantalla();
 

@@ -60,15 +60,16 @@
             // 
             this.dgvMozos.AllowUserToAddRows = false;
             this.dgvMozos.AllowUserToDeleteRows = false;
-            this.dgvMozos.AllowUserToOrderColumns = true;
+            this.dgvMozos.AllowUserToResizeColumns = false;
+            this.dgvMozos.AllowUserToResizeRows = false;
             this.dgvMozos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMozos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NyA,
             this.Cuil});
             this.dgvMozos.Location = new System.Drawing.Point(3, 4);
-            this.dgvMozos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMozos.Name = "dgvMozos";
             this.dgvMozos.ReadOnly = true;
+            this.dgvMozos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMozos.Size = new System.Drawing.Size(417, 425);
             this.dgvMozos.TabIndex = 23;
             // 
@@ -349,7 +350,7 @@
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Mozos";
             this.Size = new System.Drawing.Size(825, 530);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMozos)).EndInit();

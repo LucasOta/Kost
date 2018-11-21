@@ -172,5 +172,10 @@ namespace CapaNegocio
         {
             return CapaDatos.ProdSimpleBD.MostrarStock();
         }
+
+        public Boolean ActualizarStock()
+        {
+            return CapaDatos.ProdSimpleBD.actualizarStock(CodProdSimple, Stock);
+        }
     }
 }

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.dgvVentasPorMozo = new System.Windows.Forms.DataGridView();
+            this.IdComanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtpVentasMozo = new System.Windows.Forms.DateTimePicker();
             this.cbxMozo = new System.Windows.Forms.ComboBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.IdComanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentasPorMozo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +44,8 @@
             // 
             this.dgvVentasPorMozo.AllowUserToAddRows = false;
             this.dgvVentasPorMozo.AllowUserToDeleteRows = false;
-            this.dgvVentasPorMozo.AllowUserToOrderColumns = true;
+            this.dgvVentasPorMozo.AllowUserToResizeColumns = false;
+            this.dgvVentasPorMozo.AllowUserToResizeRows = false;
             this.dgvVentasPorMozo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVentasPorMozo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdComanda,
@@ -53,8 +54,30 @@
             this.dgvVentasPorMozo.Location = new System.Drawing.Point(288, 14);
             this.dgvVentasPorMozo.Name = "dgvVentasPorMozo";
             this.dgvVentasPorMozo.ReadOnly = true;
+            this.dgvVentasPorMozo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVentasPorMozo.Size = new System.Drawing.Size(494, 483);
             this.dgvVentasPorMozo.TabIndex = 21;
+            // 
+            // IdComanda
+            // 
+            this.IdComanda.HeaderText = "ID Comanda";
+            this.IdComanda.Name = "IdComanda";
+            this.IdComanda.ReadOnly = true;
+            this.IdComanda.Width = 150;
+            // 
+            // FechaHora
+            // 
+            this.FechaHora.HeaderText = "Fecha y hora";
+            this.FechaHora.Name = "FechaHora";
+            this.FechaHora.ReadOnly = true;
+            this.FechaHora.Width = 150;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 150;
             // 
             // dtpVentasMozo
             // 
@@ -98,27 +121,6 @@
             this.label4.Size = new System.Drawing.Size(52, 21);
             this.label4.TabIndex = 27;
             this.label4.Text = "Mozo";
-            // 
-            // IdComanda
-            // 
-            this.IdComanda.HeaderText = "ID Comanda";
-            this.IdComanda.Name = "IdComanda";
-            this.IdComanda.ReadOnly = true;
-            this.IdComanda.Width = 150;
-            // 
-            // FechaHora
-            // 
-            this.FechaHora.HeaderText = "Fecha y hora";
-            this.FechaHora.Name = "FechaHora";
-            this.FechaHora.ReadOnly = true;
-            this.FechaHora.Width = 150;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 150;
             // 
             // VentasPorMozo
             // 

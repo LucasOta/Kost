@@ -225,7 +225,8 @@
             // 
             this.dgvComandasActivas.AllowUserToAddRows = false;
             this.dgvComandasActivas.AllowUserToDeleteRows = false;
-            this.dgvComandasActivas.AllowUserToOrderColumns = true;
+            this.dgvComandasActivas.AllowUserToResizeColumns = false;
+            this.dgvComandasActivas.AllowUserToResizeRows = false;
             this.dgvComandasActivas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComandasActivas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.N_Comanda,
@@ -234,6 +235,7 @@
             this.dgvComandasActivas.Location = new System.Drawing.Point(3, 6);
             this.dgvComandasActivas.Name = "dgvComandasActivas";
             this.dgvComandasActivas.ReadOnly = true;
+            this.dgvComandasActivas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComandasActivas.Size = new System.Drawing.Size(533, 518);
             this.dgvComandasActivas.TabIndex = 10;
             // 

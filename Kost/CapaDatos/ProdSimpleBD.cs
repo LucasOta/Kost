@@ -201,13 +201,43 @@ namespace CapaDatos
                 sqlDat.Fill(ds);
 
             }
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 ds = null;
             }
             return ds;
+        }
+
+        public static Boolean actualizarStock(int pCod, int pStock)
+        {
+            string sql = "UPDATE ProdSimples SET stock = @stock WHERE codProdSimple = @codProd";
+
+            try
+            {
+                Conexion Cx = new Conexion();
+
+                Cx.setComandoTexto();
+                Cx.setSQL(sql);
+
+                Cx.sqlCmd.Parameters.Add("stock", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = pStock;
+
+                Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[1].Value = pCod;
+
+                Cx.abrir();
+                object nro = Cx.sqlCmd.ExecuteNonQuery();
+                Cx.cerrar();
+                if (Convert.ToInt32(nro) > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }
