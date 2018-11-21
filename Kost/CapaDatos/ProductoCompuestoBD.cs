@@ -295,30 +295,5 @@ namespace CapaDatos
 
             return productoCompuesto;
         }
-
-
-//        public static DataTable MostrarStock()
-//        {
-//            DataTable ds = new DataTable("mostrarstock");
-
-//            string sql = "SELECT S.codProdSimple, S.stock, P.nombre, P.descripProd FROM ProdSimples S INNER JOIN Productos P ON S.codProdSimple = P.codProd WHERE S.baja = 0 AND P.baja = 0";
-
-//            try
-//            {
-//                Conexion cx = new Conexion();
-//                cx.setComandoTexto();
-//                cx.setSQL(sql);
-//                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
-//                sqlDat.Fill(ds);
-
-//            }
-//#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
-//            catch (Exception e)
-//#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
-//            {
-//                ds = null;
-//            }
-//            return ds;
-//        }
     }
 }

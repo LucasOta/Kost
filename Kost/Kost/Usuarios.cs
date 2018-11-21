@@ -98,6 +98,7 @@ namespace Kost
             if (CapaNegocio.Funciones.RowSeleccionado(dgvUsuarios.SelectedRows.Count, "un usuario", "modificarlo.", this))
             {
                 pnlUsuario.Enabled = true;
+                txtUsuario.Enabled = false;
                 btnCancelar.Enabled = true;
                 btnGuardar.Enabled = true;
                 banderaGuardar = false;
@@ -223,6 +224,11 @@ namespace Kost
                 Clear();
                 pnlUsuario.Enabled = false;
             }
+            else
+            {
+                CapaNegocio.Funciones.mError(this, user.Mensaje);
+            }
+
             dgvUsuarios.DataSource = Usuario.ListarTodos();
         }
 
