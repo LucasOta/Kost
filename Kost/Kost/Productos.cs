@@ -11,8 +11,10 @@ using System.Windows.Forms;
 namespace Kost
 {
     public delegate void irProductoCompuestoEventHandler();
+    public delegate void modificarProductoCompuestoEventHandler(int id);
 
     public delegate void irProductoSimpleEventHandler();
+    public delegate void modificarProductoSimpleEventHandler(int id);
 
     public delegate void irVerStockEventHandler();
 
@@ -20,7 +22,9 @@ namespace Kost
     public partial class Productos : UserControl, Interfaz
     {
         public event irProductoCompuestoEventHandler btnIrCompuesto;
+        public event modificarProductoCompuestoEventHandler modificarCompuesto;
         public event irProductoSimpleEventHandler btnIrSimple;
+        public event modificarProductoSimpleEventHandler modificarSimple;
         public event irVerStockEventHandler btnIrStocks;
 
         public Productos()
@@ -44,6 +48,13 @@ namespace Kost
             if (CapaNegocio.Funciones.RowSeleccionado(
                 dgvProductos.SelectedRows.Count, "un producto", "modificarlo.", this))
             {
+                if (es_Compuesto())
+                {
+                    this.modificarCompuesto(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value));
+                }
+                else {
+                    this.modificarSimple(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value));
+                }
             }
         }
 
@@ -73,6 +84,13 @@ namespace Kost
         {
             dgvProductos.DataSource = CapaNegocio.Producto.ListarTodos();
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        private Boolean es_Compuesto() {
+            if (Convert.ToBoolean(dgvProductos.CurrentRow.Cells["Tipo"].Value)) {
+                return true;
+            }
+            return false;
         }               
     }
 }

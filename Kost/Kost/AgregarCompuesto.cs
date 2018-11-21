@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaNegocio;
 
 namespace Kost
 {
@@ -45,5 +46,14 @@ namespace Kost
         {
             
         }
+
+        public void cargarProd_a_Modificar(int id)
+        {
+            //Cambiar lo de abajo a producto compuesto
+           // ProdSimple prod = new ProdSimple();
+            // ProdSimple.TraerUnProducto(id, prod);
+            //Cargar el Producto a todos los elementos de la pantalla
+        }
+
     }
 }
