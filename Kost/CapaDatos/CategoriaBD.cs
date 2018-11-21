@@ -170,9 +170,9 @@ namespace CapaDatos
 
         public static DataTable TraerUnaCategoria(int id)
         {
-            DataTable categoria = new DataTable("Categorias");
+            DataTable categoria = new DataTable("Categoria");
 
-            string sql = "SELECT idCategoria, nombre FROM Categorias WHERE idCategoria = @id";
+            string sql = "SELECT idCategoria, nombre FROM Categorias WHERE idCategoria = @id and baja = 0";
 
             try
             {
