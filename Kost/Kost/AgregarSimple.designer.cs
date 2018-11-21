@@ -109,9 +109,9 @@
             this.lblProducto.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProducto.Location = new System.Drawing.Point(37, 31);
             this.lblProducto.Name = "lblProducto";
-            this.lblProducto.Size = new System.Drawing.Size(295, 30);
+            this.lblProducto.Size = new System.Drawing.Size(208, 30);
             this.lblProducto.TabIndex = 29;
-            this.lblProducto.Text = "Nuevo Producto Simple";
+            this.lblProducto.Text = "Producto Simple";
             // 
             // txtPrecio
             // 

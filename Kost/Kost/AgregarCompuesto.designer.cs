@@ -58,7 +58,7 @@
             // 
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(332, 355);
+            this.btnEliminar.Location = new System.Drawing.Point(711, 115);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(71, 27);
             this.btnEliminar.TabIndex = 9;
@@ -74,10 +74,10 @@
             this.dgvComponentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Insumo,
             this.Cantidad});
-            this.dgvComponentes.Location = new System.Drawing.Point(437, 257);
+            this.dgvComponentes.Location = new System.Drawing.Point(437, 156);
             this.dgvComponentes.Name = "dgvComponentes";
             this.dgvComponentes.ReadOnly = true;
-            this.dgvComponentes.Size = new System.Drawing.Size(371, 173);
+            this.dgvComponentes.Size = new System.Drawing.Size(371, 305);
             this.dgvComponentes.TabIndex = 7;
             // 
             // Insumo
@@ -98,7 +98,7 @@
             // 
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(332, 299);
+            this.btnAgregar.Location = new System.Drawing.Point(711, 81);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(71, 27);
             this.btnAgregar.TabIndex = 8;
@@ -164,9 +164,9 @@
             this.lblProducto.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProducto.Location = new System.Drawing.Point(27, 28);
             this.lblProducto.Name = "lblProducto";
-            this.lblProducto.Size = new System.Drawing.Size(356, 30);
+            this.lblProducto.Size = new System.Drawing.Size(269, 30);
             this.lblProducto.TabIndex = 50;
-            this.lblProducto.Text = "Nuevo Producto Compuesto";
+            this.lblProducto.Text = "Producto Compuesto";
             // 
             // txtPrecio
             // 
