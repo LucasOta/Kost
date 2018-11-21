@@ -11,17 +11,14 @@ using CapaNegocio;
 
 namespace Kost
 {
-    public partial class Mozos : UserControl
+    public partial class Mozos : UserControl, Interfaz
     {
         Boolean banderaGuardar = true;
+        Mozo mozo;
 
         public Mozos()
         {
-            InitializeComponent();
-
-            dgvMozos.DataSource = Mozo.ListarTodos();
-            pnlMozo.Enabled = false;
-            dgvMozos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            InitializeComponent();                       
         }        
 
 
@@ -29,7 +26,9 @@ namespace Kost
         private void btnVer_Click_1(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvMozos.SelectedRows.Count, "ver los detalles del mismo.")) {
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvMozos.SelectedRows.Count, "un mozo", "ver los detalles del mismo.", this))
+            {
                 pnlMozo.Enabled = true;
                 btnCancelar.Enabled = false;
                 btnGuardar.Enabled = false;
@@ -42,15 +41,15 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Mozo mozo = new CapaNegocio.Mozo(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, Convert.ToInt64(txtCuil.Text.Replace("-", "")), dtpNacimiento.Value);
-                if (mozo.Error)
+                CapaNegocio.Mozo mozo1 = new CapaNegocio.Mozo(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, Convert.ToInt64(txtCuil.Text.Replace("-", "")), dtpNacimiento.Value);
+                if (mozo1.Error)
                 {
-                    if (mozo.Mensaje == "Cuil existente no activo")
+                    if (mozo1.Mensaje == "Cuil existente no activo")
                     {
                         if (CapaNegocio.Funciones.mConsulta(this, "Existe un mozo no activo con este cuil, ¿Desea ver esos datos para soobreescribirlos?, de ser la respuesta no, se creara un nuevo mozo con los datos que ingreso."))
                         {
                             banderaGuardar = false;
-                            MostrarDatosMozo(mozo.Cuil);
+                            MostrarDatosMozo(mozo1.Cuil);
                         }
                         else
                         {
@@ -59,7 +58,7 @@ namespace Kost
                     }
                     else
                     {
-                        CapaNegocio.Funciones.mError(this, mozo.Mensaje);
+                        CapaNegocio.Funciones.mError(this, mozo1.Mensaje);
                     }
 
                 }
@@ -93,9 +92,9 @@ namespace Kost
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvMozos.SelectedRows.Count, "eliminarlo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvMozos.SelectedRows.Count, "un mozo", "eliminarlo.", this))
             {
-                Clear();
                 pnlMozo.Enabled = false;
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el mozo?"))
                 {
@@ -116,7 +115,8 @@ namespace Kost
         private void btnModificar_Click_1(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvMozos.SelectedRows.Count, "modificarlo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvMozos.SelectedRows.Count, "un mozo", "ver los detalles del mismo.", this))
             {
                 pnlMozo.Enabled = true;
                 btnCancelar.Enabled = true;
@@ -124,7 +124,7 @@ namespace Kost
                 banderaGuardar = false;
 
                 long cuil = Convert.ToInt64(dgvMozos.CurrentRow.Cells["cuil"].Value);
-                Mozo mozo = CapaNegocio.Mozo.TraerUnMozo(cuil);
+                mozo = CapaNegocio.Mozo.TraerUnMozo(cuil);
 
                 txtApellido.Text = mozo.Apellido;
                 txtCuil.Text = mozo.Cuil.ToString();
@@ -139,17 +139,17 @@ namespace Kost
         //TextBoxs
         private void txtNombre_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            e.Handled = soloLetras(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.soloLetras(e.KeyChar);
         }
 
         private void txtApellido_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            e.Handled = soloLetras(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.soloLetras(e.KeyChar);
         }
 
         private void txtMail_KeyPress_1(object sender, KeyPressEventArgs e)
         {
-            e.Handled = sinEspacios(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.sinEspacios(e.KeyChar);
         }
 
 
@@ -163,46 +163,6 @@ namespace Kost
             txtNombre.Text = "";
             dtpNacimiento.Value = DateTime.Today;
             pnlMozo.Enabled = false;
-        }
-
-        private Boolean soloLetras(char e)
-        {
-            Boolean result = false;
-            if (Char.IsLetter(e))
-            {
-                result = false;
-            }
-            else if (Char.IsControl(e))
-            {
-                result = false;
-            }
-            else if (Char.IsSeparator(e))
-            {
-                result = false;
-            }
-            else
-            {
-                result = true;
-            }
-
-            return result;
-        }
-
-        private Boolean sinEspacios(char e)
-        {
-
-
-            Boolean result = false;
-            if (Char.IsSeparator(e))
-            {
-                result = true;
-            }
-            else
-            {
-                result = false;
-            }
-
-            return result;
         }
 
         private void MostrarDatosMozo(long cuil)
@@ -219,7 +179,14 @@ namespace Kost
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Mozo.ModificarMozo(Convert.ToInt64(txtCuil.Text.Replace("-", "")), txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, dtpNacimiento.Value))
+            mozo.Cuil = Convert.ToInt64(txtCuil.Text.Replace("-", ""));
+            mozo.Nombre = txtNombre.Text;
+            mozo.Apellido = txtApellido.Text;
+            mozo.Direccion = txtDireccion.Text;
+            mozo.Mail = txtMail.Text;
+            mozo.Nacimiento = dtpNacimiento.Value;
+
+            if (mozo.ModificarMozo())
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al mozo se guardaron correctamente");
                 dgvMozos.DataSource = Mozo.ListarTodos();
@@ -230,23 +197,12 @@ namespace Kost
             dgvMozos.DataSource = Mozo.ListarTodos();
         }
 
-        private Boolean RowSeleccionado(int c, string msj) {
-            if (c == 1)
-            {
-                return true;
-            }
-            else if (c == 0)
-            {
-                Funciones.mAdvertencia(this, "Debe seleccionar un mozo para poder " + msj);
-                return false;
-            }
-            else
-            {
-                Funciones.mAdvertencia(this, "Debe seleccionar sólo un mozo.");
-                return false;
-            }
+        public void ActualizarPantalla()
+        {
+            dgvMozos.DataSource = Mozo.ListarTodos();
+            pnlMozo.Enabled = false;
+            dgvMozos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
-
     }
 }
 

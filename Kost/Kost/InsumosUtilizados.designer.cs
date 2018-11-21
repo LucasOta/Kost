@@ -39,7 +39,8 @@
             // 
             this.dgvInsumosUtilizados.AllowUserToAddRows = false;
             this.dgvInsumosUtilizados.AllowUserToDeleteRows = false;
-            this.dgvInsumosUtilizados.AllowUserToOrderColumns = true;
+            this.dgvInsumosUtilizados.AllowUserToResizeColumns = false;
+            this.dgvInsumosUtilizados.AllowUserToResizeRows = false;
             this.dgvInsumosUtilizados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInsumosUtilizados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Insumo,
@@ -47,6 +48,7 @@
             this.dgvInsumosUtilizados.Location = new System.Drawing.Point(3, 68);
             this.dgvInsumosUtilizados.Name = "dgvInsumosUtilizados";
             this.dgvInsumosUtilizados.ReadOnly = true;
+            this.dgvInsumosUtilizados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInsumosUtilizados.Size = new System.Drawing.Size(818, 446);
             this.dgvInsumosUtilizados.TabIndex = 16;
             // 

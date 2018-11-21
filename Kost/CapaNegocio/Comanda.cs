@@ -160,7 +160,7 @@ namespace CapaNegocio
                 Descuento = 0;
                 PrecioFinal = 0;
 
-                this.Guardar(Fecha, NroMesa, Total, Descuento, PrecioFinal, CuilMozo);
+                this.Guardar();
             }
             else
             {
@@ -184,7 +184,7 @@ namespace CapaNegocio
                 Descuento = desc;
                 PrecioFinal = precioF;
 
-                this.Guardar(Fecha, NroMesa, Total, Descuento, PrecioFinal, CuilMozo);
+                this.Guardar();
             }
             else
             {
@@ -197,17 +197,21 @@ namespace CapaNegocio
         //Funciones
         protected void Validar(int nroC, int nroMesa)
         {
-            if (Validaciones.Comanda(nroC))
+            if(Validaciones.Comanda(nroC))
             {
                 Error = true;
                 Mensaje = "Ya existe una comanda con este número identificador";
             }
+            if (Validaciones.ComandaDeMesaActiva(nroMesa)){
+                Error = true;
+                Mensaje = "Ya existe una comanda activa para esta mesa";
+            }
 
         }
 
-        protected void Guardar(DateTime fechax, int nroM, float tot, float desc, float precioF, long cuil)
+        protected void Guardar()
         {
-            String msjGuardar = CapaDatos.ComandaBD.guardar(fechax, nroM, cuil);
+            String msjGuardar = CapaDatos.ComandaBD.guardar(Fecha, NroMesa, CuilMozo);
             if (msjGuardar.Equals("OK"))
             {
                 this.Error = false;
@@ -225,15 +229,18 @@ namespace CapaNegocio
             return CapaDatos.ComandaBD.comandasActivas();
         }
 
-        public static Boolean ModificarComanda(int nroM, long cuil, int nroComanda)
+        public Boolean ModificarComanda()
         {
-            if (Validaciones.ComandaDeMesaActiva(nroM))
+            Error = false;
+            Validar(NroComanda, NroMesa);
+
+            if (!Error)
             {
-                return false;
+                return CapaDatos.ComandaBD.modificar(NroMesa, CuilMozo, NroComanda);
             }
             else
             {
-                return CapaDatos.ComandaBD.modificar(nroM, cuil, nroComanda);
+                return false;
             }
 
         }
@@ -243,9 +250,9 @@ namespace CapaNegocio
             return CapaDatos.ComandaBD.eliminar(nroComanda);
         }
 
-        public static Boolean CerrarComanda(int nroComanda, float total, float descuento, float precioFinal)
+        public Boolean CerrarComanda()
         {
-            return CapaDatos.ComandaBD.cerrarComanda(nroComanda, total, descuento, precioFinal);
+            return CapaDatos.ComandaBD.cerrarComanda(NroComanda, Total, Descuento, PrecioFinal);
         }
 
         public static Comanda TraerComanda(int nroComanda)

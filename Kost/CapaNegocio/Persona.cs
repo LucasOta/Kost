@@ -22,6 +22,7 @@ namespace CapaNegocio
         private string mensaje;
 
         //Constructores
+
         public Persona() { }
 
         public Persona(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
@@ -30,13 +31,13 @@ namespace CapaNegocio
             this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
 
             if (!this.Error){
-                nombre = pnombre;
-                apellido = papellido;
-                direccion = pdireccion;
-                mail = pmail;
-                cuil = pcuil;
-                nacimiento = pnacimiento;
-               this.Guardar(pnombre, papellido, pdireccion, pmail,  pcuil,  pnacimiento);
+                Nombre = pnombre;
+                Apellido = papellido;
+                Direccion = pdireccion;
+                Mail = pmail;
+                Cuil = pcuil;
+                Nacimiento = pnacimiento;
+                this.Guardar();
             } else {
                 //Mandar mensaje
             }
@@ -154,43 +155,43 @@ namespace CapaNegocio
         {
             if (!Validaciones.Nombre(pnombre)) {
                 this.Error = true;
-                this.Mensaje += "el nombre contiene caracteres raros";
+                this.Mensaje += "el nombre contiene caracteres raros.";
             }
             if (!Validaciones.Apellido(papellido))
             {
                 this.Error = true;
-                this.Mensaje += "el apellido contiene caracteres raros";
+                this.Mensaje += "el apellido contiene caracteres raros.";
             }
             if (!Validaciones.Direccion(pdireccion))
             {
                 this.Error = true;
-                this.Mensaje += "el direccion contiene caracteres raros";
+                this.Mensaje += "el direccion contiene caracteres raros.";
             }
             if (!Validaciones.Mail(pmail))
             {
                 this.Error = true;
-                this.Mensaje += "el mail contiene caracteres raros";
+                this.Mensaje += "el mail contiene caracteres raros.";
             }
             if (!Validaciones.Cuil(pcuil))
             {
                 this.Error = true;
-                this.Mensaje += "el cuil contiene caracteres raros";
+                this.Mensaje += "el cuil contiene caracteres raros.";
             }
             if (!Validaciones.Nacimiento(pnacimiento))
             {
                 this.Error = true;
-                this.Mensaje += "el nacimiento contiene caracteres raros";
+                this.Mensaje += "el nacimiento contiene caracteres raros.";
             }
 
         }
 
-        protected void Guardar(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
+        protected void Guardar() 
         {
-            //Esto de abajo es por si hay un error al guardar
-            if (!CapaDatos.PersonaBD.existe(pcuil))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
+            
+            if (!CapaDatos.PersonaBD.existe(Cuil))
             {
-                String msjGuardar = CapaDatos.PersonaBD.guardar(pcuil, pnombre, papellido, pmail, pnacimiento, pdireccion);
-                if (msjGuardar.Equals("OK"))//Persona_bd.Save(this.nombre, this.apellido, this.direccion, this.dni))
+                String msjGuardar = CapaDatos.PersonaBD.guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
+                if (msjGuardar.Equals("OK"))
                 {
                     this.Error = false;
                     this.Mensaje = "Persona Guardada";
@@ -222,9 +223,20 @@ namespace CapaNegocio
             p.Nacimiento = Convert.ToDateTime(rowper["fechaNacimiento"].ToString());
         }
 
-        public static Boolean ModificarPersona(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
+        public Boolean ModificarPersona()
         {
-            return CapaDatos.PersonaBD.modificar(pcuil, pnombre, papellido, pmail, pnacimiento, pdireccion);
+            Error = false;
+            Mensaje = "";
+            this.ValidarPers(Nombre, Apellido, Direccion, Mail, Cuil, Nacimiento);
+            if (!Error)
+            {
+                return CapaDatos.PersonaBD.modificar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
+            }
+            else
+            {
+                Mensaje += " No pudieron guardarse las modificaciones.";
+                return false;
+            }          
         }
 
         public static Boolean PersonaActiva(long cuil)

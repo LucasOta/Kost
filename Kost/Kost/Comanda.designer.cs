@@ -33,6 +33,7 @@
             this.lblTituloDescuento = new System.Windows.Forms.Label();
             this.pnlDetalle = new System.Windows.Forms.Panel();
             this.lblPrecioUnitario = new System.Windows.Forms.Label();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblProducto = new System.Windows.Forms.Label();
@@ -80,6 +81,7 @@
             // pnlDetalle
             // 
             this.pnlDetalle.Controls.Add(this.lblPrecioUnitario);
+            this.pnlDetalle.Controls.Add(this.lbl1);
             this.pnlDetalle.Controls.Add(this.btnCancelar);
             this.pnlDetalle.Controls.Add(this.btnGuardar);
             this.pnlDetalle.Controls.Add(this.lblProducto);
@@ -95,11 +97,20 @@
             // lblPrecioUnitario
             // 
             this.lblPrecioUnitario.AutoSize = true;
-            this.lblPrecioUnitario.Location = new System.Drawing.Point(30, 69);
+            this.lblPrecioUnitario.Location = new System.Drawing.Point(327, 69);
             this.lblPrecioUnitario.Name = "lblPrecioUnitario";
-            this.lblPrecioUnitario.Size = new System.Drawing.Size(163, 21);
-            this.lblPrecioUnitario.TabIndex = 43;
-            this.lblPrecioUnitario.Text = "Precio unit.        .........";
+            this.lblPrecioUnitario.Size = new System.Drawing.Size(0, 21);
+            this.lblPrecioUnitario.TabIndex = 81;
+            this.lblPrecioUnitario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Location = new System.Drawing.Point(30, 69);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(99, 21);
+            this.lbl1.TabIndex = 43;
+            this.lbl1.Text = "Precio unit. ";
             // 
             // btnCancelar
             // 
@@ -197,7 +208,8 @@
             // 
             this.dgvComanda.AllowUserToAddRows = false;
             this.dgvComanda.AllowUserToDeleteRows = false;
-            this.dgvComanda.AllowUserToOrderColumns = true;
+            this.dgvComanda.AllowUserToResizeColumns = false;
+            this.dgvComanda.AllowUserToResizeRows = false;
             this.dgvComanda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComanda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.N_Detalle,
@@ -209,6 +221,7 @@
             this.dgvComanda.Location = new System.Drawing.Point(2, 39);
             this.dgvComanda.Name = "dgvComanda";
             this.dgvComanda.ReadOnly = true;
+            this.dgvComanda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComanda.Size = new System.Drawing.Size(820, 150);
             this.dgvComanda.TabIndex = 0;
             // 
@@ -430,6 +443,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subtotal;
+        private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Label lblPrecioUnitario;
     }
 }

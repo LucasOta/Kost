@@ -66,13 +66,19 @@ namespace CapaNegocio
             user = consuser;
             password = conspassword;
             nivel = consnivel;
-            Cuil = pcuil;
             if (!Error)
             {
                 this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
                 if (!Error)
                 {
-                    this.Guardar(consuser, conspassword, consnivel, pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
+                    Nombre = pnombre;
+                    Apellido = papellido;
+                    Direccion = pdireccion;
+                    Mail = pmail;
+                    Cuil = pcuil;
+                    Nacimiento = pnacimiento;
+
+                    GuardarUser();
                 }
                 else
                 {
@@ -95,9 +101,9 @@ namespace CapaNegocio
             }
         }
 
-        public void Guardar(string consuser, string conspassword, int consnivel, string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
+        public void GuardarUser()
         {
-            base.Guardar(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
+            base.Guardar();
             if (!Error)
             {
                 if (!CapaDatos.UsuarioBD.existe(User))
@@ -122,7 +128,7 @@ namespace CapaNegocio
             else {
                 if(this.Mensaje == "Ya existe una persona cargada en el sistema con ese nro de Cuil")
                 {
-                    if (!CapaDatos.PersonaBD.PersonaActiva(pcuil))
+                    if (!CapaDatos.PersonaBD.PersonaActiva(Cuil))
                     {
                         this.Mensaje = "Persona no activa";
                     }
@@ -137,20 +143,21 @@ namespace CapaNegocio
             //Ver lo de cascada con haspert
         }
 
-        public static Boolean ModificarUsuario(string user, string password, int nivel, long cuil, string pnombre, string papellido, string pdireccion, string pmail, DateTime pnacimiento)
+        public Boolean ModificarUsuario()
         {
-            Boolean usu = CapaDatos.UsuarioBD.modificar(user, password, nivel, cuil);
+            Boolean usu = CapaDatos.UsuarioBD.modificar(this.User, this.Password, this.Nivel, this.Cuil);
 
-            Boolean per = Persona.ModificarPersona(pnombre, papellido, pdireccion, pmail, cuil, pnacimiento);
+            Boolean per = this.ModificarPersona();
 
-            if(usu && per)
+            if (usu && per)
             {
                 return true;
             }
             else
             {
+                Mensaje += " No pudieron guardarse las modificaciones correctamente. Puede que algunos no concuerden";
                 return false;
-            }
+            }   
         }
 
         public static DataTable ListarTodos()

@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace Kost
 {
-    public partial class VentasPorDia : UserControl
+    public partial class VentasPorDia : UserControl, Interfaz
     {
         public VentasPorDia()
         {
             InitializeComponent();
+        }
+             
+        //Métodos
+        public void Clear()
+        {
+
+        }
+
+        public void ActualizarPantalla()
+        {
+
         }
     }
 }

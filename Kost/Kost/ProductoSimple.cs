@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Kost
 {
+    
+
+
     public partial class ProductoSimple : UserControl
     {
         public ProductoSimple()

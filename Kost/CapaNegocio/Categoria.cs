@@ -13,23 +13,18 @@ namespace CapaNegocio
         private bool error;
         private string mensaje;
         private string nombre;
+        private int id;
         public Categoria() { }
 
         public Categoria(string categoria)
         {
             error = false;
             mensaje = "";
+            this.Validar(categoria);
             if (!error)
             {
-                this.Validar(categoria);
-                if (!error)
-                {
-                    this.Guardar(categoria);
-                }
-                else
-                {
-                    error = true;
-                }
+                Nombre = categoria;
+                this.Guardar();
             }
             else
             {
@@ -37,6 +32,8 @@ namespace CapaNegocio
             }
         }
 
+
+        //Getters y Setters
         public bool Error
         {
             get
@@ -76,6 +73,21 @@ namespace CapaNegocio
             }
         }
 
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+
+
         //Funciones
 
         private void Validar(string categ)
@@ -87,11 +99,11 @@ namespace CapaNegocio
             }
         }
 
-        public void Guardar(string cnombre)
+        public void Guardar()
         {
             if (!error)
             {
-                if (CapaDatos.CategoriaBD.guardar(cnombre))
+                if (CapaDatos.CategoriaBD.guardar(Nombre))
                 {
                     this.error = false;
                     this.mensaje = "Categoría guardada";
@@ -109,14 +121,24 @@ namespace CapaNegocio
             return CapaDatos.CategoriaBD.eliminar(id);
         }
 
-        public static Boolean ModificarCateg(int id, string nombre)
+        public Boolean ModificarCateg()
         {
-            if (CapaDatos.CategoriaBD.modificar(id, nombre))
+            Error = false;
+            Validar(Nombre);
+            if (!Error)
             {
-                return true;
+                if (CapaDatos.CategoriaBD.modificar(Id, Nombre))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
+                Mensaje += " No pudieron guardarse las modificaciones.";
                 return false;
             }
         }

@@ -13,35 +13,14 @@ using CapaNegocio;
 
 namespace Kost
 {
-    public partial class Usuarios : UserControl
+    public partial class Usuarios : UserControl, Interfaz
     {
         Boolean banderaGuardar = true;
+        Usuario user;
+
         public Usuarios()
         {
-            InitializeComponent();
-            dgvUsuarios.DataSource = Usuario.ListarTodos();
-
-            DataTable dt = new DataTable();
-            dt.Clear();
-            dt.Columns.Add("id");
-            dt.Columns.Add("Nivel");
-            DataRow _ravi = dt.NewRow();
-            _ravi["id"] = "1";
-            _ravi["Nivel"] = "Admin";
-            dt.Rows.Add(_ravi);
-
-            _ravi = dt.NewRow();
-            _ravi["id"] = "2";
-            _ravi["Nivel"] = "User";
-            dt.Rows.Add(_ravi);
-
-            cbxNivel.DataSource = dt.DefaultView;
-            cbxNivel.ValueMember = "id";
-            cbxNivel.DisplayMember = "Nivel";
-            cbxNivel.BindingContext = this.BindingContext;
-
-            pnlUsuario.Enabled = false;
-            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            InitializeComponent();            
         }
 
 
@@ -92,7 +71,8 @@ namespace Kost
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvUsuarios.SelectedRows.Count, "eliminarlo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvUsuarios.SelectedRows.Count, "un usuario", "eliminarlo.", this))
             {
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Esta seguro de que desea eliminar el usuario?"))
                 {
@@ -115,15 +95,16 @@ namespace Kost
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvUsuarios.SelectedRows.Count, "modificarlo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(dgvUsuarios.SelectedRows.Count, "un usuario", "modificarlo.", this))
             {
                 pnlUsuario.Enabled = true;
+                txtUsuario.Enabled = false;
                 btnCancelar.Enabled = true;
                 btnGuardar.Enabled = true;
                 banderaGuardar = false;
 
                 long cuil = Convert.ToInt64(dgvUsuarios.CurrentRow.Cells["cuil"].Value);
-                Usuario user = CapaNegocio.Usuario.TraerUnUsuario(cuil);
+                user = CapaNegocio.Usuario.TraerUnUsuario(cuil);
 
                 txtApellido.Text = user.Apellido;
                 txtContraseña.Text = user.Password;
@@ -148,7 +129,8 @@ namespace Kost
         private void btnVerUsuario_Click(object sender, EventArgs e)
         {
             Clear();
-            if (RowSeleccionado(dgvUsuarios.SelectedRows.Count, "ver los detalles del mismo."))
+            if (CapaNegocio.Funciones.RowSeleccionado(
+                dgvUsuarios.SelectedRows.Count, "un usuario", "ver los detalles del mismo.", this))
             {
                 pnlUsuario.Enabled = true;
 
@@ -163,31 +145,33 @@ namespace Kost
         }
 
 
+
         //TextBoxs
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = soloLetras(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.soloLetras(e.KeyChar);
         }
                 
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = soloLetras(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.soloLetras(e.KeyChar);
         }
 
         private void txtMail_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = sinEspacios(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.sinEspacios(e.KeyChar);
         }
 
         private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = sinEspacios(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.sinEspacios(e.KeyChar);
         }
 
         private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = sinEspacios(e.KeyChar);
+            e.Handled = CapaNegocio.Funciones.sinEspacios(e.KeyChar);
         }
+
 
 
         //Métodos      
@@ -204,46 +188,6 @@ namespace Kost
             cbxNivel.SelectedValue = 1;
             pnlUsuario.Enabled = false;
         }
-
-        private Boolean soloLetras(char e)
-        {
-            Boolean result = false;
-            if (Char.IsLetter(e))
-            {
-                result = false;
-            }
-            else if (Char.IsControl(e))
-            {
-                result = false;
-            }
-            else if (Char.IsSeparator(e))
-            {
-                result = false;
-            }
-            else
-            {
-                result = true;
-            }
-
-            return result;
-        }        
-
-        private Boolean sinEspacios(char e)
-        {
-            
-
-            Boolean result = false;
-            if (Char.IsSeparator(e))
-            {
-                result = true;
-            }
-            else
-            {
-                result = false;
-            }
-
-            return result;
-        }        
 
         private void MostrarDatosDeUsuario(long cuil)
         {
@@ -262,7 +206,17 @@ namespace Kost
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Usuario.ModificarUsuario(txtUsuario.Text, txtContraseña.Text, Convert.ToInt32(cbxNivel.SelectedValue), Convert.ToInt64(txtCuil.Text.Replace("-", "")), txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, dtpNacimiento.Value))
+            user.User = txtUsuario.Text;
+            user.Password = txtContraseña.Text;
+            user.Nivel = Convert.ToInt32(cbxNivel.SelectedValue);
+            user.Cuil = Convert.ToInt64(txtCuil.Text.Replace("-", ""));
+            user.Nombre = txtNombre.Text;
+            user.Apellido = txtApellido.Text;
+            user.Direccion = txtDireccion.Text;
+            user.Mail = txtMail.Text;
+            user.Nacimiento = dtpNacimiento.Value;
+
+            if (user.ModificarUsuario())
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al usuario se guardaron correctamente");
                 dgvUsuarios.DataSource = Usuario.ListarTodos();
@@ -270,25 +224,39 @@ namespace Kost
                 Clear();
                 pnlUsuario.Enabled = false;
             }
+            else
+            {
+                CapaNegocio.Funciones.mError(this, user.Mensaje);
+            }
+
             dgvUsuarios.DataSource = Usuario.ListarTodos();
         }
 
-        private Boolean RowSeleccionado(int c, string msj)
+        public void ActualizarPantalla()
         {
-            if (c == 1)
-            {
-                return true;
-            }
-            else if (c == 0)
-            {
-                Funciones.mAdvertencia(this, "Debe seleccionar un usuario para poder " + msj);
-                return false;
-            }
-            else
-            {
-                Funciones.mAdvertencia(this, "Debe seleccionar sólo un usuario.");
-                return false;
-            }
+            dgvUsuarios.DataSource = Usuario.ListarTodos();
+
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("id");
+            dt.Columns.Add("Nivel");
+            DataRow _ravi = dt.NewRow();
+            _ravi["id"] = "1";
+            _ravi["Nivel"] = "Admin";
+            dt.Rows.Add(_ravi);
+
+            _ravi = dt.NewRow();
+            _ravi["id"] = "2";
+            _ravi["Nivel"] = "User";
+            dt.Rows.Add(_ravi);
+
+            cbxNivel.DataSource = dt.DefaultView;
+            cbxNivel.ValueMember = "id";
+            cbxNivel.DisplayMember = "Nivel";
+            cbxNivel.BindingContext = this.BindingContext;
+
+            pnlUsuario.Enabled = false;
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
     }
 }

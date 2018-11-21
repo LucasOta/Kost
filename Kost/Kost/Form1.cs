@@ -21,11 +21,20 @@ namespace Kost
 
             login1.BringToFront();
 
+            //Implementación de Eventos y Delegados
             comandasActivas1.btnIrAComandaCLick += new Kost.irAComandaEventHandler(IrAComanda);
             comanda1.btnIrAAtrasCLick += new Kost.volverAComandasActivasEventHandler(AtrasComanda);
             comanda1.cerrarComanda += new Kost.cerrarComandaEventHandler(CerrarComanda);
             productos1.btnIrCompuesto += new Kost.irProductoCompuestoEventHandler(IrProductoCompuesto);
             productos1.btnIrSimple += new Kost.irProductoSimpleEventHandler(IrProductoSimple);
+            productos1.btnIrStocks += new Kost.irVerStockEventHandler(IrStocks);
+            productos1.modificarCompuesto += new Kost.modificarProductoCompuestoEventHandler(ModificarProductoCompuesto);
+            productos1.modificarSimple += new Kost.modificarProductoSimpleEventHandler(ModificarProductoSimple);
+            agregarSimple1.btnIrAtras += new Kost.volverAProductos(irAProductos);
+            agregarCompuesto1.btnIrAtras += new Kost.volverAProductos(irAProductos);
+            stocks1.btnIrAtras += new Kost.volverAProductos(irAProductos);
+
+
 
             login1.Inicio_0 += new Kost.Inicio_0_EventHandler(sinSesion);
             login1.Inicio_1 += new Kost.Inicio_1_EventHandler(admin);
@@ -44,7 +53,8 @@ namespace Kost
 
             indicadorBtn.Height = btnComandas.Height;
             indicadorBtn.Top = btnComandas.Top;
-            comandasActivas1.BringToFront();
+            comandasActivas1.ActualizarPantalla();
+            comandasActivas1.BringToFront();    
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)
@@ -53,6 +63,7 @@ namespace Kost
 
             indicadorBtn.Height = btnUsuario.Height;
             indicadorBtn.Top = btnUsuario.Top;
+            usuarios1.ActualizarPantalla();
             usuarios1.BringToFront();
         }
 
@@ -62,7 +73,7 @@ namespace Kost
 
             indicadorBtn.Height = btnMozo.Height;
             indicadorBtn.Top = btnMozo.Top;
-
+            mozos1.ActualizarPantalla();
             mozos1.BringToFront();
         }
 
@@ -72,7 +83,7 @@ namespace Kost
 
             indicadorBtn.Height = btnProductos.Height;
             indicadorBtn.Top = btnProductos.Top;
-
+            productos1.ActualizarPantalla();
             productos1.BringToFront();
         }
 
@@ -151,12 +162,35 @@ namespace Kost
 
         private void IrProductoCompuesto()
         {
+            agregarCompuesto1.BringToFront();
+        }
 
+        private void ModificarProductoCompuesto(int id)
+        {
+            agregarCompuesto1.BringToFront();
+            agregarCompuesto1.cargarProd_a_Modificar(id);
         }
 
         private void IrProductoSimple()
         {
+            agregarSimple1.BringToFront();
+        }
 
+        private void ModificarProductoSimple(int id)
+        {
+            agregarSimple1.BringToFront();
+            agregarSimple1.cargarProd_a_Modificar(id);
+        }
+
+        private void IrStocks()
+        {
+            stocks1.ActualizarPantalla();
+            stocks1.BringToFront();
+        }
+
+        private void irAProductos() {
+            productos1.ActualizarPantalla();
+            productos1.BringToFront();             
         }
 
         //Mostrar según Usuario
@@ -229,6 +263,26 @@ namespace Kost
             login1.Clear();
             login1.Visible = true;
             login1.BringToFront();
+        }
+
+        private void btnPrecioPorCat_Click(object sender, EventArgs e)
+        {
+            precioPorCategoria1.BringToFront();
+        }
+
+        private void btnInsumos_Click(object sender, EventArgs e)
+        {
+            insumosUtilizados1.BringToFront();
+        }
+
+        private void btnVentasPorMozo_Click(object sender, EventArgs e)
+        {
+            ventasPorMozo1.BringToFront();
+        }
+
+        private void btnVentasDiarias_Click(object sender, EventArgs e)
+        {
+            ventasPorDia1.BringToFront();
         }
     }
 }

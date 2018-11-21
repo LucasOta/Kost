@@ -10,9 +10,41 @@ namespace CapaDatos
 {
     public class ComandaBD
     {
+        public static Boolean existe(int nroCom)
+        {
+            string sql = "SELECT baja FROM Comanda WHERE nroComanda = @nroComanda";
+            try
+            {
+                Conexion cx = new Conexion();
+                cx.setComandoTexto();
+                cx.setSQL(sql);
+
+                cx.sqlCmd.Parameters.Add("@nroComanda", SqlDbType.Int);
+                cx.sqlCmd.Parameters[0].Value = nroCom;
+
+                cx.abrir();
+                SqlDataReader reader = cx.sqlCmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                return true; //Habría que ver qué mandar si hay un error con la conexión
+            }
+        }
+
         public static String guardar(DateTime fecha, int nroMesa, long cuilMozo)
         {
-            string sql = "INSERT INTO Comandas (fecha, nroMesa, activa, total, descuento, precioFinal, cuilMozo, baja) values (@fecha, @nroMesa, 0, 0, 0, 0, @cuilMozo, 0)";
+            string sql = "INSERT INTO Comandas (fecha, nroMesa, activa, total, descuento, precioFinal, cuilMozo, baja) values (@fecha, @nroMesa, 1, 0, 0, 0, @cuilMozo, 0)";
 
             try
             {
@@ -48,7 +80,7 @@ namespace CapaDatos
 
         public static Boolean modificar(int nroMesa, long cuilMozo, int nroComanda)
         {
-            string sql = "UPDATE Comandas SET nroMesa = @nroMesa, cuilMozo = @cuilMozo, baja = 0 WHERE nroComanda = @nroComanda;";
+            string sql = "UPDATE Comandas SET nroMesa = @nroMesa, cuilMozo = @cuilMozo WHERE nroComanda = @nroComanda and activa = 1 and baja = 0;";
 
             try
             {
@@ -76,7 +108,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -84,7 +118,7 @@ namespace CapaDatos
 
         public static Boolean eliminar(int nroComanda)
         {
-            string sql = "UPDATE Comandas SET baja = 1, activa = 1 WHERE nroComanda = @nroComanda;";
+            string sql = "UPDATE Comandas SET baja = 1, activa = 0 WHERE nroComanda = @nroComanda;";
 
             try
             {
@@ -106,7 +140,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -116,7 +152,7 @@ namespace CapaDatos
         {
             DataTable comandas = new DataTable("comandasActivas");
 
-            string sql = "SELECT CONCAT(P.nombre,' ', P.apellido)as nya, C.* FROM Personas P INNER JOIN Comandas C ON P.cuil = C.cuilMozo WHERE P.baja = 0 AND C.baja = 0 AND C.activa = 0";
+            string sql = "SELECT CONCAT(P.nombre,' ', P.apellido)as nya, C.* FROM Personas P INNER JOIN Comandas C ON P.cuil = C.cuilMozo WHERE P.baja = 0 AND C.baja = 0 AND C.activa = 1";
 
             try
             {
@@ -127,7 +163,9 @@ namespace CapaDatos
                 sqlDat.Fill(comandas);
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 comandas = null;
             }
@@ -136,7 +174,7 @@ namespace CapaDatos
 
         public static Boolean cerrarComanda(int nroComanda, float total, float descuento, float precioFinal)
         {
-            string sql = "UPDATE Comandas SET total = @total, descuento = @descuento, precioFinal = @precioFinal, activa = 1 WHERE nroComanda = @nroComanda;";
+            string sql = "UPDATE Comandas SET total = @total, descuento = @descuento, precioFinal = @precioFinal, activa = 0 WHERE nroComanda = @nroComanda;";
 
             try
             {
@@ -167,7 +205,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -177,7 +217,7 @@ namespace CapaDatos
         {
             DataTable comanda = new DataTable("Comanda");
 
-            string sql = "SELECT * FROM Comandas WHERE nroComanda = @nroComanda";
+            string sql = "SELECT nroComando, fecha, nroMesa, activa, total, descuento, precioFinal, cuilMozo FROM Comandas WHERE nroComanda = @nroComanda";
 
             try
             {
@@ -191,42 +231,14 @@ namespace CapaDatos
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
                 sqlDat.Fill(comanda);
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 comanda = null;
             }
 
             return comanda;
-        }
-
-        public static Boolean existe(int nroCom)
-        {
-            string sql = "SELECT baja FROM Comanda WHERE nroComanda = @nroComanda";
-            try
-            {
-                Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
-
-                cx.sqlCmd.Parameters.Add("@nroComanda", SqlDbType.Int);
-                cx.sqlCmd.Parameters[0].Value = nroCom;
-
-                cx.abrir();
-                SqlDataReader reader = cx.sqlCmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                return true; //Habría que ver qué mandar si hay un error con la conexión
-            }
         }
 
         public static String nombreMozo(long cuil)
@@ -267,7 +279,7 @@ namespace CapaDatos
 
         public static Boolean comandaDeMesaActiva(int nroMesa)
         {
-            string sql = "SELECT baja FROM Comandas WHERE nroMesa = @nroMesa AND activa = 0";
+            string sql = "SELECT baja FROM Comandas WHERE nroMesa = @nroMesa AND activa = 1";
             try
             {
                 Conexion cx = new Conexion();
@@ -289,7 +301,9 @@ namespace CapaDatos
                     return false;
                 }
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return true;
             }

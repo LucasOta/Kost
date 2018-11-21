@@ -10,10 +10,10 @@ namespace CapaDatos
 {
     public class CategoriaBD
     {
-
+        //
         public static Boolean existe(string ca)
         {
-            string sql = "SELECT idCategoria FROM Categorias WHERE nombre = @categoria";
+            string sql = "SELECT baja FROM Categorias WHERE nombre = @categoria";
             try
             {
                 Conexion cx = new Conexion();
@@ -35,7 +35,9 @@ namespace CapaDatos
                     return true;
                 }
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -68,7 +70,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -101,7 +105,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -131,7 +137,9 @@ namespace CapaDatos
                 return false;
 
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 return false;
             }
@@ -151,7 +159,9 @@ namespace CapaDatos
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
                 sqlDat.Fill(categorias); //Llenamos el DataTable
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 categorias = null;
             }
@@ -160,9 +170,9 @@ namespace CapaDatos
 
         public static DataTable TraerUnaCategoria(int id)
         {
-            DataTable categoria = new DataTable("Categorias");
+            DataTable categoria = new DataTable("Categoria");
 
-            string sql = "SELECT * FROM Categorias WHERE idCategoria = @id";
+            string sql = "SELECT idCategoria, nombre FROM Categorias WHERE idCategoria = @id and baja = 0";
 
             try
             {
@@ -178,7 +188,9 @@ namespace CapaDatos
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
                 sqlDat.Fill(categoria);
             }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 categoria = null;
             }
