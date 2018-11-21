@@ -268,11 +268,39 @@ namespace CapaDatos
             }
         }
 
+        public static DataTable TraerComposicion(int cod)
+        {
+            DataTable composicion = new DataTable("Composicion");
+
+            string sql = "SELECT C.codProdSimple, P.nombre, C.cantidad FROM Productos P INNER JOIN Composicion C ON P.codProd = C.codProdSimple WHERE codProdCompuesto = @codProdCompuesto and baja = 0; ";
+
+            try
+            {
+                Conexion Cx = new Conexion();
+                Cx.setComandoTexto();
+                Cx.setSQL(sql);
+
+                Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = cod;
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
+                sqlDat.Fill(composicion);
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                composicion = null;
+            }
+
+            return composicion;
+        }
+
         public static DataTable TraerUnProdCompuesto(int cod)
         {
             DataTable productoCompuesto = new DataTable("ProductoCompuesto");
 
-            string sql = "SELECT S.nombre, C,cantidad FROM ProdSimples S INNER JOIN Composicion WHERE codProdCompuesto = @codProdCompuesto and baja=0";
+            string sql = "SELECT nombre, descripcion, idCategoria, precioVenta FROM Productos WHERE codProd = @codProdCompuesto and baja = 0; ";
 
             try
             {
@@ -296,29 +324,5 @@ namespace CapaDatos
             return productoCompuesto;
         }
 
-
-//        public static DataTable MostrarStock()
-//        {
-//            DataTable ds = new DataTable("mostrarstock");
-
-//            string sql = "SELECT S.codProdSimple, S.stock, P.nombre, P.descripProd FROM ProdSimples S INNER JOIN Productos P ON S.codProdSimple = P.codProd WHERE S.baja = 0 AND P.baja = 0";
-
-//            try
-//            {
-//                Conexion cx = new Conexion();
-//                cx.setComandoTexto();
-//                cx.setSQL(sql);
-//                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
-//                sqlDat.Fill(ds);
-
-//            }
-//#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
-//            catch (Exception e)
-//#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
-//            {
-//                ds = null;
-//            }
-//            return ds;
-//        }
     }
 }
