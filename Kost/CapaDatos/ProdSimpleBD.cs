@@ -42,9 +42,9 @@ namespace CapaDatos
             }
         }
 
-        public static bool guardar(int pCod, int pStock, bool pInsumo)
+        public static bool guardar(int pCod, int pStock, bool pInsumo, string unidad, double contenido)
         {
-            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, baja) values (@pCod, @pStock, @pInsumo, @baja)";
+            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) values ((SELECT TOP codProd FROM Productos WHERE baja=0), @pStock, @pInsumo, @baja)";
 
             try
             {
@@ -61,9 +61,15 @@ namespace CapaDatos
 
                 Cx.sqlCmd.Parameters.Add("pInsumo", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[2].Value = pInsumo;
-                
+
+                Cx.sqlCmd.Parameters.Add("unidad", SqlDbType.VarChar);
+                Cx.sqlCmd.Parameters[3].Value = unidad;
+
+                Cx.sqlCmd.Parameters.Add("contenido", SqlDbType.Float);
+                Cx.sqlCmd.Parameters[4].Value = contenido;
+
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[3].Value = 0;
+                Cx.sqlCmd.Parameters[5].Value = 0;
 
                 Cx.abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -83,9 +89,9 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(int pCod, int pStock, bool pInsumo)
+        public static Boolean modificar(int pCod, int pStock, bool pInsumo, string unidad, double contenido)
         {
-            string sql = "UPDATE ProdSimples SET pStock=@stock, pInsumo=@insumo WHERE codProd=@codProd and baja=@baja";
+            string sql = "UPDATE ProdSimples SET pStock=@stock, pInsumo=@insumo, unidad=@unidad, contenido=@contenido WHERE codProd=@codProd and baja=@baja";
 
             try
             {
@@ -101,7 +107,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[1].Value = pInsumo;
 
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[3].Value = 0;
+                Cx.sqlCmd.Parameters[5].Value = 0;
 
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[2].Value = 0;
@@ -215,7 +221,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("insumosDeUnProducto");
 
-            string sql = "SELECT S.codProdSimple, S.nombre, S.contenido FROM ProdSimples S INNER JOIN Compisicion C WHERE C.baja = 0 and C.codProdCompuesto";
+            string sql = "SELECT S.codProdSimple, P.nombre, C.cantidad FROM (ProdSimples S INNER JOIN Composicion C ON S.codProdSimple = C.codProdSimple) INNER JOIN Productos P ON P.codProd=S.codProdSimple WHERE C.baja = 0 and S.baja = 0 and P.baja = 0 and C.codProdCompuesto";
 
             try
             {

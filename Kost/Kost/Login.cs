@@ -49,8 +49,7 @@ namespace Kost
                         this.Inicio_2();
                         break;
 
-                }
-                            
+                }              
             }
         }
 
