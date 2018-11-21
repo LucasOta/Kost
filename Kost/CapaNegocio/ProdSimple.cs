@@ -99,16 +99,17 @@ namespace CapaNegocio
         //Funciones 
         protected void ValidarSimple(int codPS)
         {
-            if (!CapaDatos.ProdSimpleBD.existe(codPS))
+            if (CapaDatos.ProdSimpleBD.existe(codPS))
             {
                 Error = true;
-                Mensaje = "Ya existe un producto simple con este codigo.";
+                Mensaje += "Ya existe un producto simple con este codigo de producto simple. ";
             }
         }
 
         protected void GuardarPS()
         {
             base.Guardar();
+
             if (!Error)
             {
                 if(CapaDatos.ProdSimpleBD.guardar(CodProdSimple, Stock, Insumo))
@@ -171,6 +172,11 @@ namespace CapaNegocio
         public static DataTable MostrarStock()
         {
             return CapaDatos.ProdSimpleBD.MostrarStock();
+        }
+
+        public Boolean ActualizarStock()
+        {
+            return CapaDatos.ProdSimpleBD.actualizarStock(CodProdSimple, Stock);
         }
     }
 }

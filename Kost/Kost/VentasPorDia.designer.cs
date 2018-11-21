@@ -39,7 +39,8 @@
             // 
             this.dgvVentasDiarias.AllowUserToAddRows = false;
             this.dgvVentasDiarias.AllowUserToDeleteRows = false;
-            this.dgvVentasDiarias.AllowUserToOrderColumns = true;
+            this.dgvVentasDiarias.AllowUserToResizeColumns = false;
+            this.dgvVentasDiarias.AllowUserToResizeRows = false;
             this.dgvVentasDiarias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVentasDiarias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Producto,
@@ -47,6 +48,7 @@
             this.dgvVentasDiarias.Location = new System.Drawing.Point(7, 48);
             this.dgvVentasDiarias.Name = "dgvVentasDiarias";
             this.dgvVentasDiarias.ReadOnly = true;
+            this.dgvVentasDiarias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVentasDiarias.Size = new System.Drawing.Size(814, 479);
             this.dgvVentasDiarias.TabIndex = 21;
             // 

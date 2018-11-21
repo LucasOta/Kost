@@ -145,29 +145,19 @@ namespace CapaNegocio
 
         public Boolean ModificarUsuario()
         {
-            this.Error = false;
-            this.Validar(this.User);
+            Boolean usu = CapaDatos.UsuarioBD.modificar(this.User, this.Password, this.Nivel, this.Cuil);
 
-            if (!Error)
+            Boolean per = this.ModificarPersona();
+
+            if (usu && per)
             {
-                Boolean usu = CapaDatos.UsuarioBD.modificar(this.User, this.Password, this.Nivel, this.Cuil);
-
-                Boolean per = this.ModificarPersona();
-
-                if (usu && per)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
             else
             {
-                Mensaje += " No pudieron guardarse las modificaciones.";
+                Mensaje += " No pudieron guardarse las modificaciones correctamente. Puede que algunos no concuerden";
                 return false;
-            }    
+            }   
         }
 
         public static DataTable ListarTodos()

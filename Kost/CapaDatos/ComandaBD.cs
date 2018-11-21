@@ -152,7 +152,7 @@ namespace CapaDatos
         {
             DataTable comandas = new DataTable("comandasActivas");
 
-            string sql = "SELECT CONCAT(P.nombre,' ', P.apellido)as nya, C.nroComanda, C.fecha, C.nroMesa, C.activa, C.total, C.descuento, C.precioFinal, C.cuilMozo FROM Personas P INNER JOIN Comandas C ON P.cuil = C.cuilMozo WHERE P.baja = 0 AND C.baja = 0 AND C.activa = 1";
+            string sql = "SELECT CONCAT(P.nombre,' ', P.apellido)as nya, C.* FROM Personas P INNER JOIN Comandas C ON P.cuil = C.cuilMozo WHERE P.baja = 0 AND C.baja = 0 AND C.activa = 1";
 
             try
             {

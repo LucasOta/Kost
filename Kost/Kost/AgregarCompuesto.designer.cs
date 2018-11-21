@@ -69,7 +69,8 @@
             // 
             this.dgvComponentes.AllowUserToAddRows = false;
             this.dgvComponentes.AllowUserToDeleteRows = false;
-            this.dgvComponentes.AllowUserToOrderColumns = true;
+            this.dgvComponentes.AllowUserToResizeColumns = false;
+            this.dgvComponentes.AllowUserToResizeRows = false;
             this.dgvComponentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComponentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Insumo,
@@ -77,6 +78,7 @@
             this.dgvComponentes.Location = new System.Drawing.Point(437, 257);
             this.dgvComponentes.Name = "dgvComponentes";
             this.dgvComponentes.ReadOnly = true;
+            this.dgvComponentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComponentes.Size = new System.Drawing.Size(371, 173);
             this.dgvComponentes.TabIndex = 7;
             // 

@@ -186,11 +186,12 @@ namespace CapaDatos
             return productoSimple;
         }
 
-        public static DataTable MostrarStock()
-        {
-            DataTable ds = new DataTable("mostrarstock");
 
-            string sql = "SELECT S.codProdSimple, S.stock, P.nombre, P.descripProd FROM ProdSimples S INNER JOIN Productos P ON S.codProdSimple = P.codProd WHERE S.baja = 0 AND P.baja = 0";
+        public static DataTable TraerInsumos()
+        {
+            DataTable ds = new DataTable("insumos");
+
+            string sql = "SELECT codProdSimple, nombre FROM ProdSimples WHERE baja = 0";
 
             try
             {
@@ -208,6 +209,84 @@ namespace CapaDatos
                 ds = null;
             }
             return ds;
+        }
+
+        public static DataTable TraerInsumosdeunProducto(int cod)
+        {
+            DataTable ds = new DataTable("insumosDeUnProducto");
+
+            string sql = "SELECT S.codProdSimple, S.nombre, S.contenido FROM ProdSimples S INNER JOIN Compisicion C WHERE C.baja = 0 and C.codProdCompuesto";
+
+            try
+            {
+                Conexion cx = new Conexion();
+                cx.setComandoTexto();
+                cx.setSQL(sql);
+                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
+                sqlDat.Fill(ds);
+
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                ds = null;
+            }
+            return ds;
+        }
+
+        public static DataTable MostrarStock()
+        {
+            DataTable ds = new DataTable("mostrarstock");
+
+            string sql = "SELECT S.codProdSimple, S.stock, P.nombre, P.descripProd FROM ProdSimples S INNER JOIN Productos P ON S.codProdSimple = P.codProd WHERE S.baja = 0 AND P.baja = 0";
+
+            try
+            {
+                Conexion cx = new Conexion();
+                cx.setComandoTexto();
+                cx.setSQL(sql);
+                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
+                sqlDat.Fill(ds);
+
+            }
+            catch (Exception e)
+            {
+                ds = null;
+            }
+            return ds;
+        }
+
+        public static Boolean actualizarStock(int pCod, int pStock)
+        {
+            string sql = "UPDATE ProdSimples SET stock = @stock WHERE codProdSimple = @codProd";
+
+            try
+            {
+                Conexion Cx = new Conexion();
+
+                Cx.setComandoTexto();
+                Cx.setSQL(sql);
+
+                Cx.sqlCmd.Parameters.Add("stock", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = pStock;
+
+                Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[1].Value = pCod;
+
+                Cx.abrir();
+                object nro = Cx.sqlCmd.ExecuteNonQuery();
+                Cx.cerrar();
+                if (Convert.ToInt32(nro) > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

@@ -32,6 +32,7 @@
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.lblTituloDescuento = new System.Windows.Forms.Label();
             this.pnlDetalle = new System.Windows.Forms.Panel();
+            this.lblPrecioUnitario = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
             this.btnCerrarComanda = new System.Windows.Forms.Button();
-            this.lblPrecioUnitario = new System.Windows.Forms.Label();
             this.pnlDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComanda)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +93,15 @@
             this.pnlDetalle.Name = "pnlDetalle";
             this.pnlDetalle.Size = new System.Drawing.Size(331, 214);
             this.pnlDetalle.TabIndex = 4;
+            // 
+            // lblPrecioUnitario
+            // 
+            this.lblPrecioUnitario.AutoSize = true;
+            this.lblPrecioUnitario.Location = new System.Drawing.Point(327, 69);
+            this.lblPrecioUnitario.Name = "lblPrecioUnitario";
+            this.lblPrecioUnitario.Size = new System.Drawing.Size(0, 21);
+            this.lblPrecioUnitario.TabIndex = 81;
+            this.lblPrecioUnitario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lbl1
             // 
@@ -199,7 +208,8 @@
             // 
             this.dgvComanda.AllowUserToAddRows = false;
             this.dgvComanda.AllowUserToDeleteRows = false;
-            this.dgvComanda.AllowUserToOrderColumns = true;
+            this.dgvComanda.AllowUserToResizeColumns = false;
+            this.dgvComanda.AllowUserToResizeRows = false;
             this.dgvComanda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComanda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.N_Detalle,
@@ -211,6 +221,7 @@
             this.dgvComanda.Location = new System.Drawing.Point(2, 39);
             this.dgvComanda.Name = "dgvComanda";
             this.dgvComanda.ReadOnly = true;
+            this.dgvComanda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComanda.Size = new System.Drawing.Size(820, 150);
             this.dgvComanda.TabIndex = 0;
             // 
@@ -374,15 +385,6 @@
             this.btnCerrarComanda.Text = "Cerrar Comanda";
             this.btnCerrarComanda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerrarComanda.UseVisualStyleBackColor = true;
-            // 
-            // lblPrecioUnitario
-            // 
-            this.lblPrecioUnitario.AutoSize = true;
-            this.lblPrecioUnitario.Location = new System.Drawing.Point(327, 69);
-            this.lblPrecioUnitario.Name = "lblPrecioUnitario";
-            this.lblPrecioUnitario.Size = new System.Drawing.Size(0, 21);
-            this.lblPrecioUnitario.TabIndex = 81;
-            this.lblPrecioUnitario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Comanda
             // 

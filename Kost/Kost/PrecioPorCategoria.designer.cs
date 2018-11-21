@@ -40,7 +40,8 @@
             // 
             this.dgvPrecioPorCategoria.AllowUserToAddRows = false;
             this.dgvPrecioPorCategoria.AllowUserToDeleteRows = false;
-            this.dgvPrecioPorCategoria.AllowUserToOrderColumns = true;
+            this.dgvPrecioPorCategoria.AllowUserToResizeColumns = false;
+            this.dgvPrecioPorCategoria.AllowUserToResizeRows = false;
             this.dgvPrecioPorCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrecioPorCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Producto,
@@ -48,6 +49,7 @@
             this.dgvPrecioPorCategoria.Location = new System.Drawing.Point(3, 76);
             this.dgvPrecioPorCategoria.Name = "dgvPrecioPorCategoria";
             this.dgvPrecioPorCategoria.ReadOnly = true;
+            this.dgvPrecioPorCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPrecioPorCategoria.Size = new System.Drawing.Size(816, 442);
             this.dgvPrecioPorCategoria.TabIndex = 16;
             // 
