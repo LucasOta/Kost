@@ -18,7 +18,18 @@ namespace CapaNegocio
         }
 
         //Getters y Setters
-        public int CodProdCompuesto { get => codProdCompuesto; set => codProdCompuesto = value; }
+        public int CodProdCompuesto
+        {
+            get
+            {
+                return codProdCompuesto;
+            }
+
+            set
+            {
+                codProdCompuesto = value;
+            }
+        }
 
         //Funciones
         protected void ValidarCompuesto(int codPC)
