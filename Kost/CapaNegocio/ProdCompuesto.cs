@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 using CapaDatos;
 
 namespace CapaNegocio
@@ -54,12 +56,8 @@ namespace CapaNegocio
             {
                 return ProductoCompuestoBD.guardarComposicion(CodCom, CodSim, Cant);
             }
-            else
-            {
-                Error = true;
-                Mensaje = "La composición ya existe";
-                return false;
-            }
+
+            return true;
         }
 
         public static Boolean Eliminar(int CodPC)
@@ -70,6 +68,16 @@ namespace CapaNegocio
         public static Boolean EliminarComposicion(int CodCom, int CodSim, int Cant)
         {
             return ProductoCompuestoBD.eliminarComposicion(CodCom, CodSim, Cant);
+        }
+
+        public static DataTable TraerComposicion(int cod)
+        {
+            return ProductoCompuestoBD.TraerComposicion(cod);
+        } 
+
+        public static DataTable TraerUnProdCompuesto(int cod)
+        {
+            return ProductoCompuestoBD.TraerUnProdCompuesto(cod);
         }
     }
 }

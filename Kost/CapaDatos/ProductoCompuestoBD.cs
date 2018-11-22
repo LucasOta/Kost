@@ -152,46 +152,6 @@ namespace CapaDatos
             }
         }
 
-        //        public static Boolean modificar(int pCod, int pStock, bool pInsumo)
-        //        {
-        //            string sql = "UPDATE ProdSimples SET pStock=@stock, pInsumo=@insumo WHERE codProd=@codProd and baja=@baja";
-
-        //            try
-        //            {
-        //                Conexion Cx = new Conexion();
-
-        //                Cx.setComandoTexto();
-        //                Cx.setSQL(sql);
-
-        //                Cx.sqlCmd.Parameters.Add("stock", SqlDbType.Float);
-        //                Cx.sqlCmd.Parameters[0].Value = pStock;
-
-        //                Cx.sqlCmd.Parameters.Add("insumo", SqlDbType.Int);
-        //                Cx.sqlCmd.Parameters[1].Value = pInsumo;
-
-        //                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-        //                Cx.sqlCmd.Parameters[3].Value = 0;
-
-        //                Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
-        //                Cx.sqlCmd.Parameters[2].Value = 0;
-
-        //                Cx.abrir();
-        //                object nro = Cx.sqlCmd.ExecuteNonQuery();
-        //                Cx.cerrar();
-        //                if (Convert.ToInt32(nro) > 0)
-        //                {
-        //                    return true;
-        //                }
-        //                return false;
-        //            }
-        //#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
-        //            catch (Exception e)
-        //#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
-        //            {
-        //                return false;
-        //            }
-        //        }
-
         public static Boolean eliminar(int cod)
         {
             string sql = "UPDATE ProdCompuestos SET baja=@baja WHERE codProdCompuesto=@codProdCompuesto;";
