@@ -110,25 +110,46 @@ namespace CapaNegocio
         {
             base.Guardar();
 
-            //if (!Error)
-            //{
-            //    if(CapaDatos.ProdSimpleBD.guardar(CodProdSimple, Stock, Insumo))
-            //    {
-            //        Error = false;
-            //        Mensaje = "Producto simple guardado";
-            //    }
-            //    else
-            //    {
-            //        Error = true;
-            //        Mensaje = "Hubo un error a nivel BD, intente nuevamente";
-            //    }
-            //}
+            if (!Error)
+            {
+                if(CapaDatos.ProdSimpleBD.guardar(CodProdSimple, Stock, Insumo, null, 0))
+                {
+                    Error = false;
+                    Mensaje = "Producto simple guardado";
+                }
+                else
+                {
+                    Error = true;
+                    Mensaje = "Hubo un error a nivel BD, intente nuevamente";
+                }
+            }
         }
 
         public Boolean ModificarPS()
         {
+            Error = false;
+            this.ValidarSimple(CodProdSimple);
 
-            return true;
+            if (!Error)
+            {
+                Boolean prod = this.ModificarProducto();
+
+                Boolean prodSimp = CapaDatos.ProdSimpleBD.modificar(CodProdSimple, Stock, Insumo, null, 0);
+
+                if(prod && prodSimp)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                Mensaje += " No pudieron relizarse las modificaciones";
+                return false;
+            }
         }
 
         public static Boolean EliminarPS(int codPS)
