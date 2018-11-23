@@ -23,7 +23,9 @@ namespace Kost
 
         public ComandasActivas()
         {
-            InitializeComponent();                       
+            InitializeComponent();
+
+            ActualizarPantalla();
         }
 
 

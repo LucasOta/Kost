@@ -239,5 +239,10 @@ namespace CapaNegocio
         {
             return CapaDatos.ProductoBD.ProductoActivo(codprod);
         }
+
+        public static DataTable TraerNoInsumos()
+        {
+            return ProductoBD.TraerNoInsumos();
+        }
     }
 }
