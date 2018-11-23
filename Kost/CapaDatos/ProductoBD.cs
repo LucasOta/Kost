@@ -121,7 +121,7 @@ namespace CapaDatos
 
         public static Boolean ProductoActivo(int cod)
         {
-            string sql = "SELECT cod FROM Productos WHERE codProd =  @cod AND baja = 0";
+            string sql = "SELECT codProd FROM Productos WHERE codProd =  @cod AND baja = 0";
             try
             {
                 Conexion cx = new Conexion();
@@ -153,7 +153,7 @@ namespace CapaDatos
 
         public static Boolean modificar(int codProd, string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto)
         {
-            string sql = "UPDATE Productos SET pnombre=@nombre, pprecio=@precioVenta, pidCategoria=@idCategoria, pdescripcion=@descripProd, compuesto=@compuesto, baja=0 WHERE codProd=@codProd;";
+            string sql = "UPDATE Productos SET nombre=@nombre, precioVenta=@precioVenta, idCategoria=@idCategoria, descripProd=@descripProd, compuesto=@compuesto, baja=0 WHERE codProd=@codProd;";
 
             try
             {
@@ -203,7 +203,7 @@ namespace CapaDatos
 
         public static Boolean eliminar(int cod)
         {
-            string sql = "UPDATE Productos SET baja=@baja WHERE codProd=@codProd;";
+            string sql = "UPDATE Productos SET baja=1 WHERE codProd=@codProd;";
 
             try
             {
@@ -213,10 +213,7 @@ namespace CapaDatos
                 Cx.setSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[1].Value = cod;
-
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[0].Value = 1;
+                Cx.sqlCmd.Parameters[0].Value = cod;
 
                 Cx.abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
