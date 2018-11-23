@@ -44,7 +44,7 @@ namespace CapaDatos
 
         public static bool guardar(int pCod, int pStock, bool pInsumo, string unidad, double contenido)
         {
-            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) values ((SELECT TOP codProd FROM Productos WHERE baja=0), @pStock, @pInsumo, @baja)";
+            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) values ((SELECT TOP 1 codProd FROM Productos WHERE baja=0 ORDER BY codProd DESC), @pStock, @pInsumo, @baja)";
 
             try
             {
@@ -91,7 +91,7 @@ namespace CapaDatos
 
         public static Boolean modificar(int pCod, int pStock, bool pInsumo, string unidad, double contenido)
         {
-            string sql = "UPDATE ProdSimples SET pStock=@stock, pInsumo=@insumo, unidad=@unidad, contenido=@contenido WHERE codProd=@codProd and baja=@baja";
+            string sql = "UPDATE ProdSimples SET stock=@stock, insumo=@insumo, unidad=@unidad, contenido=@contenido WHERE codProdSimple=@codProd and baja=@baja";
 
             try
             {
@@ -131,7 +131,7 @@ namespace CapaDatos
 
         public static Boolean eliminar(int cod)
         {
-            string sql = "UPDATE ProdSimples SET baja=@baja WHERE codProdSimple=@codProdSimple;";
+            string sql = "UPDATE ProdSimples SET baja=1 WHERE codProdSimple=@codProdSimple;";
 
             try
             {
@@ -141,10 +141,7 @@ namespace CapaDatos
                 Cx.setSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProdSimple", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[1].Value = cod;
-
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[0].Value = 1;
+                Cx.sqlCmd.Parameters[0].Value = cod;
 
                 Cx.abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -191,8 +188,7 @@ namespace CapaDatos
 
             return productoSimple;
         }
-
-
+        
         public static DataTable TraerInsumos()
         {
             DataTable ds = new DataTable("insumos");
