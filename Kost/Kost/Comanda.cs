@@ -27,7 +27,9 @@ namespace Kost
 
         public Comanda()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            ActualizarPantalla();
         }
 
         //Botones
@@ -36,7 +38,7 @@ namespace Kost
             this.btnIrAAtrasCLick();
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void btnAgregar_Click_1(object sender, EventArgs e)
         {
             pnlDetalle.Enabled = true;
         }
@@ -138,6 +140,7 @@ namespace Kost
         {
             lblPrecioUnitario.Text = "";
             txtCantidad.Text = "";
+            cbxProducto.SelectedValue = 1;
         }
 
         private void GuardarModificacion()
@@ -186,9 +189,23 @@ namespace Kost
             CalcularTotal();
         }
 
+        public void CargarCBX()
+        {
+            DataTable productos = Producto.TraerNoInsumos();
+
+            cbxProducto.DataSource = productos.DefaultView;
+            cbxProducto.ValueMember = "codProd";
+            cbxProducto.DisplayMember = "nombre";
+            cbxProducto.BindingContext = this.BindingContext;
+        }
+
         public void ActualizarPantalla()
         {
             pnlDetalle.Enabled = false;
+
+            CargarCBX();
         }
+
+        
     }
 }

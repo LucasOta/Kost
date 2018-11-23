@@ -217,7 +217,7 @@ namespace CapaDatos
         {
             DataTable comanda = new DataTable("Comanda");
 
-            string sql = "SELECT nroComando, fecha, nroMesa, activa, total, descuento, precioFinal, cuilMozo FROM Comandas WHERE nroComanda = @nroComanda";
+            string sql = "SELECT nroComanda, fecha, nroMesa, activa, total, descuento, precioFinal, cuilMozo FROM Comandas WHERE nroComanda = @nroComanda";
 
             try
             {

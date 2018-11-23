@@ -284,6 +284,30 @@ namespace CapaDatos
 
             return producto;
         }
+
+        public static DataTable TraerNoInsumos()
+        {
+            DataTable ds = new DataTable("ProductosNoInsumos");
+
+            string sql = "SELECT P.codProd, P.nombre, P.descripProd, P.idCategoria, P.precioVenta, P.compuesto FROM Productos P INNER JOIN ProdSimples S ON P.baja = 0 WHERE (P.codProd = S.codProdSimple AND S.insumo = 0) OR (P.compuesto = 1);";
+
+            try
+            {
+                Conexion cx = new Conexion();
+                cx.setComandoTexto();
+                cx.setSQL(sql);
+                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
+                sqlDat.Fill(ds);
+
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                ds = null;
+            }
+            return ds;
+        }
     }
 }
 
