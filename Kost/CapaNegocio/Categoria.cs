@@ -14,6 +14,8 @@ namespace CapaNegocio
         private string mensaje;
         private string nombre;
         private int id;
+
+        //Constructores
         public Categoria() { }
 
         public Categoria(string categoria)

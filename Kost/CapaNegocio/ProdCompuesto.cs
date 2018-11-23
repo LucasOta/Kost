@@ -19,6 +19,7 @@ namespace CapaNegocio
 
         }
 
+
         //Getters y Setters
         public int CodProdCompuesto
         {
@@ -32,6 +33,7 @@ namespace CapaNegocio
                 codProdCompuesto = value;
             }
         }
+
 
         //Funciones
         protected void ValidarCompuesto(int codPC)

@@ -9,10 +9,7 @@ using CapaDatos;
 namespace CapaNegocio
 {
     public class Mozo : Persona
-    {
-        //Getters y Setters
-
-        
+    {        
         //Constructores
         public Mozo() { }
 

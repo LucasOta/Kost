@@ -17,12 +17,10 @@ namespace CapaNegocio
         private string mail;
         private DateTime nacimiento;
 
-
         private bool error;
         private string mensaje;
 
         //Constructores
-
         public Persona() { }
 
         public Persona(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
@@ -43,8 +41,8 @@ namespace CapaNegocio
             }
         }
 
-        //Getters y Setters
 
+        //Getters y Setters
         public bool Error
         {
             get
@@ -149,8 +147,8 @@ namespace CapaNegocio
             }
         }
 
-        //Funciones
 
+        //Funciones
         protected void ValidarPers(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
         {
             if (!Validaciones.Nombre(pnombre)) {

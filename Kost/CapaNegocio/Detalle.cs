@@ -21,6 +21,33 @@ namespace CapaNegocio
         private string mensaje;
 
 
+        //Constructores
+        public Detalle()
+        {
+
+        }
+
+        public Detalle(int nroC, int codProd, string descProd, int cant, float precioUni)
+        {
+            Error = false;
+            Mensaje = "";
+            this.Validar(cant);
+            if (!Error)
+            {
+                NroComanda = nroC;
+                CodProducto = codProd;
+                DescripProducto = descProd;
+                Cantidad = cant;
+                PrecioUnitario = precioUni;
+
+                this.Guardar(NroComanda, CodProducto, DescripProducto, Cantidad, PrecioUnitario);
+            }
+            else
+            {
+                Error = true;
+            }
+        }
+
 
         //Getters y Setters
         public int NroComanda
@@ -124,33 +151,6 @@ namespace CapaNegocio
             set
             {
                 mensaje = value;
-            }
-        }
-
-        //Constructores
-        public Detalle()
-        {
-
-        }
-
-        public Detalle(int nroC, int codProd, string descProd, int cant, float precioUni)
-        {
-            Error = false;
-            Mensaje = "";
-            this.Validar(cant);
-            if (!Error)
-            {
-                NroComanda = nroC;
-                CodProducto = codProd;
-                DescripProducto = descProd;
-                Cantidad = cant;
-                PrecioUnitario = precioUni;
-
-                this.Guardar(NroComanda, CodProducto, DescripProducto, Cantidad, PrecioUnitario);
-            }
-            else
-            {
-                Error = true;
             }
         }
 

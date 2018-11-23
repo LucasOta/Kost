@@ -22,6 +22,60 @@ namespace CapaNegocio
         private string mensaje;
 
 
+        //Constructores
+        public Comanda()
+        {
+
+        }
+
+        public Comanda(int nroMesa, long cuilMozo, DateTime fechax)
+        {
+            Error = false;
+            Mensaje = "";
+            ComandaDeMesaActiva(nroMesa);
+            if (!Error)
+            {
+                NroMesa = nroMesa;
+                CuilMozo = cuilMozo;
+                Fecha = fechax;
+                Total = 0;
+                Descuento = 0;
+                PrecioFinal = 0;
+
+                this.Guardar();
+            }
+            else
+            {
+                Error = true;
+                Mensaje = "Ya existe una comanda activa para esta mesa";
+            }
+        }
+
+        public Comanda(int nroC, DateTime fechax, int nroM, float tot, float desc, float precioF, long cuil)
+        {
+            Error = false;
+            Mensaje = "";
+            this.Validar(nroC, nroM);
+            if (!Error)
+            {
+                NroComanda = nroC;
+                NroMesa = NroMesa;
+                CuilMozo = CuilMozo;
+                Fecha = fechax;
+                Total = tot;
+                Descuento = desc;
+                PrecioFinal = precioF;
+
+                this.Guardar();
+            }
+            else
+            {
+                Error = true;
+            }
+
+        }
+
+
         //Getters y Setters
         public int NroComanda
         {
@@ -139,61 +193,8 @@ namespace CapaNegocio
                 mensaje = value;
             }
         }
-
-        //Constructores
-        public Comanda()
-        {
-
-        }
-
-        public Comanda(int nroMesa, long cuilMozo, DateTime fechax)
-        {
-            Error = false;
-            Mensaje = "";
-            ComandaDeMesaActiva(nroMesa);
-            if (!Error)
-            {
-                NroMesa = nroMesa;
-                CuilMozo = cuilMozo;
-                Fecha = fechax;
-                Total = 0;
-                Descuento = 0;
-                PrecioFinal = 0;
-
-                this.Guardar();
-            }
-            else
-            {
-                Error = true;
-                Mensaje = "Ya existe una comanda activa para esta mesa";
-            }
-        }
-
-        public Comanda(int nroC, DateTime fechax, int nroM, float tot, float desc, float precioF, long cuil)
-        {
-            Error = false;
-            Mensaje = "";
-            this.Validar(nroC, nroM);
-            if (!Error)
-            {
-                NroComanda = nroC;
-                NroMesa = NroMesa;
-                CuilMozo = CuilMozo;
-                Fecha = fechax;
-                Total = tot;
-                Descuento = desc;
-                PrecioFinal = precioF;
-
-                this.Guardar();
-            }
-            else
-            {
-                Error = true;
-            }
-
-        }
-
-
+        
+        
         //Funciones
         protected void Validar(int nroC, int nroMesa)
         {

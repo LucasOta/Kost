@@ -17,13 +17,11 @@ namespace CapaNegocio
         private string descProd;
         private bool compuesto;
 
-
         private bool error;
         private string mensaje;
                
 
         //Constructores
-
         public Producto()
         {
 
@@ -48,6 +46,7 @@ namespace CapaNegocio
                 //Retornar mensaje
             }
         }
+
 
         //Getters y Setters
         public int CodProd
@@ -156,7 +155,6 @@ namespace CapaNegocio
 
 
         //Funciones
-
         protected void ValidarProd(int codprod, string nombre)
         {
             if (CapaDatos.ProductoBD.existecodigo(CodProd))

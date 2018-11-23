@@ -14,8 +14,46 @@ namespace CapaNegocio
         private string password;
         private int nivel;
 
-        //Getters y Setters
 
+
+        //Constructores
+        public Usuario() { }
+
+        public Usuario(string consuser, string conspassword, int consnivel, string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
+        {
+            Error = false;
+            Mensaje = "";
+            this.Validar(consuser);
+            user = consuser;
+            password = conspassword;
+            nivel = consnivel;
+            if (!Error)
+            {
+                this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
+                if (!Error)
+                {
+                    Nombre = pnombre;
+                    Apellido = papellido;
+                    Direccion = pdireccion;
+                    Mail = pmail;
+                    Cuil = pcuil;
+                    Nacimiento = pnacimiento;
+
+                    GuardarUser();
+                }
+                else
+                {
+                    Error = true;
+                }
+            }
+            else
+            {
+                Error = true;
+            }
+        }
+
+
+        //Getters y Setters
         public string User
         {
             get
@@ -54,45 +92,9 @@ namespace CapaNegocio
                 nivel = value;
             }
         }
-
-        //Constructores
-        public Usuario() { }
-
-        public Usuario(string consuser, string conspassword, int consnivel, string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
-        {
-            Error = false;
-            Mensaje = "";
-            this.Validar(consuser);
-            user = consuser;
-            password = conspassword;
-            nivel = consnivel;
-            if (!Error)
-            {
-                this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
-                if (!Error)
-                {
-                    Nombre = pnombre;
-                    Apellido = papellido;
-                    Direccion = pdireccion;
-                    Mail = pmail;
-                    Cuil = pcuil;
-                    Nacimiento = pnacimiento;
-
-                    GuardarUser();
-                }
-                else
-                {
-                    Error = true;
-                }
-            }
-            else
-            {
-                Error = true;
-            }
-        }
+        
 
         //Funciones
-
         private void Validar(string valuser)
         {
             if (Validaciones.Usuario(valuser)) {
