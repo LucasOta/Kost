@@ -14,7 +14,9 @@ namespace CapaDatos
         {
             DataTable preciosPorCategorias = new DataTable("preciosPorCategorias");
 
-            string sql = "SELECT nombre, precioVenta FROM Productos WHERE baja = 0 and idCategoria = @idCat";
+            string sql = "SELECT nombre, precioVenta " + 
+                         "FROM Productos " + 
+                         "WHERE baja = 0 and idCategoria = @idCat;";
 
             try
             {
@@ -41,7 +43,14 @@ namespace CapaDatos
         {
             DataTable insumosUtilizados = new DataTable("insumosUtilizados");
 
-            string sql = "SELECT P.codProd, P.nombre, S.contenido FROM((((ProdSimples S INNER JOIN Composicion Comp ON S.codProdSimple = Comp.codProdSimple) INNER JOIN ProdCompuestos PC ON Comp.codProdCompuesto = PC.codProdCompuesto INNER JOIN Productos P ON P.codProd = S.codProdSimple) INNER JOIN  Detalle D ON D.codProd = PC.codProdCompuesto) INNER JOIN Comandas C on C.nroComanda = D.nroComanda WHERE C.fecha = '2018-10-27 16:07:59.073' and S.codProdSimple = P.codProd;";
+            string sql = "SELECT P.codProd, P.nombre, S.contenido" + 
+                         "FROM ((((ProdSimples S INNER JOIN Composicion Comp " +
+                                    "ON S.codProdSimple = Comp.codProdSimple) INNER JOIN ProdCompuestos PC " + 
+                                    "ON Comp.codProdCompuesto = PC.codProdCompuesto INNER JOIN Productos P " + 
+                                    "ON P.codProd = S.codProdSimple) INNER JOIN  Detalle D " +
+                                    "ON D.codProd = PC.codProdCompuesto) INNER JOIN Comandas C " + 
+                                    "ON C.nroComanda = D.nroComanda " + 
+                         "WHERE C.fecha = '2018-10-27 16:07:59.073' and S.codProdSimple = P.codProd;";
 
             try
             {
