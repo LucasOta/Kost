@@ -190,7 +190,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[1].Value = descuento;
 
                 Cx.sqlCmd.Parameters.Add("precioFinal", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[2].Value = nroComanda;
+                Cx.sqlCmd.Parameters[2].Value = precioFinal;
 
                 Cx.sqlCmd.Parameters.Add("nroComanda", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[3].Value = nroComanda;

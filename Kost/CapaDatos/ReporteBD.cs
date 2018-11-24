@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace CapaDatos
 {
-    class ReporteBD
+    public class ReporteBD
     {
         public static DataTable PreciosPorCategoria(int idCat)
         {

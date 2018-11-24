@@ -163,12 +163,22 @@ namespace CapaNegocio
 
         protected void Guardar(int nroCom, int codProd, string descProd, int cant, float precioUni)
         {
-            //
+            String msjGuardar = DetalleBD.Guardar(nroCom, codProd, descProd, cant, precioUni);
+            if ( msjGuardar.Equals("OK"))
+            {
+                this.Error = false;
+                this.Mensaje = "Detalle creado/guardado";
+            }
+            else
+            {
+                this.Error = true;
+                this.Mensaje = msjGuardar;
+            }
         }
 
-        public static Boolean Modificar(int codProd, int cantidad, float precioUni, string descrip)
+        public static Boolean Modificar(int nroDet, int codProd, int cantidad, float precioUni, string descrip)
         {
-            return CapaDatos.DetalleBD.Modificar(codProd, cantidad, precioUni, descrip);
+            return CapaDatos.DetalleBD.Modificar(nroDet, codProd, cantidad, precioUni, descrip);
         }
 
         public static Boolean Eliminar(int nroDetalle)

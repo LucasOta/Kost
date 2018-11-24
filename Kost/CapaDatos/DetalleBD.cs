@@ -52,9 +52,9 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Modificar(int codProd, int cantidad, float precioUni, string descrip)
+        public static Boolean Modificar(int nroDetalle, int codProd, int cantidad, float precioUni, string descrip)
         {
-            string sql = "UPDATE Detalle SET codProd = @codProd, descripProd = @descrip, cantidad = @cantidad, precioUni = @precio, baja = 0 WHERE nroComanda = @nroComanda;";
+            string sql = "UPDATE Detalle SET codProd = @codProd, descripProd = @descrip, cantidad = @cantidad, precioUni = @precio, baja = 0 WHERE nroDetalle = @nroDetalle;";
 
             try
             {
@@ -72,8 +72,11 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("cantidad", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[2].Value = cantidad;
 
-                Cx.sqlCmd.Parameters.Add("preco", SqlDbType.Float);
+                Cx.sqlCmd.Parameters.Add("precio", SqlDbType.Float);
                 Cx.sqlCmd.Parameters[3].Value = precioUni;
+
+                Cx.sqlCmd.Parameters.Add("nroDetalle", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[4].Value = nroDetalle;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -105,7 +108,7 @@ namespace CapaDatos
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nroDeta", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[1].Value = nroDetalle;
+                Cx.sqlCmd.Parameters[0].Value = nroDetalle;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -129,7 +132,7 @@ namespace CapaDatos
         {
             DataTable detalles = new DataTable("detalles");
 
-            string sql = "SELECT * FROM Detalle WHERE nroComanda = @nroComanda AND baja = 0";
+            string sql = "SELECT nroDetalle, codProd, descripProd, cantidad, precioUni FROM Detalle WHERE nroComanda = @nroComanda AND baja = 0";
 
             try
             {
