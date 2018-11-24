@@ -23,7 +23,7 @@ namespace Kost
 
         Boolean banderaGuardar = true;
         Boolean aux = false;
-
+        int nroD;
         public int numeroComanda;
 
         public Comanda()
@@ -55,7 +55,7 @@ namespace Kost
 
                 banderaGuardar = false;
 
-                int nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["nroDetalle"].Value);
+                nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["N_Detalle"].Value);
                 Detalle detal = CapaNegocio.Detalle.TraerUnDetalle(nroD);
 
                 cbxProducto.SelectedValue = detal.CodProducto;
@@ -75,11 +75,11 @@ namespace Kost
             {
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el detalle?"))
                 {
-                    int nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["nroDetalle"].Value);
+                    int nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["N_Detalle"].Value);
                     if (Detalle.Eliminar(nroD))
                     {
                         Funciones.mOk(this, "Se eliminó correctamente el detalle.");
-                        dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
+                        CargarDGV();
                         CalcularTotal();
                     }
                     else
@@ -94,11 +94,11 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.SelectedText, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
+                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.Text, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
                 if (!detal.Error)
                 {
                     CapaNegocio.Funciones.mOk(this, "Se guardo el detalle exitosamente");
-                    dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
+                    CargarDGV();
                     CalcularTotal();
                     Clear();
                     pnlDetalle.Enabled = false;
@@ -146,7 +146,7 @@ namespace Kost
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Detalle.Modificar(Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lblPrecioTitulo.Text.Replace("Precio unit.        ", "")), cbxProducto.SelectedText))
+            if (CapaNegocio.Detalle.Modificar(nroD, Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text), Convert.ToSingle(lblPrecioProducto.Text.Replace("$", "")), cbxProducto.Text))
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al detalle se guardaron correctamente");
                 dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
@@ -163,21 +163,23 @@ namespace Kost
 
         private void CalcularTotal()
         {
-            float total = 0;
+            //float total = 0;
 
-            string textTotal = "$";
+            //string textTotal = "$";
 
-            foreach (DataGridViewRow row in dgvComanda.Rows)
-            {
-                total += Convert.ToInt32(row.Cells["Precio"].Value.ToString());
-            }
+            //foreach (DataGridViewRow row in dgvComanda.Rows)
+            //{
+            //    total += Convert.ToInt32(row.Cells["precioUni"].Value.ToString());
+            //}
 
-            lblTotal.Text = textTotal += total;
+            //lblTotal.Text = textTotal += total;
         }
 
         public void setComanda(int nroCom)
         {
             CapaNegocio.Comanda comm = CapaNegocio.Comanda.TraerComanda(nroCom);
+
+            numeroComanda = comm.NroComanda;
 
             lblNumeroComanda.Text = "N° Comanda: " + comm.NroComanda.ToString();
 
@@ -192,7 +194,7 @@ namespace Kost
 
         public void CargarDGV()
         {
-
+            dgvComanda.DataSource = Detalle.TraerTodosDetalles(numeroComanda);
         }
 
         public void CargarCBX()
@@ -211,6 +213,8 @@ namespace Kost
 
             CargarCBX();
 
+            CargarDGV();
+
             cbxProducto.SelectedIndex = 0;
             aux = true;
             cbxProducto_SelectedIndexChanged(this, new EventArgs());
@@ -221,9 +225,7 @@ namespace Kost
         {
             if (aux)
             {
-                int x = Convert.ToInt32(cbxProducto.SelectedValue);
-
-                lblPrecioProducto.Text = "$" + Producto.PrecioDeVenta(x);
+                lblPrecioProducto.Text = "$" + Producto.PrecioDeVenta(Convert.ToInt32(cbxProducto.SelectedValue));
             }
             else {
                 ActualizarPantalla();
