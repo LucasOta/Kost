@@ -15,6 +15,8 @@ namespace CapaDatos
         public SqlCommand sqlCmd;
         private SqlConnection sqlCon;
 
+        private SqlTransaction tran = null;
+
         public Conexion()
         {
             string servidor = ConfigurationManager.AppSettings["server"];
@@ -58,6 +60,23 @@ namespace CapaDatos
         public void Cerrar()
         {
             sqlCon.Close();
+        }
+
+        public void SetTransaccion()
+        {
+            tran = sqlCon.BeginTransaction();
+            this.sqlCmd.Transaction = tran;
+
+        }
+
+        public void ComitTransaccion()
+        {
+            tran.Commit();
+        }
+
+        public void TransaccionRollback()
+        {
+            tran.Rollback();
         }
     }
 }

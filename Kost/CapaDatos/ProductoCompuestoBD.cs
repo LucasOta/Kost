@@ -76,13 +76,13 @@ namespace CapaDatos
             }
         }
 
-        public static bool Guardar(int pCod)
+        public static bool Guardar(int pCod, Conexion con)
         {
             string sql = "INSERT INTO ProdCompuestos (codProdCompuesto, baja) values (@pCod, @baja)";
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);

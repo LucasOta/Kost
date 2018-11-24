@@ -42,13 +42,13 @@ namespace CapaDatos
             }
         }
 
-        public static bool Guardar(int pCod, int pStock, bool pInsumo, string unidad, double contenido)
+        public static bool Guardar(int pCod, int pStock, bool pInsumo, int unidad, double contenido, Conexion con)
         {
             string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) values ((SELECT TOP 1 codProd FROM Productos WHERE baja=0 ORDER BY codProd DESC), @pStock, @pInsumo, @baja)";
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
@@ -62,7 +62,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("pInsumo", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[2].Value = pInsumo;
 
-                Cx.sqlCmd.Parameters.Add("unidad", SqlDbType.VarChar);
+                Cx.sqlCmd.Parameters.Add("unidad", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[3].Value = unidad;
 
                 Cx.sqlCmd.Parameters.Add("contenido", SqlDbType.Float);
@@ -89,9 +89,10 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Modificar(int pCod, int pStock, bool pInsumo, string unidad, double contenido)
+        public static Boolean Modificar(int pCod, int pStock, bool pInsumo, int unidad, double contenido)
         {
-            string sql = "UPDATE ProdSimples SET stock=@stock, insumo=@insumo, unidad=@unidad, contenido=@contenido WHERE codProdSimple=@codProd and baja=@baja";
+            string sql = "UPDATE ProdSimples SET stock=@stock, insumo=@insumo, unidad=@unidad, " +
+                "contenido=@contenido WHERE codProdSimple=@codProd and baja=0";
 
             try
             {
@@ -106,11 +107,14 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("insumo", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = pInsumo;
 
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[5].Value = 0;
+                Cx.sqlCmd.Parameters.Add("unidad", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[2].Value = unidad;
+
+                Cx.sqlCmd.Parameters.Add("contenido", SqlDbType.Float);
+                Cx.sqlCmd.Parameters[3].Value = contenido;
 
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[2].Value = 0;
+                Cx.sqlCmd.Parameters[4].Value = 0;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -165,7 +169,7 @@ namespace CapaDatos
         {
             DataTable productoSimple = new DataTable("ProductosSimples");
 
-            string sql = "SELECT codProdSimple, stock, insumo FROM ProdSimples WHERE codProdSimple = @codProdSimple and baja=0";
+            string sql = "SELECT codProdSimple, stock, insumo, unidad, contenido FROM ProdSimples WHERE codProdSimple = @codProdSimple and baja=0";
 
             try
             {
@@ -289,6 +293,30 @@ namespace CapaDatos
             {
                 return false;
             }
+        }
+
+        public static DataTable TraerUnidades()
+        {
+            DataTable ds = new DataTable("Unidades");
+
+            string sql = "SELECT idUnidad, unidad FROM Unidades";
+
+            try
+            {
+                Conexion cx = new Conexion();
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
+                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
+                sqlDat.Fill(ds);
+
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                ds = null;
+            }
+            return ds;
         }
     }
 }
