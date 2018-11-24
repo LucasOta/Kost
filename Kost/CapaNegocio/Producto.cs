@@ -20,7 +20,7 @@ namespace CapaNegocio
 
         private bool error;
         private string mensaje;
-               
+
 
         //Constructores
 
@@ -181,7 +181,7 @@ namespace CapaNegocio
                 this.Mensaje = "Producto guardado";
             }
             else
-            {   
+            {
                 this.Error = true;
                 this.Mensaje = msjGuardar;
             }
@@ -243,6 +243,19 @@ namespace CapaNegocio
         public static DataTable TraerNoInsumos()
         {
             return ProductoBD.TraerNoInsumos();
+        }
+
+        public static float PrecioDeVenta(int codProducto)
+        {
+            DataTable precios = ProductoBD.PrecioVenta(codProducto);
+
+            DataRow row = precios.Rows[0];
+
+            if (row["precioVenta"].ToString() != "")
+            {
+                return Convert.ToSingle(row["precioVenta"].ToString());
+            }
+            return 0;
         }
     }
 }

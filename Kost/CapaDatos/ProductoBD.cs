@@ -292,7 +292,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("ProductosNoInsumos");
 
-            string sql = "SELECT P.codProd, P.nombre, P.descripProd, P.idCategoria, P.precioVenta, P.compuesto FROM Productos P INNER JOIN ProdSimples S ON P.baja = 0 WHERE (P.codProd = S.codProdSimple AND S.insumo = 0) OR (P.compuesto = 1);";
+            string sql = "SELECT P.codProd, P.nombre FROM ProdSimples PS RIGHT JOIN Productos P ON PS.codProdSimple = P.codProd WHERE P.baja = 0 AND(PS.insumo = 0 OR P.compuesto = 1);";
 
             try
             {
@@ -309,6 +309,34 @@ namespace CapaDatos
             {
                 ds = null;
             }
+            return ds;
+        }
+
+        public static DataTable PrecioVenta(int codProd)
+        {
+            DataTable ds = new DataTable("Precio");
+
+            string sql = "SELECT precioVenta FROM Productos WHERE codProd = @codprod";
+
+            try
+            {
+                Conexion Cx = new Conexion();
+                Cx.setComandoTexto();
+                Cx.setSQL(sql);
+
+                Cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = codProd;
+
+                SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
+                sqlDat.Fill(ds);
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                ds = null;
+            }
+
             return ds;
         }
     }

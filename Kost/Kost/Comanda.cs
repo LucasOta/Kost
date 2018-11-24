@@ -93,7 +93,7 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.SelectedText, Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lbl1.Text.Replace("Precio unit.        ", "")));
+                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.SelectedText, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
                 if (!detal.Error)
                 {
                     CapaNegocio.Funciones.mOk(this, "Se guardo el detalle exitosamente");
@@ -145,7 +145,7 @@ namespace Kost
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Detalle.Modificar(Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lbl1.Text.Replace("Precio unit.        ", "")), cbxProducto.SelectedText))
+            if (CapaNegocio.Detalle.Modificar(Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lblPrecioTitulo.Text.Replace("Precio unit.        ", "")), cbxProducto.SelectedText))
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al detalle se guardaron correctamente");
                 dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
@@ -206,6 +206,9 @@ namespace Kost
             CargarCBX();
         }
 
-        
+        private void cbxProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //lblPrecioProducto.Text = "$" + Producto.PrecioDeVenta(Convert.ToInt32(cbxProducto.SelectedValue.ToString()));
+        }
     }
 }
