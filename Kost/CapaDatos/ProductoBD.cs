@@ -237,7 +237,8 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("dataGridProductos");
 
-            string sql = "SELECT codProd, nombre, descripProd, idCategoria, precioVenta, compuesto FROM Productos WHERE baja=0";
+            string sql = "SELECT codProd, nombre, descripProd, idCategoria, precioVenta, compuesto +" +
+                "FROM Productos WHERE baja=0";
 
             try
             {
@@ -289,7 +290,8 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("ProductosNoInsumos");
 
-            string sql = "SELECT P.codProd, P.nombre FROM Productos P INNER JOIN ProdSimples S ON P.codProd = S.codProdSimple WHERE (P.baja = 0 AND S.insumo = 0) OR (P.compuesto = 1);";
+            string sql = "SELECT P.codProd, P.nombre FROM Productos P INNER JOIN ProdSimples S ON +" +
+                "P.codProd = S.codProdSimple WHERE (P.baja = 0 AND S.insumo = 0) OR (P.compuesto = 1);";
 
             try
             {
