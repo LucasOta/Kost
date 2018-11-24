@@ -11,19 +11,19 @@ namespace CapaDatos
     public class CategoriaBD
     {
         //
-        public static Boolean existe(string ca)
+        public static Boolean Existe(string ca)
         {
             string sql = "SELECT baja FROM Categorias WHERE nombre = @categoria";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@categoria", SqlDbType.VarChar);
                 cx.sqlCmd.Parameters[0].Value = ca;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (!reader.HasRows)
@@ -43,7 +43,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean guardar(string categoria)
+        public static Boolean Guardar(string categoria)
         {
             string sql = "INSERT INTO Categorias (nombre, baja) values (@nombre, @baja)";
 
@@ -51,8 +51,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nombre", SqlDbType.VarChar);
                 Cx.sqlCmd.Parameters[0].Value = categoria;
@@ -60,9 +60,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[1].Value = 0;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -78,7 +78,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(int id, string categoria)
+        public static Boolean Modificar(int id, string categoria)
         {
             string sql = "UPDATE Categorias SET nombre=@nombre WHERE idCategoria=@idCategoria;";
 
@@ -86,8 +86,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("@nombre", SqlDbType.VarChar);
                 Cx.sqlCmd.Parameters[0].Value = categoria;
@@ -95,9 +95,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("@idCategoria", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = id;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -113,7 +113,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminar(int id)
+        public static Boolean Eliminar(int id)
         {
             string sql = "UPDATE Categorias SET baja = 1 WHERE idCategoria=@id";
 
@@ -121,15 +121,15 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("id", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = id;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -145,7 +145,7 @@ namespace CapaDatos
             }
         }
 
-        public static DataTable Get_all()
+        public static DataTable TraerTodos()
         {
             DataTable categorias = new DataTable("Categorias");
 
@@ -154,8 +154,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
                 sqlDat.Fill(categorias); //Llenamos el DataTable
             }
@@ -177,8 +177,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("@id", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = id;

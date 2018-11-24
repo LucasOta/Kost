@@ -136,7 +136,7 @@ namespace CapaNegocio
 
         public static Boolean Usuario(String n)
         {
-            if (CapaDatos.UsuarioBD.existe(n))
+            if (CapaDatos.UsuarioBD.Existe(n))
             {
                 return true;
             }
@@ -148,7 +148,7 @@ namespace CapaNegocio
 
         public static Boolean Mozo(long n)
         {
-            if (CapaDatos.MozoBD.existe(n))
+            if (CapaDatos.MozoBD.Existe(n))
             {
                 return true;
             }
@@ -160,7 +160,7 @@ namespace CapaNegocio
 
         public static Boolean Categoria(string n)
         {
-            if (CapaDatos.CategoriaBD.existe(n))
+            if (CapaDatos.CategoriaBD.Existe(n))
             {
                 return true;
             }
@@ -172,7 +172,7 @@ namespace CapaNegocio
 
         public static Boolean Comanda(int n)
         {
-            if (CapaDatos.ComandaBD.existe(n))
+            if (CapaDatos.ComandaBD.Existe(n))
             {
                 return true;
             }
@@ -184,7 +184,7 @@ namespace CapaNegocio
 
         public static Boolean ComandaDeMesaActiva(int nroMesa)
         {
-            return CapaDatos.ComandaBD.comandaDeMesaActiva(nroMesa);
+            return CapaDatos.ComandaBD.ComandaDeMesaActiva(nroMesa);
         }
     }
 }

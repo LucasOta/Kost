@@ -127,6 +127,7 @@ namespace Kost
         {
             comanda1.setComanda(n);
             comanda1.BringToFront();
+            comanda1.ActualizarPantalla();
         }
 
         private void AtrasComanda()

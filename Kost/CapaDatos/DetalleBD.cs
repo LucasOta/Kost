@@ -10,7 +10,7 @@ namespace CapaDatos
 {
     public class DetalleBD
     {
-        public static String guardar(int nroComanda, int codProducto, string descrip, int cantidad, float precioUni)
+        public static String Guardar(int nroComanda, int codProducto, string descrip, int cantidad, float precioUni)
         {
             string sql = "INSERT INTO Detalle (nroComanda, codProd, descripProd, cantidad, precioUni, baja) values (@nroComanda, @codProd, @descripProd, @cantidad, @precioUni, 0)";
 
@@ -18,8 +18,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nroComanda", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = nroComanda;
@@ -36,9 +36,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("precioUni", SqlDbType.Float);
                 Cx.sqlCmd.Parameters[4].Value = precioUni;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return "OK";
@@ -52,7 +52,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(int codProd, int cantidad, float precioUni, string descrip)
+        public static Boolean Modificar(int codProd, int cantidad, float precioUni, string descrip)
         {
             string sql = "UPDATE Detalle SET codProd = @codProd, descripProd = @descrip, cantidad = @cantidad, precioUni = @precio, baja = 0 WHERE nroComanda = @nroComanda;";
 
@@ -60,8 +60,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = codProd;
@@ -75,9 +75,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("preco", SqlDbType.Float);
                 Cx.sqlCmd.Parameters[3].Value = precioUni;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -93,7 +93,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminar(int nroDetalle)
+        public static Boolean Eliminar(int nroDetalle)
         {
             string sql = "UPDATE Detalle SET baja = 1 WHERE nroDetalle = @nroDeta;";
 
@@ -101,15 +101,15 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nroDeta", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = nroDetalle;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -134,8 +134,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nroComanda", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = nroComanda;
@@ -162,8 +162,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nroDetalle", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = nroDetalle;

@@ -212,7 +212,7 @@ namespace CapaNegocio
 
         protected void Guardar()
         {
-            String msjGuardar = CapaDatos.ComandaBD.guardar(Fecha, NroMesa, CuilMozo);
+            String msjGuardar = CapaDatos.ComandaBD.Guardar(Fecha, NroMesa, CuilMozo);
             if (msjGuardar.Equals("OK"))
             {
                 this.Error = false;
@@ -227,7 +227,7 @@ namespace CapaNegocio
 
         public static DataTable ComandasActivas()
         {
-            return CapaDatos.ComandaBD.comandasActivas();
+            return CapaDatos.ComandaBD.ComandasActivas();
         }
 
         public Boolean ModificarComanda()
@@ -237,7 +237,7 @@ namespace CapaNegocio
 
             if (!Error)
             {
-                return CapaDatos.ComandaBD.modificar(NroMesa, CuilMozo, NroComanda);
+                return CapaDatos.ComandaBD.Modificar(NroMesa, CuilMozo, NroComanda);
             }
             else
             {
@@ -248,17 +248,17 @@ namespace CapaNegocio
 
         public static Boolean Eliminar(int nroComanda)
         {
-            return CapaDatos.ComandaBD.eliminar(nroComanda);
+            return CapaDatos.ComandaBD.Eliminar(nroComanda);
         }
 
         public Boolean CerrarComanda()
         {
-            return CapaDatos.ComandaBD.cerrarComanda(NroComanda, Total, Descuento, PrecioFinal);
+            return CapaDatos.ComandaBD.CerrarComanda(NroComanda, Total, Descuento, PrecioFinal);
         }
 
         public static Comanda TraerComanda(int nroComanda)
         {
-            DataTable comand = CapaDatos.ComandaBD.traerUnaComanda(nroComanda);
+            DataTable comand = CapaDatos.ComandaBD.TraerUnaComanda(nroComanda);
 
             DataRow rowus = comand.Rows[0];
 
@@ -277,7 +277,7 @@ namespace CapaNegocio
 
         public static String NombreMozo(long cuil)
         {
-            return CapaDatos.ComandaBD.nombreMozo(cuil);
+            return CapaDatos.ComandaBD.NombreMozo(cuil);
         }
 
         public void ComandaDeMesaActiva(int nroM)

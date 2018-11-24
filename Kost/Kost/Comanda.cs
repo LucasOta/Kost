@@ -22,6 +22,7 @@ namespace Kost
         public event cerrarComandaEventHandler cerrarComanda;
 
         Boolean banderaGuardar = true;
+        Boolean aux = false;
 
         public int numeroComanda;
 
@@ -93,7 +94,7 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.SelectedText, Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lbl1.Text.Replace("Precio unit.        ", "")));
+                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.SelectedText, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
                 if (!detal.Error)
                 {
                     CapaNegocio.Funciones.mOk(this, "Se guardo el detalle exitosamente");
@@ -145,7 +146,7 @@ namespace Kost
 
         private void GuardarModificacion()
         {
-            if (CapaNegocio.Detalle.Modificar(Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lbl1.Text.Replace("Precio unit.        ", "")), cbxProducto.SelectedText))
+            if (CapaNegocio.Detalle.Modificar(Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(lblPrecioTitulo.Text.Replace("Precio unit.        ", "")), cbxProducto.SelectedText))
             {
                 CapaNegocio.Funciones.mOk(this, "Los cambios al detalle se guardaron correctamente");
                 dgvComanda.DataSource = CapaNegocio.Detalle.TraerTodosDetalles(numeroComanda);
@@ -189,6 +190,11 @@ namespace Kost
             CalcularTotal();
         }
 
+        public void CargarDGV()
+        {
+
+        }
+
         public void CargarCBX()
         {
             DataTable productos = Producto.TraerNoInsumos();
@@ -204,8 +210,24 @@ namespace Kost
             pnlDetalle.Enabled = false;
 
             CargarCBX();
+
+            cbxProducto.SelectedIndex = 0;
+            aux = true;
+            cbxProducto_SelectedIndexChanged(this, new EventArgs());
+            
         }
 
-        
+        private void cbxProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (aux)
+            {
+                int x = Convert.ToInt32(cbxProducto.SelectedValue);
+
+                lblPrecioProducto.Text = "$" + Producto.PrecioDeVenta(x);
+            }
+            else {
+                ActualizarPantalla();
+            }           
+        }
     }
 }
