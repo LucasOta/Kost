@@ -294,5 +294,29 @@ namespace CapaDatos
                 return false;
             }
         }
+
+        public static DataTable TraerUnidades()
+        {
+            DataTable ds = new DataTable("Unidades");
+
+            string sql = "SELECT idUnidad, unidad FROM Unidades";
+
+            try
+            {
+                Conexion cx = new Conexion();
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
+                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
+                sqlDat.Fill(ds);
+
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                ds = null;
+            }
+            return ds;
+        }
     }
 }
