@@ -22,6 +22,7 @@ namespace Kost
         public event cerrarComandaEventHandler cerrarComanda;
 
         Boolean banderaGuardar = true;
+        Boolean aux = false;
 
         public int numeroComanda;
 
@@ -189,6 +190,11 @@ namespace Kost
             CalcularTotal();
         }
 
+        public void CargarDGV()
+        {
+
+        }
+
         public void CargarCBX()
         {
             DataTable productos = Producto.TraerNoInsumos();
@@ -204,11 +210,24 @@ namespace Kost
             pnlDetalle.Enabled = false;
 
             CargarCBX();
+
+            cbxProducto.SelectedIndex = 0;
+            aux = true;
+            cbxProducto_SelectedIndexChanged(this, new EventArgs());
+            
         }
 
         private void cbxProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //lblPrecioProducto.Text = "$" + Producto.PrecioDeVenta(Convert.ToInt32(cbxProducto.SelectedValue.ToString()));
+            if (aux)
+            {
+                int x = Convert.ToInt32(cbxProducto.SelectedValue);
+
+                lblPrecioProducto.Text = "$" + Producto.PrecioDeVenta(x);
+            }
+            else {
+                ActualizarPantalla();
+            }           
         }
     }
 }

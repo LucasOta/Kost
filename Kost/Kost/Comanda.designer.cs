@@ -32,6 +32,7 @@
             this.txtDescuento = new System.Windows.Forms.TextBox();
             this.lblTituloDescuento = new System.Windows.Forms.Label();
             this.pnlDetalle = new System.Windows.Forms.Panel();
+            this.lblPrecioProducto = new System.Windows.Forms.Label();
             this.lblPrecioUnitario = new System.Windows.Forms.Label();
             this.lblPrecioTitulo = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -58,7 +59,6 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
             this.btnCerrarComanda = new System.Windows.Forms.Button();
-            this.lblPrecioProducto = new System.Windows.Forms.Label();
             this.pnlDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComanda)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +95,15 @@
             this.pnlDetalle.Name = "pnlDetalle";
             this.pnlDetalle.Size = new System.Drawing.Size(331, 214);
             this.pnlDetalle.TabIndex = 4;
+            // 
+            // lblPrecioProducto
+            // 
+            this.lblPrecioProducto.AutoSize = true;
+            this.lblPrecioProducto.Location = new System.Drawing.Point(146, 69);
+            this.lblPrecioProducto.Name = "lblPrecioProducto";
+            this.lblPrecioProducto.Size = new System.Drawing.Size(19, 21);
+            this.lblPrecioProducto.TabIndex = 82;
+            this.lblPrecioProducto.Text = "$";
             // 
             // lblPrecioUnitario
             // 
@@ -393,15 +402,6 @@
             this.btnCerrarComanda.Text = "Cerrar Comanda";
             this.btnCerrarComanda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerrarComanda.UseVisualStyleBackColor = true;
-            // 
-            // lblPrecioProducto
-            // 
-            this.lblPrecioProducto.AutoSize = true;
-            this.lblPrecioProducto.Location = new System.Drawing.Point(146, 69);
-            this.lblPrecioProducto.Name = "lblPrecioProducto";
-            this.lblPrecioProducto.Size = new System.Drawing.Size(19, 21);
-            this.lblPrecioProducto.TabIndex = 82;
-            this.lblPrecioProducto.Text = "$";
             // 
             // Comanda
             // 

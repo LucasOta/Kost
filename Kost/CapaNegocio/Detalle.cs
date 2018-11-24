@@ -163,7 +163,7 @@ namespace CapaNegocio
 
         protected void Guardar(int nroCom, int codProd, string descProd, int cant, float precioUni)
         {
-
+            //
         }
 
         public static Boolean Modificar(int codProd, int cantidad, float precioUni, string descrip)
