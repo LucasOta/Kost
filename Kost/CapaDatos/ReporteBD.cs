@@ -43,14 +43,15 @@ namespace CapaDatos
         {
             DataTable insumosUtilizados = new DataTable("insumosUtilizados");
 
-            string sql = "SELECT P.codProd, P.nombre, S.contenido" +
-                         "FROM ((((ProdSimples S INNER JOIN Composicion Comp " +
-                                    "ON S.codProdSimple = Comp.codProdSimple) INNER JOIN ProdCompuestos PC " +
+            string sql = "SELECT P.codProd, P.nombre, SUM(S.contenido) AS cantidad " +
+                         "FROM ProdSimples S INNER JOIN Composicion Comp " +
+                                    "ON S.codProdSimple = Comp.codProdSimple INNER JOIN ProdCompuestos PC " +
                                     "ON Comp.codProdCompuesto = PC.codProdCompuesto INNER JOIN Productos P " +
-                                    "ON P.codProd = S.codProdSimple) INNER JOIN  Detalle D " +
-                                    "ON D.codProd = PC.codProdCompuesto) INNER JOIN Comandas C " +
+                                    "ON P.codProd = S.codProdSimple INNER JOIN  Detalle D " +
+                                    "ON D.codProd = PC.codProdCompuesto INNER JOIN Comandas C " +
                                     "ON C.nroComanda = D.nroComanda " +
-                         "WHERE C.fecha = '2018-10-27 16:07:59.073' and S.codProdSimple = P.codProd;";
+                         "WHERE  convert(varchar, C.fecha, 105) = @fecha " +
+                         "GROUP BY S.codProdSimple, P.codProd, P.nombre;";
 
             try
             {
@@ -58,8 +59,8 @@ namespace CapaDatos
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("fecha", SqlDbType.DateTime);
-                Cx.sqlCmd.Parameters[0].Value = fecha;
+                Cx.sqlCmd.Parameters.Add("fecha", SqlDbType.VarChar);
+                Cx.sqlCmd.Parameters[0].Value = Convert.ToString( fecha.Day )+ "-" + Convert.ToString(fecha.Month) + "-" + Convert.ToString(fecha.Year);
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
                 sqlDat.Fill(insumosUtilizados); //Llenamos el DataTable
@@ -77,9 +78,9 @@ namespace CapaDatos
         {
             DataTable ventasPorDia = new DataTable("ventasPorDia");
 
-            string sql = "SELECT CONCAT(P.nombre,' ',P.apellido), C.nroComanda, C.total +" +
-                "FROM(Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas +" +
-                "C ON C.cuilMozo = M.cuilMozo WHERE C.fecha = @fecha;";
+            string sql = "SELECT CONCAT(P.nombre,' ',P.apellido) AS mozo, C.nroComanda, C.total " +
+                "FROM(Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas " +
+                "C ON C.cuilMozo = M.cuilMozo WHERE convert(varchar, C.fecha, 105) = @fecha AND C.activa = 0;";
 
             try
             {
@@ -87,8 +88,8 @@ namespace CapaDatos
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("fecha", SqlDbType.DateTime);
-                Cx.sqlCmd.Parameters[0].Value = fecha;
+                Cx.sqlCmd.Parameters.Add("fecha", SqlDbType.VarChar);
+                Cx.sqlCmd.Parameters[0].Value = Convert.ToString(fecha.Day) + "-" + Convert.ToString(fecha.Month) + "-" + Convert.ToString(fecha.Year);
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
                 sqlDat.Fill(ventasPorDia); //Llenamos el DataTable
@@ -106,9 +107,9 @@ namespace CapaDatos
         {
             DataTable ventasPorDia = new DataTable("ventasPorDia");
 
-            string sql = "SELECT C.nroComanda, C.total +" +
-                "FROM(Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas +" +
-                "C ON C.cuilMozo = M.cuilMozo WHERE C.fecha = @fecha AND M.cuilMozo=@cuilMozo;";
+            string sql = "SELECT C.nroComanda, C.total, C.fecha " +
+                "FROM(Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas " +
+                "C ON C.cuilMozo = M.cuilMozo WHERE convert(varchar, C.fecha, 105) = @fecha AND M.cuilMozo = @cuilMozo AND C.activa = 0;";
 
             try
             {
@@ -116,8 +117,8 @@ namespace CapaDatos
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("fecha", SqlDbType.DateTime);
-                Cx.sqlCmd.Parameters[0].Value = fecha;
+                Cx.sqlCmd.Parameters.Add("fecha", SqlDbType.VarChar);
+                Cx.sqlCmd.Parameters[0].Value = Convert.ToString(fecha.Day) + "-" + Convert.ToString(fecha.Month) + "-" + Convert.ToString(fecha.Year);
 
                 Cx.sqlCmd.Parameters.Add("cuilMozo", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[1].Value = cuilMozo;

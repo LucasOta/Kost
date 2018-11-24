@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.dgvPrecioPorCategoria = new System.Windows.Forms.DataGridView();
-            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbxCategoria = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrecioPorCategoria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,20 +53,6 @@
             this.dgvPrecioPorCategoria.Size = new System.Drawing.Size(816, 442);
             this.dgvPrecioPorCategoria.TabIndex = 16;
             // 
-            // Producto
-            // 
-            this.Producto.HeaderText = "Producto";
-            this.Producto.Name = "Producto";
-            this.Producto.ReadOnly = true;
-            this.Producto.Width = 385;
-            // 
-            // Precio
-            // 
-            this.Precio.HeaderText = "Precio";
-            this.Precio.Name = "Precio";
-            this.Precio.ReadOnly = true;
-            this.Precio.Width = 385;
-            // 
             // cbxCategoria
             // 
             this.cbxCategoria.FormattingEnabled = true;
@@ -74,6 +60,7 @@
             this.cbxCategoria.Name = "cbxCategoria";
             this.cbxCategoria.Size = new System.Drawing.Size(293, 29);
             this.cbxCategoria.TabIndex = 13;
+            this.cbxCategoria.SelectedIndexChanged += new System.EventHandler(this.cbxCategoria_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -83,6 +70,22 @@
             this.label1.Size = new System.Drawing.Size(99, 21);
             this.label1.TabIndex = 15;
             this.label1.Text = "Categoría: ";
+            // 
+            // Producto
+            // 
+            this.Producto.DataPropertyName = "nombre";
+            this.Producto.HeaderText = "Producto";
+            this.Producto.Name = "Producto";
+            this.Producto.ReadOnly = true;
+            this.Producto.Width = 385;
+            // 
+            // Precio
+            // 
+            this.Precio.DataPropertyName = "precioVenta";
+            this.Precio.HeaderText = "Precio";
+            this.Precio.Name = "Precio";
+            this.Precio.ReadOnly = true;
+            this.Precio.Width = 385;
             // 
             // PrecioPorCategoria
             // 

@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.dgvVentasPorMozo = new System.Windows.Forms.DataGridView();
-            this.IdComanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtpVentasMozo = new System.Windows.Forms.DateTimePicker();
             this.cbxMozo = new System.Windows.Forms.ComboBox();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.IdComanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentasPorMozo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,33 +58,13 @@
             this.dgvVentasPorMozo.Size = new System.Drawing.Size(494, 483);
             this.dgvVentasPorMozo.TabIndex = 21;
             // 
-            // IdComanda
-            // 
-            this.IdComanda.HeaderText = "ID Comanda";
-            this.IdComanda.Name = "IdComanda";
-            this.IdComanda.ReadOnly = true;
-            this.IdComanda.Width = 150;
-            // 
-            // FechaHora
-            // 
-            this.FechaHora.HeaderText = "Fecha y hora";
-            this.FechaHora.Name = "FechaHora";
-            this.FechaHora.ReadOnly = true;
-            this.FechaHora.Width = 150;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            this.Total.Width = 150;
-            // 
             // dtpVentasMozo
             // 
             this.dtpVentasMozo.Location = new System.Drawing.Point(17, 38);
             this.dtpVentasMozo.Name = "dtpVentasMozo";
             this.dtpVentasMozo.Size = new System.Drawing.Size(200, 27);
             this.dtpVentasMozo.TabIndex = 22;
+            this.dtpVentasMozo.ValueChanged += new System.EventHandler(this.dtpVentasMozo_ValueChanged);
             // 
             // cbxMozo
             // 
@@ -93,6 +73,7 @@
             this.cbxMozo.Name = "cbxMozo";
             this.cbxMozo.Size = new System.Drawing.Size(200, 29);
             this.cbxMozo.TabIndex = 23;
+            this.cbxMozo.SelectedIndexChanged += new System.EventHandler(this.cbxMozo_SelectedIndexChanged);
             // 
             // lblTotal
             // 
@@ -102,7 +83,6 @@
             this.lblTotal.Size = new System.Drawing.Size(195, 21);
             this.lblTotal.TabIndex = 25;
             this.lblTotal.Text = "Total que vendió: $XXXX";
-            this.lblTotal.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -121,6 +101,30 @@
             this.label4.Size = new System.Drawing.Size(52, 21);
             this.label4.TabIndex = 27;
             this.label4.Text = "Mozo";
+            // 
+            // IdComanda
+            // 
+            this.IdComanda.DataPropertyName = "nroComanda";
+            this.IdComanda.HeaderText = "ID Comanda";
+            this.IdComanda.Name = "IdComanda";
+            this.IdComanda.ReadOnly = true;
+            this.IdComanda.Width = 150;
+            // 
+            // FechaHora
+            // 
+            this.FechaHora.DataPropertyName = "fecha";
+            this.FechaHora.HeaderText = "Fecha y hora";
+            this.FechaHora.Name = "FechaHora";
+            this.FechaHora.ReadOnly = true;
+            this.FechaHora.Width = 150;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "total";
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 150;
             // 
             // VentasPorMozo
             // 
