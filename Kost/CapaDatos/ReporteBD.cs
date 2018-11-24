@@ -10,7 +10,7 @@ namespace CapaDatos
 {
     class ReporteBD
     {
-        public static DataTable preciosPorCategoria(int idCat)
+        public static DataTable PreciosPorCategoria(int idCat)
         {
             DataTable preciosPorCategorias = new DataTable("preciosPorCategorias");
 
@@ -21,8 +21,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("idCat", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = idCat;
@@ -39,7 +39,7 @@ namespace CapaDatos
             return preciosPorCategorias;
         }
 
-        public static DataTable insumosUtilizados(DateTime fecha)
+        public static DataTable InsumosUtilizados(DateTime fecha)
         {
             DataTable insumosUtilizados = new DataTable("insumosUtilizados");
 
@@ -55,8 +55,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("fecha", SqlDbType.DateTime);
                 Cx.sqlCmd.Parameters[0].Value = fecha;

@@ -6,19 +6,19 @@ namespace CapaDatos
 {
     public class ProductoCompuestoBD
     {
-        public static Boolean existe(int codProdComp)
+        public static Boolean Existe(int codProdComp)
         {
             string sql = "SELECT baja FROM ProdCompuestos WHERE codProdCompuesto =  @codProdCompuesto";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@codProdCompuesto", SqlDbType.Int);
                 cx.sqlCmd.Parameters[0].Value = codProdComp;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -38,14 +38,14 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean existeComposicion(int codProdComp, int codProdSimpl, int cantidad)
+        public static Boolean ExisteComposicion(int codProdComp, int codProdSimpl, int cantidad)
         {
             string sql = "SELECT baja FROM Composicion WHERE codProdCompuesto =  @codProdSimpl AND codProdSimple = @codProdSimpl AND cantidad = @cantidad";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@codProdCompuesto", SqlDbType.Int);
                 cx.sqlCmd.Parameters[0].Value = codProdComp;
@@ -56,7 +56,7 @@ namespace CapaDatos
                 cx.sqlCmd.Parameters.Add("@cantidad", SqlDbType.Int);
                 cx.sqlCmd.Parameters[2].Value = cantidad;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -76,7 +76,7 @@ namespace CapaDatos
             }
         }
 
-        public static bool guardar(int pCod)
+        public static bool Guardar(int pCod)
         {
             string sql = "INSERT INTO ProdCompuestos (codProdCompuesto, baja) values (@pCod, @baja)";
 
@@ -84,8 +84,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("pCod", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = pCod;
@@ -93,9 +93,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[1].Value = 0;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -111,7 +111,7 @@ namespace CapaDatos
             }
         }
 
-        public static bool guardarComposicion(int pCodC, int pCodS, int c)
+        public static bool GuardarComposicion(int pCodC, int pCodS, int c)
         {
             string sql = "INSERT INTO Composicion (codProdCompuesto, codProdSimple, cantidad, baja) values (@pCodC, @pCodS, @c @baja)";
 
@@ -119,8 +119,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("pCodC", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = pCodC;
@@ -134,9 +134,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[3].Value = 0;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -152,7 +152,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminar(int cod)
+        public static Boolean Eliminar(int cod)
         {
             string sql = "UPDATE ProdCompuestos SET baja=@baja WHERE codProdCompuesto=@codProdCompuesto;";
 
@@ -160,8 +160,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = cod;
@@ -169,9 +169,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[0].Value = 1;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -187,7 +187,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminarComposicion(int pCodC, int pCodS, int c)
+        public static Boolean EliminarComposicion(int pCodC, int pCodS, int c)
         {
             string sql = "UPDATE Composicion SET baja=@baja WHERE codProdCompuesto=@codProdCompuesto AND  codProdSimple = @codProdSimpl AND cantidad = @cantidad;";
 
@@ -195,8 +195,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = pCodC;
@@ -210,9 +210,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[0].Value = 1;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -237,8 +237,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = cod;
@@ -265,8 +265,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = cod;

@@ -48,7 +48,6 @@ namespace Kost
                     case 2:
                         this.Inicio_2();
                         break;
-
                 }              
             }
         }

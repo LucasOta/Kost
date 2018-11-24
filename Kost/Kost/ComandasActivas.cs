@@ -174,7 +174,7 @@ namespace Kost
 
             DataTable mozos = CapaNegocio.Mozo.ListarTodos();
 
-            cbxMozo.DataSource = mozos.DefaultView;
+            //cbxMozo.DataSource = mozos.DefaultView;
             cbxMozo.ValueMember = "cuil";
             cbxMozo.DisplayMember = "nya";
             cbxMozo.BindingContext = this.BindingContext;

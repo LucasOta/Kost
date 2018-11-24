@@ -108,9 +108,9 @@ namespace CapaNegocio
             base.Guardar();
             if (!Error)
             {
-                if (!CapaDatos.UsuarioBD.existe(User))
+                if (!CapaDatos.UsuarioBD.Existe(User))
                 {
-                    if (CapaDatos.UsuarioBD.guardar(User, Password, Nivel, Cuil))
+                    if (CapaDatos.UsuarioBD.Guardar(User, Password, Nivel, Cuil))
                     {
                         this.Error = false;
                         this.Mensaje = "Usuario Guardado";
@@ -141,13 +141,12 @@ namespace CapaNegocio
         }
 
         public static Boolean Eliminar(long cuil) {
-            return CapaDatos.UsuarioBD.eliminar(cuil);
-            //Ver lo de cascada con haspert
+            return CapaDatos.UsuarioBD.Eliminar(cuil);
         }
 
         public Boolean ModificarUsuario()
         {
-            Boolean usu = CapaDatos.UsuarioBD.modificar(this.User, this.Password, this.Nivel, this.Cuil);
+            Boolean usu = CapaDatos.UsuarioBD.Modificar(this.User, this.Password, this.Nivel, this.Cuil);
 
             Boolean per = this.ModificarPersona();
 
@@ -164,7 +163,7 @@ namespace CapaNegocio
 
         public static DataTable ListarTodos()
         {
-            return UsuarioBD.Get_all();
+            return UsuarioBD.TraerTodos();
         }
 
         public static Usuario TraerUnUsuario(long cuil)

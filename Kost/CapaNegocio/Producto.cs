@@ -157,13 +157,13 @@ namespace CapaNegocio
         //Funciones
         protected void ValidarProd(int codprod, string nombre)
         {
-            if (CapaDatos.ProductoBD.existecodigo(CodProd))
+            if (CapaDatos.ProductoBD.ExisteCodigo(CodProd))
             {
                 this.Error = true;
                 this.Mensaje = "Ya existe un producto guardado con este codigo de producto.";
             }
 
-            if (CapaDatos.ProductoBD.existenombre(Nombre))
+            if (CapaDatos.ProductoBD.ExisteNombre(Nombre))
             {
                 this.Error = true;
                 this.Mensaje += "Ya existe un producto guardad con este nombre.";
@@ -172,7 +172,7 @@ namespace CapaNegocio
 
         protected void Guardar()
         {
-            String msjGuardar = CapaDatos.ProductoBD.guardar(Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
+            String msjGuardar = CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
             if (msjGuardar.Equals("OK"))
             {
                 this.Error = false;
@@ -214,7 +214,7 @@ namespace CapaNegocio
             this.ValidarProd(CodProd, Nombre);
             if (!Error)
             {
-                return CapaDatos.ProductoBD.modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
+                return CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
             }
             else
             {
@@ -225,12 +225,12 @@ namespace CapaNegocio
 
         public static Boolean EliminarProd(int codprod)
         {
-            return CapaDatos.ProductoBD.eliminar(codprod);
+            return CapaDatos.ProductoBD.Eliminar(codprod);
         }
 
         public static DataTable ListarTodos()
         {
-            return CapaDatos.ProductoBD.DataGridProductos();
+            return CapaDatos.ProductoBD.TraerProductos();
         }
 
         public static Boolean ProductoActivo(int codprod)

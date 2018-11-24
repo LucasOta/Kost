@@ -168,12 +168,12 @@ namespace CapaNegocio
 
         public static Boolean Modificar(int codProd, int cantidad, float precioUni, string descrip)
         {
-            return CapaDatos.DetalleBD.modificar(codProd, cantidad, precioUni, descrip);
+            return CapaDatos.DetalleBD.Modificar(codProd, cantidad, precioUni, descrip);
         }
 
         public static Boolean Eliminar(int nroDetalle)
         {
-            return CapaDatos.DetalleBD.eliminar(nroDetalle);
+            return CapaDatos.DetalleBD.Eliminar(nroDetalle);
         }
 
         public static DataTable TraerTodosDetalles(int nroComanda)

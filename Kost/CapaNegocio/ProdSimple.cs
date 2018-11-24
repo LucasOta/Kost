@@ -99,7 +99,7 @@ namespace CapaNegocio
         //Funciones 
         protected void ValidarSimple(int codPS)
         {
-            if (CapaDatos.ProdSimpleBD.existe(codPS))
+            if (CapaDatos.ProdSimpleBD.Existe(codPS))
             {
                 Error = true;
                 Mensaje += "Ya existe un producto simple con este codigo de producto simple. ";
@@ -112,7 +112,7 @@ namespace CapaNegocio
 
             if (!Error)
             {
-                if(CapaDatos.ProdSimpleBD.guardar(CodProdSimple, Stock, Insumo, null, 0))
+                if(CapaDatos.ProdSimpleBD.Guardar(CodProdSimple, Stock, Insumo, null, 0))
                 {
                     Error = false;
                     Mensaje = "Producto simple guardado";
@@ -134,7 +134,7 @@ namespace CapaNegocio
             {
                 Boolean prod = this.ModificarProducto();
 
-                Boolean prodSimp = CapaDatos.ProdSimpleBD.modificar(CodProdSimple, Stock, Insumo, null, 0);
+                Boolean prodSimp = CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, null, 0);
 
                 if(prod && prodSimp)
                 {
@@ -154,7 +154,7 @@ namespace CapaNegocio
 
         public static Boolean EliminarPS(int codPS)
         {
-            return CapaDatos.ProdSimpleBD.eliminar(codPS);
+            return CapaDatos.ProdSimpleBD.Eliminar(codPS);
         }
 
         public static void TraerUnSimple(int codPS, ProdSimple p)
@@ -176,7 +176,7 @@ namespace CapaNegocio
 
         public Boolean ActualizarStock()
         {
-            return CapaDatos.ProdSimpleBD.actualizarStock(CodProdSimple, Stock);
+            return CapaDatos.ProdSimpleBD.ActualizarStock(CodProdSimple, Stock);
         }
     }
 }

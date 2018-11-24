@@ -10,19 +10,19 @@ namespace CapaDatos
 {
     public class ProductoBD
     {
-        public static Boolean existecodigo(int codProd)
+        public static Boolean ExisteCodigo(int codProd)
         {
             string sql = "SELECT baja FROM Productos WHERE codProd =  @codProd";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@codProd", SqlDbType.Int);
                 cx.sqlCmd.Parameters[0].Value = codProd;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -42,19 +42,19 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean existenombre(string nombre)
+        public static Boolean ExisteNombre(string nombre)
         {
             string sql = "SELECT baja FROM Productos WHERE nombre =  @nombre";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@nombre", SqlDbType.VarChar);
                 cx.sqlCmd.Parameters[0].Value = nombre;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -74,7 +74,7 @@ namespace CapaDatos
             }
         }
 
-        public static String guardar(string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto)
+        public static String Guardar(string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto)
         {
             string sql = "INSERT INTO Productos (nombre, precioVenta, idCategoria, descripProd, compuesto, baja) values (@nombre, @precioVenta, @idCategoria, @descripProd, @compuesto, @baja)";
 
@@ -82,8 +82,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nombre", SqlDbType.VarChar);
                 Cx.sqlCmd.Parameters[0].Value = pnombre;
@@ -103,9 +103,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[5].Value = 0;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return "OK";
@@ -125,13 +125,13 @@ namespace CapaDatos
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@cod", SqlDbType.Int);
                 cx.sqlCmd.Parameters[0].Value = cod;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -151,7 +151,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(int codProd, string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto)
+        public static Boolean Modificar(int codProd, string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto)
         {
             string sql = "UPDATE Productos SET nombre=@nombre, precioVenta=@precioVenta, idCategoria=@idCategoria, descripProd=@descripProd, compuesto=@compuesto, baja=0 WHERE codProd=@codProd;";
 
@@ -159,8 +159,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nombre", SqlDbType.VarChar);
                 Cx.sqlCmd.Parameters[0].Value = pnombre;
@@ -183,9 +183,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[6].Value = 0;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -201,7 +201,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminar(int cod)
+        public static Boolean Eliminar(int cod)
         {
             string sql = "UPDATE Productos SET baja=1 WHERE codProd=@codProd;";
 
@@ -209,15 +209,15 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = cod;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -233,7 +233,7 @@ namespace CapaDatos
             }
         }
 
-        public static DataTable DataGridProductos()
+        public static DataTable TraerProductos()
         {
             DataTable ds = new DataTable("dataGridProductos");
 
@@ -242,8 +242,8 @@ namespace CapaDatos
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
                 SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
                 sqlDat.Fill(ds);
 
@@ -266,8 +266,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = cod;
@@ -294,8 +294,8 @@ namespace CapaDatos
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
                 SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
                 sqlDat.Fill(ds);
 

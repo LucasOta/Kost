@@ -186,9 +186,9 @@ namespace CapaNegocio
         protected void Guardar() 
         {
             
-            if (!CapaDatos.PersonaBD.existe(Cuil))
+            if (!CapaDatos.PersonaBD.Existe(Cuil))
             {
-                String msjGuardar = CapaDatos.PersonaBD.guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
+                String msjGuardar = CapaDatos.PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
                 if (msjGuardar.Equals("OK"))
                 {
                     this.Error = false;
@@ -228,7 +228,7 @@ namespace CapaNegocio
             this.ValidarPers(Nombre, Apellido, Direccion, Mail, Cuil, Nacimiento);
             if (!Error)
             {
-                return CapaDatos.PersonaBD.modificar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
+                return CapaDatos.PersonaBD.Modificar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
             }
             else
             {

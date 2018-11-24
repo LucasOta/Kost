@@ -10,19 +10,19 @@ namespace CapaDatos
 {
     public class UsuarioBD
     {
-        public static Boolean existe(string usuario)
+        public static Boolean Existe(string usuario)
         {
             string sql = "SELECT baja FROM Usuarios WHERE usuario = @usuario";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@usuario", SqlDbType.VarChar);
                 cx.sqlCmd.Parameters[0].Value = usuario;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (!reader.HasRows)
@@ -42,7 +42,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean guardar(string usuario, string contrasenia, int nivel, long cuilPersona)
+        public static Boolean Guardar(string usuario, string contrasenia, int nivel, long cuilPersona)
         {
             string sql = "INSERT INTO Usuarios (usuario, contrasenia, nivel, cuilPersona, baja) values (@usuario, @contrasenia, @nivel, @cuilPersona, @baja)";
 
@@ -50,8 +50,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("usuario", SqlDbType.VarChar);
                 Cx.sqlCmd.Parameters[0].Value = usuario;
@@ -68,9 +68,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[4].Value = 0;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -86,7 +86,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(string usuario, string contrasenia, int nivel, long cuilPersona)
+        public static Boolean Modificar(string usuario, string contrasenia, int nivel, long cuilPersona)
         {
             string sql = "UPDATE Usuarios SET usuario=@usuario, contrasenia=@contrasenia, nivel=@nivel , baja=0 WHERE cuilPersona=@cuil;";
 
@@ -94,8 +94,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("usuario", SqlDbType.VarChar);
                 Cx.sqlCmd.Parameters[0].Value = usuario;
@@ -109,9 +109,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[3].Value = cuilPersona;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -127,7 +127,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminar(long cuil)
+        public static Boolean Eliminar(long cuil)
         {
             string sql = "UPDATE Usuarios SET baja = 1 WHERE cuilPersona=@cuil;" +
                 "UPDATE Personas SET baja = 1 WHERE cuil=@cuil";
@@ -136,15 +136,15 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuil;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -160,7 +160,7 @@ namespace CapaDatos
             }
         }
 
-        public static DataTable Get_all()
+        public static DataTable TraerTodos()
         {
             DataTable usuarios = new DataTable("Usuarios");
 
@@ -169,8 +169,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
                 sqlDat.Fill(usuarios); //Llenamos el DataTable
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
@@ -191,8 +191,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuil;
@@ -216,8 +216,8 @@ namespace CapaDatos
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@usuario", SqlDbType.VarChar);
                 cx.sqlCmd.Parameters[0].Value = user;
@@ -225,7 +225,7 @@ namespace CapaDatos
                 cx.sqlCmd.Parameters.Add("@contrasenia", SqlDbType.VarChar);
                 cx.sqlCmd.Parameters[1].Value = pass;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (!reader.HasRows)

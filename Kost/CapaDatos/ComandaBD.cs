@@ -10,19 +10,19 @@ namespace CapaDatos
 {
     public class ComandaBD
     {
-        public static Boolean existe(int nroCom)
+        public static Boolean Existe(int nroCom)
         {
             string sql = "SELECT baja FROM Comanda WHERE nroComanda = @nroComanda";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@nroComanda", SqlDbType.Int);
                 cx.sqlCmd.Parameters[0].Value = nroCom;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -42,7 +42,7 @@ namespace CapaDatos
             }
         }
 
-        public static String guardar(DateTime fecha, int nroMesa, long cuilMozo)
+        public static String Guardar(DateTime fecha, int nroMesa, long cuilMozo)
         {
             string sql = "INSERT INTO Comandas (fecha, nroMesa, activa, total, descuento, precioFinal, cuilMozo, baja) values (@fecha, @nroMesa, 1, 0, 0, 0, @cuilMozo, 0)";
 
@@ -50,8 +50,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("fecha", SqlDbType.DateTime);
                 Cx.sqlCmd.Parameters[0].Value = fecha;
@@ -62,9 +62,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("cuilMozo", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[2].Value = cuilMozo;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return "OK";
@@ -78,7 +78,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(int nroMesa, long cuilMozo, int nroComanda)
+        public static Boolean Modificar(int nroMesa, long cuilMozo, int nroComanda)
         {
             string sql = "UPDATE Comandas SET nroMesa = @nroMesa, cuilMozo = @cuilMozo WHERE nroComanda = @nroComanda and activa = 1 and baja = 0;";
 
@@ -86,8 +86,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nroMesa", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = nroMesa;
@@ -98,9 +98,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("nroComanda", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[2].Value = nroComanda;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -116,7 +116,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminar(int nroComanda)
+        public static Boolean Eliminar(int nroComanda)
         {
             string sql = "UPDATE Comandas SET baja = 1, activa = 0 WHERE nroComanda = @nroComanda;";
 
@@ -124,15 +124,15 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nroComanda", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = nroComanda;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -148,7 +148,7 @@ namespace CapaDatos
             }
         }
 
-        public static DataTable comandasActivas()
+        public static DataTable ComandasActivas()
         {
             DataTable comandas = new DataTable("comandasActivas");
 
@@ -157,8 +157,8 @@ namespace CapaDatos
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
                 SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
                 sqlDat.Fill(comandas);
 
@@ -172,7 +172,7 @@ namespace CapaDatos
             return comandas;
         }
 
-        public static Boolean cerrarComanda(int nroComanda, float total, float descuento, float precioFinal)
+        public static Boolean CerrarComanda(int nroComanda, float total, float descuento, float precioFinal)
         {
             string sql = "UPDATE Comandas SET total = @total, descuento = @descuento, precioFinal = @precioFinal, activa = 0 WHERE nroComanda = @nroComanda;";
 
@@ -180,8 +180,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("total", SqlDbType.Float);
                 Cx.sqlCmd.Parameters[0].Value = total;
@@ -195,9 +195,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("nroComanda", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[3].Value = nroComanda;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -213,7 +213,7 @@ namespace CapaDatos
             }
         }
 
-        public static DataTable traerUnaComanda(int nroComanda)
+        public static DataTable TraerUnaComanda(int nroComanda)
         {
             DataTable comanda = new DataTable("Comanda");
 
@@ -222,8 +222,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("nroComanda", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = nroComanda;
@@ -241,7 +241,7 @@ namespace CapaDatos
             return comanda;
         }
 
-        public static String nombreMozo(long cuil)
+        public static String NombreMozo(long cuil)
         {
             string sql = "SELECT CONCAT(nombre,' ', apellido) as nya FROM Personas WHERE cuil = @cuil";
 
@@ -249,13 +249,13 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("@cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuil;
 
-                Cx.abrir();
+                Cx.Abrir();
                 SqlDataReader reader = Cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -277,19 +277,19 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean comandaDeMesaActiva(int nroMesa)
+        public static Boolean ComandaDeMesaActiva(int nroMesa)
         {
             string sql = "SELECT baja FROM Comandas WHERE nroMesa = @nroMesa AND activa = 1";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@nroMesa", SqlDbType.Int);
                 cx.sqlCmd.Parameters[0].Value = nroMesa;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)

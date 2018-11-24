@@ -10,19 +10,19 @@ namespace CapaDatos
 {
     public class MozoBD
     {
-        public static Boolean existe(long cuil)
+        public static Boolean Existe(long cuil)
         {
             string sql = "SELECT baja FROM Mozos WHERE cuilMozo = @cuilMozo";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@cuilMozo", SqlDbType.BigInt);
                 cx.sqlCmd.Parameters[0].Value = cuil;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (!reader.HasRows)
@@ -42,7 +42,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean guardar(long cuilMozo)
+        public static Boolean Guardar(long cuilMozo)
         {
             string sql = "INSERT INTO Mozos (cuilMozo, baja) values (@cuilMozo, @baja)";
 
@@ -50,8 +50,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("cuilMozo", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuilMozo;
@@ -59,9 +59,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[1].Value = 0;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -77,7 +77,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(long cuilMozo)
+        public static Boolean Modificar(long cuilMozo)
         {
             string sql = "UPDATE Mozos SET baja = 0 WHERE cuilMozo=@cuil;";
 
@@ -85,15 +85,15 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("@cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuilMozo;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -109,7 +109,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean eliminar(long cuil)
+        public static Boolean Eliminar(long cuil)
         {
             string sql = "UPDATE Usuarios SET baja = 1 WHERE cuilPersona=@cuil;" +
                 "UPDATE Personas SET baja = 1 WHERE cuil=@cuil";
@@ -118,15 +118,15 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuil;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -142,7 +142,7 @@ namespace CapaDatos
             }
         }
 
-        public static DataTable Get_all()
+        public static DataTable TraerTodos()
         {
             DataTable mozos = new DataTable("Mozos");
 
@@ -151,8 +151,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
                 sqlDat.Fill(mozos); //Llenamos el DataTable
             }
@@ -172,8 +172,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("@cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuil;

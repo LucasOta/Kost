@@ -11,20 +11,20 @@ namespace CapaDatos
 {
     public class PersonaBD
     {
-        public static Boolean existe(long pCuil)
+        public static Boolean Existe(long pCuil)
         {
 
             string sql = "SELECT baja FROM Personas WHERE cuil =  @cuil";
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@cuil", SqlDbType.BigInt);
                 cx.sqlCmd.Parameters[0].Value = pCuil;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -50,13 +50,13 @@ namespace CapaDatos
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
                 cx.sqlCmd.Parameters.Add("@cuil", SqlDbType.BigInt);
                 cx.sqlCmd.Parameters[0].Value = cuil;
 
-                cx.abrir();
+                cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
                 if (reader.HasRows)
@@ -76,7 +76,7 @@ namespace CapaDatos
             }
         }
 
-        public static String guardar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion)
+        public static String Guardar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion)
         {
             string sql = "INSERT INTO personas (cuil, nombre, apellido, mail, fechaNacimiento, direccion, baja) values (@cuil, @nombre, @apellido, @mail, @fechaNacimiento, @direccion, @baja)";
 
@@ -84,8 +84,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = pCuil;
@@ -108,9 +108,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[6].Value = 0;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return "OK";
@@ -124,7 +124,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean modificar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion)
+        public static Boolean Modificar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion)
     {
         string sql = "UPDATE Personas SET nombre=@nombre, apellido=@apellido, mail=@mail, fechaNacimiento=@fechaNacimiento, direccion=@direccion, baja=0 WHERE cuil=@CUIL;";
 
@@ -132,33 +132,30 @@ namespace CapaDatos
         {
             Conexion Cx = new Conexion();
 
-            Cx.setComandoTexto();
-            Cx.setSQL(sql);
+            Cx.SetComandoTexto();
+            Cx.SetSQL(sql);
 
+            Cx.sqlCmd.Parameters.Add("nombre", SqlDbType.VarChar);
+            Cx.sqlCmd.Parameters[0].Value = pNombre;
+
+            Cx.sqlCmd.Parameters.Add("apellido", SqlDbType.VarChar);
+            Cx.sqlCmd.Parameters[1].Value = pApellido;
+
+            Cx.sqlCmd.Parameters.Add("mail", SqlDbType.VarChar);
+            Cx.sqlCmd.Parameters[2].Value = pMail;
+
+            Cx.sqlCmd.Parameters.Add("fechaNacimiento", SqlDbType.Date);
+            Cx.sqlCmd.Parameters[3].Value = pFechaNac;
+
+            Cx.sqlCmd.Parameters.Add("direccion", SqlDbType.VarChar);
+            Cx.sqlCmd.Parameters[4].Value = pDireccion;                
+
+            Cx.sqlCmd.Parameters.Add("CUIL", SqlDbType.BigInt);
+            Cx.sqlCmd.Parameters[5].Value = pCuil;
                 
-
-                Cx.sqlCmd.Parameters.Add("nombre", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[0].Value = pNombre;
-
-                Cx.sqlCmd.Parameters.Add("apellido", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[1].Value = pApellido;
-
-                Cx.sqlCmd.Parameters.Add("mail", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[2].Value = pMail;
-
-                Cx.sqlCmd.Parameters.Add("fechaNacimiento", SqlDbType.Date);
-                Cx.sqlCmd.Parameters[3].Value = pFechaNac;
-
-                Cx.sqlCmd.Parameters.Add("direccion", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[4].Value = pDireccion;                
-
-                Cx.sqlCmd.Parameters.Add("CUIL", SqlDbType.BigInt);
-                Cx.sqlCmd.Parameters[5].Value = pCuil;
-                
-
-                Cx.abrir();
+            Cx.Abrir();
             object nro = Cx.sqlCmd.ExecuteNonQuery();
-            Cx.cerrar();
+            Cx.Cerrar();
             if (Convert.ToInt32(nro) > 0)
             {
                 return true;
@@ -174,7 +171,7 @@ namespace CapaDatos
         }
     }
 
-        public static Boolean eliminar(long pCuil)
+        public static Boolean Eliminar(long pCuil)
         {
             string sql = "UPDATE Personas SET baja=@baja WHERE cuil=@CUIL;";
 
@@ -182,8 +179,8 @@ namespace CapaDatos
             {
                 Conexion Cx = new Conexion();
 
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("CUIL", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[1].Value = pCuil;
@@ -191,9 +188,9 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[0].Value = 1;
 
-                Cx.abrir();
+                Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.cerrar();
+                Cx.Cerrar();
                 if (Convert.ToInt32(nro) > 0)
                 {
                     return true;
@@ -209,7 +206,7 @@ namespace CapaDatos
             }
         }
 
-        public static DataTable DataGridUsuarios()
+        public static DataTable TraerUsuarios()
         {
             DataTable ds = new DataTable("dataGridUsuarios");
 
@@ -218,8 +215,8 @@ namespace CapaDatos
             try
             {
                 Conexion cx = new Conexion();
-                cx.setComandoTexto();
-                cx.setSQL(sql);
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
                 SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
                 sqlDat.Fill(ds);
 
@@ -242,8 +239,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuil;
