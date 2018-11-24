@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
+﻿using CapaNegocio;
+using System;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaNegocio;
 
 namespace Kost
 {
@@ -125,9 +119,9 @@ namespace Kost
         {
             CapaNegocio.Comanda coman = CapaNegocio.Comanda.TraerComanda(numeroComanda);
 
-            coman.Total = (Convert.ToSingle(txtDescuento.Text) + Convert.ToSingle(lblTotal.Text.Replace("$", "")));
+            coman.Total = Convert.ToSingle(lblTotal.Text.Replace("$", ""));
             coman.Descuento = Convert.ToSingle(txtDescuento.Text);
-            coman.PrecioFinal = Convert.ToSingle(lblTotal.Text.Replace("$", ""));
+            coman.PrecioFinal = (Convert.ToSingle(lblTotal.Text.Replace("$", "")) - Convert.ToSingle(txtDescuento.Text));
 
             coman.CerrarComanda();
 
@@ -141,7 +135,7 @@ namespace Kost
         {
             lblPrecioUnitario.Text = "";
             txtCantidad.Text = "";
-            cbxProducto.SelectedValue = 1;
+            txtDescuento.Text = "";
         }
 
         private void GuardarModificacion()
@@ -163,16 +157,16 @@ namespace Kost
 
         private void CalcularTotal()
         {
-            //float total = 0;
+            float total = 0;
 
-            //string textTotal = "$";
+            string textTotal = "$";
 
-            //foreach (DataGridViewRow row in dgvComanda.Rows)
-            //{
-            //    total += Convert.ToInt32(row.Cells["precioUni"].Value.ToString());
-            //}
+            foreach (DataGridViewRow row in dgvComanda.Rows)
+            {
+                total += Convert.ToInt32(row.Cells["precioUni"].Value.ToString()) * Convert.ToInt32(row.Cells["Cantidad"].Value.ToString());
+            }
 
-            //lblTotal.Text = textTotal += total;
+            lblTotal.Text = textTotal += total;
         }
 
         public void setComanda(int nroCom)
@@ -194,7 +188,15 @@ namespace Kost
 
         public void CargarDGV()
         {
+            float subtotal = 0;
+
             dgvComanda.DataSource = Detalle.TraerTodosDetalles(numeroComanda);
+
+            foreach (DataGridViewRow row in dgvComanda.Rows)
+            {
+                subtotal += (Convert.ToInt32(row.Cells["precioUni"].Value.ToString()) * Convert.ToInt32(row.Cells["Cantidad"].Value.ToString()));
+                row.Cells["Subtotal"].Value = subtotal;
+            }
         }
 
         public void CargarCBX()
@@ -209,6 +211,8 @@ namespace Kost
 
         public void ActualizarPantalla()
         {
+            Clear();
+
             pnlDetalle.Enabled = false;
 
             CargarCBX();

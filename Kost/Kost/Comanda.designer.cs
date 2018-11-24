@@ -358,6 +358,7 @@
             this.btnCerrarComanda.Text = "Cerrar Comanda";
             this.btnCerrarComanda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerrarComanda.UseVisualStyleBackColor = true;
+            this.btnCerrarComanda.Click += new System.EventHandler(this.btnCerrarComanda_Click);
             // 
             // N_Detalle
             // 
