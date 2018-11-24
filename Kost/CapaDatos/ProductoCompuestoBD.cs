@@ -76,7 +76,7 @@ namespace CapaDatos
             }
         }
 
-        public static bool Guardar(int trans, int pCod, Conexion con)
+        public static bool Guardar(int pCod, Conexion con)
         {
             string sql = "INSERT INTO ProdCompuestos (codProdCompuesto, baja) values (@pCod, @baja)";
 

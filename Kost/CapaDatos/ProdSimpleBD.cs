@@ -42,7 +42,7 @@ namespace CapaDatos
             }
         }
 
-        public static bool Guardar(int trans, int pCod, int pStock, bool pInsumo, int unidad, double contenido, Conexion con)
+        public static bool Guardar(int pCod, int pStock, bool pInsumo, int unidad, double contenido, Conexion con)
         {
             string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) values ((SELECT TOP 1 codProd FROM Productos WHERE baja=0 ORDER BY codProd DESC), @pStock, @pInsumo, @baja)";
 

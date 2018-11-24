@@ -76,8 +76,8 @@ namespace CapaDatos
 
         public static int Guardar(string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto, int pCod, int pStock, bool pInsumo, int unidad, double contenido)
         {
-            string sql = "INSERT INTO Productos (nombre, precioVenta, idCategoria, descripProd, compuesto, +" +
-                "baja) values (@nombre, @precioVenta, @idCategoria, @descripProd, @compuesto, @baja)";
+            string sql = @"INSERT INTO Productos (nombre, precioVenta, idCategoria, descripProd, compuesto, +" +
+                "baja) values (@nombre, @precioVenta, @idCategoria, @descripProd, @compuesto, @baja) RETURNING codProd";
 
             try
             {
@@ -115,11 +115,11 @@ namespace CapaDatos
                     bool insertok;
                     if (compuesto)
                     {
-                        insertok = ProductoCompuestoBD.Guardar(id_transaccion, pCod, Cx);
+                        insertok = ProductoCompuestoBD.Guardar(id_transaccion, Cx);
                     }
                     else
                     {
-                        insertok = ProdSimpleBD.Guardar(id_transaccion, pCod, pStock, pInsumo, unidad, contenido, Cx);
+                        insertok = ProdSimpleBD.Guardar(id_transaccion, pStock, pInsumo, unidad, contenido, Cx);
                     }
 
                     if (insertok == false)
