@@ -112,7 +112,7 @@ namespace CapaNegocio
 
             if (!Error)
             {
-                if(CapaDatos.ProdSimpleBD.Guardar(CodProdSimple, Stock, Insumo, null, 0))
+                if(CapaDatos.ProdSimpleBD.Guardar(CodProdSimple, Stock, Insumo, 0, 0))
                 {
                     Error = false;
                     Mensaje = "Producto simple guardado";
@@ -134,7 +134,7 @@ namespace CapaNegocio
             {
                 Boolean prod = this.ModificarProducto();
 
-                Boolean prodSimp = CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, null, 0);
+                Boolean prodSimp = CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0);
 
                 if(prod && prodSimp)
                 {
