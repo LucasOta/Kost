@@ -50,16 +50,16 @@ namespace CapaNegocio
             base.Guardar();
             if (!Error)
             {
-                if (!ProductoCompuestoBD.Guardar(CodProdCompuesto))
-                {
-                    Error = false;
-                    Mensaje = "Producto compuesto guardado con exito";
-                }
-                else
-                {
-                    Error = true;
-                    Mensaje = "Ocurrio un error a nivel BD, intente nuevamente.";
-                }
+                //if (!ProductoCompuestoBD.Guardar(CodProdCompuesto))
+                //{
+                //    Error = false;
+                //    Mensaje = "Producto compuesto guardado con exito";
+                //}
+                //else
+                //{
+                //    Error = true;
+                //    Mensaje = "Ocurrio un error a nivel BD, intente nuevamente.";
+                //}
             }
         }
 

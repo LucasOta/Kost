@@ -112,16 +112,16 @@ namespace CapaNegocio
 
             if (!Error)
             {
-                if(CapaDatos.ProductoBD.Guardar(CodProdSimple, Stock, Insumo, 0, 0))
-                {
-                    Error = false;
-                    Mensaje = "Producto simple guardado";
-                }
-                else
-                {
-                    Error = true;
-                    Mensaje = "Hubo un error a nivel BD, intente nuevamente";
-                }
+                //if(CapaDatos.ProductoBD.Guardar(CodProdSimple, Stock, Insumo, 0, 0))
+                //{
+                //    Error = false;
+                //    Mensaje = "Producto simple guardado";
+                //}
+                //else
+                //{
+                //    Error = true;
+                //    Mensaje = "Hubo un error a nivel BD, intente nuevamente";
+                //}
             }
         }
 

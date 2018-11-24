@@ -203,7 +203,7 @@ namespace Kost
         {
             DataTable productos = Producto.TraerNoInsumos();
 
-            cbxProducto.DataSource = productos.DefaultView;
+            //cbxProducto.DataSource = productos.DefaultView;
             cbxProducto.ValueMember = "codProd";
             cbxProducto.DisplayMember = "nombre";
             cbxProducto.BindingContext = this.BindingContext;
@@ -219,7 +219,7 @@ namespace Kost
 
             CargarDGV();
 
-            cbxProducto.SelectedIndex = 0;
+            //cbxProducto.SelectedIndex = 0;
             aux = true;
             cbxProducto_SelectedIndexChanged(this, new EventArgs());
             

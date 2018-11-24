@@ -172,7 +172,8 @@ namespace CapaNegocio
 
         protected void Guardar()
         {
-            String msjGuardar = CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
+            String msjGuardar = " ";
+            //String msjGuardar = CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
             if (msjGuardar.Equals("OK"))
             {
                 this.Error = false;
@@ -247,12 +248,12 @@ namespace CapaNegocio
         {
             DataTable precios = ProductoBD.PrecioVenta(codProducto);
 
-            DataRow row = precios.Rows[0];
+            //DataRow row = precios.Rows[0];
 
-            if (row["precioVenta"].ToString() != "")
-            {
-                return Convert.ToSingle(row["precioVenta"].ToString());
-            }
+            //if (row["precioVenta"].ToString() != "")
+            //{
+            //    return Convert.ToSingle(row["precioVenta"].ToString());
+            //}
             return 0;
         }
     }
