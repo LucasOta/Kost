@@ -112,7 +112,7 @@ namespace CapaNegocio
 
             if (!Error)
             {
-                if(CapaDatos.ProdSimpleBD.Guardar(CodProdSimple, Stock, Insumo, 0, 0))
+                if(CapaDatos.ProductoBD.Guardar(CodProdSimple, Stock, Insumo, 0, 0))
                 {
                     Error = false;
                     Mensaje = "Producto simple guardado";

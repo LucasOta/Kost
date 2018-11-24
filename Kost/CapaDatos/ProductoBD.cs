@@ -112,13 +112,14 @@ namespace CapaDatos
 
                 if (id_transaccion > 0)
                 {
+                    bool insertok;
                     if (compuesto)
                     {
-                        bool insertok = ProductoCompuestoBD.Guardar(id_transaccion, pCod, pStock, pInsumo, unidad, contenido, Cx);
+                        insertok = ProductoCompuestoBD.Guardar(id_transaccion, pCod, Cx);
                     }
                     else
                     {
-                        bool insertok = ProdSimpleBD.Guardar(id_transaccion, pCod, pStock, pInsumo, unidad, contenido, Cx);
+                        insertok = ProdSimpleBD.Guardar(id_transaccion, pCod, pStock, pInsumo, unidad, contenido, Cx);
                     }
 
                     if (insertok == false)
