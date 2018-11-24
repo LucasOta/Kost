@@ -290,7 +290,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("ProductosNoInsumos");
 
-            string sql = "SELECT P.codProd, P.nombre FROM ProdSimples PS RIGHT JOIN Productos P ON +" +
+            string sql = "SELECT codProd, nombre FROM ProdSimples PS RIGHT JOIN Productos P ON +" +
                 "PS.codProdSimple = P.codProd WHERE P.baja = 0 AND(PS.insumo = 0 OR P.compuesto = 1); ";
 
             try
@@ -320,8 +320,8 @@ namespace CapaDatos
             try
             {
                 Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = codProd;
