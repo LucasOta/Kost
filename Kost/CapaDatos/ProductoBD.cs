@@ -290,7 +290,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("ProductosNoInsumos");
 
-            string sql = "SELECT P.codProd, P.nombre FROM ProdSimples PS RIGHT JOIN Productos P ON +" +
+            string sql = "SELECT codProd, nombre FROM ProdSimples PS RIGHT JOIN Productos P ON +" +
                 "PS.codProdSimple = P.codProd WHERE P.baja = 0 AND(PS.insumo = 0 OR P.compuesto = 1); ";
 
             try
@@ -319,14 +319,14 @@ namespace CapaDatos
 
             try
             {
-                Conexion cx = new Conexion();
-                cx.SetComandoTexto();
-                cx.SetSQL(sql);
+                Conexion Cx = new Conexion();
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
 
-                cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
-                cx.sqlCmd.Parameters[0].Value = codProd;
+                Cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = codProd;
 
-                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
+                SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
                 sqlDat.Fill(ds);
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
