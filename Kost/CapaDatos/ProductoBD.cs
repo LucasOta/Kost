@@ -319,14 +319,14 @@ namespace CapaDatos
 
             try
             {
-                Conexion Cx = new Conexion();
-                Cx.setComandoTexto();
-                Cx.setSQL(sql);
+                Conexion cx = new Conexion();
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = codProd;
+                cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
+                cx.sqlCmd.Parameters[0].Value = codProd;
 
-                SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
+                SqlDataAdapter sqlDat = new SqlDataAdapter(cx.Comando());
                 sqlDat.Fill(ds);
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
