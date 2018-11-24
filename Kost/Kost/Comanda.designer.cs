@@ -180,7 +180,6 @@
             this.cbxProducto.Name = "cbxProducto";
             this.cbxProducto.Size = new System.Drawing.Size(177, 29);
             this.cbxProducto.TabIndex = 5;
-            this.cbxProducto.SelectedIndexChanged += new System.EventHandler(this.cbxProducto_SelectedIndexChanged);
             // 
             // txtCantidad
             // 

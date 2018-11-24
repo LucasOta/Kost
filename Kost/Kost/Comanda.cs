@@ -193,10 +193,10 @@ namespace Kost
         {
             DataTable productos = Producto.TraerNoInsumos();
 
-            //cbxProducto.DataSource = productos.DefaultView;
-            //cbxProducto.ValueMember = "codProd";
-            //cbxProducto.DisplayMember = "nombre";
-            //cbxProducto.BindingContext = this.BindingContext;
+            cbxProducto.DataSource = productos.DefaultView;
+            cbxProducto.ValueMember = "codProd";
+            cbxProducto.DisplayMember = "nombre";
+            cbxProducto.BindingContext = this.BindingContext;
         }
 
         public void ActualizarPantalla()
@@ -204,11 +204,6 @@ namespace Kost
             pnlDetalle.Enabled = false;
 
             CargarCBX();
-        }
-
-        private void cbxProducto_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
