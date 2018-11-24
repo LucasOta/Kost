@@ -193,7 +193,7 @@ namespace Kost
         {
             DataTable productos = Producto.TraerNoInsumos();
 
-            cbxProducto.DataSource = productos.DefaultView;
+            //cbxProducto.DataSource = productos.DefaultView;
             cbxProducto.ValueMember = "codProd";
             cbxProducto.DisplayMember = "nombre";
             cbxProducto.BindingContext = this.BindingContext;

@@ -289,7 +289,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("ProductosNoInsumos");
 
-            string sql = "SELECT P.codProd, P.nombre, P.descripProd, P.idCategoria, P.precioVenta, P.compuesto FROM Productos P INNER JOIN ProdSimples S ON P.baja = 0 WHERE (P.codProd = S.codProdSimple AND S.insumo = 0) OR (P.compuesto = 1);";
+            string sql = "SELECT P.codProd, P.nombre FROM Productos P INNER JOIN ProdSimples S ON P.codProd = S.codProdSimple WHERE (P.baja = 0 AND S.insumo = 0) OR (P.compuesto = 1);";
 
             try
             {
