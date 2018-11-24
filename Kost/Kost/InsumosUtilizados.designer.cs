@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dgvInsumosUtilizados = new System.Windows.Forms.DataGridView();
+            this.codProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Insumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtpInsumosUtilizados = new System.Windows.Forms.DateTimePicker();
@@ -43,6 +44,7 @@
             this.dgvInsumosUtilizados.AllowUserToResizeRows = false;
             this.dgvInsumosUtilizados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInsumosUtilizados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codProd,
             this.Insumo,
             this.Cantidad});
             this.dgvInsumosUtilizados.Location = new System.Drawing.Point(3, 68);
@@ -52,8 +54,16 @@
             this.dgvInsumosUtilizados.Size = new System.Drawing.Size(818, 446);
             this.dgvInsumosUtilizados.TabIndex = 16;
             // 
+            // codProd
+            // 
+            this.codProd.DataPropertyName = "codProd";
+            this.codProd.HeaderText = "Código";
+            this.codProd.Name = "codProd";
+            this.codProd.ReadOnly = true;
+            // 
             // Insumo
             // 
+            this.Insumo.DataPropertyName = "nombre";
             this.Insumo.HeaderText = "Insumo";
             this.Insumo.Name = "Insumo";
             this.Insumo.ReadOnly = true;
@@ -61,6 +71,7 @@
             // 
             // Cantidad
             // 
+            this.Cantidad.DataPropertyName = "cantidad";
             this.Cantidad.HeaderText = "Catidad Utilizada";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
@@ -72,6 +83,7 @@
             this.dtpInsumosUtilizados.Name = "dtpInsumosUtilizados";
             this.dtpInsumosUtilizados.Size = new System.Drawing.Size(200, 27);
             this.dtpInsumosUtilizados.TabIndex = 18;
+            this.dtpInsumosUtilizados.ValueChanged += new System.EventHandler(this.dtpInsumosUtilizados_ValueChanged);
             // 
             // InsumosUtilizados
             // 
@@ -90,8 +102,9 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dgvInsumosUtilizados;
+        private System.Windows.Forms.DateTimePicker dtpInsumosUtilizados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Insumo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DateTimePicker dtpInsumosUtilizados;
     }
 }

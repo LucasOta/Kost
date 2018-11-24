@@ -269,21 +269,25 @@ namespace Kost
         private void btnPrecioPorCat_Click(object sender, EventArgs e)
         {
             precioPorCategoria1.BringToFront();
+            precioPorCategoria1.ActualizarPantalla();
         }
 
         private void btnInsumos_Click(object sender, EventArgs e)
         {
             insumosUtilizados1.BringToFront();
+            insumosUtilizados1.ActualizarPantalla();
         }
 
         private void btnVentasPorMozo_Click(object sender, EventArgs e)
         {
             ventasPorMozo1.BringToFront();
+            ventasPorMozo1.ActualizarPantalla();
         }
 
         private void btnVentasDiarias_Click(object sender, EventArgs e)
         {
             ventasPorDia1.BringToFront();
+            ventasPorDia1.ActualizarPantalla();
         }
     }
 }

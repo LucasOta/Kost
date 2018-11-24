@@ -167,6 +167,7 @@ namespace CapaNegocio
 
             p.CodProdSimple = Convert.ToInt32(rowps["codProdSimple"].ToString());
             p.Stock = Convert.ToInt32(rowps["stock"].ToString());
+            
         }
 
         public static DataTable MostrarStock()

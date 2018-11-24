@@ -60,6 +60,7 @@
             this.dtpVentasDiarias.Name = "dtpVentasDiarias";
             this.dtpVentasDiarias.Size = new System.Drawing.Size(200, 27);
             this.dtpVentasDiarias.TabIndex = 22;
+            this.dtpVentasDiarias.ValueChanged += new System.EventHandler(this.dtpVentasDiarias_ValueChanged);
             // 
             // Mozo
             // 
@@ -71,7 +72,7 @@
             // 
             // Comanda
             // 
-            this.Comanda.DataPropertyName = "comanda";
+            this.Comanda.DataPropertyName = "nroComanda";
             this.Comanda.HeaderText = "Comanda";
             this.Comanda.Name = "Comanda";
             this.Comanda.ReadOnly = true;
@@ -79,7 +80,7 @@
             // 
             // Importe
             // 
-            this.Importe.DataPropertyName = "importe";
+            this.Importe.DataPropertyName = "total";
             this.Importe.HeaderText = "Importe";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
