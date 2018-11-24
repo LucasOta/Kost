@@ -21,6 +21,33 @@ namespace CapaNegocio
         private string mensaje;
 
 
+        //Constructores
+        public Detalle()
+        {
+
+        }
+
+        public Detalle(int nroC, int codProd, string descProd, int cant, float precioUni)
+        {
+            Error = false;
+            Mensaje = "";
+            this.Validar(cant);
+            if (!Error)
+            {
+                NroComanda = nroC;
+                CodProducto = codProd;
+                DescripProducto = descProd;
+                Cantidad = cant;
+                PrecioUnitario = precioUni;
+
+                this.Guardar(NroComanda, CodProducto, DescripProducto, Cantidad, PrecioUnitario);
+            }
+            else
+            {
+                Error = true;
+            }
+        }
+
 
         //Getters y Setters
         public int NroComanda
@@ -127,33 +154,6 @@ namespace CapaNegocio
             }
         }
 
-        //Constructores
-        public Detalle()
-        {
-
-        }
-
-        public Detalle(int nroC, int codProd, string descProd, int cant, float precioUni)
-        {
-            Error = false;
-            Mensaje = "";
-            this.Validar(cant);
-            if (!Error)
-            {
-                NroComanda = nroC;
-                CodProducto = codProd;
-                DescripProducto = descProd;
-                Cantidad = cant;
-                PrecioUnitario = precioUni;
-
-                this.Guardar(NroComanda, CodProducto, DescripProducto, Cantidad, PrecioUnitario);
-            }
-            else
-            {
-                Error = true;
-            }
-        }
-
 
         //Funciones
         protected void Validar(int cantidad)
@@ -168,12 +168,12 @@ namespace CapaNegocio
 
         public static Boolean Modificar(int codProd, int cantidad, float precioUni, string descrip)
         {
-            return CapaDatos.DetalleBD.modificar(codProd, cantidad, precioUni, descrip);
+            return CapaDatos.DetalleBD.Modificar(codProd, cantidad, precioUni, descrip);
         }
 
         public static Boolean Eliminar(int nroDetalle)
         {
-            return CapaDatos.DetalleBD.eliminar(nroDetalle);
+            return CapaDatos.DetalleBD.Eliminar(nroDetalle);
         }
 
         public static DataTable TraerTodosDetalles(int nroComanda)

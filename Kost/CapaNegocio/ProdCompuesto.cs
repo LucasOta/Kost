@@ -19,6 +19,7 @@ namespace CapaNegocio
 
         }
 
+
         //Getters y Setters
         public int CodProdCompuesto
         {
@@ -33,10 +34,11 @@ namespace CapaNegocio
             }
         }
 
+
         //Funciones
         protected void ValidarCompuesto(int codPC)
         {
-            if (ProductoCompuestoBD.existe(codPC))
+            if (ProductoCompuestoBD.Existe(codPC))
             {
                 this.Error = true;
                 this.Mensaje += "Ya existe un producto compuesto con este codigo de producto compuesto. ";
@@ -48,7 +50,7 @@ namespace CapaNegocio
             base.Guardar();
             if (!Error)
             {
-                if (!ProductoCompuestoBD.guardar(CodProdCompuesto))
+                if (!ProductoCompuestoBD.Guardar(CodProdCompuesto))
                 {
                     Error = false;
                     Mensaje = "Producto compuesto guardado con exito";
@@ -63,9 +65,9 @@ namespace CapaNegocio
 
         public Boolean GuardarComposicion(int CodCom, int CodSim, int Cant)
         {
-            if (!ProductoCompuestoBD.existeComposicion(CodCom, CodSim, Cant))
+            if (!ProductoCompuestoBD.ExisteComposicion(CodCom, CodSim, Cant))
             {
-                return ProductoCompuestoBD.guardarComposicion(CodCom, CodSim, Cant);
+                return ProductoCompuestoBD.GuardarComposicion(CodCom, CodSim, Cant);
             }
 
             return true;
@@ -73,12 +75,12 @@ namespace CapaNegocio
 
         public static Boolean Eliminar(int CodPC)
         {
-            return ProductoCompuestoBD.eliminar(CodPC);
+            return ProductoCompuestoBD.Eliminar(CodPC);
         }
 
         public static Boolean EliminarComposicion(int CodCom, int CodSim, int Cant)
         {
-            return ProductoCompuestoBD.eliminarComposicion(CodCom, CodSim, Cant);
+            return ProductoCompuestoBD.EliminarComposicion(CodCom, CodSim, Cant);
         }
 
         public static DataTable TraerComposicion(int cod)

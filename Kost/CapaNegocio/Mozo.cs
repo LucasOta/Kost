@@ -9,10 +9,7 @@ using CapaDatos;
 namespace CapaNegocio
 {
     public class Mozo : Persona
-    {
-        //Getters y Setters
-
-        
+    {        
         //Constructores
         public Mozo() { }
 
@@ -53,7 +50,7 @@ namespace CapaNegocio
             base.Guardar();
             if (!Error)
             {
-                if (CapaDatos.MozoBD.guardar(Cuil))
+                if (CapaDatos.MozoBD.Guardar(Cuil))
                 {
                     this.Error = false;
                     this.Mensaje = "Mozo Guardado";
@@ -66,7 +63,7 @@ namespace CapaNegocio
             }
             else
             {
-                if (CapaDatos.MozoBD.existe(Cuil))
+                if (CapaDatos.MozoBD.Existe(Cuil))
                 {
                     this.Error = true;
                     this.Mensaje = "Ya existe un mozo cargado en el sistema con ese cuil";
@@ -85,13 +82,12 @@ namespace CapaNegocio
 
         public static Boolean Eliminar(long cuil)
         {
-            return CapaDatos.MozoBD.eliminar(cuil);
-            //Ver lo de cascada con haspert
+            return CapaDatos.MozoBD.Eliminar(cuil);
         }
 
         public Boolean ModificarMozo()
         {
-            Boolean moz = CapaDatos.MozoBD.modificar(this.Cuil);
+            Boolean moz = CapaDatos.MozoBD.Modificar(this.Cuil);
 
             Boolean per = this.ModificarPersona();
 
@@ -107,7 +103,7 @@ namespace CapaNegocio
 
         public static DataTable ListarTodos()
         {
-            return MozoBD.Get_all();
+            return MozoBD.TraerTodos();
         }
 
         public static Mozo TraerUnMozo(long cuil)

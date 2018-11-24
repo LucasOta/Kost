@@ -35,12 +35,12 @@ namespace CapaDatos
             sqlCmd.CommandTimeout = 0;
         }
 
-        public void setComandoTexto()
+        public void SetComandoTexto()
         {
             sqlCmd.CommandType = CommandType.Text;
         }
 
-        public void setSQL(string query)
+        public void SetSQL(string query)
         {
             sqlCmd.CommandText = query;
         }
@@ -50,12 +50,12 @@ namespace CapaDatos
             return sqlCmd;
         }
 
-        public void abrir()
+        public void Abrir()
         {
             sqlCon.Open();
         }
 
-        public void cerrar()
+        public void Cerrar()
         {
             sqlCon.Close();
         }

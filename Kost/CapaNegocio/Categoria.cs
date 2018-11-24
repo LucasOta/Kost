@@ -14,6 +14,8 @@ namespace CapaNegocio
         private string mensaje;
         private string nombre;
         private int id;
+
+        //Constructores
         public Categoria() { }
 
         public Categoria(string categoria)
@@ -103,7 +105,7 @@ namespace CapaNegocio
         {
             if (!error)
             {
-                if (CapaDatos.CategoriaBD.guardar(Nombre))
+                if (CapaDatos.CategoriaBD.Guardar(Nombre))
                 {
                     this.error = false;
                     this.mensaje = "Categoría guardada";
@@ -118,7 +120,7 @@ namespace CapaNegocio
 
         public static Boolean Eliminar(int id)
         {
-            return CapaDatos.CategoriaBD.eliminar(id);
+            return CapaDatos.CategoriaBD.Eliminar(id);
         }
 
         public Boolean ModificarCateg()
@@ -127,7 +129,7 @@ namespace CapaNegocio
             Validar(Nombre);
             if (!Error)
             {
-                if (CapaDatos.CategoriaBD.modificar(Id, Nombre))
+                if (CapaDatos.CategoriaBD.Modificar(Id, Nombre))
                 {
                     return true;
                 }
@@ -145,7 +147,7 @@ namespace CapaNegocio
 
         public static DataTable ListarTodos()
         {
-            return CapaDatos.CategoriaBD.Get_all();
+            return CapaDatos.CategoriaBD.TraerTodos();
         }
 
         public static Categoria TraerUnaCat(int id)
