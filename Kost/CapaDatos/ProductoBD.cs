@@ -112,7 +112,14 @@ namespace CapaDatos
 
                 if (id_transaccion > 0)
                 {
-                    bool insertok = ProdSimpleBD.Guardar(id_transaccion, pCod, pStock, pInsumo, unidad, contenido, Cx);
+                    if (compuesto)
+                    {
+                        bool insertok = ProductoCompuestoBD.Guardar(id_transaccion, pCod, pStock, pInsumo, unidad, contenido, Cx);
+                    }
+                    else
+                    {
+                        bool insertok = ProdSimpleBD.Guardar(id_transaccion, pCod, pStock, pInsumo, unidad, contenido, Cx);
+                    }
 
                     if (insertok == false)
                     {
@@ -135,6 +142,10 @@ namespace CapaDatos
                     }
                     //object nro = Cx.sqlCmd.ExecuteNonQuery();
                     //Cx.Cerrar();
+                }
+                else
+                {
+                    return id_transaccion;
                 }
             }
             catch (Exception e)

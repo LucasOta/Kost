@@ -48,7 +48,7 @@ namespace CapaDatos
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
