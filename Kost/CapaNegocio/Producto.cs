@@ -39,7 +39,7 @@ namespace CapaNegocio
                 IdCategoria = c_idCat;
                 DescProd = c_descProd;
                 Compuesto = c_compuesto;
-                this.Guardar();
+                //this.Guardar();
             }
             else
             {
@@ -166,24 +166,24 @@ namespace CapaNegocio
             if (CapaDatos.ProductoBD.ExisteNombre(Nombre))
             {
                 this.Error = true;
-                this.Mensaje += "Ya existe un producto guardad con este nombre.";
+                this.Mensaje += "Ya existe un producto guardado con este nombre.";
             }
         }
 
-        protected void Guardar()
-        {
-            String msjGuardar = CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
-            if (msjGuardar.Equals("OK"))
-            {
-                this.Error = false;
-                this.Mensaje = "Producto guardado";
-            }
-            else
-            {
-                this.Error = true;
-                this.Mensaje = msjGuardar;
-            }
-        }
+        //protected void Guardar()
+        //{
+        //    String msjGuardar = CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
+        //    if (msjGuardar.Equals("OK"))
+        //    {
+        //        this.Error = false;
+        //        this.Mensaje = "Producto guardado";
+        //    }
+        //    else
+        //    {
+        //        this.Error = true;
+        //        this.Mensaje = msjGuardar;
+        //    }
+        //}
 
         public static void TraerUnProducto(int codprod, Producto p)
         {

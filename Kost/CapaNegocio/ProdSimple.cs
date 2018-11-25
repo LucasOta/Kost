@@ -13,6 +13,8 @@ namespace CapaNegocio
         private int codProdSimple;
         private int stock;
         private bool insumo;
+        private int unidad;
+        private double contenido;
 
 
         //Constructores
@@ -95,6 +97,32 @@ namespace CapaNegocio
             }
         }
 
+        public int Unidad
+        {
+            get
+            {
+                return unidad;
+            }
+
+            set
+            {
+                unidad = value;
+            }
+        }
+
+        public double Contenido
+        {
+            get
+            {
+                return contenido;
+            }
+
+            set
+            {
+                contenido = value;
+            }
+        }
+
 
         //Funciones 
         protected void ValidarSimple(int codPS)
@@ -106,13 +134,11 @@ namespace CapaNegocio
             }
         }
 
-        protected void GuardarPS()
+        public void GuardarPS()
         {
-            base.Guardar();
-
             if (!Error)
             {
-                if(CapaDatos.ProductoBD.Guardar(CodProdSimple, Stock, Insumo, 0, 0))
+                if(CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, false, 0, insumo, Unidad, Contenido)  > 0)
                 {
                     Error = false;
                     Mensaje = "Producto simple guardado";

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using System.Windows.Forms;
+
 
 namespace CapaNegocio
 {
@@ -82,8 +80,6 @@ namespace CapaNegocio
         }
         public static Boolean sinEspacios(char e)
         {
-
-
             Boolean result = false;
             if (Char.IsSeparator(e))
             {
@@ -95,6 +91,33 @@ namespace CapaNegocio
             }
 
             return result;
+        }
+        public static void acepta_Float(string txt_actual, KeyPressEventArgs e) {
+            
+            if (txt_actual.Contains('.'))
+            {
+                if (!char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                if (e.KeyChar == '\b')
+                {
+                    e.Handled = false;
+                }
+            }
+            else
+            {
+                if (!char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+
+                if (e.KeyChar == '.' || e.KeyChar == '\b')
+                {
+                    e.Handled = false;
+                }
+            }
         }
     }
 }

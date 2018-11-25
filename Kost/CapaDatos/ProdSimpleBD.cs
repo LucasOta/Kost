@@ -42,43 +42,38 @@ namespace CapaDatos
             }
         }
 
-        public static bool Guardar(int pCod, int pStock, bool pInsumo, int unidad, double contenido, Conexion con)
+        public static bool Guardar(int pCod, int pStock, bool pInsumo, int pUnidad, double pContenido, Conexion Cx)
         {
-            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) values ((SELECT TOP 1 codProd FROM Productos WHERE baja=0 ORDER BY codProd DESC), @pStock, @pInsumo, @baja)";
+            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) " + 
+                         "VALUES (@pCod, @pStock, @pInsumo, @pUnidad, @pContenido, @baja);";
 
             try
             {
-                Conexion Cx = con;
-
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("pCod", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = pCod;
 
-                Cx.sqlCmd.Parameters.Add("pStock", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[1].Value = pStock;
+                Cx.sqlCmd.Parameters.Add("pStock", SqlDbType.Float);
+                Cx.sqlCmd.Parameters[1].Value = (float) pStock;
 
                 Cx.sqlCmd.Parameters.Add("pInsumo", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[2].Value = pInsumo;
 
-                Cx.sqlCmd.Parameters.Add("unidad", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[3].Value = unidad;
+                Cx.sqlCmd.Parameters.Add("pUnidad", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[3].Value = pUnidad;
 
-                Cx.sqlCmd.Parameters.Add("contenido", SqlDbType.Float);
-                Cx.sqlCmd.Parameters[4].Value = contenido;
+                Cx.sqlCmd.Parameters.Add("pContenido", SqlDbType.Float);
+                Cx.sqlCmd.Parameters[4].Value = (float) pContenido;
 
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[5].Value = 0;
 
-                Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
+                
+                Cx.sqlCmd.ExecuteNonQuery();
+
+                return true;
 
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
