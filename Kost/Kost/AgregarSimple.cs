@@ -48,7 +48,7 @@ namespace Kost
             }
             else
             {
-                //GuardarModificacion();
+                GuardarModificacion();
             }
         }
 
@@ -136,6 +136,29 @@ namespace Kost
         {
             CapaNegocio.Funciones.acepta_Float(txtPrecio.Text, e);
         }        
-    }
 
+        private void GuardarModificacion()
+        {
+            ps.Nombre = txtNombre.Text;
+            ps.PrecioVenta = float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat);
+            ps.Insumo = chxInsumo.Checked;
+            ps.IdCategoria = Convert.ToInt32(cbxCategoria.SelectedValue);
+            ps.DescProd = txtDescripcion.Text;
+            ps.Contenido = Convert.ToDouble(txtContenido.Text);
+            ps.Unidad = Convert.ToInt32(cbxU_Medida.SelectedValue);
+
+            if (ps.ModificarPS())
+            {
+                CapaNegocio.Funciones.mOk(this, ps.Mensaje);
+
+                Clear();
+
+                btnAtras_Click_1(this, new EventArgs());
+            }
+            else
+            {
+                CapaNegocio.Funciones.mError(this, ps.Mensaje);
+            }
+        }
+    }
 }

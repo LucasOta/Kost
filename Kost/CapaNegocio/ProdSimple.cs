@@ -142,10 +142,12 @@ namespace CapaNegocio
         {
             if(this.ModificarProducto() && CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0))
             {
+                Mensaje = "Los cambios se guardaron correctamente.";
                 return true;
             }
             else
             {
+                Mensaje = "Ocurrió un error durante la conexión con BD, algunos datos pueden no concordar.";
                 return false;
             }
         }
