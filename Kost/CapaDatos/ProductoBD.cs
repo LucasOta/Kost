@@ -275,7 +275,7 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("dataGridProductos");
 
-            string sql = "SELECT codProd, P.nombre, descripProd, C.nombre, precioVenta, compuesto " +
+            string sql = "SELECT codProd, P.nombre, descripProd, C.nombre as categoria, precioVenta, compuesto " +
                         "FROM Productos P INNER JOIN Categorias C ON P.idCategoria=C.idCategoria WHERE P.baja=0 AND C.baja=0";
 
             try
