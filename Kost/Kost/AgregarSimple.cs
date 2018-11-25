@@ -32,28 +32,18 @@ namespace Kost
             if (banderaGuardar)
             {
                 ps = new CapaNegocio.ProdSimple(0, chxInsumo.Checked,  txtNombre.Text, float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat), Convert.ToInt32(cbxCategoria.SelectedValue), txtDescripcion.Text, false, 1, Convert.ToDouble(txtContenido.Text));
-                ps.Nombre = txtNombre.Text;
-                ps.PrecioVenta = float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat);
-                ps.IdCategoria = Convert.ToInt32(cbxCategoria.SelectedValue);
-                ps.DescProd = txtDescripcion.Text;
-                ps.Compuesto = false;
-
-                ps.Stock = 0;
-                ps.Insumo = chxInsumo.Checked;
-
-                ps.Contenido = Convert.ToDouble( txtContenido.Text);
-
-                ps.Unidad = 1;
-
-
-                if (ps.Error & ps.Mensaje == "Ya existe un producto guardado con este nombre.")
+                
+                if (ps.Error)
                 {
-                    CapaNegocio.Funciones.mError(this, "Existe un producto con este nombre.");            
+                    CapaNegocio.Funciones.mError(this, ps.Mensaje);            
                 }
                 else
                 {
-                    ps.GuardarPS();
-                    CapaNegocio.Funciones.mOk(this, "Los datos del Producto se guardaron con éxito.");
+                    CapaNegocio.Funciones.mOk(this, ps.Mensaje);
+
+                    Clear();
+
+                    btnAtras_Click_1(this, new EventArgs());
                 }
             }
             else
@@ -62,6 +52,12 @@ namespace Kost
             }
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Clear();
+
+            btnAtras_Click_1(this, new EventArgs());
+        }
 
         //Métodos
         public void Clear()
@@ -139,9 +135,7 @@ namespace Kost
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             CapaNegocio.Funciones.acepta_Float(txtPrecio.Text, e);
-        }
-
-        
+        }        
     }
 
 }

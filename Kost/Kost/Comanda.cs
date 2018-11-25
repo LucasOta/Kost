@@ -23,8 +23,6 @@ namespace Kost
         public Comanda()
         {
             InitializeComponent();
-
-            ActualizarPantalla();
         }
 
         //Botones
@@ -203,7 +201,7 @@ namespace Kost
         {
             DataTable productos = Producto.TraerNoInsumos();
 
-            //cbxProducto.DataSource = productos.DefaultView;
+            cbxProducto.DataSource = productos.DefaultView;
             cbxProducto.ValueMember = "codProd";
             cbxProducto.DisplayMember = "nombre";
             cbxProducto.BindingContext = this.BindingContext;
@@ -221,6 +219,7 @@ namespace Kost
 
             //cbxProducto.SelectedIndex = 0;
             aux = true;
+
             cbxProducto_SelectedIndexChanged(this, new EventArgs());
             
         }

@@ -27,16 +27,8 @@ namespace CapaNegocio
         {
             Error = false;
             Mensaje = "";
-            //this.ValidarSimple(codPS);
-            //if (!Error)
-            //{
-            //    CodProdSimple = codPS;
             Stock = stock;
             Insumo = insumo;
-
-            //    this.ValidarProd(codprod, nombre);
-            //    if (!Error)
-            //    {
             Nombre = nombre;
             PrecioVenta = precioVenta;
             IdCategoria = idCat;
@@ -46,16 +38,6 @@ namespace CapaNegocio
             Contenido = contenido;
 
             this.GuardarPS();
-            //    }
-            //    else
-            //    {
-            //        Error = true;
-            //    }
-            //}
-            //else
-            //{
-            //    Error = true;
-            //}
         }
 
 
@@ -146,12 +128,12 @@ namespace CapaNegocio
                 if(CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, false, 0, insumo, Unidad, Contenido)  > 0)
                 {
                     Error = false;
-                    Mensaje = "Producto simple guardado";
+                    Mensaje = "Producto simple guardado con éxito.";
                 }
                 else
                 {
                     Error = true;
-                    Mensaje = "Hubo un error a nivel BD, intente nuevamente";
+                    Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente.";
                 }
             }
         }

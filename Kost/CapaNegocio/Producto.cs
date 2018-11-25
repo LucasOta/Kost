@@ -245,14 +245,14 @@ namespace CapaNegocio
 
         public static float PrecioDeVenta(int codProducto)
         {
-            //DataTable precios = ProductoBD.PrecioVenta(codProducto);
+            DataTable precios = ProductoBD.PrecioVenta(codProducto);
 
-            //DataRow row = precios.Rows[0];
+            DataRow row = precios.Rows[0];
 
-            //if (row["precioVenta"].ToString() != "")
-            //{
-            //    return Convert.ToSingle(row["precioVenta"].ToString());
-            //}
+            if (row["precioVenta"].ToString() != "")
+            {
+                return Convert.ToSingle(row["precioVenta"].ToString());
+            }
             return 0;
         }
     }
