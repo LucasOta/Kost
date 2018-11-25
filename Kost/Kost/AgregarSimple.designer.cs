@@ -37,19 +37,21 @@
             this.lblProducto = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.txtCosto = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.lblCosto = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblPrecio = new System.Windows.Forms.Label();
+            this.cbxU_Medida = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtContenido = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cbxCategoria
             // 
             this.cbxCategoria.FormattingEnabled = true;
-            this.cbxCategoria.Location = new System.Drawing.Point(163, 162);
+            this.cbxCategoria.Location = new System.Drawing.Point(200, 162);
             this.cbxCategoria.Name = "cbxCategoria";
             this.cbxCategoria.Size = new System.Drawing.Size(250, 29);
             this.cbxCategoria.TabIndex = 2;
@@ -57,7 +59,7 @@
             // chxInsumo
             // 
             this.chxInsumo.AutoSize = true;
-            this.chxInsumo.Location = new System.Drawing.Point(163, 277);
+            this.chxInsumo.Location = new System.Drawing.Point(365, 331);
             this.chxInsumo.Name = "chxInsumo";
             this.chxInsumo.Size = new System.Drawing.Size(85, 25);
             this.chxInsumo.TabIndex = 6;
@@ -102,6 +104,7 @@
             this.btnGuardar.TabIndex = 7;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // lblProducto
             // 
@@ -115,10 +118,11 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(163, 228);
+            this.txtPrecio.Location = new System.Drawing.Point(200, 295);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(250, 27);
             this.txtPrecio.TabIndex = 5;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // lblNombre
             // 
@@ -128,13 +132,6 @@
             this.lblNombre.Size = new System.Drawing.Size(73, 21);
             this.lblNombre.TabIndex = 24;
             this.lblNombre.Text = "Nombre";
-            // 
-            // txtCosto
-            // 
-            this.txtCosto.Location = new System.Drawing.Point(163, 195);
-            this.txtCosto.Name = "txtCosto";
-            this.txtCosto.Size = new System.Drawing.Size(250, 27);
-            this.txtCosto.TabIndex = 4;
             // 
             // lblDescripcion
             // 
@@ -156,23 +153,14 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(163, 129);
+            this.txtDescripcion.Location = new System.Drawing.Point(200, 129);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(250, 27);
             this.txtDescripcion.TabIndex = 1;
             // 
-            // lblCosto
-            // 
-            this.lblCosto.AutoSize = true;
-            this.lblCosto.Location = new System.Drawing.Point(38, 198);
-            this.lblCosto.Name = "lblCosto";
-            this.lblCosto.Size = new System.Drawing.Size(56, 21);
-            this.lblCosto.TabIndex = 27;
-            this.lblCosto.Text = "Costo";
-            // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(163, 97);
+            this.txtNombre.Location = new System.Drawing.Point(200, 97);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(250, 27);
             this.txtNombre.TabIndex = 0;
@@ -180,15 +168,53 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(38, 231);
+            this.lblPrecio.Location = new System.Drawing.Point(38, 298);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(57, 21);
             this.lblPrecio.TabIndex = 28;
             this.lblPrecio.Text = "Precio";
             // 
+            // cbxU_Medida
+            // 
+            this.cbxU_Medida.FormattingEnabled = true;
+            this.cbxU_Medida.Location = new System.Drawing.Point(200, 212);
+            this.cbxU_Medida.Name = "cbxU_Medida";
+            this.cbxU_Medida.Size = new System.Drawing.Size(250, 29);
+            this.cbxU_Medida.TabIndex = 30;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(38, 215);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(157, 21);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Unidad de Medida";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(38, 250);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 21);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Contenido";
+            // 
+            // txtContenido
+            // 
+            this.txtContenido.Location = new System.Drawing.Point(200, 247);
+            this.txtContenido.Name = "txtContenido";
+            this.txtContenido.Size = new System.Drawing.Size(250, 27);
+            this.txtContenido.TabIndex = 34;
+            this.txtContenido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContenido_KeyPress);
+            // 
             // AgregarSimple
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.txtContenido);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbxU_Medida);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxCategoria);
             this.Controls.Add(this.chxInsumo);
             this.Controls.Add(this.btnAtras);
@@ -197,17 +223,14 @@
             this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.txtCosto);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.lblCosto);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblPrecio);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "AgregarSimple";
             this.Size = new System.Drawing.Size(825, 530);
-            this.Load += new System.EventHandler(this.AgregarSimple_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,12 +246,14 @@
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox txtCosto;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.Label lblCosto;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.ComboBox cbxU_Medida;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtContenido;
     }
 }

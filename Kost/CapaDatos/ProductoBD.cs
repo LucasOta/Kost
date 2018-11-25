@@ -74,10 +74,11 @@ namespace CapaDatos
             }
         }
 
-        public static int Guardar(string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto, int pCod, int pStock, bool pInsumo, int unidad, double contenido)
+        public static int Guardar(string pnombre, string pdescripcion, int pidCategoria, float pprecio, bool compuesto, int pStock, bool pInsumo, int unidad, double contenido)
         {
-            string sql = @"INSERT INTO Productos (nombre, precioVenta, idCategoria, descripProd, compuesto, +" +
-                "baja) values (@nombre, @precioVenta, @idCategoria, @descripProd, @compuesto, @baja) RETURNING codProd";
+            string sql = "INSERT INTO Productos (nombre, precioVenta, idCategoria, descripProd, compuesto, baja) " +
+                         "VALUES (@nombre, @precioVenta, @idCategoria, @descripProd, @compuesto, @baja); " +
+                         "SELECT CAST(scope_identity() AS int);";
 
             try
             {

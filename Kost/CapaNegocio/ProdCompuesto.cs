@@ -45,23 +45,23 @@ namespace CapaNegocio
             }
         }
 
-        protected void GuardarPC()
-        {
-            base.Guardar();
-            if (!Error)
-            {
-                //if (!ProductoCompuestoBD.Guardar(CodProdCompuesto))
-                //{
-                //    Error = false;
-                //    Mensaje = "Producto compuesto guardado con exito";
-                //}
-                //else
-                //{
-                //    Error = true;
-                //    Mensaje = "Ocurrio un error a nivel BD, intente nuevamente.";
-                //}
-            }
-        }
+        //protected void GuardarPC()
+        //{
+        //    base.Guardar();
+        //    if (!Error)
+        //    {
+        //        if (!ProductoCompuestoBD.Guardar(CodProdCompuesto))
+        //        {
+        //            Error = false;
+        //            Mensaje = "Producto compuesto guardado con exito";
+        //        }
+        //        else
+        //        {
+        //            Error = true;
+        //            Mensaje = "Ocurrio un error a nivel BD, intente nuevamente.";
+        //        }
+        //    }
+        //}
 
         public Boolean GuardarComposicion(int CodCom, int CodSim, int Cant)
         {
