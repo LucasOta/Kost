@@ -140,27 +140,16 @@ namespace CapaNegocio
 
         public Boolean ModificarPS()
         {
-            Error = false;
-            this.ValidarSimple(CodProdSimple);
+            Boolean prod = this.ModificarProducto();
 
-            if (!Error)
+            Boolean prodSimp = CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0);
+
+            if(prod && prodSimp)
             {
-                Boolean prod = this.ModificarProducto();
-
-                Boolean prodSimp = CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0);
-
-                if(prod && prodSimp)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
             else
             {
-                Mensaje += " No pudieron relizarse las modificaciones";
                 return false;
             }
         }
