@@ -140,11 +140,7 @@ namespace CapaNegocio
 
         public Boolean ModificarPS()
         {
-            Boolean prod = this.ModificarProducto();
-
-            Boolean prodSimp = CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0);
-
-            if(prod && prodSimp)
+            if(this.ModificarProducto() && CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0))
             {
                 return true;
             }
