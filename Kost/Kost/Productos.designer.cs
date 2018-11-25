@@ -32,14 +32,14 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregarCompuesto = new System.Windows.Forms.Button();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.btnAgregarSimple = new System.Windows.Forms.Button();
+            this.btnVerStock = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAgregarSimple = new System.Windows.Forms.Button();
-            this.btnVerStock = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +98,28 @@
             this.dgvProductos.Size = new System.Drawing.Size(809, 388);
             this.dgvProductos.TabIndex = 0;
             // 
+            // btnAgregarSimple
+            // 
+            this.btnAgregarSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarSimple.Location = new System.Drawing.Point(196, 402);
+            this.btnAgregarSimple.Name = "btnAgregarSimple";
+            this.btnAgregarSimple.Size = new System.Drawing.Size(182, 54);
+            this.btnAgregarSimple.TabIndex = 2;
+            this.btnAgregarSimple.Text = "Agregar Producto Simple";
+            this.btnAgregarSimple.UseVisualStyleBackColor = true;
+            this.btnAgregarSimple.Click += new System.EventHandler(this.btnAgregarSimple_Click);
+            // 
+            // btnVerStock
+            // 
+            this.btnVerStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerStock.Location = new System.Drawing.Point(384, 482);
+            this.btnVerStock.Name = "btnVerStock";
+            this.btnVerStock.Size = new System.Drawing.Size(182, 40);
+            this.btnVerStock.TabIndex = 5;
+            this.btnVerStock.Text = "Ver Stock";
+            this.btnVerStock.UseVisualStyleBackColor = true;
+            this.btnVerStock.Click += new System.EventHandler(this.btnVerStock_Click);
+            // 
             // ID
             // 
             this.ID.DataPropertyName = "codProd";
@@ -124,7 +146,7 @@
             // 
             // Categoria
             // 
-            this.Categoria.DataPropertyName = "idCategoria";
+            this.Categoria.DataPropertyName = "categoria";
             this.Categoria.HeaderText = "Categoría";
             this.Categoria.Name = "Categoria";
             this.Categoria.ReadOnly = true;
@@ -143,28 +165,6 @@
             this.Tipo.HeaderText = "Tipo";
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
-            // 
-            // btnAgregarSimple
-            // 
-            this.btnAgregarSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarSimple.Location = new System.Drawing.Point(196, 402);
-            this.btnAgregarSimple.Name = "btnAgregarSimple";
-            this.btnAgregarSimple.Size = new System.Drawing.Size(182, 54);
-            this.btnAgregarSimple.TabIndex = 2;
-            this.btnAgregarSimple.Text = "Agregar Producto Simple";
-            this.btnAgregarSimple.UseVisualStyleBackColor = true;
-            this.btnAgregarSimple.Click += new System.EventHandler(this.btnAgregarSimple_Click);
-            // 
-            // btnVerStock
-            // 
-            this.btnVerStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerStock.Location = new System.Drawing.Point(384, 482);
-            this.btnVerStock.Name = "btnVerStock";
-            this.btnVerStock.Size = new System.Drawing.Size(182, 40);
-            this.btnVerStock.TabIndex = 5;
-            this.btnVerStock.Text = "Ver Stock";
-            this.btnVerStock.UseVisualStyleBackColor = true;
-            this.btnVerStock.Click += new System.EventHandler(this.btnVerStock_Click);
             // 
             // Productos
             // 
