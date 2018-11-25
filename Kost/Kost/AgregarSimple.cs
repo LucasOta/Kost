@@ -82,9 +82,18 @@ namespace Kost
         }
 
         public void cargarProd_a_Modificar(int id) {
+            ActualizarPantalla();
+
             ProdSimple prod = new ProdSimple();
-            ProdSimple.TraerUnProducto(id, prod);
-            //Cargar el Producto a todos los elementos de la pantalla
+            ProdSimple.TraerUnSimple(id, prod);
+
+            txtNombre.Text = prod.Nombre;
+            txtDescripcion.Text = prod.DescProd;
+            cbxCategoria.SelectedValue = prod.IdCategoria;
+            cbxU_Medida.SelectedValue = prod.Unidad;
+            txtContenido.Text = prod.Contenido.ToString();
+            txtPrecio.Text = prod.PrecioVenta.ToString();
+            chxInsumo.Checked = prod.Insumo;    
         }
 
         public void CargarCBX_Categoria()
