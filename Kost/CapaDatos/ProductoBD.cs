@@ -108,6 +108,7 @@ namespace CapaDatos
                 Cx.Abrir();
 
                 Cx.SetTransaccion();
+                
                 Object nro = Cx.sqlCmd.ExecuteScalar();
                 int id_transaccion = Convert.ToInt32(nro);
 

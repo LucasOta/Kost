@@ -45,7 +45,7 @@ namespace CapaDatos
         public static bool Guardar(int pCod, int pStock, bool pInsumo, int pUnidad, double pContenido, Conexion Cx)
         {
             string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) " + 
-                         "VALUES (@pCod, @pStock, @pInsumo, @pUnidad, @pContenido, @baja);";
+                         "VALUES (@pCod, @pStock, @pInsumo, @pUnidad, @pContenido, 0);";
 
             try
             {
@@ -53,22 +53,22 @@ namespace CapaDatos
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("pCod", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = pCod;
+                Cx.sqlCmd.Parameters[6].Value = pCod;
 
                 Cx.sqlCmd.Parameters.Add("pStock", SqlDbType.Float);
-                Cx.sqlCmd.Parameters[1].Value = (float) pStock;
+                Cx.sqlCmd.Parameters[7].Value = (float) pStock;
 
                 Cx.sqlCmd.Parameters.Add("pInsumo", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[2].Value = pInsumo;
+                Cx.sqlCmd.Parameters[8].Value = pInsumo;
 
                 Cx.sqlCmd.Parameters.Add("pUnidad", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[3].Value = pUnidad;
+                Cx.sqlCmd.Parameters[9].Value = pUnidad;
 
                 Cx.sqlCmd.Parameters.Add("pContenido", SqlDbType.Float);
-                Cx.sqlCmd.Parameters[4].Value = (float) pContenido;
+                Cx.sqlCmd.Parameters[10].Value = (float) pContenido;
 
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[5].Value = 0;
+                //Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
+                //Cx.sqlCmd.Parameters[5].Value = 0;
 
                 
                 Cx.sqlCmd.ExecuteNonQuery();

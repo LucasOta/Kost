@@ -31,7 +31,7 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                ps = new CapaNegocio.ProdSimple();
+                ps = new CapaNegocio.ProdSimple(0, chxInsumo.Checked,  txtNombre.Text, float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat), Convert.ToInt32(cbxCategoria.SelectedValue), txtDescripcion.Text, false, 1, Convert.ToDouble(txtContenido.Text));
                 ps.Nombre = txtNombre.Text;
                 ps.PrecioVenta = float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat);
                 ps.IdCategoria = Convert.ToInt32(cbxCategoria.SelectedValue);
@@ -44,9 +44,6 @@ namespace Kost
                 ps.Contenido = Convert.ToDouble( txtContenido.Text);
 
                 ps.Unidad = 1;
-
-
-
 
 
                 if (ps.Error & ps.Mensaje == "Ya existe un producto guardado con este nombre.")

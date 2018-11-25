@@ -20,40 +20,42 @@ namespace CapaNegocio
         //Constructores
         public ProdSimple()
         {
-
+            
         }
 
-        public ProdSimple(int codPS, int stock, bool insumo, int codprod, string nombre, float precioVenta, int idCat, string desc, bool comp)
+        public ProdSimple(int stock, bool insumo, string nombre, float precioVenta, int idCat, string desc, bool comp, int unidad, double contenido)
         {
             Error = false;
             Mensaje = "";
-            this.ValidarSimple(codPS);
-            if (!Error)
-            {
-                CodProdSimple = codPS;
-                Stock = stock;
-                Insumo = insumo;
+            //this.ValidarSimple(codPS);
+            //if (!Error)
+            //{
+            //    CodProdSimple = codPS;
+            Stock = stock;
+            Insumo = insumo;
 
-                this.ValidarProd(codprod, nombre);
-                if (!Error)
-                {
-                    Nombre = nombre;
-                    PrecioVenta = precioVenta;
-                    IdCategoria = idCat;
-                    DescProd = desc;
-                    Compuesto = comp;
+            //    this.ValidarProd(codprod, nombre);
+            //    if (!Error)
+            //    {
+            Nombre = nombre;
+            PrecioVenta = precioVenta;
+            IdCategoria = idCat;
+            DescProd = desc;
+            Compuesto = comp;
+            Unidad = unidad;
+            Contenido = contenido;
 
-                    this.GuardarPS();
-                }
-                else
-                {
-                    Error = true;
-                }
-            }
-            else
-            {
-                Error = true;
-            }
+            this.GuardarPS();
+            //    }
+            //    else
+            //    {
+            //        Error = true;
+            //    }
+            //}
+            //else
+            //{
+            //    Error = true;
+            //}
         }
 
 
@@ -122,6 +124,9 @@ namespace CapaNegocio
                 contenido = value;
             }
         }
+
+        public int Unidad1 { get => unidad; set => unidad = value; }
+        public double Contenido1 { get => contenido; set => contenido = value; }
 
 
         //Funciones 
