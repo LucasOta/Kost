@@ -44,7 +44,8 @@ namespace CapaDatos
 
         public static bool Guardar(int pCod, int pStock, bool pInsumo, int unidad, double contenido, Conexion con)
         {
-            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) values ((SELECT TOP 1 codProd FROM Productos WHERE baja=0 ORDER BY codProd DESC), @pStock, @pInsumo, @baja)";
+            string sql = "INSERT INTO ProdSimples (codProdSimple, stock, insumo, unidad, contenido, baja) +" +
+                "values (codProd, @pStock, @pInsumo, @baja)";
 
             try
             {
@@ -53,7 +54,7 @@ namespace CapaDatos
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("pCod", SqlDbType.Int);
+                Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = pCod;
 
                 Cx.sqlCmd.Parameters.Add("pStock", SqlDbType.Int);
