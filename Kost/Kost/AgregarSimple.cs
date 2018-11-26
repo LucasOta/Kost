@@ -17,13 +17,13 @@ namespace Kost
         public AgregarSimple()
         {
             InitializeComponent();
-            ActualizarPantalla();
         }
 
 
         //Clicks
         private void btnAtras_Click_1(object sender, EventArgs e)
         {
+            Clear();
             this.btnIrAtras();
         }
 
@@ -91,7 +91,7 @@ namespace Kost
             txtDescripcion.Text = prod.DescProd;
             cbxCategoria.SelectedValue = prod.IdCategoria;
             cbxU_Medida.SelectedValue = prod.Unidad;
-            txtContenido.Text = prod.Contenido.ToString();
+            txtContenido.Text = Convert.ToString(prod.Contenido);
             txtPrecio.Text = prod.PrecioVenta.ToString();
             chxInsumo.Checked = prod.Insumo;    
         }

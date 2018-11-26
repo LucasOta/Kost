@@ -163,22 +163,26 @@ namespace Kost
 
         private void IrProductoCompuesto()
         {
+            agregarCompuesto1.ActualizarPantalla();
             agregarCompuesto1.BringToFront();
         }
 
         private void ModificarProductoCompuesto(int id)
         {
+            agregarCompuesto1.ActualizarPantalla();
             agregarCompuesto1.BringToFront();
             agregarCompuesto1.cargarProd_a_Modificar(id);
         }
 
         private void IrProductoSimple()
         {
+            agregarSimple1.ActualizarPantalla();
             agregarSimple1.BringToFront();
         }
 
         private void ModificarProductoSimple(int id)
         {
+            agregarSimple1.ActualizarPantalla();
             agregarSimple1.BringToFront();
             agregarSimple1.cargarProd_a_Modificar(id);
         }
