@@ -212,14 +212,30 @@ namespace CapaNegocio
             return CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);            
         }
 
-        public static Boolean EliminarProd(int codprod)
+        public static int EliminarProd(int codprod, bool compuesto)
         {
-            return CapaDatos.ProductoBD.Eliminar(codprod);
+            return ProductoBD.Eliminar(codprod, compuesto);
         }
 
         public static DataTable ListarTodos()
         {
-            return CapaDatos.ProductoBD.TraerProductos();
+            DataTable productos = ProductoBD.TraerProductos();
+
+            productos.Columns.Add("Tipo");
+
+            foreach (DataRow row in productos.Rows)
+            {
+                if ((row["compuesto"].ToString()).Equals("True"))
+                {
+                    row["Tipo"] = "Compuesto";
+                }
+                else
+                {
+                    row["Tipo"] = "Simple";
+                }
+            }
+
+            return productos;
         }
 
         public static Boolean ProductoActivo(int codprod)

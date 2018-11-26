@@ -143,8 +143,6 @@ namespace CapaDatos
                         Cx.Cerrar();
                         return id_transaccion;
                     }
-                    //object nro = Cx.sqlCmd.ExecuteNonQuery();
-                    //Cx.Cerrar();
                 }
                 else
                 {
@@ -239,7 +237,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Eliminar(int cod)
+        public static int Eliminar(int cod, bool compuesto)
         {
             string sql = "UPDATE Productos SET baja=1 WHERE codProd=@codProd;";
 
@@ -254,20 +252,53 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[0].Value = cod;
 
                 Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
+                Cx.SetTransaccion();
 
+                Object nro = Cx.sqlCmd.ExecuteScalar();
+                int id_transaccion = cod;
+
+                if (id_transaccion > 0)
+                {
+                    bool deleteok;
+                    if (compuesto)
+                    {
+                        deleteok = ProductoCompuestoBD.Eliminar(id_transaccion, Cx);
+                    }
+                    else
+                    {
+                        deleteok = ProdSimpleBD.Eliminar(id_transaccion, Cx);
+                    }
+
+                    if (deleteok == false)
+                    {
+                        Cx.TransaccionRollback();
+                        Cx.Cerrar();
+                        return -1;
+                    }
+                    else if (id_transaccion < 0)
+                    {
+                        // si salio mal y id_transaccion es -1 rollback
+                        Cx.TransaccionRollback();
+                        Cx.Cerrar();
+                        return id_transaccion;
+                    }
+                    else
+                    {
+                        Cx.ComitTransaccion();
+                        Cx.Cerrar();
+                        return id_transaccion;
+                    }
+                    //object nro = Cx.sqlCmd.ExecuteNonQuery();
+                    //Cx.Cerrar();
+                }
+                else
+                {
+                    return id_transaccion;
+                }
             }
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
-                return false;
+                return -1;
             }
         }
 

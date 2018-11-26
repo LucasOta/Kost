@@ -128,28 +128,22 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Eliminar(int cod)
+        public static Boolean Eliminar(int cod, Conexion con)
         {
             string sql = "UPDATE ProdSimples SET baja=1 WHERE codProdSimple=@codProdSimple;";
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProdSimple", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = cod;
+                Cx.sqlCmd.Parameters[1].Value = cod;
 
-                Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
+                Cx.sqlCmd.ExecuteNonQuery();
+                return true;
 
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
@@ -192,7 +186,9 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("insumos");
 
-            string sql = "SELECT codProdSimple, nombre FROM ProdSimples WHERE baja = 0";
+            string sql = "SELECT S.codProdSimple, P.nombre " +
+                        "FROM ProdSimples S INNER JOIN Productos P ON S.codProdSimple = P.codProd " +
+                        "WHERE S.baja = 0 AND P.baja = 0 AND S.insumo = 1";
 
             try
             {

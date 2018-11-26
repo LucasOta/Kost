@@ -88,10 +88,10 @@ namespace CapaDatos
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("pCod", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = pCod;
+                Cx.sqlCmd.Parameters[6].Value = pCod;
 
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[1].Value = 0;
+                Cx.sqlCmd.Parameters[7].Value = 0;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -111,9 +111,13 @@ namespace CapaDatos
             }
         }
 
-        public static bool GuardarComposicion(int pCodC, int pCodS, int c)
+        public static bool GuardarComposicion(int pCodS, int c)
         {
-            string sql = "INSERT INTO Composicion (codProdCompuesto, codProdSimple, cantidad, baja) values (@pCodC, @pCodS, @c @baja)";
+            string sql = "INSERT INTO Composicion (codProdCompuesto, codProdSimple, cantidad, baja) "+
+                         "VALUES((SELECT TOP 1 codProdCompuesto "+
+                                "FROM ProdCompuestos "+
+                                "WHERE baja = 0 "+
+                                "ORDER BY codProdCompuesto DESC), @pCodS, @c, 0); ";
 
             try
             {
@@ -122,18 +126,12 @@ namespace CapaDatos
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("pCodC", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = pCodC;
-
                 Cx.sqlCmd.Parameters.Add("pCodS", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[1].Value = pCodS;
+                Cx.sqlCmd.Parameters[0].Value = pCodS;
 
                 Cx.sqlCmd.Parameters.Add("c", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[2].Value = c;
-
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[3].Value = 0;
-
+                Cx.sqlCmd.Parameters[1].Value = c;
+                
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
                 Cx.Cerrar();
@@ -152,13 +150,13 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Eliminar(int cod)
+        public static Boolean Eliminar(int cod, Conexion con)
         {
-            string sql = "UPDATE ProdCompuestos SET baja=@baja WHERE codProdCompuesto=@codProdCompuesto;";
+            string sql = "UPDATE ProdCompuestos SET baja=1 WHERE codProdCompuesto=@codProdCompuesto;";
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
@@ -166,18 +164,8 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = cod;
 
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[0].Value = 1;
-
-                Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
-
+                Cx.sqlCmd.ExecuteNonQuery();
+                return true;
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
@@ -232,7 +220,9 @@ namespace CapaDatos
         {
             DataTable composicion = new DataTable("Composicion");
 
-            string sql = "SELECT C.codProdSimple, P.nombre, C.cantidad FROM Productos P INNER JOIN Composicion C ON P.codProd = C.codProdSimple WHERE codProdCompuesto = @codProdCompuesto and baja = 0; ";
+            string sql = "SELECT C.codProdSimple, P.nombre, C.cantidad " +
+                        "FROM Productos P INNER JOIN Composicion C ON P.codProd = C.codProdSimple " +
+                        "WHERE C.codProdCompuesto = @codProdCompuesto and C.baja = 0 and P.baja = 0; ";
 
             try
             {

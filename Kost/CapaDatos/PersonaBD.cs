@@ -76,9 +76,11 @@ namespace CapaDatos
             }
         }
 
-        public static String Guardar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion)
+        public static long Guardar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion, string usuario, string contrasenia, int nivel, long cuilPersona, bool esUsuario)
         {
-            string sql = "INSERT INTO personas (cuil, nombre, apellido, mail, fechaNacimiento, direccion, baja) values (@cuil, @nombre, @apellido, @mail, @fechaNacimiento, @direccion, @baja)";
+            string sql = "INSERT INTO personas (cuil, nombre, apellido, mail, fechaNacimiento, direccion, baja) " +
+                        "VALUES (@cuil, @nombre, @apellido, @mail, @fechaNacimiento, @direccion, @baja);" +
+                        "SELECT CAST(scope_identity() AS bigInt);";
 
             try
             {
@@ -109,18 +111,52 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[6].Value = 0;
 
                 Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return "OK";
-                }
-                return "Error en la conexión a la base de datos.";
 
+                Cx.SetTransaccion();
+
+                Object nro = Cx.sqlCmd.ExecuteScalar();
+                long id_transaccion = Convert.ToInt64(nro);
+
+                if (id_transaccion > 0)
+                {
+                    bool insertok;
+                    if (esUsuario)
+                    {
+                        insertok = UsuarioBD.Guardar(usuario, contrasenia, nivel, id_transaccion, Cx);
+                    }
+                    else
+                    {
+                        insertok = MozoBD.Guardar(id_transaccion, Cx);
+                    }
+
+                    if (insertok == false)
+                    {
+                        Cx.TransaccionRollback();
+                        Cx.Cerrar();
+                        return -1;
+                    }
+                    else if (id_transaccion < 0)
+                    {
+                        // si salio mal y id_transaccion es -1 rollback
+                        Cx.TransaccionRollback();
+                        Cx.Cerrar();
+                        return id_transaccion;
+                    }
+                    else
+                    {
+                        Cx.ComitTransaccion();
+                        Cx.Cerrar();
+                        return id_transaccion;
+                    }
+                }
+                else
+                {
+                    return id_transaccion;
+                }
             }
             catch (Exception e)
             {
-                return e.Message;
+                return -1;
             }
         }
 

@@ -41,6 +41,7 @@
             this.btnAgregarSimple = new System.Windows.Forms.Button();
             this.btnVerStock = new System.Windows.Forms.Button();
             this.btnAdmCategorias = new System.Windows.Forms.Button();
+            this.compuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,7 +91,8 @@
             this.Descripcion,
             this.Categoria,
             this.Precio,
-            this.Tipo});
+            this.Tipo,
+            this.compuesto});
             this.dgvProductos.Location = new System.Drawing.Point(8, 8);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
@@ -99,12 +101,35 @@
             this.dgvProductos.Size = new System.Drawing.Size(809, 388);
             this.dgvProductos.TabIndex = 0;
             // 
+            // btnAgregarSimple
+            // 
+            this.btnAgregarSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarSimple.Location = new System.Drawing.Point(196, 402);
+            this.btnAgregarSimple.Name = "btnAgregarSimple";
+            this.btnAgregarSimple.Size = new System.Drawing.Size(182, 54);
+            this.btnAgregarSimple.TabIndex = 2;
+            this.btnAgregarSimple.Text = "Agregar Producto Simple";
+            this.btnAgregarSimple.UseVisualStyleBackColor = true;
+            this.btnAgregarSimple.Click += new System.EventHandler(this.btnAgregarSimple_Click);
+            // 
+            // btnVerStock
+            // 
+            this.btnVerStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerStock.Location = new System.Drawing.Point(384, 482);
+            this.btnVerStock.Name = "btnVerStock";
+            this.btnVerStock.Size = new System.Drawing.Size(182, 40);
+            this.btnVerStock.TabIndex = 5;
+            this.btnVerStock.Text = "Ver Stock";
+            this.btnVerStock.UseVisualStyleBackColor = true;
+            this.btnVerStock.Click += new System.EventHandler(this.btnVerStock_Click);
+            // 
             // ID
             // 
             this.ID.DataPropertyName = "codProd";
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             this.ID.Width = 50;
             // 
             // Nombre
@@ -140,7 +165,7 @@
             // 
             // Tipo
             // 
-            this.Tipo.DataPropertyName = "compuesto";
+            this.Tipo.DataPropertyName = "Tipo";
             this.Tipo.HeaderText = "Tipo";
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
@@ -178,6 +203,14 @@
             this.btnAdmCategorias.UseVisualStyleBackColor = true;
             this.btnAdmCategorias.Click += new System.EventHandler(this.btnAdmCategorias_Click);
             // 
+            // compuesto
+            // 
+            this.compuesto.DataPropertyName = "compuesto";
+            this.compuesto.HeaderText = "Compuesto";
+            this.compuesto.Name = "compuesto";
+            this.compuesto.ReadOnly = true;
+            this.compuesto.Visible = false;
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -211,6 +244,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn compuesto;
         private System.Windows.Forms.Button btnAdmCategorias;
     }
 }

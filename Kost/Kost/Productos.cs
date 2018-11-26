@@ -69,7 +69,8 @@ namespace Kost
             {
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el producto?"))
                 {
-                    if (Producto.EliminarProd(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value)))
+
+                    if (Producto.EliminarProd(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), es_Compuesto()) > 0)
                     {
                         Funciones.mOk(this, "Producto eliminado con éxito");
 
@@ -106,7 +107,7 @@ namespace Kost
         }
 
         private Boolean es_Compuesto() {
-            if (Convert.ToBoolean(dgvProductos.CurrentRow.Cells["Tipo"].Value)) {
+            if ((Convert.ToString(dgvProductos.CurrentRow.Cells["Tipo"].Value)).Equals("Compuesto")) {
                 return true;
             }
             return false;

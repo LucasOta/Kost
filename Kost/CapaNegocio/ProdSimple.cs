@@ -109,31 +109,19 @@ namespace CapaNegocio
 
  
         //Funciones 
-        protected void ValidarSimple(int codPS)
-        {
-            if (CapaDatos.ProdSimpleBD.Existe(codPS))
-            {
-                Error = true;
-                Mensaje += "Ya existe un producto simple con este codigo de producto simple. ";
-            }
-        }
-
         public void GuardarPS()
         {
-            if (!Error)
+            if (CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, false, 0, insumo, Unidad, Contenido)  > 0)
             {
-                if(CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, false, 0, insumo, Unidad, Contenido)  > 0)
-                {
-                    Error = false;
-                    Mensaje = "Producto simple guardado con éxito.";
-                }
-                else
-                {
-                    Error = true;
-                    Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente.";
-                }
+                Error = false;
+                Mensaje = "Producto simple guardado con éxito.";
             }
-        }
+            else
+            {
+                Error = true;
+                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente.";
+            }
+        }        
 
         public Boolean ModificarPS()
         {
@@ -149,10 +137,10 @@ namespace CapaNegocio
             }
         }
 
-        public static Boolean EliminarPS(int codPS)
-        {
-            return CapaDatos.ProdSimpleBD.Eliminar(codPS);
-        }
+        //public static Boolean EliminarPS(int codPS)
+        //{
+        //    return CapaDatos.ProdSimpleBD.Eliminar(codPS);
+        //}
 
         public static void TraerUnSimple(int codPS, ProdSimple p)
         {

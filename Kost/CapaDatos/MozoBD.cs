@@ -42,31 +42,26 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Guardar(long cuilMozo)
+        public static Boolean Guardar(long cuilMozo, Conexion con)
         {
             string sql = "INSERT INTO Mozos (cuilMozo, baja) values (@cuilMozo, @baja)";
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("cuilMozo", SqlDbType.BigInt);
-                Cx.sqlCmd.Parameters[0].Value = cuilMozo;
+                Cx.sqlCmd.Parameters[7].Value = cuilMozo;
 
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[1].Value = 0;
+                Cx.sqlCmd.Parameters[8].Value = 0;
 
-                Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
+                Cx.sqlCmd.ExecuteNonQuery();
+                
+                return true;
 
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
