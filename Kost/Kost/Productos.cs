@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaNegocio;
 
 namespace Kost
 {
@@ -65,6 +66,16 @@ namespace Kost
             {
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el producto?"))
                 {
+                    if (Producto.EliminarProd(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value)))
+                    {
+                        Funciones.mOk(this, "Producto eliminado con éxito");
+
+                        ActualizarPantalla();
+                    }
+                    else
+                    {
+                        Funciones.mError(this, "No se pudo eliminar el producto, intente nuevamente");
+                    }
                 }
             }
         }
