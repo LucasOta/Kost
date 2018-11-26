@@ -137,27 +137,14 @@ namespace CapaNegocio
 
         public Boolean ModificarPS()
         {
-            Error = false;
-            this.ValidarSimple(CodProdSimple);
-
-            if (!Error)
+            if(this.ModificarProducto() && CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0))
             {
-                Boolean prod = this.ModificarProducto();
-
-                Boolean prodSimp = CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0);
-
-                if(prod && prodSimp)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                Mensaje = "Los cambios se guardaron correctamente.";
+                return true;
             }
             else
             {
-                Mensaje += " No pudieron relizarse las modificaciones";
+                Mensaje = "Ocurrió un error durante la conexión con BD, algunos datos pueden no concordar.";
                 return false;
             }
         }
@@ -177,6 +164,16 @@ namespace CapaNegocio
 
             p.CodProdSimple = Convert.ToInt32(rowps["codProdSimple"].ToString());
             p.Stock = Convert.ToInt32(rowps["stock"].ToString());
+            p.Unidad = Convert.ToInt32(rowps["unidad"].ToString());
+            p.Contenido = Convert.ToDouble(rowps["contenido"].ToString());
+            if ((rowps["insumo"].ToString()).Equals("True"))
+            {
+                p.Insumo = true;
+            }
+            else
+            {
+                p.Insumo = false;
+            }
         }
 
         public static DataTable MostrarStock()

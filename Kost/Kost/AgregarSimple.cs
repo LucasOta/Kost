@@ -17,13 +17,13 @@ namespace Kost
         public AgregarSimple()
         {
             InitializeComponent();
-            ActualizarPantalla();
         }
 
 
         //Clicks
         private void btnAtras_Click_1(object sender, EventArgs e)
         {
+            Clear();
             this.btnIrAtras();
         }
 
@@ -48,7 +48,7 @@ namespace Kost
             }
             else
             {
-                //GuardarModificacion();
+                GuardarModificacion();
             }
         }
 
@@ -82,9 +82,19 @@ namespace Kost
         }
 
         public void cargarProd_a_Modificar(int id) {
+            ActualizarPantalla();
+
             ProdSimple prod = new ProdSimple();
-            ProdSimple.TraerUnProducto(id, prod);
-            //Cargar el Producto a todos los elementos de la pantalla
+            ProdSimple.TraerUnSimple(id, prod);
+
+            txtNombre.Text = prod.Nombre;
+            txtDescripcion.Text = prod.DescProd;
+            cbxCategoria.SelectedValue = prod.IdCategoria;
+            cbxU_Medida.SelectedValue = prod.Unidad;
+            txtContenido.Text = prod.Contenido.ToString();
+            txtPrecio.Text = prod.PrecioVenta.ToString();
+            cbxU_Medida.SelectedValue = prod.Unidad;
+            chxInsumo.Checked = prod.Insumo;
         }
 
         public void CargarCBX_Categoria()
@@ -105,24 +115,28 @@ namespace Kost
 
             unidades.Clear();
             unidades.Columns.Add("U_Medida");
+            unidades.Columns.Add("Id_Unidad");
 
             DataRow row;
             
             row = unidades.NewRow();
             row["U_Medida"] = "Unidad";
+            row["Id_Unidad"] = 1;
             unidades.Rows.Add(row);
 
             row = unidades.NewRow();
             row["U_Medida"] = "Gramos";
+            row["Id_Unidad"] = 2;
             unidades.Rows.Add(row);
 
             row = unidades.NewRow();
             row["U_Medida"] = "Mililitros";
+            row["Id_Unidad"] = 3;
             unidades.Rows.Add(row);
 
 
             cbxU_Medida.DataSource = unidades.DefaultView;
-            cbxU_Medida.ValueMember = "U_Medida";
+            cbxU_Medida.ValueMember = "Id_Unidad";
             cbxU_Medida.DisplayMember = "U_Medida";
             cbxU_Medida.BindingContext = this.BindingContext;
         }
@@ -136,6 +150,29 @@ namespace Kost
         {
             CapaNegocio.Funciones.acepta_Float(txtPrecio.Text, e);
         }        
-    }
 
+        private void GuardarModificacion()
+        {
+            ps.Nombre = txtNombre.Text;
+            ps.PrecioVenta = float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat);
+            ps.Insumo = chxInsumo.Checked;
+            ps.IdCategoria = Convert.ToInt32(cbxCategoria.SelectedValue);
+            ps.DescProd = txtDescripcion.Text;
+            ps.Contenido = Convert.ToDouble(txtContenido.Text);
+            ps.Unidad = Convert.ToInt32(cbxU_Medida.SelectedValue);
+
+            if (ps.ModificarPS())
+            {
+                CapaNegocio.Funciones.mOk(this, ps.Mensaje);
+
+                Clear();
+
+                btnAtras_Click_1(this, new EventArgs());
+            }
+            else
+            {
+                CapaNegocio.Funciones.mError(this, ps.Mensaje);
+            }
+        }
+    }
 }

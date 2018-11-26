@@ -164,7 +164,7 @@ namespace CapaDatos
         {
             DataTable productoSimple = new DataTable("ProductosSimples");
 
-            string sql = "SELECT codProdSimple, stock, insumo, unidad, contenido FROM ProdSimples WHERE codProdSimple = @codProdSimple and baja=0";
+            string sql = "SELECT codProdSimple, stock, insumo, unidad, contenido FROM ProdSimples WHERE codProdSimple = @codProdSimple";
 
             try
             {
