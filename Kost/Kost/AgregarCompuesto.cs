@@ -47,6 +47,26 @@ namespace Kost
             
         }
 
+        public void CargarCBXCategoria()
+        {
+            DataTable productos = CapaNegocio.Categoria.ListarTodos();
+
+            cbxCategoria.DataSource = productos.DefaultView;
+            cbxCategoria.ValueMember = "idCategoria";
+            cbxCategoria.DisplayMember = "nombre";
+            cbxCategoria.BindingContext = this.BindingContext;
+        }
+
+        public void CargarCBXComponentes()
+        {
+            DataTable productos = CapaNegocio.ProdSimple.TraerInsumos();
+
+            cbxCategoria.DataSource = productos.DefaultView;
+            cbxCategoria.ValueMember = "codProdSimple";
+            cbxCategoria.DisplayMember = "nombre";
+            cbxCategoria.BindingContext = this.BindingContext;
+        }
+
         public void cargarProd_a_Modificar(int id)
         {
             //Cambiar lo de abajo a producto compuesto

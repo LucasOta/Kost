@@ -107,10 +107,7 @@ namespace CapaNegocio
             }
         }
 
-        public int Unidad1 { get => unidad; set => unidad = value; }
-        public double Contenido1 { get => contenido; set => contenido = value; }
-
-
+ 
         //Funciones 
         protected void ValidarSimple(int codPS)
         {
@@ -190,6 +187,11 @@ namespace CapaNegocio
         public Boolean ActualizarStock()
         {
             return CapaDatos.ProdSimpleBD.ActualizarStock(CodProdSimple, Stock);
+        }
+
+        public static DataTable TraerInsumos()
+        {
+            return ProdSimpleBD.TraerInsumos();
         }
     }
 }
