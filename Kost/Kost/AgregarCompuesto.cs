@@ -44,7 +44,8 @@ namespace Kost
 
         public void ActualizarPantalla()
         {
-            
+            CargarCBXCategoria();
+            CargarCBXComponentes();
         }
 
         public void CargarCBXCategoria()
@@ -61,10 +62,10 @@ namespace Kost
         {
             DataTable productos = CapaNegocio.ProdSimple.TraerInsumos();
 
-            cbxCategoria.DataSource = productos.DefaultView;
-            cbxCategoria.ValueMember = "codProdSimple";
-            cbxCategoria.DisplayMember = "nombre";
-            cbxCategoria.BindingContext = this.BindingContext;
+            cbxComponente.DataSource = productos.DefaultView;
+            cbxComponente.ValueMember = "codProdSimple";
+            cbxComponente.DisplayMember = "nombre";
+            cbxComponente.BindingContext = this.BindingContext;
         }
 
         public void cargarProd_a_Modificar(int id)

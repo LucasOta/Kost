@@ -43,11 +43,9 @@
             this.lblProducto = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.txtCosto = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.lblCosto = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.btnAtras = new System.Windows.Forms.Button();
@@ -186,13 +184,6 @@
             this.lblNombre.TabIndex = 45;
             this.lblNombre.Text = "Nombre";
             // 
-            // txtCosto
-            // 
-            this.txtCosto.Location = new System.Drawing.Point(153, 185);
-            this.txtCosto.Name = "txtCosto";
-            this.txtCosto.Size = new System.Drawing.Size(250, 27);
-            this.txtCosto.TabIndex = 3;
-            // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
@@ -217,15 +208,6 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(250, 27);
             this.txtDescripcion.TabIndex = 1;
-            // 
-            // lblCosto
-            // 
-            this.lblCosto.AutoSize = true;
-            this.lblCosto.Location = new System.Drawing.Point(28, 188);
-            this.lblCosto.Name = "lblCosto";
-            this.lblCosto.Size = new System.Drawing.Size(56, 21);
-            this.lblCosto.TabIndex = 48;
-            this.lblCosto.Text = "Costo";
             // 
             // txtNombre
             // 
@@ -277,11 +259,9 @@
             this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.txtCosto);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.lblCosto);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.btnAtras);
@@ -310,11 +290,9 @@
         private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox txtCosto;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.Label lblCosto;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.Button btnAtras;
