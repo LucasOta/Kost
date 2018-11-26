@@ -70,25 +70,39 @@ namespace Kost
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            DataRow row;
-
-            row = composicion.NewRow();
-            row["codProdSim"] = cbxComponente.SelectedValue;
-            row["nombre"] = cbxComponente.Text;
-            if ((txtCantidad.Text).Equals(""))
+            if (banderaGuardar)
             {
-                row["cantidad"] = 1;
+                DataRow row;
+
+                row = composicion.NewRow();
+                row["codProdSim"] = cbxComponente.SelectedValue;
+                row["nombre"] = cbxComponente.Text;
+                if ((txtCantidad.Text).Equals(""))
+                {
+                    row["cantidad"] = 1;
+                }
+                else
+                {
+                    row["cantidad"] = txtCantidad.Text;
+                }
+                composicion.Rows.Add(row);
+
+                CargarDGV(composicion);
+
+                txtCantidad.Text = "";
+                cbxComponente.SelectedIndex = 0;
             }
             else
             {
-                row["cantidad"] = txtCantidad.Text;
+                if (ProdCompuesto.GuardarComposicionMod(pc.CodProdCompuesto, Convert.ToInt32(cbxComponente.SelectedValue), Convert.ToInt32(txtCantidad.Text)))
+                {
+                    CapaNegocio.Funciones.mOk(this, "Se guardo correctamente el componente del producto");
+                }
+                else
+                {
+                    CapaNegocio.Funciones.mError(this, "No se pudo guardar el componente debido a un error de conexión con BD.");
+                }
             }            
-            composicion.Rows.Add(row);
-
-            CargarDGV(composicion);
-
-            txtCantidad.Text = "";
-            cbxComponente.SelectedIndex = 0;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -96,6 +110,17 @@ namespace Kost
             if (banderaGuardar)
             {
                 composicion.Rows[dgvComponentes.CurrentRow.Index].Delete();
+            }
+            else
+            {
+                if(ProdCompuesto.EliminarComposicion(pc.CodProdCompuesto, Convert.ToInt32(dgvComponentes.CurrentRow.Cells["codProdSimple"].Value), Convert.ToInt32(dgvComponentes.CurrentRow.Cells["cantidad"].Value)))
+                {
+                    CapaNegocio.Funciones.mOk(this, "Se elimino correctamente el componente del producto");
+                }
+                else
+                {
+                    CapaNegocio.Funciones.mError(this, "No se pudo eliminar el componente debido a un error de conexión con BD.");
+                }
             }
         }
 
@@ -169,7 +194,25 @@ namespace Kost
 
         public void GuardarModificacion()
         {
+            pc.Nombre = txtNombre.Text;
+            pc.PrecioVenta = float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat);
+            pc.IdCategoria = Convert.ToInt32(cbxCategoria.SelectedValue);
+            pc.DescProd = txtDescripcion.Text;
 
+            if (pc.ModificarProducto())
+            {
+                CapaNegocio.Funciones.mOk(this, pc.Mensaje);
+
+                Clear();
+
+                btnAtras_Click_1(this, new EventArgs());
+
+                banderaGuardar = true;
+            }
+            else
+            {
+                CapaNegocio.Funciones.mError(this, pc.Mensaje);
+            }
         }                
     }
 }

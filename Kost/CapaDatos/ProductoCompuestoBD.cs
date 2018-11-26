@@ -38,43 +38,40 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean ExisteComposicion(int codProdComp, int codProdSimpl, int cantidad)
-        {
-            string sql = "SELECT baja FROM Composicion WHERE codProdCompuesto =  @codProdSimpl AND codProdSimple = @codProdSimpl AND cantidad = @cantidad";
-            try
-            {
-                Conexion cx = new Conexion();
-                cx.SetComandoTexto();
-                cx.SetSQL(sql);
+//        public static Boolean ExisteComposicion(int codProdSimpl, int cantidad)
+//        {
+//            string sql = "SELECT baja FROM Composicion WHERE codProdCompuesto =  @codProdSimpl AND codProdSimple = @codProdSimpl AND cantidad = @cantidad";
+//            try
+//            {
+//                Conexion cx = new Conexion();
+//                cx.SetComandoTexto();
+//                cx.SetSQL(sql);
 
-                cx.sqlCmd.Parameters.Add("@codProdCompuesto", SqlDbType.Int);
-                cx.sqlCmd.Parameters[0].Value = codProdComp;
+//                cx.sqlCmd.Parameters.Add("@codProdSimpl", SqlDbType.Int);
+//                cx.sqlCmd.Parameters[0].Value = codProdSimpl;
 
-                cx.sqlCmd.Parameters.Add("@codProdSimpl", SqlDbType.Int);
-                cx.sqlCmd.Parameters[1].Value = codProdSimpl;
+//                cx.sqlCmd.Parameters.Add("@cantidad", SqlDbType.Int);
+//                cx.sqlCmd.Parameters[1].Value = cantidad;
 
-                cx.sqlCmd.Parameters.Add("@cantidad", SqlDbType.Int);
-                cx.sqlCmd.Parameters[2].Value = cantidad;
+//                cx.Abrir();
+//                SqlDataReader reader = cx.sqlCmd.ExecuteReader();
 
-                cx.Abrir();
-                SqlDataReader reader = cx.sqlCmd.ExecuteReader();
-
-                if (reader.HasRows)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
-            catch (Exception e)
-#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
-            {
-                return true; //Habría que ver qué mandar si hay un error con la conexión
-            }
-        }
+//                if (reader.HasRows)
+//                {
+//                    return true;
+//                }
+//                else
+//                {
+//                    return false;
+//                }
+//            }
+//#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+//            catch (Exception e)
+//#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+//            {
+//                return true; //Habría que ver qué mandar si hay un error con la conexión
+//            }
+//        }
 
         public static bool Guardar(int pCod, Conexion con)
         {
@@ -132,6 +129,45 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("c", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = c;
                 
+                Cx.Abrir();
+                object nro = Cx.sqlCmd.ExecuteNonQuery();
+                Cx.Cerrar();
+                if (Convert.ToInt32(nro) > 0)
+                {
+                    return true;
+                }
+                return false;
+
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                return false;
+            }
+        }
+
+        public static bool GuardarComposicionMod(int pCodC, int pCodS, int c)
+        {
+            string sql = "INSERT INTO Composicion (codProdCompuesto, codProdSimple, cantidad, baja) " +
+                         "VALUES (@pCodC @pCodS, @c, 0);";
+
+            try
+            {
+                Conexion Cx = new Conexion();
+
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
+
+                Cx.sqlCmd.Parameters.Add("pCodC", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = pCodC;
+
+                Cx.sqlCmd.Parameters.Add("pCodS", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[1].Value = pCodS;
+
+                Cx.sqlCmd.Parameters.Add("c", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[2].Value = c;
+
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
                 Cx.Cerrar();

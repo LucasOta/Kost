@@ -209,7 +209,16 @@ namespace CapaNegocio
 
         public Boolean ModificarProducto()
         {
-            return CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);            
+            if(CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto))
+            {
+                Mensaje = "Se guardaron los cambios con éxito";
+                return true;
+            }
+            else
+            {
+                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente";
+                return false;
+            }            
         }
 
         public static int EliminarProd(int codprod, bool compuesto)
