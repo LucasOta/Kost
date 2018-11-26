@@ -142,14 +142,8 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("codProdSimple", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = cod;
 
-                Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
+                Cx.sqlCmd.ExecuteNonQuery();
+                return true;
 
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa

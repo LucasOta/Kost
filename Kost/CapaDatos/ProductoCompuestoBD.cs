@@ -113,7 +113,11 @@ namespace CapaDatos
 
         public static bool GuardarComposicion(int pCodC, int pCodS, int c)
         {
-            string sql = "INSERT INTO Composicion (codProdCompuesto, codProdSimple, cantidad, baja) values (@pCodC, @pCodS, @c @baja)";
+            string sql = "INSERT INTO Composicion (codProdCompuesto, codProdSimple, cantidad, baja) "+
+                         "VALUES((SELECT TOP 1 codProdCompuesto "+
+                                "FROM ProdCompuestos "+
+                                "WHERE baja = 0 "+
+                                "ORDER BY codProdCompuesto DESC), @pCodS, @c, @baja); ";
 
             try
             {
@@ -166,15 +170,8 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = cod;
 
-                Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
-
+                Cx.sqlCmd.ExecuteNonQuery();
+                return true;
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
