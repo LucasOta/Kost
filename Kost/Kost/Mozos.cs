@@ -41,7 +41,7 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Mozo mozo1 = new CapaNegocio.Mozo(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, Convert.ToInt64(txtCuil.Text.Replace("-", "")), dtpNacimiento.Value);
+                Mozo mozo1 = new CapaNegocio.Mozo(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, Convert.ToInt64(txtCuil.Text.Replace("-", "")), dtpNacimiento.Value);
                 if (mozo1.Error)
                 {
                     if (mozo1.Mensaje == "Cuil existente no activo")
@@ -60,7 +60,6 @@ namespace Kost
                     {
                         CapaNegocio.Funciones.mError(this, mozo1.Mensaje);
                     }
-
                 }
                 else
                 {
