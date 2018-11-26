@@ -167,13 +167,15 @@ namespace CapaNegocio
 
             p.CodProdSimple = Convert.ToInt32(rowps["codProdSimple"].ToString());
             p.Stock = Convert.ToInt32(rowps["stock"].ToString());
-            if(rowps["insumo"].ToString().Equals("0"))
+            p.Unidad = Convert.ToInt32(rowps["unidad"].ToString());
+            p.Contenido = Convert.ToDouble(rowps["contenido"].ToString());
+            if ((rowps["insumo"].ToString()).Equals("True"))
             {
-                p.Insumo = false;
+                p.Insumo = true;
             }
             else
             {
-                p.Insumo = true;
+                p.Insumo = false;
             }
         }
 

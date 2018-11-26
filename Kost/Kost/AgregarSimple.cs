@@ -91,9 +91,10 @@ namespace Kost
             txtDescripcion.Text = prod.DescProd;
             cbxCategoria.SelectedValue = prod.IdCategoria;
             cbxU_Medida.SelectedValue = prod.Unidad;
-            txtContenido.Text = Convert.ToString(prod.Contenido);
+            txtContenido.Text = prod.Contenido.ToString();
             txtPrecio.Text = prod.PrecioVenta.ToString();
-            chxInsumo.Checked = prod.Insumo;    
+            cbxU_Medida.SelectedValue = prod.Unidad;
+            chxInsumo.Checked = prod.Insumo;
         }
 
         public void CargarCBX_Categoria()
@@ -114,24 +115,28 @@ namespace Kost
 
             unidades.Clear();
             unidades.Columns.Add("U_Medida");
+            unidades.Columns.Add("Id_Unidad");
 
             DataRow row;
             
             row = unidades.NewRow();
             row["U_Medida"] = "Unidad";
+            row["Id_Unidad"] = 1;
             unidades.Rows.Add(row);
 
             row = unidades.NewRow();
             row["U_Medida"] = "Gramos";
+            row["Id_Unidad"] = 2;
             unidades.Rows.Add(row);
 
             row = unidades.NewRow();
             row["U_Medida"] = "Mililitros";
+            row["Id_Unidad"] = 3;
             unidades.Rows.Add(row);
 
 
             cbxU_Medida.DataSource = unidades.DefaultView;
-            cbxU_Medida.ValueMember = "U_Medida";
+            cbxU_Medida.ValueMember = "Id_Unidad";
             cbxU_Medida.DisplayMember = "U_Medida";
             cbxU_Medida.BindingContext = this.BindingContext;
         }
