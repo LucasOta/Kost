@@ -14,16 +14,14 @@ namespace Kost
     public partial class AgregarCompuesto : UserControl, Interfaz
     {
         public event volverAProductos btnIrAtras;
+
+        Boolean banderaGuardar = true;
         Boolean aux = false;
+        ProdCompuesto pc;
 
         public AgregarCompuesto()
         {
             InitializeComponent();
-        }
-
-        private void btnAtras_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void lblComponentes_Click(object sender, EventArgs e)
@@ -33,14 +31,39 @@ namespace Kost
 
         private void btnAtras_Click_1(object sender, EventArgs e)
         {
+            Clear();
             this.btnIrAtras();
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (banderaGuardar)
+            {
+
+            }
+            else
+            {
+                GuardarModificacion();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Clear();
+            btnAtras_Click_1(this, new EventArgs());
         }
 
 
         //Métodos
         public void Clear()
         {
-            
+            txtNombre.Text = "";
+            txtDescripcion.Text = "";
+            txtCantidad.Text = "";
+            txtPrecio.Text = "";
+            cbxCategoria.SelectedIndex = 1;
+            cbxComponente.SelectedIndex = 1;
+            dgvComponentes.DataSource = null;
         }
 
         public void ActualizarPantalla()
@@ -73,12 +96,27 @@ namespace Kost
             cbxComponente.BindingContext = this.BindingContext;
         }
 
+        public void CargarDGV()
+        {
+            dgvComponentes.DataSource = ProdCompuesto.TraerComposicion(pc.CodProdCompuesto);
+            dgvComponentes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
         public void cargarProd_a_Modificar(int id)
         {
-            //Cambiar lo de abajo a producto compuesto
-           // ProdSimple prod = new ProdSimple();
-            // ProdSimple.TraerUnProducto(id, prod);
-            //Cargar el Producto a todos los elementos de la pantalla
+            ActualizarPantalla();
+
+            pc = new CapaNegocio.ProdCompuesto();
+            ProdCompuesto.TraerUnProducto(id, pc);
+
+            pc.CodProdCompuesto = id;
+            txtNombre.Text = pc.Nombre;
+            txtDescripcion.Text = pc.DescProd;
+            cbxCategoria.SelectedValue = pc.IdCategoria;
+            txtPrecio.Text = pc.PrecioVenta.ToString();
+            CargarDGV();
+
+            banderaGuardar = false;
         }
 
         private void cbxComponente_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,5 +130,10 @@ namespace Kost
                 ActualizarPantalla();
             }
         }
+
+        public void GuardarModificacion()
+        {
+
+        }        
     }
 }

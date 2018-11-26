@@ -9,7 +9,7 @@ using CapaDatos;
 
 namespace CapaNegocio
 {
-    class ProdCompuesto : Producto
+    public class ProdCompuesto : Producto
     {
         private int codProdCompuesto;
 

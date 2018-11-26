@@ -40,6 +40,7 @@
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.compuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +90,8 @@
             this.Descripcion,
             this.Categoria,
             this.Precio,
-            this.Tipo});
+            this.Tipo,
+            this.compuesto});
             this.dgvProductos.Location = new System.Drawing.Point(8, 8);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
@@ -126,6 +128,7 @@
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             this.ID.Width = 50;
             // 
             // Nombre
@@ -166,6 +169,14 @@
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
             // 
+            // compuesto
+            // 
+            this.compuesto.DataPropertyName = "compuesto";
+            this.compuesto.HeaderText = "Compuesto";
+            this.compuesto.Name = "compuesto";
+            this.compuesto.ReadOnly = true;
+            this.compuesto.Visible = false;
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -198,5 +209,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn compuesto;
     }
 }
