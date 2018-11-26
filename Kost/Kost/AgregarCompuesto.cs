@@ -8,16 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaNegocio;
+using System.Globalization;
 
 namespace Kost
 {
     public partial class AgregarCompuesto : UserControl, Interfaz
     {
         public event volverAProductos btnIrAtras;
-
+                
         Boolean banderaGuardar = true;
         Boolean aux = false;
         ProdCompuesto pc;
+        DataTable composicion = new DataTable();
 
         public AgregarCompuesto()
         {
@@ -39,7 +41,20 @@ namespace Kost
         {
             if (banderaGuardar)
             {
+                pc = new ProdCompuesto(txtNombre.Text, float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat), Convert.ToInt32(cbxCategoria.SelectedValue), txtDescripcion.Text, true, composicion);
 
+                if (pc.Error)
+                {
+                    CapaNegocio.Funciones.mError(this, pc.Mensaje);
+                }
+                else
+                {
+                    CapaNegocio.Funciones.mOk(this, pc.Mensaje);
+
+                    Clear();
+
+                    btnAtras_Click_1(this, new EventArgs());
+                }
             }
             else
             {
@@ -53,6 +68,36 @@ namespace Kost
             btnAtras_Click_1(this, new EventArgs());
         }
 
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            DataRow row;
+
+            row = composicion.NewRow();
+            row["codProdSim"] = cbxComponente.SelectedValue;
+            row["nombre"] = cbxComponente.Text;
+            if ((txtCantidad.Text).Equals(""))
+            {
+                row["cantidad"] = 1;
+            }
+            else
+            {
+                row["cantidad"] = txtCantidad.Text;
+            }            
+            composicion.Rows.Add(row);
+
+            CargarDGV(composicion);
+
+            txtCantidad.Text = "";
+            cbxComponente.SelectedIndex = 0;
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (banderaGuardar)
+            {
+                composicion.Rows[dgvComponentes.CurrentRow.Index].Delete();
+            }
+        }
 
         //Métodos
         public void Clear()
@@ -62,6 +107,7 @@ namespace Kost
             txtCantidad.Text = "";
             txtPrecio.Text = "";
             dgvComponentes.DataSource = null;
+            composicion.Clear();
         }
 
         public void ActualizarPantalla()
@@ -72,6 +118,10 @@ namespace Kost
             CargarCBXComponentes();
 
             aux = true;
+            
+            composicion.Columns.Add("codProdSim");
+            composicion.Columns.Add("nombre");
+            composicion.Columns.Add("cantidad");
         }
 
         public void CargarCBXCategoria()
@@ -94,9 +144,9 @@ namespace Kost
             cbxComponente.BindingContext = this.BindingContext;
         }
 
-        public void CargarDGV()
+        public void CargarDGV(DataTable carga)
         {
-            dgvComponentes.DataSource = ProdCompuesto.TraerComposicion(pc.CodProdCompuesto);
+            dgvComponentes.DataSource = carga;
             dgvComponentes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
@@ -112,26 +162,14 @@ namespace Kost
             txtDescripcion.Text = pc.DescProd;
             cbxCategoria.SelectedValue = pc.IdCategoria;
             txtPrecio.Text = pc.PrecioVenta.ToString();
-            CargarDGV();
+            CargarDGV(ProdCompuesto.TraerComposicion(pc.CodProdCompuesto));
 
             banderaGuardar = false;
-        }
-
-        private void cbxComponente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (aux)
-            {
-                CargarCBXComponentes();
-            }
-            else
-            {
-                ActualizarPantalla();
-            }
         }
 
         public void GuardarModificacion()
         {
 
-        }        
+        }                
     }
 }

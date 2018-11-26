@@ -19,6 +19,27 @@ namespace CapaNegocio
 
         }
 
+        public ProdCompuesto(string nombre, float precioVenta, int idCat, string desc, bool comp, DataTable composicion)
+        {
+            Error = false;
+            Mensaje = "";
+            Nombre = nombre;
+            PrecioVenta = precioVenta;
+            IdCategoria = idCat;
+            DescProd = desc;
+            Compuesto = comp;
+
+            this.GuardarPC();
+
+            foreach(DataRow row in composicion.Rows)
+            {
+                if (!GuardarComposicion(codProdCompuesto, Convert.ToInt32(row["codProdSimple"].ToString()), Convert.ToInt32(row["cantidad"])))
+                {
+                    Error = true;
+                    Mensaje = "Ocurrió un error durante la carga de los elementos que componen al productos.";
+                }
+            }
+        }
 
         //Getters y Setters
         public int CodProdCompuesto
@@ -35,31 +56,19 @@ namespace CapaNegocio
         }
 
 
-        //Funciones
-        protected void ValidarCompuesto(int codPC)
-        {
-            if (ProductoCompuestoBD.Existe(codPC))
-            {
-                this.Error = true;
-                this.Mensaje += "Ya existe un producto compuesto con este codigo de producto compuesto. ";
-            }
-        }
-
+        //Funcione
         protected void GuardarPC()
         {
-            if (!Error)
+            if (ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, true, 0, false, 0, 0) > 0)
             {
-                if (ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, true, 0, false, 0, 0) > 0)
-                {
-                    Error = false;
-                    Mensaje = "Producto compuesto guardado con éxito";
-                }
-                else
-                {
-                    Error = true;
-                    Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente.";
-                }
+                Error = false;
+                Mensaje = "Producto compuesto guardado con éxito";
             }
+            else
+            {
+                Error = true;
+                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente.";
+            }            
         }
 
         public Boolean GuardarComposicion(int CodCom, int CodSim, int Cant)

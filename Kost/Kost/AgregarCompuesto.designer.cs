@@ -33,6 +33,7 @@
             this.dgvComponentes = new System.Windows.Forms.DataGridView();
             this.Insumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.cbxComponente = new System.Windows.Forms.ComboBox();
@@ -62,6 +63,7 @@
             this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dgvComponentes
             // 
@@ -72,8 +74,10 @@
             this.dgvComponentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComponentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Insumo,
-            this.Cantidad});
+            this.Cantidad,
+            this.CodProd});
             this.dgvComponentes.Location = new System.Drawing.Point(437, 257);
+            this.dgvComponentes.MultiSelect = false;
             this.dgvComponentes.Name = "dgvComponentes";
             this.dgvComponentes.ReadOnly = true;
             this.dgvComponentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -82,6 +86,7 @@
             // 
             // Insumo
             // 
+            this.Insumo.DataPropertyName = "nombre";
             this.Insumo.HeaderText = "Insumo";
             this.Insumo.Name = "Insumo";
             this.Insumo.ReadOnly = true;
@@ -89,10 +94,19 @@
             // 
             // Cantidad
             // 
+            this.Cantidad.DataPropertyName = "cantidad";
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
             this.Cantidad.Width = 160;
+            // 
+            // CodProd
+            // 
+            this.CodProd.DataPropertyName = "codProdSimple";
+            this.CodProd.HeaderText = "Codigo Producto";
+            this.CodProd.Name = "CodProd";
+            this.CodProd.ReadOnly = true;
+            this.CodProd.Visible = false;
             // 
             // btnAgregar
             // 
@@ -104,6 +118,7 @@
             this.btnAgregar.TabIndex = 8;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // txtCantidad
             // 
@@ -119,7 +134,6 @@
             this.cbxComponente.Name = "cbxComponente";
             this.cbxComponente.Size = new System.Drawing.Size(119, 29);
             this.cbxComponente.TabIndex = 5;
-            this.cbxComponente.SelectedIndexChanged += new System.EventHandler(this.cbxComponente_SelectedIndexChanged);
             // 
             // lblComponentes
             // 
@@ -281,8 +295,6 @@
 
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvComponentes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Insumo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.ComboBox cbxComponente;
@@ -299,5 +311,8 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.Button btnAtras;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Insumo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodProd;
     }
 }
