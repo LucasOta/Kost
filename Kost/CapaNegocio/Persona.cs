@@ -16,6 +16,7 @@ namespace CapaNegocio
         private string direccion;
         private string mail;
         private DateTime nacimiento;
+        private bool usuario;
 
         private bool error;
         private string mensaje;
@@ -23,7 +24,7 @@ namespace CapaNegocio
         //Constructores
         public Persona() { }
 
-        public Persona(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
+        public Persona(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento, bool usuario)
         {
 
             this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
@@ -35,6 +36,7 @@ namespace CapaNegocio
                 Mail = pmail;
                 Cuil = pcuil;
                 Nacimiento = pnacimiento;
+                Usuario = usuario;
                 this.Guardar();
             } else {
                 //Mandar mensaje
@@ -147,6 +149,8 @@ namespace CapaNegocio
             }
         }
 
+        public bool Usuario { get => usuario; set => usuario = value; }
+
 
         //Funciones
         protected void ValidarPers(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
@@ -188,7 +192,7 @@ namespace CapaNegocio
             
             if (!CapaDatos.PersonaBD.Existe(Cuil))
             {
-                String msjGuardar = CapaDatos.PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion);
+                String msjGuardar = CapaDatos.PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, Usuario);
                 if (msjGuardar.Equals("OK"))
                 {
                     this.Error = false;

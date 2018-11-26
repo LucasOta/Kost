@@ -255,7 +255,7 @@ namespace CapaDatos
                 Cx.SetTransaccion();
 
                 Object nro = Cx.sqlCmd.ExecuteScalar();
-                int id_transaccion = Convert.ToInt32(nro);
+                int id_transaccion = cod;
 
                 if (id_transaccion > 0)
                 {

@@ -42,40 +42,35 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Guardar(string usuario, string contrasenia, int nivel, long cuilPersona)
+        public static Boolean Guardar(string usuario, string contrasenia, int nivel, long cuilPersona, Conexion con)
         {
             string sql = "INSERT INTO Usuarios (usuario, contrasenia, nivel, cuilPersona, baja) values (@usuario, @contrasenia, @nivel, @cuilPersona, @baja)";
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("usuario", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[0].Value = usuario;
+                Cx.sqlCmd.Parameters[7].Value = usuario;
 
                 Cx.sqlCmd.Parameters.Add("contrasenia", SqlDbType.VarChar);
-                Cx.sqlCmd.Parameters[1].Value = contrasenia;
+                Cx.sqlCmd.Parameters[8].Value = contrasenia;
 
                 Cx.sqlCmd.Parameters.Add("nivel", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[2].Value = nivel;
+                Cx.sqlCmd.Parameters[9].Value = nivel;
 
                 Cx.sqlCmd.Parameters.Add("cuilPersona", SqlDbType.BigInt);
-                Cx.sqlCmd.Parameters[3].Value = cuilPersona;
+                Cx.sqlCmd.Parameters[10].Value = cuilPersona;
 
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[4].Value = 0;
+                Cx.sqlCmd.Parameters[11].Value = 0;
 
-                Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
+                Cx.sqlCmd.ExecuteNonQuery();
+                
+                return true;
 
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
