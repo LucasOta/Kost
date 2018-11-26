@@ -98,7 +98,7 @@ namespace Kost
         }
 
         private Boolean es_Compuesto() {
-            if (Convert.ToBoolean(dgvProductos.CurrentRow.Cells["Tipo"].Value)) {
+            if ((Convert.ToString(dgvProductos.CurrentRow.Cells["Tipo"].Value)).Equals("Compuesto")) {
                 return true;
             }
             return false;
