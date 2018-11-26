@@ -149,10 +149,10 @@ namespace CapaNegocio
             }
         }
 
-        public static Boolean EliminarPS(int codPS)
-        {
-            return CapaDatos.ProdSimpleBD.Eliminar(codPS);
-        }
+        //public static Boolean EliminarPS(int codPS)
+        //{
+        //    return CapaDatos.ProdSimpleBD.Eliminar(codPS);
+        //}
 
         public static void TraerUnSimple(int codPS, ProdSimple p)
         {

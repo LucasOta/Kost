@@ -66,7 +66,8 @@ namespace Kost
             {
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el producto?"))
                 {
-                    if (Producto.EliminarProd(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value)))
+
+                    if (Producto.EliminarProd(Convert.ToInt32(dgvProductos.CurrentRow.Cells["ID"].Value), es_Compuesto()) > 0)
                     {
                         Funciones.mOk(this, "Producto eliminado con éxito");
 

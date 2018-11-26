@@ -237,7 +237,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Eliminar(int cod)
+        public static int Eliminar(int cod, bool compuesto)
         {
             string sql = "UPDATE Productos SET baja=1 WHERE codProd=@codProd;";
 
@@ -259,17 +259,17 @@ namespace CapaDatos
 
                 if (id_transaccion > 0)
                 {
-                    bool insertok;
+                    bool deleteok;
                     if (compuesto)
                     {
-                        insertok = ProductoCompuestoBD.Guardar(id_transaccion, Cx);
+                        deleteok = ProductoCompuestoBD.Eliminar(id_transaccion, Cx);
                     }
                     else
                     {
-                        insertok = ProdSimpleBD.Guardar(id_transaccion, pStock, pInsumo, unidad, contenido, Cx);
+                        deleteok = ProdSimpleBD.Eliminar(id_transaccion, Cx);
                     }
 
-                    if (insertok == false)
+                    if (deleteok == false)
                     {
                         Cx.TransaccionRollback();
                         Cx.Cerrar();
