@@ -47,10 +47,9 @@ namespace CapaNegocio
         //Funciones
         public void GuardarMozo()
         {
-            base.Guardar();
             if (!Error)
             {
-                if (CapaDatos.MozoBD.Guardar(Cuil))
+                if (PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, " ", " ", 0, false) > 0)
                 {
                     this.Error = false;
                     this.Mensaje = "Mozo Guardado";

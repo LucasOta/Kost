@@ -26,7 +26,6 @@ namespace CapaNegocio
 
         public Persona(string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento, bool usuario)
         {
-
             this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
 
             if (!this.Error){
@@ -37,7 +36,6 @@ namespace CapaNegocio
                 Cuil = pcuil;
                 Nacimiento = pnacimiento;
                 Usuario = usuario;
-                this.Guardar();
             } else {
                 //Mandar mensaje
             }
@@ -187,29 +185,29 @@ namespace CapaNegocio
 
         }
 
-        protected void Guardar() 
-        {
+        //protected void Guardar() 
+        //{
             
-            if (!CapaDatos.PersonaBD.Existe(Cuil))
-            {
-                String msjGuardar = CapaDatos.PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, Usuario);
-                if (msjGuardar.Equals("OK"))
-                {
-                    this.Error = false;
-                    this.Mensaje = "Persona Guardada";
-                }
-                else
-                {
-                    this.Error = true;
-                    this.Mensaje = msjGuardar;
-                }
-            }
-            else
-            {
-                this.Error = true;
-                this.Mensaje = "Ya existe una persona cargada en el sistema con ese nro de Cuil";
-            }
-        }
+        //    if (!CapaDatos.PersonaBD.Existe(Cuil))
+        //    {
+        //        String msjGuardar = CapaDatos.PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, Usuario);
+        //        if (msjGuardar.Equals("OK"))
+        //        {
+        //            this.Error = false;
+        //            this.Mensaje = "Persona Guardada";
+        //        }
+        //        else
+        //        {
+        //            this.Error = true;
+        //            this.Mensaje = msjGuardar;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        this.Error = true;
+        //        this.Mensaje = "Ya existe una persona cargada en el sistema con ese nro de Cuil";
+        //    }
+        //}
 
         public static void TraerUnaPersona(long cuil, Persona p)
         {

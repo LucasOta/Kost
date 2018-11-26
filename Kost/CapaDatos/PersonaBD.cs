@@ -76,7 +76,7 @@ namespace CapaDatos
             }
         }
 
-        public static long Guardar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion, string usuario, string contrasenia, int nivel, long cuilPersona, bool esUsuario)
+        public static long Guardar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion, string usuario, string contrasenia, int nivel, bool esUsuario)
         {
             string sql = "INSERT INTO personas (cuil, nombre, apellido, mail, fechaNacimiento, direccion, baja) " +
                         "VALUES (@cuil, @nombre, @apellido, @mail, @fechaNacimiento, @direccion, @baja);" +

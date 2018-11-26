@@ -62,6 +62,7 @@
             this.ventasPorMozo1 = new Kost.VentasPorMozo();
             this.ventasPorDia1 = new Kost.VentasPorDia();
             this.insumosUtilizados1 = new Kost.InsumosUtilizados();
+            this.categoria1 = new Kost.Categoria();
             this.panel1.SuspendLayout();
             this.desplegableRep.SuspendLayout();
             this.pnlBarra.SuspendLayout();
@@ -448,11 +449,22 @@
             this.insumosUtilizados1.Size = new System.Drawing.Size(825, 530);
             this.insumosUtilizados1.TabIndex = 15;
             // 
+            // categoria1
+            // 
+            this.categoria1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoria1.ForeColor = System.Drawing.Color.Black;
+            this.categoria1.Location = new System.Drawing.Point(175, 33);
+            this.categoria1.Margin = new System.Windows.Forms.Padding(5);
+            this.categoria1.Name = "categoria1";
+            this.categoria1.Size = new System.Drawing.Size(825, 530);
+            this.categoria1.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 562);
+            this.Controls.Add(this.categoria1);
             this.Controls.Add(this.insumosUtilizados1);
             this.Controls.Add(this.ventasPorDia1);
             this.Controls.Add(this.ventasPorMozo1);
@@ -517,6 +529,7 @@
         private VentasPorMozo ventasPorMozo1;
         private VentasPorDia ventasPorDia1;
         private InsumosUtilizados insumosUtilizados1;
+        private Categoria categoria1;
     }
 }
 
