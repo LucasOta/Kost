@@ -111,13 +111,13 @@ namespace CapaDatos
             }
         }
 
-        public static bool GuardarComposicion(int pCodC, int pCodS, int c)
+        public static bool GuardarComposicion(int pCodS, int c)
         {
             string sql = "INSERT INTO Composicion (codProdCompuesto, codProdSimple, cantidad, baja) "+
                          "VALUES((SELECT TOP 1 codProdCompuesto "+
                                 "FROM ProdCompuestos "+
                                 "WHERE baja = 0 "+
-                                "ORDER BY codProdCompuesto DESC), @pCodS, @c, @baja); ";
+                                "ORDER BY codProdCompuesto DESC), @pCodS, @c, 0); ";
 
             try
             {
@@ -126,18 +126,12 @@ namespace CapaDatos
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("pCodC", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = pCodC;
-
                 Cx.sqlCmd.Parameters.Add("pCodS", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[1].Value = pCodS;
+                Cx.sqlCmd.Parameters[0].Value = pCodS;
 
                 Cx.sqlCmd.Parameters.Add("c", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[2].Value = c;
-
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[3].Value = 0;
-
+                Cx.sqlCmd.Parameters[1].Value = c;
+                
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
                 Cx.Cerrar();
