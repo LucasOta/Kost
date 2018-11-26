@@ -11,9 +11,18 @@ namespace CapaDatos
     public class CategoriaBD
     {
         //
-        public static Boolean Existe(string ca)
+        public static Boolean Existe(string ca, int id)
         {
-            string sql = "SELECT baja FROM Categorias WHERE nombre = @categoria";
+            string sql;
+            if (id > 0)
+            {
+                sql = "SELECT baja FROM Categorias WHERE nombre = @categoria AND  NOT idCategoria = @ID";
+            }
+            else
+            {
+                sql = "SELECT baja FROM Categorias WHERE nombre = @categoria";
+            }
+             
             try
             {
                 Conexion cx = new Conexion();
@@ -22,6 +31,9 @@ namespace CapaDatos
 
                 cx.sqlCmd.Parameters.Add("@categoria", SqlDbType.VarChar);
                 cx.sqlCmd.Parameters[0].Value = ca;
+
+                cx.sqlCmd.Parameters.Add("@ID", SqlDbType.Int);
+                cx.sqlCmd.Parameters[1].Value = id;
 
                 cx.Abrir();
                 SqlDataReader reader = cx.sqlCmd.ExecuteReader();
@@ -43,7 +55,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Guardar(string categoria)
+        public static Boolean Guardar(string categoria, Boolean baja)
         {
             string sql = "INSERT INTO Categorias (nombre, baja) values (@nombre, @baja)";
 
@@ -58,7 +70,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[0].Value = categoria;
 
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[1].Value = 0;
+                Cx.sqlCmd.Parameters[1].Value = baja;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -78,9 +90,9 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Modificar(int id, string categoria)
+        public static Boolean Modificar(int id, string categoria, Boolean baja)
         {
-            string sql = "UPDATE Categorias SET nombre=@nombre WHERE idCategoria=@idCategoria;";
+            string sql = "UPDATE Categorias SET nombre=@nombre, baja=@baja WHERE idCategoria=@idCategoria;";
 
             try
             {
@@ -92,8 +104,11 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("@nombre", SqlDbType.VarChar);
                 Cx.sqlCmd.Parameters[0].Value = categoria;
 
+                Cx.sqlCmd.Parameters.Add("@baja", SqlDbType.Bit);
+                Cx.sqlCmd.Parameters[1].Value = baja;
+
                 Cx.sqlCmd.Parameters.Add("@idCategoria", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[1].Value = id;
+                Cx.sqlCmd.Parameters[2].Value = id;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -149,7 +164,30 @@ namespace CapaDatos
         {
             DataTable categorias = new DataTable("Categorias");
 
-            string sql = "SELECT idCategoria, nombre FROM Categorias WHERE baja = 0";
+            string sql = "SELECT idCategoria, nombre, baja FROM Categorias WHERE baja = 0";
+
+            try
+            {
+                Conexion Cx = new Conexion();
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
+                SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
+                sqlDat.Fill(categorias); //Llenamos el DataTable
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                categorias = null;
+            }
+            return categorias;
+        }
+
+        public static DataTable TraerAbsolutamenteTodos()//También trae las dadas de baja
+        {
+            DataTable categorias = new DataTable("Categorias");
+
+            string sql = "SELECT idCategoria, nombre, baja FROM Categorias";
 
             try
             {
@@ -172,7 +210,7 @@ namespace CapaDatos
         {
             DataTable categoria = new DataTable("Categoria");
 
-            string sql = "SELECT idCategoria, nombre FROM Categorias WHERE idCategoria = @id and baja = 0";
+            string sql = "SELECT idCategoria, nombre, baja FROM Categorias WHERE idCategoria = @id";
 
             try
             {
@@ -182,8 +220,6 @@ namespace CapaDatos
 
                 Cx.sqlCmd.Parameters.Add("@id", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[0].Value = id;
-
-                SqlDataReader Reader = Cx.sqlCmd.ExecuteReader();
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
                 sqlDat.Fill(categoria);

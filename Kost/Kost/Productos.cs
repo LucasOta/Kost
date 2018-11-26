@@ -19,6 +19,8 @@ namespace Kost
 
     public delegate void irVerStockEventHandler();
 
+    public delegate void ir_a_AdmCateg();
+
 
     public partial class Productos : UserControl, Interfaz
     {
@@ -27,6 +29,7 @@ namespace Kost
         public event irProductoSimpleEventHandler btnIrSimple;
         public event modificarProductoSimpleEventHandler modificarSimple;
         public event irVerStockEventHandler btnIrStocks;
+        public event ir_a_AdmCateg btnir_a_AdmCateg;
 
         public Productos()
         {
@@ -85,6 +88,11 @@ namespace Kost
             this.btnIrStocks();
         }
 
+        private void btnAdmCategorias_Click(object sender, EventArgs e)
+        {
+            this.btnir_a_AdmCateg();
+        }
+
         //Métodos
         public void Clear()
         {
@@ -102,6 +110,6 @@ namespace Kost
                 return true;
             }
             return false;
-        }               
+        }        
     }
 }

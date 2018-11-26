@@ -13,31 +13,39 @@ namespace Kost
 {
     public partial class Categoria : UserControl, Interfaz
     {
+        public event volverAProductos btnIrAtras;
+
         Boolean banderaGuardar = true;
         CapaNegocio.Categoria cat;
+        int idCat_a_Modificar;
 
         public Categoria()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            pnlCategoria.Enabled = false;          
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+
+        //Botones
+        private void btnAgregar_Click_1(object sender, EventArgs e)
         {
             pnlCategoria.Enabled = true;
             txtNombre.Clear();
+            banderaGuardar = true;
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            txtNombre.Clear();
-            pnlCategoria.Enabled = false;
+            ActualizarPantalla();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Categoria categ = new CapaNegocio.Categoria(txtNombre.Text);
+                CapaNegocio.Categoria categ = new CapaNegocio.Categoria(txtNombre.Text, !chbActiva.Checked);
+
                 if (categ.Error)
                 {
                     CapaNegocio.Funciones.mError(this, categ.Mensaje);
@@ -45,9 +53,7 @@ namespace Kost
                 else
                 {
                     CapaNegocio.Funciones.mOk(this, "Los datos de la categoría se guardaron con éxito.");
-                    dgvCategorias.DataSource = CapaNegocio.Categoria.ListarTodos();
-                    txtNombre.Clear();
-                    pnlCategoria.Enabled = false;
+                    ActualizarPantalla();
                 }
             }
             else
@@ -60,19 +66,27 @@ namespace Kost
         {
             Clear();
             pnlCategoria.Enabled = true;
+            banderaGuardar = false;
 
-            int idCat = Convert.ToInt32(dgvCategorias.CurrentRow.Cells["ID"].Value);
-            cat = CapaNegocio.Categoria.TraerUnaCat(idCat);
+            idCat_a_Modificar = Convert.ToInt32(dgvCategorias.CurrentRow.Cells["ID"].Value);
+            cat = CapaNegocio.Categoria.TraerUnaCat(idCat_a_Modificar);
 
             txtNombre.Text = cat.Nombre;
+            chbActiva.Checked = !cat.Baja;
         }
 
-        //Métodos
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.btnIrAtras();
+        }
 
+
+        //Métodos
         private void GuardarModificacion()
         {
             cat.Nombre = txtNombre.Text;
-            cat.Id = Convert.ToInt32(dgvCategorias.CurrentRow.Cells["ID"].Value);
+            cat.Id = idCat_a_Modificar;
+            cat.Baja = !chbActiva.Checked;
 
             if (cat.ModificarCateg())
             {
@@ -81,7 +95,10 @@ namespace Kost
                 txtNombre.Clear();
                 pnlCategoria.Enabled = false;
             }
-            dgvCategorias.DataSource = CapaNegocio.Categoria.ListarTodos();
+            else {
+                CapaNegocio.Funciones.mError(this, cat.Mensaje);
+            }
+            ActualizarPantalla();
         }
 
         public void Clear()
@@ -92,7 +109,7 @@ namespace Kost
 
         public void ActualizarPantalla()
         {
-            dgvCategorias.DataSource = CapaNegocio.Categoria.ListarTodos();
+            dgvCategorias.DataSource = CapaNegocio.Categoria.ListarAbsolutamenteTodos();
             pnlCategoria.Enabled = false;
             dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }

@@ -13,19 +13,21 @@ namespace CapaNegocio
         private bool error;
         private string mensaje;
         private string nombre;
-        private int id;
+        private Boolean baja;
+        private int id = -1;
 
         //Constructores
         public Categoria() { }
 
-        public Categoria(string categoria)
+        public Categoria(string categoria, Boolean baja)
         {
             error = false;
             mensaje = "";
-            this.Validar(categoria);
+            this.Validar(categoria, id);
             if (!error)
             {
                 Nombre = categoria;
+                Baja = baja;
                 this.Guardar();
             }
             else
@@ -88,13 +90,26 @@ namespace CapaNegocio
             }
         }
 
+        public bool Baja
+        {
+            get
+            {
+                return baja;
+            }
+
+            set
+            {
+                baja = value;
+            }
+        }
+
 
 
         //Funciones
 
-        private void Validar(string categ)
+        private void Validar(string categ, int id)
         {
-            if (Validaciones.Categoria(categ))
+            if (Validaciones.Categoria(categ, id))
             {
                 this.error = true;
                 this.mensaje = "La categoria ya existe";
@@ -105,7 +120,7 @@ namespace CapaNegocio
         {
             if (!error)
             {
-                if (CapaDatos.CategoriaBD.Guardar(Nombre))
+                if (CapaDatos.CategoriaBD.Guardar(Nombre, Baja))
                 {
                     this.error = false;
                     this.mensaje = "Categoría guardada";
@@ -126,10 +141,10 @@ namespace CapaNegocio
         public Boolean ModificarCateg()
         {
             Error = false;
-            Validar(Nombre);
+            Validar(Nombre, id);
             if (!Error)
             {
-                if (CapaDatos.CategoriaBD.Modificar(Id, Nombre))
+                if (CapaDatos.CategoriaBD.Modificar(Id, Nombre, Baja))
                 {
                     return true;
                 }
@@ -150,13 +165,22 @@ namespace CapaNegocio
             return CapaDatos.CategoriaBD.TraerTodos();
         }
 
+        public static DataTable ListarAbsolutamenteTodos() //También trae las dadas de baja
+        {
+            return CapaDatos.CategoriaBD.TraerAbsolutamenteTodos();
+        }
+
         public static Categoria TraerUnaCat(int id)
         {
             DataTable categ = CapaDatos.CategoriaBD.TraerUnaCategoria(id);
 
-            DataRow rowus = categ.Rows[0];
+            DataRow rows = categ.Rows[0];
 
             Categoria c = new Categoria();
+            c.Id = Convert.ToInt32(rows["idCategoria"].ToString());
+            c.nombre = rows["nombre"].ToString();
+            c.Baja = Convert.ToBoolean(rows["baja"].ToString());
+
             return c;
         }
     }
