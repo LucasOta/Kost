@@ -108,8 +108,9 @@ namespace CapaDatos
             DataTable ventasPorDia = new DataTable("ventasPorDia");
 
             string sql = "SELECT C.nroComanda, C.total, C.fecha " +
-                "FROM(Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas " +
-                "C ON C.cuilMozo = M.cuilMozo WHERE convert(varchar, C.fecha, 105) = @fecha AND M.cuilMozo = @cuilMozo AND C.activa = 0;";
+                        "FROM(Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas C " +
+                                                            "ON C.cuilMozo = M.cuilMozo " +
+                         "WHERE convert(varchar, C.fecha, 105) = @fecha AND M.cuilMozo = @cuilMozo AND C.activa = 0 AND C.baja=0;";
 
             try
             {

@@ -23,6 +23,7 @@ namespace Kost
         public Comanda()
         {
             InitializeComponent();
+            txtDescuento.Text = "0";
         }
 
         //Botones
@@ -119,6 +120,7 @@ namespace Kost
 
             coman.Total = Convert.ToSingle(lblTotal.Text.Replace("$", ""));
             coman.Descuento = Convert.ToSingle(txtDescuento.Text);
+            
             coman.PrecioFinal = (Convert.ToSingle(lblTotal.Text.Replace("$", "")) - Convert.ToSingle(txtDescuento.Text));
 
             coman.CerrarComanda();
