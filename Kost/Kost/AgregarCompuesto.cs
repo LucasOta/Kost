@@ -61,8 +61,6 @@ namespace Kost
             txtDescripcion.Text = "";
             txtCantidad.Text = "";
             txtPrecio.Text = "";
-            cbxCategoria.SelectedIndex = 1;
-            cbxComponente.SelectedIndex = 1;
             dgvComponentes.DataSource = null;
         }
 
