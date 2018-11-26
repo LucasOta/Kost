@@ -192,7 +192,9 @@ namespace CapaDatos
         {
             DataTable ds = new DataTable("insumos");
 
-            string sql = "SELECT codProdSimple, nombre FROM ProdSimples WHERE baja = 0";
+            string sql = "SELECT codProdSimple, nombre " +
+                        "FROM ProdSimples S INNER JOIN Productos P ON S.codProdSimple=P.P.codProd" +
+                        "WHERE S.baja = 0 AND P.baja = 0";
 
             try
             {

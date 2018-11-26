@@ -119,6 +119,7 @@
             this.cbxComponente.Name = "cbxComponente";
             this.cbxComponente.Size = new System.Drawing.Size(119, 29);
             this.cbxComponente.TabIndex = 5;
+            this.cbxComponente.SelectedIndexChanged += new System.EventHandler(this.cbxComponente_SelectedIndexChanged);
             // 
             // lblComponentes
             // 

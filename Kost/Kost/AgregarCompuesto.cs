@@ -14,6 +14,7 @@ namespace Kost
     public partial class AgregarCompuesto : UserControl, Interfaz
     {
         public event volverAProductos btnIrAtras;
+        Boolean aux = false;
 
         public AgregarCompuesto()
         {
@@ -44,8 +45,12 @@ namespace Kost
 
         public void ActualizarPantalla()
         {
+            Clear();
+
             CargarCBXCategoria();
             CargarCBXComponentes();
+
+            aux = true;
         }
 
         public void CargarCBXCategoria()
@@ -76,5 +81,16 @@ namespace Kost
             //Cargar el Producto a todos los elementos de la pantalla
         }
 
+        private void cbxComponente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (aux)
+            {
+                CargarCBXComponentes();
+            }
+            else
+            {
+                ActualizarPantalla();
+            }
+        }
     }
 }
