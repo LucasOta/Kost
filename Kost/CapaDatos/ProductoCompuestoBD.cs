@@ -229,7 +229,9 @@ namespace CapaDatos
         {
             DataTable composicion = new DataTable("Composicion");
 
-            string sql = "SELECT C.codProdSimple, P.nombre, C.cantidad FROM Productos P INNER JOIN Composicion C ON P.codProd = C.codProdSimple WHERE codProdCompuesto = @codProdCompuesto and baja = 0; ";
+            string sql = "SELECT C.codProdSimple, P.nombre, C.cantidad " +
+                        "FROM Productos P INNER JOIN Composicion C ON P.codProd = C.codProdSimple " +
+                        "WHERE C.codProdCompuesto = @codProdCompuesto and C.baja = 0 and P.baja = 0; ";
 
             try
             {
