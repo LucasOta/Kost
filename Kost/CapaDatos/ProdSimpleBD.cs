@@ -128,19 +128,19 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Eliminar(int cod)
+        public static Boolean Eliminar(int cod, Conexion con)
         {
             string sql = "UPDATE ProdSimples SET baja=1 WHERE codProdSimple=@codProdSimple;";
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProdSimple", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = cod;
+                Cx.sqlCmd.Parameters[1].Value = cod;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();

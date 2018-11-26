@@ -72,10 +72,10 @@ namespace CapaNegocio
             return true;
         }
 
-        public static Boolean Eliminar(int CodPC)
-        {
-            return ProductoCompuestoBD.Eliminar(CodPC);
-        }
+        //public static Boolean Eliminar(int CodPC)
+        //{
+        //    return ProductoCompuestoBD.Eliminar(CodPC);
+        //}
 
         public static Boolean EliminarComposicion(int CodCom, int CodSim, int Cant)
         {

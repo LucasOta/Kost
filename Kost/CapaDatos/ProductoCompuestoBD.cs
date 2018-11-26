@@ -88,10 +88,10 @@ namespace CapaDatos
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("pCod", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = pCod;
+                Cx.sqlCmd.Parameters[6].Value = pCod;
 
                 Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[1].Value = 0;
+                Cx.sqlCmd.Parameters[7].Value = 0;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
@@ -152,22 +152,19 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Eliminar(int cod)
+        public static Boolean Eliminar(int cod, Conexion con)
         {
-            string sql = "UPDATE ProdCompuestos SET baja=@baja WHERE codProdCompuesto=@codProdCompuesto;";
+            string sql = "UPDATE ProdCompuestos SET baja=1 WHERE codProdCompuesto=@codProdCompuesto;";
 
             try
             {
-                Conexion Cx = new Conexion();
+                Conexion Cx = con;
 
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
                 Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = cod;
-
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[0].Value = 1;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();

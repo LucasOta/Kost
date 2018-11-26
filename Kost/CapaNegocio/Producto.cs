@@ -212,9 +212,9 @@ namespace CapaNegocio
             return CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);            
         }
 
-        public static Boolean EliminarProd(int codprod)
+        public static int EliminarProd(int codprod, bool compuesto)
         {
-            return CapaDatos.ProductoBD.Eliminar(codprod);
+            return ProductoBD.Eliminar(codprod, compuesto);
         }
 
         public static DataTable ListarTodos()
