@@ -25,21 +25,25 @@ namespace Kost
             comandasActivas1.btnIrAComandaCLick += new Kost.irAComandaEventHandler(IrAComanda);
             comanda1.btnIrAAtrasCLick += new Kost.volverAComandasActivasEventHandler(AtrasComanda);
             comanda1.cerrarComanda += new Kost.cerrarComandaEventHandler(CerrarComanda);
+
             productos1.btnIrCompuesto += new Kost.irProductoCompuestoEventHandler(IrProductoCompuesto);
             productos1.btnIrSimple += new Kost.irProductoSimpleEventHandler(IrProductoSimple);
             productos1.btnIrStocks += new Kost.irVerStockEventHandler(IrStocks);
             productos1.modificarCompuesto += new Kost.modificarProductoCompuestoEventHandler(ModificarProductoCompuesto);
             productos1.modificarSimple += new Kost.modificarProductoSimpleEventHandler(ModificarProductoSimple);
+            productos1.btnir_a_AdmCateg += new Kost.ir_a_AdmCateg(ir_a_AdminCategorias);
+
             agregarSimple1.btnIrAtras += new Kost.volverAProductos(irAProductos);
+
             agregarCompuesto1.btnIrAtras += new Kost.volverAProductos(irAProductos);
+
             stocks1.btnIrAtras += new Kost.volverAProductos(irAProductos);
 
-
+            categoria1.btnIrAtras += new Kost.volverAProductos(irAProductos);
 
             login1.Inicio_0 += new Kost.Inicio_0_EventHandler(sinSesion);
             login1.Inicio_1 += new Kost.Inicio_1_EventHandler(admin);
             login1.Inicio_2 += new Kost.Inicio_2_EventHandler(usuario);
-
             login1.Cerrar += new Kost.Cerrar_LoginEventHandler(Cerrar);
 
             this.sinSesion();
@@ -96,9 +100,7 @@ namespace Kost
 
             desplegableRep.BringToFront();
             desplegableRep.Visible = true;
-        }
-
-        
+        }        
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -193,6 +195,12 @@ namespace Kost
             stocks1.BringToFront();
         }
 
+        private void ir_a_AdminCategorias()
+        {
+            categoria1.BringToFront();
+            categoria1.ActualizarPantalla();
+        }
+
         private void irAProductos() {
             productos1.ActualizarPantalla();
             productos1.BringToFront();             
@@ -212,6 +220,8 @@ namespace Kost
             btnReportes.Enabled = false;
             btnReportes.Visible = false;
             esconderDesplegables();
+
+            comandasActivas1.ActualizarPantalla();
         }
 
         public void usuario()
@@ -231,6 +241,8 @@ namespace Kost
 
             login1.Visible = false;
             login1.SendToBack();
+
+            comandasActivas1.ActualizarPantalla();
         }
 
         public void admin()
@@ -249,6 +261,8 @@ namespace Kost
             btnComandas.PerformClick();
             login1.Visible = false;
             login1.SendToBack();
+
+            comandasActivas1.ActualizarPantalla();
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)

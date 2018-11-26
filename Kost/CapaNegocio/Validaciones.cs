@@ -158,9 +158,9 @@ namespace CapaNegocio
             }
         }
 
-        public static Boolean Categoria(string n)
+        public static Boolean Categoria(string n, int id)
         {
-            if (CapaDatos.CategoriaBD.Existe(n))
+            if (CapaDatos.CategoriaBD.Existe(n, id))
             {
                 return true;
             }
