@@ -31,7 +31,7 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                ps = new CapaNegocio.ProdSimple(0, chxInsumo.Checked,  txtNombre.Text, float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat), Convert.ToInt32(cbxCategoria.SelectedValue), txtDescripcion.Text, false, 1, Convert.ToDouble(txtContenido.Text));
+                ps = new CapaNegocio.ProdSimple(0, chxInsumo.Checked,  txtNombre.Text, float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat), Convert.ToInt32(cbxCategoria.SelectedValue), txtDescripcion.Text, false, Convert.ToInt32(cbxCategoria.SelectedValue), Convert.ToDouble(txtContenido.Text));
                 
                 if (ps.Error)
                 {
@@ -62,6 +62,8 @@ namespace Kost
         //Métodos
         public void Clear()
         {
+            ps = new ProdSimple();
+
             txtNombre.Text = "";
             txtDescripcion.Text = "";
 
@@ -84,17 +86,19 @@ namespace Kost
         public void cargarProd_a_Modificar(int id) {
             ActualizarPantalla();
 
-            ProdSimple prod = new ProdSimple();
-            ProdSimple.TraerUnSimple(id, prod);
+            ps = new ProdSimple();
+            ProdSimple.TraerUnSimple(id, ps);
 
-            txtNombre.Text = prod.Nombre;
-            txtDescripcion.Text = prod.DescProd;
-            cbxCategoria.SelectedValue = prod.IdCategoria;
-            cbxU_Medida.SelectedValue = prod.Unidad;
-            txtContenido.Text = prod.Contenido.ToString();
-            txtPrecio.Text = prod.PrecioVenta.ToString();
-            cbxU_Medida.SelectedValue = prod.Unidad;
-            chxInsumo.Checked = prod.Insumo;
+            txtNombre.Text = ps.Nombre;
+            txtDescripcion.Text = ps.DescProd;
+            cbxCategoria.SelectedValue = ps.IdCategoria;
+            cbxU_Medida.SelectedValue = ps.Unidad;
+            txtContenido.Text = ps.Contenido.ToString();
+            txtPrecio.Text = ps.PrecioVenta.ToString();
+            cbxU_Medida.SelectedValue = ps.Unidad;
+            chxInsumo.Checked = ps.Insumo;
+
+            banderaGuardar = false;
         }
 
         public void CargarCBX_Categoria()
@@ -168,6 +172,8 @@ namespace Kost
                 Clear();
 
                 btnAtras_Click_1(this, new EventArgs());
+
+                banderaGuardar = true;
             }
             else
             {

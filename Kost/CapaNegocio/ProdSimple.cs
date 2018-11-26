@@ -140,7 +140,7 @@ namespace CapaNegocio
 
         public Boolean ModificarPS()
         {
-            if(this.ModificarProducto() && CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, 0, 0))
+            if(this.ModificarProducto() && CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, Unidad, Contenido))
             {
                 Mensaje = "Los cambios se guardaron correctamente.";
                 return true;

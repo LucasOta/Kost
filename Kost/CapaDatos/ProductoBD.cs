@@ -219,7 +219,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[5].Value = 0;
 
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[6].Value = 0;
+                Cx.sqlCmd.Parameters[6].Value = codProd;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();

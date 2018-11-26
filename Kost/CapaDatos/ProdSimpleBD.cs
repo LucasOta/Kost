@@ -84,7 +84,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Modificar(int pCod, int pStock, bool pInsumo, int unidad, double contenido)
+        public static Boolean Modificar(int pCod, int pStock, bool pInsumo, int pUnidad, double pContenido)
         {
             string sql = "UPDATE ProdSimples SET stock=@stock, insumo=@insumo, unidad=@unidad, " +
                 "contenido=@contenido WHERE codProdSimple=@codProd and baja=0";
@@ -103,13 +103,13 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[1].Value = pInsumo;
 
                 Cx.sqlCmd.Parameters.Add("unidad", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[2].Value = unidad;
+                Cx.sqlCmd.Parameters[2].Value = pUnidad;
 
                 Cx.sqlCmd.Parameters.Add("contenido", SqlDbType.Float);
-                Cx.sqlCmd.Parameters[3].Value = contenido;
+                Cx.sqlCmd.Parameters[3].Value = pContenido;
 
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[4].Value = 0;
+                Cx.sqlCmd.Parameters[4].Value = pCod;
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();

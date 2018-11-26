@@ -209,18 +209,7 @@ namespace CapaNegocio
 
         public Boolean ModificarProducto()
         {
-            Error = false;
-            Mensaje = "";
-            this.ValidarProd(CodProd, Nombre);
-            if (!Error)
-            {
-                return CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);
-            }
-            else
-            {
-                Mensaje += " No pudieron realizarse los cambios";
-                return false;
-            }
+            return CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);            
         }
 
         public static Boolean EliminarProd(int codprod)
