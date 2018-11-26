@@ -161,7 +161,7 @@
             // 
             // Tipo
             // 
-            this.Tipo.DataPropertyName = "compuesto";
+            this.Tipo.DataPropertyName = "Tipo";
             this.Tipo.HeaderText = "Tipo";
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
