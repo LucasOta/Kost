@@ -149,7 +149,20 @@ namespace CapaNegocio
             }
         }
 
-        public bool Usuario { get => usuario; set => usuario = value; }
+        public bool Usuario
+        {
+            get
+            {
+                return usuario;
+            }
+
+            set
+            {
+                usuario = value;
+            }
+        }
+
+
 
 
         //Funciones
