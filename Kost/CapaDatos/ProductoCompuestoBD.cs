@@ -143,7 +143,7 @@ namespace CapaDatos
         public static bool GuardarComposicionMod(int pCodC, int pCodS, int c)
         {
             string sql = "INSERT INTO Composicion (codProdCompuesto, codProdSimple, cantidad, baja) " +
-                         "VALUES (@pCodC @pCodS, @c, 0);";
+                         "VALUES (@pCodC, @pCodS, @c, 0);";
 
             try
             {
@@ -206,7 +206,7 @@ namespace CapaDatos
 
         public static Boolean EliminarComposicion(int pCodC, int pCodS, int c)
         {
-            string sql = "UPDATE Composicion SET baja=@baja WHERE codProdCompuesto=@codProdCompuesto AND  codProdSimple = @codProdSimpl AND cantidad = @cantidad;";
+            string sql = "UPDATE Composicion SET baja = @baja WHERE codProdCompuesto = @codProdCompuesto AND codProdSimple = @codProdSimple AND cantidad = @cantidad;";
 
             try
             {
@@ -215,6 +215,9 @@ namespace CapaDatos
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
+                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
+                Cx.sqlCmd.Parameters[0].Value = 1;
+
                 Cx.sqlCmd.Parameters.Add("codProdCompuesto", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = pCodC;
 
@@ -222,10 +225,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[2].Value = pCodS;
 
                 Cx.sqlCmd.Parameters.Add("cantidad", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[3].Value = c;
-
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[0].Value = 1;
+                Cx.sqlCmd.Parameters[3].Value = c;                
 
                 Cx.Abrir();
                 object nro = Cx.sqlCmd.ExecuteNonQuery();
