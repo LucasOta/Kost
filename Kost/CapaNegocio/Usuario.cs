@@ -105,12 +105,11 @@ namespace CapaNegocio
 
         public void GuardarUser()
         {
-            base.Guardar();
             if (!Error)
             {
                 if (!CapaDatos.UsuarioBD.Existe(User))
                 {
-                    if (CapaDatos.UsuarioBD.Guardar(User, Password, Nivel, Cuil))
+                    if (PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, User, Password, Nivel, true) > 0)
                     {
                         this.Error = false;
                         this.Mensaje = "Usuario Guardado";

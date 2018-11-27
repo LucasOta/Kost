@@ -109,7 +109,23 @@ namespace Kost
 
         public void ActualizarPantalla()
         {
-            dgvCategorias.DataSource = CapaNegocio.Categoria.ListarAbsolutamenteTodos();
+            DataTable categorias = CapaNegocio.Categoria.ListarAbsolutamenteTodos();
+
+            categorias.Columns.Add("Activa");
+
+            foreach (DataRow row in categorias.Rows)
+            {
+                if ((row["baja"].ToString()).Equals("False"))
+                {
+                    row["Activa"] = "Si";
+                }
+                else
+                {
+                    row["Activa"] = "No";
+                }
+            }
+
+            dgvCategorias.DataSource = categorias;
             pnlCategoria.Enabled = false;
             dgvCategorias.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }

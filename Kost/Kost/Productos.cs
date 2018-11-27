@@ -102,7 +102,23 @@ namespace Kost
 
         public void ActualizarPantalla()
         {
-            dgvProductos.DataSource = CapaNegocio.Producto.ListarTodos();
+            DataTable productos = CapaNegocio.Producto.ListarTodos();
+
+            productos.Columns.Add("Tipo");
+
+            foreach (DataRow row in productos.Rows)
+            {
+                if ((row["compuesto"].ToString()).Equals("True"))
+                {
+                    row["Tipo"] = "Compuesto";
+                }
+                else
+                {
+                    row["Tipo"] = "Simple";
+                }
+            }
+
+            dgvProductos.DataSource = productos;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 

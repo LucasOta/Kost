@@ -33,7 +33,7 @@ namespace CapaNegocio
 
             foreach(DataRow row in composicion.Rows)
             {
-                if (!GuardarComposicion(codProdCompuesto, Convert.ToInt32(row["codProdSimple"].ToString()), Convert.ToInt32(row["cantidad"])))
+                if (!GuardarComposicion(Convert.ToInt32(row["codProdSim"].ToString()), Convert.ToInt32(row["cantidad"])))
                 {
                     Error = true;
                     Mensaje = "Ocurrió un error durante la carga de los elementos que componen al productos.";
@@ -71,14 +71,14 @@ namespace CapaNegocio
             }            
         }
 
-        public Boolean GuardarComposicion(int CodCom, int CodSim, int Cant)
+        public Boolean GuardarComposicion(int CodSim, int Cant)
         {
-            if (!ProductoCompuestoBD.ExisteComposicion(CodCom, CodSim, Cant))
-            {
-                return ProductoCompuestoBD.GuardarComposicion(CodCom, CodSim, Cant);
-            }
+            return ProductoCompuestoBD.GuardarComposicion(CodSim, Cant);
+        }
 
-            return true;
+        public static Boolean GuardarComposicionMod(int CodCom, int CodSim, int Cant)
+        {
+            return CapaDatos.ProductoCompuestoBD.GuardarComposicionMod(CodCom, CodSim, Cant);
         }
 
         //public static Boolean Eliminar(int CodPC)

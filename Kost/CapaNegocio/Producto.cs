@@ -209,7 +209,16 @@ namespace CapaNegocio
 
         public Boolean ModificarProducto()
         {
-            return CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto);            
+            if(CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto))
+            {
+                Mensaje = "Se guardaron los cambios con éxito";
+                return true;
+            }
+            else
+            {
+                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente";
+                return false;
+            }            
         }
 
         public static int EliminarProd(int codprod, bool compuesto)
@@ -218,24 +227,8 @@ namespace CapaNegocio
         }
 
         public static DataTable ListarTodos()
-        {
-            DataTable productos = ProductoBD.TraerProductos();
-
-            productos.Columns.Add("Tipo");
-
-            foreach (DataRow row in productos.Rows)
-            {
-                if ((row["compuesto"].ToString()).Equals("True"))
-                {
-                    row["Tipo"] = "Compuesto";
-                }
-                else
-                {
-                    row["Tipo"] = "Simple";
-                }
-            }
-
-            return productos;
+        {           
+            return ProductoBD.TraerProductos();
         }
 
         public static Boolean ProductoActivo(int codprod)
