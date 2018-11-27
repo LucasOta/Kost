@@ -33,7 +33,7 @@ namespace CapaNegocio
 
             foreach(DataRow row in composicion.Rows)
             {
-                if (!GuardarComposicion(Convert.ToInt32(row["codProdSimple"].ToString()), Convert.ToInt32(row["cantidad"])))
+                if (!GuardarComposicion(Convert.ToInt32(row["codProdSim"].ToString()), Convert.ToInt32(row["cantidad"])))
                 {
                     Error = true;
                     Mensaje = "Ocurrió un error durante la carga de los elementos que componen al productos.";

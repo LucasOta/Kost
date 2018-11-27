@@ -227,24 +227,8 @@ namespace CapaNegocio
         }
 
         public static DataTable ListarTodos()
-        {
-            DataTable productos = ProductoBD.TraerProductos();
-
-            productos.Columns.Add("Tipo");
-
-            foreach (DataRow row in productos.Rows)
-            {
-                if ((row["compuesto"].ToString()).Equals("True"))
-                {
-                    row["Tipo"] = "Compuesto";
-                }
-                else
-                {
-                    row["Tipo"] = "Simple";
-                }
-            }
-
-            return productos;
+        {           
+            return ProductoBD.TraerProductos();
         }
 
         public static Boolean ProductoActivo(int codprod)
