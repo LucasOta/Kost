@@ -75,7 +75,7 @@ namespace CapaDatos
 
         public static bool Guardar(int pCod, Conexion con)
         {
-            string sql = "INSERT INTO ProdCompuestos (codProdCompuesto, baja) values (@pCod, @baja)";
+            string sql = "INSERT INTO ProdCompuestos (codProdCompuesto, baja) values (@pCod, 0)";
 
             try
             {
@@ -87,17 +87,10 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("pCod", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[6].Value = pCod;
 
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
-                Cx.sqlCmd.Parameters[7].Value = 0;
 
-                Cx.Abrir();
-                object nro = Cx.sqlCmd.ExecuteNonQuery();
-                Cx.Cerrar();
-                if (Convert.ToInt32(nro) > 0)
-                {
-                    return true;
-                }
-                return false;
+                Cx.sqlCmd.ExecuteNonQuery();
+               
+                return true;
 
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
