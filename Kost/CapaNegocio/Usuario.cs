@@ -41,15 +41,6 @@ namespace CapaNegocio
 
                     GuardarUser();
                 }
-                else
-                {
-                    Error = true;
-                    Mensaje += "Debe de corregir estos errores para poder cargar al Usuario.";
-                }
-            }
-            else
-            {
-                Error = true;
             }
         }
 
@@ -113,30 +104,20 @@ namespace CapaNegocio
                     if (PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, User, Password, Nivel, true) > 0)
                     {
                         this.Error = false;
-                        this.Mensaje = "Usuario guardado";
+                        this.Mensaje = "Usuario guardado con éxito.";
                     }
                     else
                     {
                         this.Error = true;
-                        this.Mensaje += "Hubo un error con la BD, intente nuevamente";
+                        this.Mensaje += "Ocurrió un error con la BD, intente nuevamente. ";
                     }
                 }
                 else
                 {
                     this.Error = true;
-                    this.Mensaje = "Ya existe un usuario cargado en el sistema con ese nick";
+                    this.Mensaje = "Ya existe un usuario cargado en el sistema con ese nick. ";
                 }
-            }
-            else {
-                if(this.Mensaje == "Ya existe una persona cargada en el sistema con ese nro de Cuil")
-                {
-                    if (!CapaDatos.PersonaBD.PersonaActiva(Cuil))
-                    {
-                        this.Mensaje = "Persona no activa";
-                    }
-                }
-
-            }                
+            }       
 
         }
 

@@ -67,10 +67,6 @@ namespace CapaNegocio
                 {
                     this.Error = true;
                     this.Mensaje = "Ya existe un mozo cargado en el sistema con ese cuil. ";
-                    if (!CapaDatos.PersonaBD.PersonaActiva(Cuil))
-                    {
-                        this.Mensaje = "Cuil existente no activo";
-                    }
                 }
                 else
                 {

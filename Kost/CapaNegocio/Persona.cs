@@ -196,8 +196,15 @@ namespace CapaNegocio
             if (PersonaBD.Existe(pcuil))
             {
                 this.Error = true;
-                this.Mensaje = "Persona no activa";
-            }
+                if (!CapaDatos.PersonaBD.PersonaActiva(Cuil))
+                {
+                    this.Mensaje = "Persona no activa";
+                }
+                else
+                {
+                    this.Mensaje = "Ya existe una persona cargada en el sistema con ese nro de Cuil.";
+                }                
+            }       
         }
 
         //protected void Guardar() 
