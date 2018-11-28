@@ -45,6 +45,12 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblTituloTotal = new System.Windows.Forms.Label();
             this.dgvComanda = new System.Windows.Forms.DataGridView();
+            this.N_Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioUni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNumeroMesa = new System.Windows.Forms.Label();
             this.lblMozo = new System.Windows.Forms.Label();
             this.lblNumeroComanda = new System.Windows.Forms.Label();
@@ -53,12 +59,8 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnAtras = new System.Windows.Forms.Button();
             this.btnCerrarComanda = new System.Windows.Forms.Button();
-            this.N_Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioUni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblPrecioFinal = new System.Windows.Forms.Label();
             this.pnlDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComanda)).BeginInit();
             this.SuspendLayout();
@@ -240,6 +242,56 @@
             this.dgvComanda.Size = new System.Drawing.Size(820, 150);
             this.dgvComanda.TabIndex = 0;
             // 
+            // N_Detalle
+            // 
+            this.N_Detalle.DataPropertyName = "nroDetalle";
+            this.N_Detalle.Frozen = true;
+            this.N_Detalle.HeaderText = "N° Detalle";
+            this.N_Detalle.Name = "N_Detalle";
+            this.N_Detalle.ReadOnly = true;
+            this.N_Detalle.Width = 120;
+            // 
+            // Codigo_Producto
+            // 
+            this.Codigo_Producto.DataPropertyName = "codProd";
+            this.Codigo_Producto.Frozen = true;
+            this.Codigo_Producto.HeaderText = "Cód. Producto";
+            this.Codigo_Producto.Name = "Codigo_Producto";
+            this.Codigo_Producto.ReadOnly = true;
+            this.Codigo_Producto.Width = 160;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "cantidad";
+            this.Cantidad.Frozen = true;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.DataPropertyName = "descripProd";
+            this.Descripcion.Frozen = true;
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 200;
+            // 
+            // precioUni
+            // 
+            this.precioUni.DataPropertyName = "precioUni";
+            this.precioUni.Frozen = true;
+            this.precioUni.HeaderText = "Precio";
+            this.precioUni.Name = "precioUni";
+            this.precioUni.ReadOnly = true;
+            // 
+            // Subtotal
+            // 
+            this.Subtotal.Frozen = true;
+            this.Subtotal.HeaderText = "Subtotal";
+            this.Subtotal.Name = "Subtotal";
+            this.Subtotal.ReadOnly = true;
+            // 
             // lblNumeroMesa
             // 
             this.lblNumeroMesa.AutoSize = true;
@@ -360,59 +412,29 @@
             this.btnCerrarComanda.UseVisualStyleBackColor = true;
             this.btnCerrarComanda.Click += new System.EventHandler(this.btnCerrarComanda_Click);
             // 
-            // N_Detalle
+            // label1
             // 
-            this.N_Detalle.DataPropertyName = "nroDetalle";
-            this.N_Detalle.Frozen = true;
-            this.N_Detalle.HeaderText = "N° Detalle";
-            this.N_Detalle.Name = "N_Detalle";
-            this.N_Detalle.ReadOnly = true;
-            this.N_Detalle.Width = 120;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(592, 288);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 21);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Precio Final:";
             // 
-            // Codigo_Producto
+            // lblPrecioFinal
             // 
-            this.Codigo_Producto.DataPropertyName = "codProd";
-            this.Codigo_Producto.Frozen = true;
-            this.Codigo_Producto.HeaderText = "Cód. Producto";
-            this.Codigo_Producto.Name = "Codigo_Producto";
-            this.Codigo_Producto.ReadOnly = true;
-            this.Codigo_Producto.Width = 160;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.DataPropertyName = "cantidad";
-            this.Cantidad.Frozen = true;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.DataPropertyName = "descripProd";
-            this.Descripcion.Frozen = true;
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 200;
-            // 
-            // precioUni
-            // 
-            this.precioUni.DataPropertyName = "precioUni";
-            this.precioUni.Frozen = true;
-            this.precioUni.HeaderText = "Precio";
-            this.precioUni.Name = "precioUni";
-            this.precioUni.ReadOnly = true;
-            // 
-            // Subtotal
-            // 
-            this.Subtotal.Frozen = true;
-            this.Subtotal.HeaderText = "Subtotal";
-            this.Subtotal.Name = "Subtotal";
-            this.Subtotal.ReadOnly = true;
+            this.lblPrecioFinal.AutoSize = true;
+            this.lblPrecioFinal.Location = new System.Drawing.Point(709, 288);
+            this.lblPrecioFinal.Name = "lblPrecioFinal";
+            this.lblPrecioFinal.Size = new System.Drawing.Size(59, 21);
+            this.lblPrecioFinal.TabIndex = 35;
+            this.lblPrecioFinal.Text = "$ XXXX";
             // 
             // Comanda
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.lblPrecioFinal);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCerrarComanda);
             this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.btnEliminar);
@@ -470,5 +492,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioUni;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subtotal;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPrecioFinal;
     }
 }

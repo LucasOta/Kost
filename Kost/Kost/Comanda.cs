@@ -35,12 +35,13 @@ namespace Kost
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
             pnlDetalle.Enabled = true;
+            btnCerrarComanda.Enabled = false;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Clear();
-
+            btnCerrarComanda.Enabled = false;
             if (CapaNegocio.Funciones.RowSeleccionado(
                 dgvComanda.SelectedRows.Count, "un detalle", "modificarlo.", this))
             {
@@ -100,6 +101,7 @@ namespace Kost
                         CalcularTotal();
                         Clear();
                         pnlDetalle.Enabled = false;
+                        btnCerrarComanda.Enabled = true;
                     }
                     else
                     {
@@ -130,6 +132,11 @@ namespace Kost
             
             coman.PrecioFinal = (Convert.ToSingle(lblTotal.Text.Replace("$", "")) - (Convert.ToSingle(lblTotal.Text.Replace("$", ""))*(Convert.ToSingle(txtDescuento.Text)/100)));
 
+            lblPrecioFinal.Text = "$"+coman.PrecioFinal;
+            btnCerrarComanda.Enabled = false;
+            btnAgregar.Enabled = false;
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
             coman.CerrarComanda();
 
             this.cerrarComanda();
@@ -154,6 +161,7 @@ namespace Kost
                 banderaGuardar = true;
                 Clear();
                 pnlDetalle.Enabled = false;
+                btnCerrarComanda.Enabled = true;
             }
             else
             {
