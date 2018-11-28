@@ -44,7 +44,7 @@ namespace CapaDatos
 
         public static Boolean Guardar(long cuilMozo, Conexion con)
         {
-            string sql = "INSERT INTO Mozos (cuilMozo, baja) values (@cuilMozo, @baja)";
+            string sql = "INSERT INTO Mozos (cuilMozo, baja) values (@cuilMozo, @bajaU)";
 
             try
             {
@@ -56,7 +56,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("cuilMozo", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[7].Value = cuilMozo;
 
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
+                Cx.sqlCmd.Parameters.Add("bajaU", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[8].Value = 0;
 
                 Cx.sqlCmd.ExecuteNonQuery();
