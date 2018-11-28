@@ -118,7 +118,7 @@ namespace Kost
         public void Clear()
         {
             cbxMesa.SelectedValue = 1;
-            cbxMozo.SelectedValue = 1;
+            cbxMozo.SelectedIndex = 1;
         }
 
         private void GuardarModificacion()
@@ -169,6 +169,7 @@ namespace Kost
             cbxMesa.ValueMember = "nroMesa";
             cbxMesa.DisplayMember = "nroMesa";
             cbxMesa.BindingContext = this.BindingContext;
+
 
             DataTable mozos = CapaNegocio.Mozo.ListarTodos();
 
