@@ -288,6 +288,48 @@ namespace CapaDatos
             }
         }
 
+
+        public static Boolean ActualizarStock(int pCod, Int32 cant, Boolean suma) //si suma = true suma el stock, sino lo resta
+        {
+            string sql;
+            if (suma)
+            {
+                sql = "UPDATE ProdSimples SET stock = stock + ( @cant / contenido ) WHERE codProdSimple = @codProd";
+            }
+            else
+            {
+                sql = "UPDATE ProdSimples SET stock = stock - ( @cant / contenido ) WHERE codProdSimple = @codProd";
+            }
+
+            try
+            {
+                Conexion Cx = new Conexion();
+
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
+
+                Cx.sqlCmd.Parameters.Add("cant", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = cant;
+
+                Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[1].Value = pCod;
+
+                Cx.Abrir();
+                object nro = Cx.sqlCmd.ExecuteNonQuery();
+                Cx.Cerrar();
+                if (Convert.ToInt32(nro) > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+
         public static DataTable TraerUnidades()
         {
             DataTable ds = new DataTable("Unidades");

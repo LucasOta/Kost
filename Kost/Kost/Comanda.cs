@@ -90,7 +90,7 @@ namespace Kost
             {
                 if (txtCantidad.Text.Equals(""))
                 {
-                    Funciones.mError(this, "Debe indicar la cantidad");
+                    Funciones.mError(this, "Debe indicar la cantidad.");
                 }
                 else
                 {
@@ -102,6 +102,8 @@ namespace Kost
                         Clear();
                         pnlDetalle.Enabled = false;
                         btnCerrarComanda.Enabled = true;
+
+
                     }
                     else
                     {
