@@ -78,7 +78,7 @@ namespace CapaDatos
         {
             DataTable ventasPorDia = new DataTable("ventasPorDia");
 
-            string sql = "SELECT CONCAT(P.nombre,' ',P.apellido) AS mozo, C.nroComanda, C.total " +
+            string sql = "SELECT CONCAT(P.nombre,' ',P.apellido) AS mozo, C.nroComanda, C.precioFinal " +
                 "FROM(Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas " +
                 "C ON C.cuilMozo = M.cuilMozo WHERE convert(varchar, C.fecha, 105) = @fecha AND C.activa = 0;";
 
