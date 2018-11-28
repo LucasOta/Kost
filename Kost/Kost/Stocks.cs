@@ -27,27 +27,7 @@ namespace Kost
         //Botones
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(txtAgregar.Text != "")
-            {
-                PS.Stock = PS.Stock + Convert.ToInt32(txtAgregar.Text);
-            }
-            else if(txtQuitar.Text != "")
-            {
-                PS.Stock = PS.Stock - Convert.ToInt32(txtQuitar.Text);
-            }                                  
-
-            if (PS.ActualizarStock())
-            {
-                CapaNegocio.Funciones.mOk(this, "Se actualizo el stock correctamente");
-            }
-            else
-            {
-                CapaNegocio.Funciones.mError(this, PS.Mensaje);
-            }
-
-            ActualizarPantalla();
-
-            pnlProducto.Enabled = false;
+            
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -69,13 +49,65 @@ namespace Kost
 
             pnlProducto.Enabled = false;
         }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.btnIrAtras();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (txtCantidad.Text != "")
+            {
+                PS.Stock = PS.Stock + Convert.ToInt32(txtCantidad.Text);
+                if (PS.ActualizarStock())
+                {
+                    CapaNegocio.Funciones.mOk(this, "Se actualizó el stock correctamente");
+                }
+                else
+                {
+                    CapaNegocio.Funciones.mError(this, PS.Mensaje);
+                }
+
+                ActualizarPantalla();
+
+                pnlProducto.Enabled = false;
+            }
+            else 
+            {
+                Funciones.mError(this, "No hay ningún valor ingresado.");
+            }            
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            if (txtCantidad.Text != "")
+            {
+                PS.Stock = PS.Stock - Convert.ToInt32(txtCantidad.Text);
+                if (PS.ActualizarStock())
+                {
+                    CapaNegocio.Funciones.mOk(this, "Se actualizó el stock correctamente");
+                }
+                else
+                {
+                    CapaNegocio.Funciones.mError(this, PS.Mensaje);
+                }
+
+                ActualizarPantalla();
+
+                pnlProducto.Enabled = false;
+            }
+            else
+            {
+                Funciones.mError(this, "No hay ningún valor ingresado.");
+            }
+        }
         //Métodos
         public void Clear()
         {
             lblNombre.Text = "(Nombre del Producto)";
             lblDescripcion.Text = "(Descripción del Producto)";
-            txtAgregar.Text = "";
-            txtQuitar.Text = "";
+            txtCantidad.Text = "";
         }
 
         public void ActualizarPantalla()
@@ -85,11 +117,6 @@ namespace Kost
             dgvProductos.DataSource = CapaNegocio.ProdSimple.MostrarStock();
 
             pnlProducto.Enabled = false;
-        }
-
-        private void btnAtras_Click(object sender, EventArgs e)
-        {
-            this.btnIrAtras();
         }
 
 
