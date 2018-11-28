@@ -183,7 +183,7 @@ namespace CapaNegocio
             {
                 for (int i = 0; i < cant; i++)
                 {
-                    actualizar_stock(codProd, true);
+                    actualizar_stock(codProd, false);
                 }
             }
             else
@@ -247,7 +247,7 @@ namespace CapaNegocio
                 DataTable composicion = ProductoCompuestoBD.TraerComposicion(codProd);
                 foreach (DataRow dr in composicion.Rows)
                 {
-                    ProdSimpleBD.ActualizarStock(codProd, Convert.ToInt32(dr["cantidad"]), suma);
+                    ProdSimpleBD.ActualizarStock(Convert.ToInt32(dr["codProdSimple"]), Convert.ToInt32(dr["cantidad"]), suma);
                 }
             }
             else

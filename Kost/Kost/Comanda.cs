@@ -102,8 +102,6 @@ namespace Kost
                         Clear();
                         pnlDetalle.Enabled = false;
                         btnCerrarComanda.Enabled = true;
-
-
                     }
                     else
                     {
