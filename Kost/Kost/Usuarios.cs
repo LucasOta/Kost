@@ -132,7 +132,7 @@ namespace Kost
             if (CapaNegocio.Funciones.RowSeleccionado(
                 dgvUsuarios.SelectedRows.Count, "un usuario", "ver los detalles del mismo.", this))
             {
-                pnlUsuario.Enabled = true;
+                pnlUsuario.Enabled = false;
 
                 btnCancelar.Enabled = false;
 

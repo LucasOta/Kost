@@ -29,7 +29,7 @@ namespace Kost
             if (CapaNegocio.Funciones.RowSeleccionado(
                 dgvMozos.SelectedRows.Count, "un mozo", "ver los detalles del mismo.", this))
             {
-                pnlMozo.Enabled = true;
+                pnlMozo.Enabled = false;
                 btnCancelar.Enabled = false;
                 btnGuardar.Enabled = false;
                 long cuil = Convert.ToInt64(dgvMozos.CurrentRow.Cells["cuil"].Value);
