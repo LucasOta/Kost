@@ -22,7 +22,6 @@ namespace CapaNegocio
 
             if (!Error)
             {
-                Error = false;
                 this.ExistePersonaCargada(pcuil);
                 if (!Error)
                 {

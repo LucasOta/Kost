@@ -28,8 +28,8 @@ namespace CapaNegocio
         {
             this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
 
-            if (!this.Error){
-                Error = false;
+            if (!this.Error)
+            {
                 ExistePersonaCargada(pcuil);
                 if (!Error)
                 {

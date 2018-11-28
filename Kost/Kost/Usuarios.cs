@@ -41,6 +41,7 @@ namespace Kost
                         }
                         else
                         {
+                            user = CapaNegocio.Usuario.TraerUnUsuario(Convert.ToInt64(txtCuil.Text.Replace("-", "")));
                             GuardarModificacion();
                         }
                     }

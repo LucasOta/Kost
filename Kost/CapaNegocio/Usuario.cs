@@ -32,14 +32,18 @@ namespace CapaNegocio
                 this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
                 if (!Error)
                 {
-                    Nombre = pnombre;
-                    Apellido = papellido;
-                    Direccion = pdireccion;
-                    Mail = pmail;
-                    Cuil = pcuil;
-                    Nacimiento = pnacimiento;
+                    this.ExistePersonaCargada(pcuil);
+                    if (Error)
+                    {
+                        Nombre = pnombre;
+                        Apellido = papellido;
+                        Direccion = pdireccion;
+                        Mail = pmail;
+                        Cuil = pcuil;
+                        Nacimiento = pnacimiento;
 
-                    GuardarUser();
+                        GuardarUser();
+                    }                    
                 }
             }
         }
@@ -137,7 +141,7 @@ namespace CapaNegocio
             }
             else
             {
-                Mensaje += " No pudieron guardarse las modificaciones correctamente. Puede que algunos no concuerden";
+                Mensaje += " No pudieron guardarse las modificaciones correctamente. Puede que algunos datos no concuerden. ";
                 return false;
             }   
         }
