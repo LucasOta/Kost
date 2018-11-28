@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.dgvVentasDiarias = new System.Windows.Forms.DataGridView();
-            this.dtpVentasDiarias = new System.Windows.Forms.DateTimePicker();
             this.Mozo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtpVentasDiarias = new System.Windows.Forms.DateTimePicker();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentasDiarias)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,16 +52,8 @@
             this.dgvVentasDiarias.Name = "dgvVentasDiarias";
             this.dgvVentasDiarias.ReadOnly = true;
             this.dgvVentasDiarias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVentasDiarias.Size = new System.Drawing.Size(814, 479);
+            this.dgvVentasDiarias.Size = new System.Drawing.Size(814, 449);
             this.dgvVentasDiarias.TabIndex = 21;
-            // 
-            // dtpVentasDiarias
-            // 
-            this.dtpVentasDiarias.Location = new System.Drawing.Point(7, 15);
-            this.dtpVentasDiarias.Name = "dtpVentasDiarias";
-            this.dtpVentasDiarias.Size = new System.Drawing.Size(200, 27);
-            this.dtpVentasDiarias.TabIndex = 22;
-            this.dtpVentasDiarias.ValueChanged += new System.EventHandler(this.dtpVentasDiarias_ValueChanged);
             // 
             // Mozo
             // 
@@ -86,10 +79,28 @@
             this.Importe.ReadOnly = true;
             this.Importe.Width = 200;
             // 
+            // dtpVentasDiarias
+            // 
+            this.dtpVentasDiarias.Location = new System.Drawing.Point(7, 15);
+            this.dtpVentasDiarias.Name = "dtpVentasDiarias";
+            this.dtpVentasDiarias.Size = new System.Drawing.Size(200, 27);
+            this.dtpVentasDiarias.TabIndex = 22;
+            this.dtpVentasDiarias.ValueChanged += new System.EventHandler(this.dtpVentasDiarias_ValueChanged);
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(577, 500);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(179, 21);
+            this.lblTotal.TabIndex = 24;
+            this.lblTotal.Text = "Total que se vendió: $";
+            // 
             // VentasPorDia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.dtpVentasDiarias);
             this.Controls.Add(this.dgvVentasDiarias);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -98,6 +109,7 @@
             this.Size = new System.Drawing.Size(825, 530);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentasDiarias)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -108,5 +120,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Mozo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comanda;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
