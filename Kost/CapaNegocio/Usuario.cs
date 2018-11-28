@@ -100,7 +100,7 @@ namespace CapaNegocio
         {
             if (Validaciones.Usuario(valuser)) {
                 this.Error = true;
-                this.Mensaje = "el usuario ya existe";
+                this.Mensaje = "El usuario ya existe. ";
             }
         }
 

@@ -193,7 +193,11 @@ namespace CapaNegocio
                 this.Error = true;
                 this.Mensaje += "La fecha de nacimiento seleccionada no se encuentra entre las delimitadas por el sistema.";
             }
-
+            if (PersonaBD.Existe(pcuil))
+            {
+                this.Error = true;
+                this.Mensaje = "Persona no activa";
+            }
         }
 
         //protected void Guardar() 
