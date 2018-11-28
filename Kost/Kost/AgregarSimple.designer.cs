@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarSimple));
             this.cbxCategoria = new System.Windows.Forms.ComboBox();
             this.chxInsumo = new System.Windows.Forms.CheckBox();
-            this.btnAtras = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblProducto = new System.Windows.Forms.Label();
@@ -66,29 +64,10 @@
             this.chxInsumo.Text = "Insumo";
             this.chxInsumo.UseVisualStyleBackColor = true;
             // 
-            // btnAtras
-            // 
-            this.btnAtras.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAtras.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnAtras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAtras.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Image = ((System.Drawing.Image)(resources.GetObject("btnAtras.Image")));
-            this.btnAtras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAtras.Location = new System.Drawing.Point(683, 486);
-            this.btnAtras.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(132, 32);
-            this.btnAtras.TabIndex = 9;
-            this.btnAtras.Text = "Atrás";
-            this.btnAtras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAtras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAtras.UseVisualStyleBackColor = true;
-            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click_1);
-            // 
             // btnCancelar
             // 
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Location = new System.Drawing.Point(570, 486);
+            this.btnCancelar.Location = new System.Drawing.Point(128, 484);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(106, 33);
             this.btnCancelar.TabIndex = 8;
@@ -99,7 +78,7 @@
             // btnGuardar
             // 
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Location = new System.Drawing.Point(458, 486);
+            this.btnGuardar.Location = new System.Drawing.Point(16, 484);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(106, 32);
             this.btnGuardar.TabIndex = 7;
@@ -218,7 +197,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxCategoria);
             this.Controls.Add(this.chxInsumo);
-            this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.lblProducto);
@@ -241,7 +219,6 @@
 
         private System.Windows.Forms.ComboBox cbxCategoria;
         private System.Windows.Forms.CheckBox chxInsumo;
-        private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label lblProducto;

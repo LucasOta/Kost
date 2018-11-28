@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AgregarCompuesto));
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvComponentes = new System.Windows.Forms.DataGridView();
             this.Insumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,17 +48,16 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblPrecio = new System.Windows.Forms.Label();
-            this.btnAtras = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComponentes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminar
             // 
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(332, 355);
+            this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(717, 487);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(71, 27);
+            this.btnEliminar.Size = new System.Drawing.Size(90, 32);
             this.btnEliminar.TabIndex = 9;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -76,12 +74,12 @@
             this.Insumo,
             this.Cantidad,
             this.CodProd});
-            this.dgvComponentes.Location = new System.Drawing.Point(437, 257);
+            this.dgvComponentes.Location = new System.Drawing.Point(437, 128);
             this.dgvComponentes.MultiSelect = false;
             this.dgvComponentes.Name = "dgvComponentes";
             this.dgvComponentes.ReadOnly = true;
             this.dgvComponentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvComponentes.Size = new System.Drawing.Size(371, 173);
+            this.dgvComponentes.Size = new System.Drawing.Size(371, 311);
             this.dgvComponentes.TabIndex = 7;
             // 
             // Insumo
@@ -111,10 +109,10 @@
             // btnAgregar
             // 
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(332, 299);
+            this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregar.Location = new System.Drawing.Point(717, 449);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(71, 27);
+            this.btnAgregar.Size = new System.Drawing.Size(90, 32);
             this.btnAgregar.TabIndex = 8;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -122,7 +120,7 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(278, 257);
+            this.txtCantidad.Location = new System.Drawing.Point(683, 81);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(125, 27);
             this.txtCantidad.TabIndex = 6;
@@ -130,7 +128,7 @@
             // cbxComponente
             // 
             this.cbxComponente.FormattingEnabled = true;
-            this.cbxComponente.Location = new System.Drawing.Point(153, 257);
+            this.cbxComponente.Location = new System.Drawing.Point(558, 81);
             this.cbxComponente.Name = "cbxComponente";
             this.cbxComponente.Size = new System.Drawing.Size(119, 29);
             this.cbxComponente.TabIndex = 5;
@@ -138,7 +136,7 @@
             // lblComponentes
             // 
             this.lblComponentes.AutoSize = true;
-            this.lblComponentes.Location = new System.Drawing.Point(28, 260);
+            this.lblComponentes.Location = new System.Drawing.Point(433, 84);
             this.lblComponentes.Name = "lblComponentes";
             this.lblComponentes.Size = new System.Drawing.Size(122, 21);
             this.lblComponentes.TabIndex = 51;
@@ -148,7 +146,7 @@
             // cbxCategoria
             // 
             this.cbxCategoria.FormattingEnabled = true;
-            this.cbxCategoria.Location = new System.Drawing.Point(153, 149);
+            this.cbxCategoria.Location = new System.Drawing.Point(153, 155);
             this.cbxCategoria.Name = "cbxCategoria";
             this.cbxCategoria.Size = new System.Drawing.Size(250, 29);
             this.cbxCategoria.TabIndex = 2;
@@ -156,7 +154,7 @@
             // btnCancelar
             // 
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Location = new System.Drawing.Point(563, 483);
+            this.btnCancelar.Location = new System.Drawing.Point(125, 484);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(106, 33);
             this.btnCancelar.TabIndex = 11;
@@ -167,7 +165,7 @@
             // btnGuardar
             // 
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Location = new System.Drawing.Point(451, 483);
+            this.btnGuardar.Location = new System.Drawing.Point(13, 484);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(106, 32);
             this.btnGuardar.TabIndex = 10;
@@ -181,13 +179,13 @@
             this.lblProducto.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProducto.Location = new System.Drawing.Point(27, 28);
             this.lblProducto.Name = "lblProducto";
-            this.lblProducto.Size = new System.Drawing.Size(356, 30);
+            this.lblProducto.Size = new System.Drawing.Size(269, 30);
             this.lblProducto.TabIndex = 50;
-            this.lblProducto.Text = "Nuevo Producto Compuesto";
+            this.lblProducto.Text = "Producto Compuesto";
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(153, 218);
+            this.txtPrecio.Location = new System.Drawing.Point(153, 194);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(250, 27);
             this.txtPrecio.TabIndex = 4;
@@ -204,7 +202,7 @@
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(28, 119);
+            this.lblDescripcion.Location = new System.Drawing.Point(28, 122);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(100, 21);
             this.lblDescripcion.TabIndex = 46;
@@ -213,7 +211,7 @@
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(28, 152);
+            this.lblCategoria.Location = new System.Drawing.Point(28, 158);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(91, 21);
             this.lblCategoria.TabIndex = 47;
@@ -221,7 +219,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(153, 116);
+            this.txtDescripcion.Location = new System.Drawing.Point(153, 119);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(250, 27);
             this.txtDescripcion.TabIndex = 1;
@@ -236,30 +234,11 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(28, 221);
+            this.lblPrecio.Location = new System.Drawing.Point(28, 197);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(57, 21);
             this.lblPrecio.TabIndex = 49;
             this.lblPrecio.Text = "Precio";
-            // 
-            // btnAtras
-            // 
-            this.btnAtras.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAtras.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnAtras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAtras.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Image = ((System.Drawing.Image)(resources.GetObject("btnAtras.Image")));
-            this.btnAtras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAtras.Location = new System.Drawing.Point(676, 483);
-            this.btnAtras.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(132, 32);
-            this.btnAtras.TabIndex = 12;
-            this.btnAtras.Text = "Atrás";
-            this.btnAtras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAtras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAtras.UseVisualStyleBackColor = true;
-            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click_1);
             // 
             // AgregarCompuesto
             // 
@@ -281,7 +260,6 @@
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblPrecio);
-            this.Controls.Add(this.btnAtras);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "AgregarCompuesto";
             this.Size = new System.Drawing.Size(825, 530);
@@ -310,7 +288,6 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblPrecio;
-        private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.DataGridViewTextBoxColumn Insumo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodProd;

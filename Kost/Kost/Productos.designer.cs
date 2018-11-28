@@ -32,15 +32,15 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregarCompuesto = new System.Windows.Forms.Button();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.btnAgregarSimple = new System.Windows.Forms.Button();
+            this.btnVerStock = new System.Windows.Forms.Button();
+            this.btnAdmCategorias = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAgregarSimple = new System.Windows.Forms.Button();
-            this.btnVerStock = new System.Windows.Forms.Button();
-            this.btnAdmCategorias = new System.Windows.Forms.Button();
             this.compuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
@@ -123,6 +123,17 @@
             this.btnVerStock.UseVisualStyleBackColor = true;
             this.btnVerStock.Click += new System.EventHandler(this.btnVerStock_Click);
             // 
+            // btnAdmCategorias
+            // 
+            this.btnAdmCategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdmCategorias.Location = new System.Drawing.Point(635, 402);
+            this.btnAdmCategorias.Name = "btnAdmCategorias";
+            this.btnAdmCategorias.Size = new System.Drawing.Size(182, 54);
+            this.btnAdmCategorias.TabIndex = 6;
+            this.btnAdmCategorias.Text = "Administrar Categorías";
+            this.btnAdmCategorias.UseVisualStyleBackColor = true;
+            this.btnAdmCategorias.Click += new System.EventHandler(this.btnAdmCategorias_Click);
+            // 
             // ID
             // 
             this.ID.DataPropertyName = "codProd";
@@ -169,39 +180,7 @@
             this.Tipo.HeaderText = "Tipo";
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
-            // 
-            // btnAgregarSimple
-            // 
-            this.btnAgregarSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarSimple.Location = new System.Drawing.Point(196, 402);
-            this.btnAgregarSimple.Name = "btnAgregarSimple";
-            this.btnAgregarSimple.Size = new System.Drawing.Size(182, 54);
-            this.btnAgregarSimple.TabIndex = 2;
-            this.btnAgregarSimple.Text = "Agregar Producto Simple";
-            this.btnAgregarSimple.UseVisualStyleBackColor = true;
-            this.btnAgregarSimple.Click += new System.EventHandler(this.btnAgregarSimple_Click);
-            // 
-            // btnVerStock
-            // 
-            this.btnVerStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerStock.Location = new System.Drawing.Point(384, 482);
-            this.btnVerStock.Name = "btnVerStock";
-            this.btnVerStock.Size = new System.Drawing.Size(182, 40);
-            this.btnVerStock.TabIndex = 5;
-            this.btnVerStock.Text = "Ver Stock";
-            this.btnVerStock.UseVisualStyleBackColor = true;
-            this.btnVerStock.Click += new System.EventHandler(this.btnVerStock_Click);
-            // 
-            // btnAdmCategorias
-            // 
-            this.btnAdmCategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdmCategorias.Location = new System.Drawing.Point(635, 402);
-            this.btnAdmCategorias.Name = "btnAdmCategorias";
-            this.btnAdmCategorias.Size = new System.Drawing.Size(182, 54);
-            this.btnAdmCategorias.TabIndex = 6;
-            this.btnAdmCategorias.Text = "Administrar Categorías";
-            this.btnAdmCategorias.UseVisualStyleBackColor = true;
-            this.btnAdmCategorias.Click += new System.EventHandler(this.btnAdmCategorias_Click);
+            this.Tipo.Width = 150;
             // 
             // compuesto
             // 
@@ -238,6 +217,7 @@
         private System.Windows.Forms.DataGridView dgvProductos;
         private System.Windows.Forms.Button btnAgregarSimple;
         private System.Windows.Forms.Button btnVerStock;
+        private System.Windows.Forms.Button btnAdmCategorias;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
@@ -245,6 +225,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn compuesto;
-        private System.Windows.Forms.Button btnAdmCategorias;
     }
 }
