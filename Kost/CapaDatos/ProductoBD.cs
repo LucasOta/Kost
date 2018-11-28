@@ -407,6 +407,39 @@ namespace CapaDatos
 
             return ds;
         }
+
+
+        public static Boolean es_Compuesto(int codProd)
+        {
+
+            string sql = "SELECT compuesto FROM Productos WHERE codProd = @codprod";
+
+            try
+            {
+                Conexion Cx = new Conexion();
+                Cx.SetComandoTexto();
+                Cx.SetSQL(sql);
+
+                Cx.sqlCmd.Parameters.Add("codprod", SqlDbType.Int);
+                Cx.sqlCmd.Parameters[0].Value = codProd;
+
+                Cx.Abrir();
+                SqlDataReader reader = Cx.sqlCmd.ExecuteReader();
+                Boolean aux = false;
+                if (reader.GetInt16(0) == 1)
+                {
+                    aux = true;
+                }
+                Cx.Cerrar();
+                return aux;
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                return false;
+            }
+        }
     }
 }
 

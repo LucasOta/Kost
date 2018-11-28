@@ -163,11 +163,28 @@ namespace CapaNegocio
 
         protected void Guardar(int nroCom, int codProd, string descProd, int cant, float precioUni)
         {
+            //String msjGuardar = DetalleBD.Guardar(nroCom, codProd, descProd, cant, precioUni);
+            //if ( msjGuardar.Equals("OK"))
+            //{
+            //    this.Error = false;
+            //    this.Mensaje = "Detalle creado/guardado con éxito. ";
+
+
+
+            //}
+            //else
+            //{
+            //    this.Error = true;
+            //    this.Mensaje = msjGuardar;
+            //}
+
             String msjGuardar = DetalleBD.Guardar(nroCom, codProd, descProd, cant, precioUni);
-            if ( msjGuardar.Equals("OK"))
+            if (msjGuardar.Equals("OK"))
             {
-                this.Error = false;
-                this.Mensaje = "Detalle creado/guardado con éxito. ";
+                for (int i = 0; i < cant; i++)
+                {
+                    actualizar_stock(codProd, true);
+                }
             }
             else
             {
@@ -184,6 +201,19 @@ namespace CapaNegocio
         public static Boolean Eliminar(int nroDetalle)
         {
             return CapaDatos.DetalleBD.Eliminar(nroDetalle);
+
+            //if (msjGuardar.Equals("OK"))
+            //{
+            //    for (int i = 0; i < cant; i++)
+            //    {
+            //        actualizar_stock(codProd, true);
+            //    }
+            //}
+            //else
+            //{
+            //    this.Error = true;
+            //    this.Mensaje = msjGuardar;
+            //}
         }
 
         public static DataTable TraerTodosDetalles(int nroComanda)
@@ -207,6 +237,23 @@ namespace CapaNegocio
             det.PrecioUnitario = Convert.ToInt32(rowus["precioUni"].ToString());
 
             return det;
+        }
+
+
+        private static void actualizar_stock(int codProd, Boolean suma) //si suma = true suma el stock, sino lo resta
+        {
+            if (ProductoBD.es_Compuesto(codProd))
+            {
+                DataTable composicion = ProductoCompuestoBD.TraerComposicion(codProd);
+                foreach (DataRow dr in composicion.Rows)
+                {
+                    ProdSimpleBD.ActualizarStock(codProd, Convert.ToInt32(dr["cantidad"]), suma);
+                }
+            }
+            else
+            {
+                ProdSimpleBD.ActualizarStock(codProd, 1, suma);
+            }
         }
     }
 }
