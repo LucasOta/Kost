@@ -167,7 +167,7 @@ namespace CapaNegocio
             if ( msjGuardar.Equals("OK"))
             {
                 this.Error = false;
-                this.Mensaje = "Detalle creado/guardado";
+                this.Mensaje = "Detalle creado/guardado con éxito. ";
             }
             else
             {

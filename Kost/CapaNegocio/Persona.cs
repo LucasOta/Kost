@@ -36,8 +36,6 @@ namespace CapaNegocio
                 Cuil = pcuil;
                 Nacimiento = pnacimiento;
                 Usuario = usuario;
-            } else {
-                //Mandar mensaje
             }
         }
 
@@ -147,7 +145,20 @@ namespace CapaNegocio
             }
         }
 
-        public bool Usuario { get => usuario; set => usuario = value; }
+        public bool Usuario
+        {
+            get
+            {
+                return usuario;
+            }
+
+            set
+            {
+                usuario = value;
+            }
+        }
+
+
 
 
         //Funciones
@@ -155,32 +166,32 @@ namespace CapaNegocio
         {
             if (!Validaciones.Nombre(pnombre)) {
                 this.Error = true;
-                this.Mensaje += "el nombre contiene caracteres raros.";
+                this.Mensaje += "El nombre no comienza con mayúscula o contiene caracteres raros. ";
             }
             if (!Validaciones.Apellido(papellido))
             {
                 this.Error = true;
-                this.Mensaje += "el apellido contiene caracteres raros.";
+                this.Mensaje += "El apellido no comienza con mayúscula o contiene caracteres raros. ";
             }
             if (!Validaciones.Direccion(pdireccion))
             {
                 this.Error = true;
-                this.Mensaje += "el direccion contiene caracteres raros.";
+                this.Mensaje += "La dirección contiene caracteres raros. ";
             }
             if (!Validaciones.Mail(pmail))
             {
                 this.Error = true;
-                this.Mensaje += "el mail contiene caracteres raros.";
+                this.Mensaje += "El mail esta mal planteado o contiene caracteres raros. ";
             }
             if (!Validaciones.Cuil(pcuil))
             {
                 this.Error = true;
-                this.Mensaje += "el cuil contiene caracteres raros.";
+                this.Mensaje += "El cuil es incorrecto o contiene caracteres raros. ";
             }
             if (!Validaciones.Nacimiento(pnacimiento))
             {
                 this.Error = true;
-                this.Mensaje += "el nacimiento contiene caracteres raros.";
+                this.Mensaje += "La fecha de nacimiento seleccionada no se encuentra entre las delimitadas por el sistema.";
             }
 
         }
@@ -234,7 +245,7 @@ namespace CapaNegocio
             }
             else
             {
-                Mensaje += " No pudieron guardarse las modificaciones.";
+                Mensaje += " No pudieron guardarse las modificaciones. ";
                 return false;
             }          
         }

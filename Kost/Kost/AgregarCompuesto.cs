@@ -94,9 +94,19 @@ namespace Kost
             }
             else
             {
-                if (ProdCompuesto.GuardarComposicionMod(pc.CodProdCompuesto, Convert.ToInt32(cbxComponente.SelectedValue), Convert.ToInt32(txtCantidad.Text)))
+                int cantidad;
+                if ((txtCantidad.Text).Equals(""))
                 {
-                    CapaNegocio.Funciones.mOk(this, "Se guardo correctamente el componente del producto");
+                    cantidad = 1;
+                }
+                else
+                {
+                    cantidad = Convert.ToInt32(txtCantidad.Text);
+                }
+
+                if (ProdCompuesto.GuardarComposicionMod(pc.CodProdCompuesto, Convert.ToInt32(cbxComponente.SelectedValue), cantidad))
+                {
+                    CargarDGV(ProdCompuesto.TraerComposicion(pc.CodProdCompuesto));
                 }
                 else
                 {
@@ -113,9 +123,11 @@ namespace Kost
             }
             else
             {
-                if(ProdCompuesto.EliminarComposicion(pc.CodProdCompuesto, Convert.ToInt32(dgvComponentes.CurrentRow.Cells["codProdSimple"].Value), Convert.ToInt32(dgvComponentes.CurrentRow.Cells["cantidad"].Value)))
+                if(ProdCompuesto.EliminarComposicion(pc.CodProdCompuesto, Convert.ToInt32(dgvComponentes.CurrentRow.Cells["CodProd"].Value), Convert.ToInt32(dgvComponentes.CurrentRow.Cells["Cantidad"].Value)))
                 {
                     CapaNegocio.Funciones.mOk(this, "Se elimino correctamente el componente del producto");
+
+                    CargarDGV(ProdCompuesto.TraerComposicion(pc.CodProdCompuesto));
                 }
                 else
                 {
@@ -131,7 +143,6 @@ namespace Kost
             txtDescripcion.Text = "";
             txtCantidad.Text = "";
             txtPrecio.Text = "";
-            dgvComponentes.DataSource = null;
             composicion.Clear();
         }
 
@@ -142,11 +153,15 @@ namespace Kost
             CargarCBXCategoria();
             CargarCBXComponentes();
 
-            aux = true;
-            
-            composicion.Columns.Add("codProdSim");
-            composicion.Columns.Add("nombre");
-            composicion.Columns.Add("cantidad");
+            if (!aux)
+            {
+                composicion.Clear();
+                composicion.Columns.Add("codProdSim");
+                composicion.Columns.Add("nombre");
+                composicion.Columns.Add("cantidad");
+            }
+
+            aux = true;            
         }
 
         public void CargarCBXCategoria()
@@ -198,6 +213,7 @@ namespace Kost
             pc.PrecioVenta = float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat);
             pc.IdCategoria = Convert.ToInt32(cbxCategoria.SelectedValue);
             pc.DescProd = txtDescripcion.Text;
+            pc.Compuesto = true;
 
             if (pc.ModificarProducto())
             {

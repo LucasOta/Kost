@@ -44,6 +44,7 @@ namespace CapaNegocio
                 else
                 {
                     Error = true;
+                    Mensaje += "Debe de corregir estos errores para poder cargar al Usuario.";
                 }
             }
             else

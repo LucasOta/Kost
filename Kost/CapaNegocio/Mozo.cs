@@ -35,6 +35,7 @@ namespace CapaNegocio
                 else
                 {
                     Error = true;
+                    Mensaje += "Debe de corregir estos errores para poder cargar al Mozo.";
                 }
             }
             else
@@ -52,12 +53,12 @@ namespace CapaNegocio
                 if (PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, " ", " ", 0, false) > 0)
                 {
                     this.Error = false;
-                    this.Mensaje = "Mozo Guardado";
+                    this.Mensaje = "Mozo Guardado con éxito. ";
                 }
                 else
                 {
                     this.Error = true;
-                    this.Mensaje += "Hubo un Error con la BD, intente nuevamente";
+                    this.Mensaje += "Ocurrió un Error durante la conexión con BD, intente nuevamente. ";
                 }             
             }
             else
@@ -65,7 +66,7 @@ namespace CapaNegocio
                 if (CapaDatos.MozoBD.Existe(Cuil))
                 {
                     this.Error = true;
-                    this.Mensaje = "Ya existe un mozo cargado en el sistema con ese cuil";
+                    this.Mensaje = "Ya existe un mozo cargado en el sistema con ese cuil. ";
                     if (!CapaDatos.PersonaBD.PersonaActiva(Cuil))
                     {
                         this.Mensaje = "Cuil existente no activo";
@@ -74,7 +75,7 @@ namespace CapaNegocio
                 else
                 {
                     this.Error = true;
-                    this.Mensaje += " .Hubo un Error, intente nuevamente";
+                    this.Mensaje += " .Ocurrió un Error, intente nuevamente. ";
                 }   
             }
         }

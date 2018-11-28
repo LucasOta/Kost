@@ -79,7 +79,7 @@ namespace CapaDatos
         public static long Guardar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion, string usuario, string contrasenia, int nivel, bool esUsuario)
         {
             string sql = "INSERT INTO Personas (cuil, nombre, apellido, mail, fechaNacimiento, direccion, baja) " +
-                        "VALUES (@cuil, @nombre, @apellido, @mail, CONVERT(date, @fechaNacimiento), @direccion, @baja);";
+                        "VALUES (@cuil, @nombre, @apellido, @mail, @fechaNacimiento, @direccion, @baja);";
 
             try
             {
@@ -113,44 +113,29 @@ namespace CapaDatos
 
                 Cx.SetTransaccion();
 
-                Object nro = Cx.sqlCmd.ExecuteScalar();
-                long id_transaccion = Convert.ToInt64(nro);
+                Cx.sqlCmd.ExecuteNonQuery();
 
-                if (id_transaccion > 0)
+                bool insertok;
+                if (esUsuario)
                 {
-                    bool insertok;
-                    if (esUsuario)
-                    {
-                        insertok = UsuarioBD.Guardar(usuario, contrasenia, nivel, pCuil, Cx);
-                    }
-                    else
-                    {
-                        insertok = MozoBD.Guardar(pCuil, Cx);
-                    }
-
-                    if (insertok == false)
-                    {
-                        Cx.TransaccionRollback();
-                        Cx.Cerrar();
-                        return -1;
-                    }
-                    else if (id_transaccion < 0)
-                    {
-                        // si salio mal y id_transaccion es -1 rollback
-                        Cx.TransaccionRollback();
-                        Cx.Cerrar();
-                        return id_transaccion;
-                    }
-                    else
-                    {
-                        Cx.ComitTransaccion();
-                        Cx.Cerrar();
-                        return id_transaccion;
-                    }
+                    insertok = UsuarioBD.Guardar(usuario, contrasenia, nivel, pCuil, Cx);
                 }
                 else
                 {
-                    return id_transaccion;
+                    insertok = MozoBD.Guardar(pCuil, Cx);
+                }
+
+                if (insertok == false)
+                {
+                    Cx.TransaccionRollback();
+                    Cx.Cerrar();
+                    return -1;
+                }
+                else
+                {
+                    Cx.ComitTransaccion();
+                    Cx.Cerrar();
+                    return 1;
                 }
             }
             catch (Exception e)

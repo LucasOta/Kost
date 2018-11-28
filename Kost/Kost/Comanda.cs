@@ -90,7 +90,6 @@ namespace Kost
                 CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.Text, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
                 if (!detal.Error)
                 {
-                    CapaNegocio.Funciones.mOk(this, "Se guardo el detalle exitosamente");
                     CargarDGV();
                     CalcularTotal();
                     Clear();

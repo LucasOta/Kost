@@ -44,7 +44,7 @@ namespace CapaDatos
 
         public static Boolean Guardar(string usuario, string contrasenia, int nivel, long cuilPersona, Conexion con)
         {
-            string sql = "INSERT INTO Usuarios (usuario, contrasenia, nivel, cuilPersona, baja) values (@usuario, @contrasenia, @nivel, @cuilPersona, @baja)";
+            string sql = "INSERT INTO Usuarios (usuario, contrasenia, nivel, cuilPersona, baja) VALUES (@usuario, @contrasenia, @nivel, @cuilPersona, @bajaU);";
 
             try
             {
@@ -65,7 +65,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("cuilPersona", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[10].Value = cuilPersona;
 
-                Cx.sqlCmd.Parameters.Add("baja", SqlDbType.Bit);
+                Cx.sqlCmd.Parameters.Add("bajaU", SqlDbType.Bit);
                 Cx.sqlCmd.Parameters[11].Value = 0;
 
                 Cx.sqlCmd.ExecuteNonQuery();

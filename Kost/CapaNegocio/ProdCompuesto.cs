@@ -62,12 +62,12 @@ namespace CapaNegocio
             if (ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, true, 0, false, 0, 0) > 0)
             {
                 Error = false;
-                Mensaje = "Producto compuesto guardado con éxito";
+                Mensaje = "Producto compuesto guardado con éxito. ";
             }
             else
             {
                 Error = true;
-                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente.";
+                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente. ";
             }            
         }
 

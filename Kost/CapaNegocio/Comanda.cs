@@ -201,11 +201,11 @@ namespace CapaNegocio
             if(Validaciones.Comanda(nroC))
             {
                 Error = true;
-                Mensaje = "Ya existe una comanda con este número identificador";
+                Mensaje = "Ya existe una comanda con este número identificador. ";
             }
             if (Validaciones.ComandaDeMesaActiva(nroMesa)){
                 Error = true;
-                Mensaje = "Ya existe una comanda activa para esta mesa";
+                Mensaje = "Ya existe una comanda activa para esta mesa. ";
             }
 
         }
@@ -216,7 +216,7 @@ namespace CapaNegocio
             if (msjGuardar.Equals("OK"))
             {
                 this.Error = false;
-                this.Mensaje = "Comanda creada/guardada";
+                this.Mensaje = "Comanda creada/guardada con éxito. ";
             }
             else
             {
@@ -285,7 +285,7 @@ namespace CapaNegocio
             if (Validaciones.ComandaDeMesaActiva(nroM))
             {
                 Error = true;
-                Mensaje = "Ya existe una comanda activa para esta mesa";
+                Mensaje = "Ya existe una comanda activa para esta mesa. ";
             }
             else
             {

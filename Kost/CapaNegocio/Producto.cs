@@ -39,11 +39,6 @@ namespace CapaNegocio
                 IdCategoria = c_idCat;
                 DescProd = c_descProd;
                 Compuesto = c_compuesto;
-                //this.Guardar();
-            }
-            else
-            {
-                //Retornar mensaje
             }
         }
 
@@ -160,13 +155,13 @@ namespace CapaNegocio
             if (CapaDatos.ProductoBD.ExisteCodigo(CodProd))
             {
                 this.Error = true;
-                this.Mensaje = "Ya existe un producto guardado con este codigo de producto.";
+                this.Mensaje = "Ya existe un producto guardado con este codigo de producto. ";
             }
 
             if (CapaDatos.ProductoBD.ExisteNombre(Nombre))
             {
                 this.Error = true;
-                this.Mensaje += "Ya existe un producto guardado con este nombre.";
+                this.Mensaje += "Ya existe un producto guardado con este nombre. ";
             }
         }
 
@@ -211,12 +206,12 @@ namespace CapaNegocio
         {
             if(CapaDatos.ProductoBD.Modificar(CodProd, Nombre, DescProd, IdCategoria, PrecioVenta, Compuesto))
             {
-                Mensaje = "Se guardaron los cambios con éxito";
+                Mensaje = "Se guardaron los cambios con éxito. ";
                 return true;
             }
             else
             {
-                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente";
+                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente. ";
                 return false;
             }            
         }
