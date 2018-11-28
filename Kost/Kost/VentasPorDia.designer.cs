@@ -80,7 +80,7 @@
             // 
             // Importe
             // 
-            this.Importe.DataPropertyName = "total";
+            this.Importe.DataPropertyName = "precioFinal";
             this.Importe.HeaderText = "Importe";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;

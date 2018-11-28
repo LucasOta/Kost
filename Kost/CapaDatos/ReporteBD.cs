@@ -105,10 +105,10 @@ namespace CapaDatos
 
         public static DataTable VentasPorMozo(DateTime fecha, long cuilMozo)
         {
-            DataTable ventasPorDia = new DataTable("ventasPorDia");
+            DataTable ventasPorMozo = new DataTable("ventasPorMozo");
 
-            string sql = "SELECT C.nroComanda, C.total, C.fecha " +
-                        "FROM(Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas C " +
+            string sql = "SELECT C.nroComanda, C.precioFinal, C.fecha " +
+                        "FROM (Personas P INNER JOIN Mozos M ON P.cuil = M.cuilMozo) INNER JOIN Comandas C " +
                                                             "ON C.cuilMozo = M.cuilMozo " +
                          "WHERE convert(varchar, C.fecha, 105) = @fecha AND M.cuilMozo = @cuilMozo AND C.activa = 0 AND C.baja=0;";
 
@@ -125,15 +125,15 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters[1].Value = cuilMozo;
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
-                sqlDat.Fill(ventasPorDia); //Llenamos el DataTable
+                sqlDat.Fill(ventasPorMozo); //Llenamos el DataTable
             }
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
             catch (Exception e)
 #pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
-                ventasPorDia = null;
+                ventasPorMozo = null;
             }
-            return ventasPorDia;
+            return ventasPorMozo;
         }
     }
 }

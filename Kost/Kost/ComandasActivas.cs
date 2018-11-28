@@ -102,6 +102,8 @@ namespace Kost
             Clear();
 
             pnlComanda.Enabled = false;
+
+            banderaGuardar = true;
         }
 
         private void btnIrAComanda_Click_1(object sender, EventArgs e)
