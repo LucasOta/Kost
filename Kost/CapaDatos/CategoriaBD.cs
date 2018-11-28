@@ -10,7 +10,7 @@ namespace CapaDatos
 {
     public class CategoriaBD
     {
-        //
+        
         public static Boolean Existe(string ca, int id)
         {
             string sql;

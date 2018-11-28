@@ -114,12 +114,12 @@ namespace CapaNegocio
             if (CapaDatos.ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, false, 0, insumo, Unidad, Contenido)  > 0)
             {
                 Error = false;
-                Mensaje = "Producto simple guardado con éxito.";
+                Mensaje = "Producto simple guardado con éxito. ";
             }
             else
             {
                 Error = true;
-                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente.";
+                Mensaje = "Ocurrió un error durante la conexión con BD, intente nuevamente. ";
             }
         }        
 
@@ -127,12 +127,12 @@ namespace CapaNegocio
         {
             if(this.ModificarProducto() && CapaDatos.ProdSimpleBD.Modificar(CodProdSimple, Stock, Insumo, Unidad, Contenido))
             {
-                Mensaje = "Los cambios se guardaron correctamente.";
+                Mensaje = "Los cambios se guardaron correctamente. ";
                 return true;
             }
             else
             {
-                Mensaje = "Ocurrió un error durante la conexión con BD, algunos datos pueden no concordar.";
+                Mensaje = "Ocurrió un error durante la conexión con BD, algunos datos pueden no concordar. ";
                 return false;
             }
         }

@@ -111,8 +111,8 @@ namespace CapaNegocio
         {
             if (Validaciones.Categoria(categ, id))
             {
-                this.error = true;
-                this.mensaje = "La categoria ya existe";
+                this.Error = true;
+                this.Mensaje = "La categoria que intenta ingresar ya existe en el sistema.";
             }
         }
 
@@ -122,13 +122,13 @@ namespace CapaNegocio
             {
                 if (CapaDatos.CategoriaBD.Guardar(Nombre, Baja))
                 {
-                    this.error = false;
-                    this.mensaje = "Categoría guardada";
+                    this.Error = false;
+                    this.Mensaje = "Categoría guardada con éxito. ";
                 }
                 else
                 {
-                    this.error = true;
-                    this.mensaje += "Hubo un Error con la BD, intente nuevamente";
+                    this.Error = true;
+                    this.Mensaje += "Ocurrió un Error durante la conexión con BD, intente nuevamente. ";
                 }
             }
         }

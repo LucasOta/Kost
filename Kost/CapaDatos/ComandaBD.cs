@@ -69,7 +69,7 @@ namespace CapaDatos
                 {
                     return "OK";
                 }
-                return "Error en la conexión a la base de datos.";
+                return "Ocurrió un Error durante la conexión con la base de datos.";
 
             }
             catch (Exception e)
