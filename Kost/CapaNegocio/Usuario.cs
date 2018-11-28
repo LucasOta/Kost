@@ -112,12 +112,12 @@ namespace CapaNegocio
                     if (PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, User, Password, Nivel, true) > 0)
                     {
                         this.Error = false;
-                        this.Mensaje = "Usuario Guardado";
+                        this.Mensaje = "Usuario guardado";
                     }
                     else
                     {
                         this.Error = true;
-                        this.Mensaje += "Hubo un Error con la BD, intente nuevamente";
+                        this.Mensaje += "Hubo un error con la BD, intente nuevamente";
                     }
                 }
                 else

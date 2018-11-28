@@ -78,9 +78,8 @@ namespace CapaDatos
 
         public static long Guardar(long pCuil, string pNombre, string pApellido, string pMail, DateTime pFechaNac, string pDireccion, string usuario, string contrasenia, int nivel, bool esUsuario)
         {
-            string sql = "INSERT INTO personas (cuil, nombre, apellido, mail, fechaNacimiento, direccion, baja) " +
-                        "VALUES (@cuil, @nombre, @apellido, @mail, @fechaNacimiento, @direccion, @baja);" +
-                        "SELECT CAST(scope_identity() AS bigInt);";
+            string sql = "INSERT INTO Personas (cuil, nombre, apellido, mail, fechaNacimiento, direccion, baja) " +
+                        "VALUES (@cuil, @nombre, @apellido, @mail, CONVERT(date, @fechaNacimiento), @direccion, @baja);";
 
             try
             {
@@ -122,11 +121,11 @@ namespace CapaDatos
                     bool insertok;
                     if (esUsuario)
                     {
-                        insertok = UsuarioBD.Guardar(usuario, contrasenia, nivel, id_transaccion, Cx);
+                        insertok = UsuarioBD.Guardar(usuario, contrasenia, nivel, pCuil, Cx);
                     }
                     else
                     {
-                        insertok = MozoBD.Guardar(id_transaccion, Cx);
+                        insertok = MozoBD.Guardar(pCuil, Cx);
                     }
 
                     if (insertok == false)
