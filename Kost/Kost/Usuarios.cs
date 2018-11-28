@@ -66,6 +66,8 @@ namespace Kost
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Clear();
+
+            banderaGuardar = true;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

@@ -18,29 +18,22 @@ namespace CapaNegocio
             Error = false;
             Mensaje = "";
             Cuil = pcuil;
+            this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
+
             if (!Error)
             {
-                this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
+                Error = false;
+                this.ExistePersonaCargada(pcuil);
                 if (!Error)
                 {
                     Nombre = pnombre;
                     Apellido = papellido;
                     Direccion = pdireccion;
                     Mail = pmail;
-                    Cuil = pcuil;
                     Nacimiento = pnacimiento;
 
-                   GuardarMozo();
+                    GuardarMozo();
                 }
-                else
-                {
-                    Error = true;
-                    Mensaje += "Debe de corregir estos errores para poder cargar al Mozo.";
-                }
-            }
-            else
-            {
-                Error = true;
             }
         }
 
@@ -104,10 +97,6 @@ namespace CapaNegocio
 
         public static Mozo TraerUnMozo(long cuil)
         {
-            DataTable mozo = CapaDatos.MozoBD.TraerUnMozo(cuil);
-
-            DataRow rowus = mozo.Rows[0];
-
             Mozo mozoo = new Mozo();
 
             Persona.TraerUnaPersona(cuil,mozoo);

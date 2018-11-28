@@ -44,7 +44,7 @@ namespace Kost
                 Mozo mozo1 = new CapaNegocio.Mozo(txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, Convert.ToInt64(txtCuil.Text.Replace("-", "")), dtpNacimiento.Value);
                 if (mozo1.Error)
                 {
-                    if (mozo1.Mensaje == "Cuil existente no activo")
+                    if (mozo1.Mensaje == "Persona no activa")
                     {
                         if (CapaNegocio.Funciones.mConsulta(this, "Existe un mozo no activo con este cuil, ¿Desea ver esos datos para soobreescribirlos?, de ser la respuesta no, se creara un nuevo mozo con los datos que ingreso."))
                         {
@@ -53,6 +53,7 @@ namespace Kost
                         }
                         else
                         {
+                            mozo = CapaNegocio.Mozo.TraerUnMozo(Convert.ToInt64(txtCuil.Text.Replace("-", "")));
                             GuardarModificacion();
                         }
                     }
@@ -78,6 +79,8 @@ namespace Kost
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Clear();
+
+            banderaGuardar = true;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -177,7 +180,7 @@ namespace Kost
         }
 
         private void GuardarModificacion()
-        {
+        {           
             mozo.Cuil = Convert.ToInt64(txtCuil.Text.Replace("-", ""));
             mozo.Nombre = txtNombre.Text;
             mozo.Apellido = txtApellido.Text;
