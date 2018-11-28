@@ -120,7 +120,7 @@
             // 
             // Total
             // 
-            this.Total.DataPropertyName = "total";
+            this.Total.DataPropertyName = "precioFinal";
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
             this.Total.ReadOnly = true;

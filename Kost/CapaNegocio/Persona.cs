@@ -28,14 +28,19 @@ namespace CapaNegocio
         {
             this.ValidarPers(pnombre, papellido, pdireccion, pmail, pcuil, pnacimiento);
 
-            if (!this.Error){
-                Nombre = pnombre;
-                Apellido = papellido;
-                Direccion = pdireccion;
-                Mail = pmail;
-                Cuil = pcuil;
-                Nacimiento = pnacimiento;
-                Usuario = usuario;
+            if (!this.Error)
+            {
+                ExistePersonaCargada(pcuil);
+                if (!Error)
+                {
+                    Nombre = pnombre;
+                    Apellido = papellido;
+                    Direccion = pdireccion;
+                    Mail = pmail;
+                    Cuil = pcuil;
+                    Nacimiento = pnacimiento;
+                    Usuario = usuario;
+                }                
             }
         }
 
@@ -192,19 +197,7 @@ namespace CapaNegocio
             {
                 this.Error = true;
                 this.Mensaje += "La fecha de nacimiento seleccionada no se encuentra entre las delimitadas por el sistema.";
-            }
-            if (PersonaBD.Existe(pcuil))
-            {
-                this.Error = true;
-                if (!CapaDatos.PersonaBD.PersonaActiva(Cuil))
-                {
-                    this.Mensaje = "Persona no activa";
-                }
-                else
-                {
-                    this.Mensaje = "Ya existe una persona cargada en el sistema con ese nro de Cuil.";
-                }                
-            }       
+            }            
         }
 
         //protected void Guardar() 
@@ -230,6 +223,22 @@ namespace CapaNegocio
         //        this.Mensaje = "Ya existe una persona cargada en el sistema con ese nro de Cuil";
         //    }
         //}
+
+        public void ExistePersonaCargada(long pcuil)
+        {
+            if (PersonaBD.Existe(pcuil))
+            {
+                this.Error = true;
+                if (!CapaDatos.PersonaBD.PersonaActiva(pcuil))
+                {
+                    this.Mensaje = "Persona no activa";
+                }
+                else
+                {
+                    this.Mensaje = "Ya existe una persona cargada en el sistema con ese nro de Cuil.";
+                }
+            }
+        }
 
         public static void TraerUnaPersona(long cuil, Persona p)
         {

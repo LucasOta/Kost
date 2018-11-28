@@ -74,7 +74,7 @@ namespace CapaDatos
 
         public static Boolean Modificar(long cuilMozo)
         {
-            string sql = "UPDATE Mozos SET baja = 0 WHERE cuilMozo=@cuil;";
+            string sql = "UPDATE Mozos SET baja = 0 WHERE cuilMozo = @cuil;";
 
             try
             {
@@ -160,9 +160,9 @@ namespace CapaDatos
 
         public static DataTable TraerUnMozo(long cuil)
         {
-            DataTable mozo = new DataTable("Usuarios");
+            DataTable mozo = new DataTable("Mozos");
 
-            string sql = "SELECT * FROM Mozos WHERE cuilMozo = @cuil";
+            string sql = "SELECT * FROM Mozos WHERE cuilMozo = @cuil;";
 
             try
             {
@@ -173,7 +173,7 @@ namespace CapaDatos
                 Cx.sqlCmd.Parameters.Add("@cuil", SqlDbType.BigInt);
                 Cx.sqlCmd.Parameters[0].Value = cuil;
 
-                //SqlDataReader Reader = Cx.sqlCmd.ExecuteReader();
+                SqlDataReader Reader = Cx.sqlCmd.ExecuteReader();
 
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando());
                 sqlDat.Fill(mozo);
