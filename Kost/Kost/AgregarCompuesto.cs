@@ -94,10 +94,18 @@ namespace Kost
             }
             else
             {
-                if (ProdCompuesto.GuardarComposicionMod(pc.CodProdCompuesto, Convert.ToInt32(cbxComponente.SelectedValue), Convert.ToInt32(txtCantidad.Text)))
+                int cantidad;
+                if ((txtCantidad.Text).Equals(""))
                 {
-                    CapaNegocio.Funciones.mOk(this, "Se guardo correctamente el componente del producto");
+                    cantidad = 1;
+                }
+                else
+                {
+                    cantidad = Convert.ToInt32(txtCantidad.Text);
+                }
 
+                if (ProdCompuesto.GuardarComposicionMod(pc.CodProdCompuesto, Convert.ToInt32(cbxComponente.SelectedValue), cantidad))
+                {
                     CargarDGV(ProdCompuesto.TraerComposicion(pc.CodProdCompuesto));
                 }
                 else
