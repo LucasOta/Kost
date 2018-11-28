@@ -123,6 +123,8 @@ namespace Kost
             Clear();
 
             pnlDetalle.Enabled = false;
+
+            banderaGuardar = true;
         }
 
         private void btnCerrarComanda_Click(object sender, EventArgs e)
