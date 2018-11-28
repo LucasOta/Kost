@@ -87,18 +87,26 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.Text, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
-                if (!detal.Error)
+                if (txtCantidad.Text.Equals(""))
                 {
-                    CargarDGV();
-                    CalcularTotal();
-                    Clear();
-                    pnlDetalle.Enabled = false;
+                    Funciones.mError(this, "Debe indicar la cantidad");
                 }
                 else
                 {
-                    CapaNegocio.Funciones.mError(this, detal.Mensaje);
+                    CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.Text, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
+                    if (!detal.Error)
+                    {
+                        CargarDGV();
+                        CalcularTotal();
+                        Clear();
+                        pnlDetalle.Enabled = false;
+                    }
+                    else
+                    {
+                        CapaNegocio.Funciones.mError(this, detal.Mensaje);
+                    }
                 }
+               
             }
             else
             {
@@ -120,13 +128,13 @@ namespace Kost
             coman.Total = Convert.ToSingle(lblTotal.Text.Replace("$", ""));
             coman.Descuento = Convert.ToSingle(txtDescuento.Text);
             
-            coman.PrecioFinal = (Convert.ToSingle(lblTotal.Text.Replace("$", "")) - Convert.ToSingle(txtDescuento.Text));
+            coman.PrecioFinal = (Convert.ToSingle(lblTotal.Text.Replace("$", "")) - (Convert.ToSingle(lblTotal.Text.Replace("$", ""))*(Convert.ToSingle(txtDescuento.Text)/100)));
 
             coman.CerrarComanda();
 
             this.cerrarComanda();
 
-            this.btnIrAAtrasCLick();
+            //this.btnIrAAtrasCLick();
         }
 
         //Funciones
@@ -134,7 +142,7 @@ namespace Kost
         {
             lblPrecioUnitario.Text = "";
             txtCantidad.Text = "";
-            txtDescuento.Text = "";
+            txtDescuento.Text = "0";
         }
 
         private void GuardarModificacion()
