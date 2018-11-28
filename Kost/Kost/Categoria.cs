@@ -38,6 +38,7 @@ namespace Kost
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             ActualizarPantalla();
+            banderaGuardar = true;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

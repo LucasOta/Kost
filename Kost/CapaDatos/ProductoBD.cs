@@ -426,10 +426,14 @@ namespace CapaDatos
                 Cx.Abrir();
                 SqlDataReader reader = Cx.sqlCmd.ExecuteReader();
                 Boolean aux = false;
-                if (reader.GetInt16(0) == 1)
-                {
-                    aux = true;
+
+                if (reader.Read()) {
+                    if ((bool)reader["compuesto"])
+                    {
+                        aux = true;
+                    }
                 }
+                
                 Cx.Cerrar();
                 return aux;
             }

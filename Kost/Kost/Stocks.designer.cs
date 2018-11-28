@@ -31,13 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Stocks));
             this.btnModificar = new System.Windows.Forms.Button();
             this.pnlProducto = new System.Windows.Forms.Panel();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtQuitar = new System.Windows.Forms.TextBox();
-            this.txtAgregar = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.lblQuitar = new System.Windows.Forms.Label();
             this.lblAgregar = new System.Windows.Forms.Label();
             this.lblTituloDescripcion = new System.Windows.Forms.Label();
             this.lblTituloNombre = new System.Windows.Forms.Label();
@@ -48,6 +45,8 @@
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAtras = new System.Windows.Forms.Button();
+            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnQuitar = new System.Windows.Forms.Button();
             this.pnlProducto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
@@ -65,37 +64,25 @@
             // 
             // pnlProducto
             // 
-            this.pnlProducto.Controls.Add(this.btnGuardar);
+            this.pnlProducto.Controls.Add(this.btnQuitar);
+            this.pnlProducto.Controls.Add(this.btnAgregar);
             this.pnlProducto.Controls.Add(this.btnCancelar);
-            this.pnlProducto.Controls.Add(this.txtQuitar);
-            this.pnlProducto.Controls.Add(this.txtAgregar);
+            this.pnlProducto.Controls.Add(this.txtCantidad);
             this.pnlProducto.Controls.Add(this.lblDescripcion);
             this.pnlProducto.Controls.Add(this.lblNombre);
-            this.pnlProducto.Controls.Add(this.lblQuitar);
             this.pnlProducto.Controls.Add(this.lblAgregar);
             this.pnlProducto.Controls.Add(this.lblTituloDescripcion);
             this.pnlProducto.Controls.Add(this.lblTituloNombre);
             this.pnlProducto.Controls.Add(this.lblProducto);
             this.pnlProducto.Location = new System.Drawing.Point(8, 254);
             this.pnlProducto.Name = "pnlProducto";
-            this.pnlProducto.Size = new System.Drawing.Size(479, 259);
+            this.pnlProducto.Size = new System.Drawing.Size(382, 259);
             this.pnlProducto.TabIndex = 5;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Location = new System.Drawing.Point(269, 221);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(96, 35);
-            this.btnGuardar.TabIndex = 2;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Location = new System.Drawing.Point(380, 221);
+            this.btnCancelar.Location = new System.Drawing.Point(280, 221);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(96, 35);
             this.btnCancelar.TabIndex = 3;
@@ -103,19 +90,12 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // txtQuitar
+            // txtCantidad
             // 
-            this.txtQuitar.Location = new System.Drawing.Point(164, 165);
-            this.txtQuitar.Name = "txtQuitar";
-            this.txtQuitar.Size = new System.Drawing.Size(212, 27);
-            this.txtQuitar.TabIndex = 1;
-            // 
-            // txtAgregar
-            // 
-            this.txtAgregar.Location = new System.Drawing.Point(164, 124);
-            this.txtAgregar.Name = "txtAgregar";
-            this.txtAgregar.Size = new System.Drawing.Size(212, 27);
-            this.txtAgregar.TabIndex = 0;
+            this.txtCantidad.Location = new System.Drawing.Point(164, 124);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(189, 27);
+            this.txtCantidad.TabIndex = 0;
             // 
             // lblDescripcion
             // 
@@ -135,23 +115,14 @@
             this.lblNombre.TabIndex = 6;
             this.lblNombre.Text = "(Nombre del Producto)";
             // 
-            // lblQuitar
-            // 
-            this.lblQuitar.AutoSize = true;
-            this.lblQuitar.Location = new System.Drawing.Point(8, 168);
-            this.lblQuitar.Name = "lblQuitar";
-            this.lblQuitar.Size = new System.Drawing.Size(60, 21);
-            this.lblQuitar.TabIndex = 10;
-            this.lblQuitar.Text = "Quitar";
-            // 
             // lblAgregar
             // 
             this.lblAgregar.AutoSize = true;
             this.lblAgregar.Location = new System.Drawing.Point(8, 127);
             this.lblAgregar.Name = "lblAgregar";
-            this.lblAgregar.Size = new System.Drawing.Size(76, 21);
+            this.lblAgregar.Size = new System.Drawing.Size(87, 21);
             this.lblAgregar.TabIndex = 9;
-            this.lblAgregar.Text = "Agregar";
+            this.lblAgregar.Text = "Cantidad";
             // 
             // lblTituloDescripcion
             // 
@@ -252,6 +223,28 @@
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregar.Location = new System.Drawing.Point(164, 157);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(87, 35);
+            this.btnAgregar.TabIndex = 11;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
+            // btnQuitar
+            // 
+            this.btnQuitar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuitar.Location = new System.Drawing.Point(266, 157);
+            this.btnQuitar.Name = "btnQuitar";
+            this.btnQuitar.Size = new System.Drawing.Size(87, 35);
+            this.btnQuitar.TabIndex = 12;
+            this.btnQuitar.Text = "Quitar";
+            this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
+            // 
             // Stocks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
@@ -274,13 +267,10 @@
         #endregion
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Panel pnlProducto;
-        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox txtQuitar;
-        private System.Windows.Forms.TextBox txtAgregar;
+        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.Label lblQuitar;
         private System.Windows.Forms.Label lblAgregar;
         private System.Windows.Forms.Label lblTituloDescripcion;
         private System.Windows.Forms.Label lblTituloNombre;
@@ -291,5 +281,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.Button btnQuitar;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }

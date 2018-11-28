@@ -32,6 +32,15 @@ namespace Kost
         public void CargarDGV()
         {
             dgvVentasDiarias.DataSource = Reportes.VentasPorDia(dtpVentasDiarias.Value);
+
+            float total = 0;
+
+            foreach (DataGridViewRow row in dgvVentasDiarias.Rows)
+            {
+                total += Convert.ToSingle(row.Cells["Importe"].Value.ToString());
+            }
+
+            lblTotal.Text = "Total que se vendió: $" + total;
         }
 
         public void ActualizarPantalla()

@@ -163,27 +163,12 @@ namespace CapaNegocio
 
         protected void Guardar(int nroCom, int codProd, string descProd, int cant, float precioUni)
         {
-            //String msjGuardar = DetalleBD.Guardar(nroCom, codProd, descProd, cant, precioUni);
-            //if ( msjGuardar.Equals("OK"))
-            //{
-            //    this.Error = false;
-            //    this.Mensaje = "Detalle creado/guardado con éxito. ";
-
-
-
-            //}
-            //else
-            //{
-            //    this.Error = true;
-            //    this.Mensaje = msjGuardar;
-            //}
-
             String msjGuardar = DetalleBD.Guardar(nroCom, codProd, descProd, cant, precioUni);
             if (msjGuardar.Equals("OK"))
             {
                 for (int i = 0; i < cant; i++)
                 {
-                    actualizar_stock(codProd, true);
+                    actualizar_stock(codProd, false);
                 }
             }
             else
@@ -198,22 +183,20 @@ namespace CapaNegocio
             return CapaDatos.DetalleBD.Modificar(nroDet, codProd, cantidad, precioUni, descrip);
         }
 
-        public static Boolean Eliminar(int nroDetalle)
-        {
-            return CapaDatos.DetalleBD.Eliminar(nroDetalle);
-
-            //if (msjGuardar.Equals("OK"))
-            //{
-            //    for (int i = 0; i < cant; i++)
-            //    {
-            //        actualizar_stock(codProd, true);
-            //    }
-            //}
-            //else
-            //{
-            //    this.Error = true;
-            //    this.Mensaje = msjGuardar;
-            //}
+        public static Boolean Eliminar(int nroDetalle, int codProd, int cant)
+        {        
+            if (CapaDatos.DetalleBD.Eliminar(nroDetalle))
+            {
+                for (int i = 0; i < cant; i++)
+                {
+                    actualizar_stock(codProd, true);
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static DataTable TraerTodosDetalles(int nroComanda)
@@ -247,7 +230,7 @@ namespace CapaNegocio
                 DataTable composicion = ProductoCompuestoBD.TraerComposicion(codProd);
                 foreach (DataRow dr in composicion.Rows)
                 {
-                    ProdSimpleBD.ActualizarStock(codProd, Convert.ToInt32(dr["cantidad"]), suma);
+                    ProdSimpleBD.ActualizarStock(Convert.ToInt32(dr["codProdSimple"]), Convert.ToInt32(dr["cantidad"]), suma);
                 }
             }
             else

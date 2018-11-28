@@ -70,7 +70,9 @@ namespace Kost
                 if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar el detalle?"))
                 {
                     int nroD = Convert.ToInt32(dgvComanda.CurrentRow.Cells["N_Detalle"].Value);
-                    if (Detalle.Eliminar(nroD))
+                    int codProd = Convert.ToInt32(dgvComanda.CurrentRow.Cells["Codigo_Producto"].Value);
+                    int cant = Convert.ToInt32(dgvComanda.CurrentRow.Cells["Cantidad"].Value);
+                    if (Detalle.Eliminar(nroD, codProd, cant))
                     {
                         Funciones.mOk(this, "Se eliminó correctamente el detalle.");
                         CargarDGV();
@@ -102,8 +104,6 @@ namespace Kost
                         Clear();
                         pnlDetalle.Enabled = false;
                         btnCerrarComanda.Enabled = true;
-
-
                     }
                     else
                     {
@@ -123,6 +123,8 @@ namespace Kost
             Clear();
 
             pnlDetalle.Enabled = false;
+
+            banderaGuardar = true;
         }
 
         private void btnCerrarComanda_Click(object sender, EventArgs e)
