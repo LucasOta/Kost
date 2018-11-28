@@ -33,7 +33,7 @@ namespace CapaNegocio
                 if (!Error)
                 {
                     this.ExistePersonaCargada(pcuil);
-                    if (Error)
+                    if (!Error)
                     {
                         Nombre = pnombre;
                         Apellido = papellido;

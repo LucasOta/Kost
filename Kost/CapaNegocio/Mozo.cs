@@ -33,6 +33,19 @@ namespace CapaNegocio
 
                     GuardarMozo();
                 }
+                else
+                {
+                    if (CapaDatos.MozoBD.Existe(Cuil))
+                    {
+                        this.Error = true;
+                        this.Mensaje = "Mozo no activo";
+                    }
+                    else
+                    {
+                        this.Error = true;
+                        this.Mensaje = "Usuario no activo";
+                    }
+                }
             }
         }
 
@@ -40,31 +53,15 @@ namespace CapaNegocio
         //Funciones
         public void GuardarMozo()
         {
-            if (!Error)
+            if (PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, " ", " ", 0, false) > 0)
             {
-                if (PersonaBD.Guardar(Cuil, Nombre, Apellido, Mail, Nacimiento, Direccion, " ", " ", 0, false) > 0)
-                {
-                    this.Error = false;
-                    this.Mensaje = "Mozo Guardado con éxito. ";
-                }
-                else
-                {
-                    this.Error = true;
-                    this.Mensaje += "Ocurrió un Error durante la conexión con BD, intente nuevamente. ";
-                }             
+                this.Error = false;
+                this.Mensaje = "Mozo Guardado con éxito. ";
             }
             else
             {
-                if (CapaDatos.MozoBD.Existe(Cuil))
-                {
-                    this.Error = true;
-                    this.Mensaje = "Ya existe un mozo cargado en el sistema con ese cuil. ";
-                }
-                else
-                {
-                    this.Error = true;
-                    this.Mensaje += " .Ocurrió un Error, intente nuevamente. ";
-                }   
+                this.Error = true;
+                this.Mensaje += "Ocurrió un Error durante la conexión con BD, intente nuevamente. ";
             }
         }
 
@@ -101,6 +98,11 @@ namespace CapaNegocio
             Persona.TraerUnaPersona(cuil,mozoo);
 
             return mozoo;
+        }
+
+        public static Boolean CrearMozo(long cuil)
+        {
+            return MozoBD.CrearMozo(cuil);
         }
     }
 }
