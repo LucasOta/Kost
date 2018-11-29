@@ -27,10 +27,46 @@ namespace CapaDatos
 
                 if (!reader.HasRows)
                 {
+                    cx.Cerrar();
                     return false;
                 }
                 else
                 {
+                    cx.Cerrar();
+                    return true;
+                }
+            }
+#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            catch (Exception e)
+#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
+            {
+                return false;
+            }
+        }
+
+        public static Boolean ExisteCuil(long cuil)
+        {
+            string sql = "SELECT baja FROM Usuarios WHERE cuilPersona = @cuilPersona";
+            try
+            {
+                Conexion cx = new Conexion();
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
+
+                cx.sqlCmd.Parameters.Add("@cuilPersona", SqlDbType.VarChar);
+                cx.sqlCmd.Parameters[0].Value = cuil;
+
+                cx.Abrir();
+                SqlDataReader reader = cx.sqlCmd.ExecuteReader();
+
+                if (!reader.HasRows)
+                {
+                    cx.Cerrar();
+                    return false;
+                }
+                else
+                {
+                    cx.Cerrar();
                     return true;
                 }
             }
@@ -169,7 +205,8 @@ namespace CapaDatos
                 SqlDataAdapter sqlDat = new SqlDataAdapter(Cx.Comando()); //Tomamos los datos de la BD
                 sqlDat.Fill(usuarios); //Llenamos el DataTable
 #pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
-            }catch (Exception e)
+            }
+            catch (Exception e)
 #pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
             {
                 usuarios = null;
@@ -237,6 +274,40 @@ namespace CapaDatos
             {
                 Console.WriteLine(e.Message);
                 return 0;
+            }
+        }
+
+        public static Boolean CrearUsuario(long cuil, string contrasenia, int nivel, string usuario)
+        {
+            try
+            {
+                string sql = "INSERT INTO Usuarios (usuario, contrasenia, nivel, cuilPersona, baja) VALUES (@usuario, @contrasenia, @nivel, @cuilPersona, 0);";
+
+                Conexion cx = new Conexion();
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
+
+                cx.sqlCmd.Parameters.Add("usuario", SqlDbType.VarChar);
+                cx.sqlCmd.Parameters[0].Value = usuario;
+
+                cx.sqlCmd.Parameters.Add("contrasenia", SqlDbType.VarChar);
+                cx.sqlCmd.Parameters[1].Value = contrasenia;
+
+                cx.sqlCmd.Parameters.Add("nivel", SqlDbType.Int);
+                cx.sqlCmd.Parameters[2].Value = nivel;
+
+                cx.sqlCmd.Parameters.Add("cuilPersona", SqlDbType.BigInt);
+                cx.sqlCmd.Parameters[3].Value = cuil;
+
+                cx.Abrir();
+                cx.sqlCmd.ExecuteNonQuery();
+                cx.Cerrar();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

@@ -41,6 +41,7 @@
             this.chbActiva = new System.Windows.Forms.CheckBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.lblProducto = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Baja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,10 +58,10 @@
             this.btnAtras.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAtras.Image = ((System.Drawing.Image)(resources.GetObject("btnAtras.Image")));
             this.btnAtras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAtras.Location = new System.Drawing.Point(689, 495);
+            this.btnAtras.Location = new System.Drawing.Point(713, 479);
             this.btnAtras.Margin = new System.Windows.Forms.Padding(4);
             this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(132, 32);
+            this.btnAtras.Size = new System.Drawing.Size(92, 40);
             this.btnAtras.TabIndex = 24;
             this.btnAtras.Text = "Atrás";
             this.btnAtras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -81,18 +82,18 @@
             this.Baja,
             this.dataGridViewTextBoxColumn1,
             this.Activa});
-            this.dgvCategorias.Location = new System.Drawing.Point(3, 3);
+            this.dgvCategorias.Location = new System.Drawing.Point(437, 57);
             this.dgvCategorias.Name = "dgvCategorias";
             this.dgvCategorias.ReadOnly = true;
             this.dgvCategorias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCategorias.Size = new System.Drawing.Size(417, 427);
+            this.dgvCategorias.Size = new System.Drawing.Size(368, 396);
             this.dgvCategorias.TabIndex = 19;
             // 
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(130, 0);
+            this.lblCategoria.Location = new System.Drawing.Point(131, 4);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(104, 22);
             this.lblCategoria.TabIndex = 0;
@@ -118,9 +119,9 @@
             // btnGuardar
             // 
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Location = new System.Drawing.Point(299, 133);
+            this.btnGuardar.Location = new System.Drawing.Point(299, 135);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(93, 35);
+            this.btnGuardar.Size = new System.Drawing.Size(93, 32);
             this.btnGuardar.TabIndex = 3;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -131,7 +132,7 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Location = new System.Drawing.Point(299, 174);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(93, 35);
+            this.btnCancelar.Size = new System.Drawing.Size(93, 32);
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -147,7 +148,7 @@
             this.pnlCategoria.Controls.Add(this.lblNombre);
             this.pnlCategoria.Controls.Add(this.lblCategoria);
             this.pnlCategoria.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlCategoria.Location = new System.Drawing.Point(426, 3);
+            this.pnlCategoria.Location = new System.Drawing.Point(16, 57);
             this.pnlCategoria.Name = "pnlCategoria";
             this.pnlCategoria.Size = new System.Drawing.Size(395, 214);
             this.pnlCategoria.TabIndex = 20;
@@ -179,7 +180,7 @@
             this.btnModificar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.Location = new System.Drawing.Point(4, 485);
+            this.btnModificar.Location = new System.Drawing.Point(13, 479);
             this.btnModificar.Margin = new System.Windows.Forms.Padding(4);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(204, 40);
@@ -198,7 +199,7 @@
             this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregar.Location = new System.Drawing.Point(4, 437);
+            this.btnAgregar.Location = new System.Drawing.Point(13, 431);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(204, 40);
@@ -208,6 +209,16 @@
             this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
+            // 
+            // lblProducto
+            // 
+            this.lblProducto.AutoSize = true;
+            this.lblProducto.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProducto.Location = new System.Drawing.Point(11, 12);
+            this.lblProducto.Name = "lblProducto";
+            this.lblProducto.Size = new System.Drawing.Size(144, 30);
+            this.lblProducto.TabIndex = 30;
+            this.lblProducto.Text = "Categorías";
             // 
             // ID
             // 
@@ -231,7 +242,7 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Categoría";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 273;
+            this.dataGridViewTextBoxColumn1.Width = 224;
             // 
             // Activa
             // 
@@ -244,6 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnAtras);
@@ -257,6 +269,7 @@
             this.pnlCategoria.ResumeLayout(false);
             this.pnlCategoria.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -278,5 +291,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Baja;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Activa;
+        private System.Windows.Forms.Label lblProducto;
     }
 }

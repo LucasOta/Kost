@@ -37,6 +37,7 @@
             this.IdComanda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblProducto = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentasPorMozo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             // 
             // dtpVentasMozo
             // 
-            this.dtpVentasMozo.Location = new System.Drawing.Point(17, 38);
+            this.dtpVentasMozo.Location = new System.Drawing.Point(17, 87);
             this.dtpVentasMozo.Name = "dtpVentasMozo";
             this.dtpVentasMozo.Size = new System.Drawing.Size(200, 27);
             this.dtpVentasMozo.TabIndex = 22;
@@ -69,7 +70,7 @@
             // cbxMozo
             // 
             this.cbxMozo.FormattingEnabled = true;
-            this.cbxMozo.Location = new System.Drawing.Point(17, 107);
+            this.cbxMozo.Location = new System.Drawing.Point(17, 156);
             this.cbxMozo.Name = "cbxMozo";
             this.cbxMozo.Size = new System.Drawing.Size(200, 29);
             this.cbxMozo.TabIndex = 23;
@@ -87,7 +88,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 14);
+            this.label3.Location = new System.Drawing.Point(13, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 21);
             this.label3.TabIndex = 26;
@@ -96,7 +97,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 83);
+            this.label4.Location = new System.Drawing.Point(13, 132);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 21);
             this.label4.TabIndex = 27;
@@ -126,10 +127,21 @@
             this.Total.ReadOnly = true;
             this.Total.Width = 150;
             // 
+            // lblProducto
+            // 
+            this.lblProducto.AutoSize = true;
+            this.lblProducto.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProducto.Location = new System.Drawing.Point(15, 14);
+            this.lblProducto.Name = "lblProducto";
+            this.lblProducto.Size = new System.Drawing.Size(213, 30);
+            this.lblProducto.TabIndex = 33;
+            this.lblProducto.Text = "Ventas por Mozo";
+            // 
             // VentasPorMozo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblTotal);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdComanda;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaHora;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.Label lblProducto;
     }
 }

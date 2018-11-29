@@ -16,7 +16,8 @@ namespace Kost
     public partial class Usuarios : UserControl, Interfaz
     {
         Boolean banderaGuardar = true;
-        Usuario user;
+        Boolean eraMozo = false;
+        Usuario user = new Usuario();
 
         public Usuarios()
         {
@@ -32,16 +33,32 @@ namespace Kost
                 CapaNegocio.Usuario usuario = new CapaNegocio.Usuario(txtUsuario.Text, txtContraseña.Text, Convert.ToInt16(cbxNivel.SelectedValue), txtNombre.Text, txtApellido.Text, txtDireccion.Text, txtMail.Text, Convert.ToInt64(txtCuil.Text.Replace("-", "")), dtpNacimiento.Value);
                 if (usuario.Error)
                 {
-                    if(usuario.Mensaje == "Persona no activa")
+                    if(usuario.Mensaje == "Usuario no activo")
                     {
-                        if (CapaNegocio.Funciones.mConsulta(this, "Existe un usuario no activo con este cuil, ¿Desea ver esos datos para soobreescribirlos?, de ser la respuesta no se creara un nuevo usuario con los datos que ingreso"))
+                        if (CapaNegocio.Funciones.mConsulta(this, "Existe un Usuario no activo con este cuil, ¿Desea ver esos datos para soobreescribirlos?, de ser la respuesta no se creara un nuevo usuario con los datos que ingreso"))
                         {
                             banderaGuardar = false;
-                            MostrarDatosDeUsuario(usuario.Cuil);
+                            eraMozo = false;
+                            MostrarDatosDeUsuario(Usuario.TraerUnUsuario(usuario.Cuil));
                         }
                         else
                         {
                             user = CapaNegocio.Usuario.TraerUnUsuario(Convert.ToInt64(txtCuil.Text.Replace("-", "")));
+                            eraMozo = false;
+                            GuardarModificacion();
+                        }
+                    }else if(usuario.Mensaje == "Mozo no activo")
+                    {
+                        if(CapaNegocio.Funciones.mConsulta(this, "Existe un Mozo no activo con este cuil, ¿Desea ver los datos que habia guardados en el sistema?, de ser la respuesta no, se creara un nuevo mozo con los datos que ingreso.")){
+                            banderaGuardar = false;
+                            Persona.TraerUnaPersona(usuario.Cuil, user);
+                            eraMozo = true;
+                            MostrarDatosDeUsuario(user);
+                        }
+                        else
+                        {
+                            Persona.TraerUnaPersona(usuario.Cuil, user);
+                            eraMozo = true;
                             GuardarModificacion();
                         }
                     }
@@ -69,6 +86,8 @@ namespace Kost
             Clear();
 
             banderaGuardar = true;
+
+            eraMozo = false;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -143,7 +162,7 @@ namespace Kost
 
                 long cuil = Convert.ToInt64(dgvUsuarios.CurrentRow.Cells["cuil"].Value);
 
-                MostrarDatosDeUsuario(cuil);
+                MostrarDatosDeUsuario(Usuario.TraerUnUsuario(cuil));
             }
         }
 
@@ -192,10 +211,8 @@ namespace Kost
             pnlUsuario.Enabled = false;
         }
 
-        private void MostrarDatosDeUsuario(long cuil)
+        private void MostrarDatosDeUsuario(Usuario user)
         {
-            Usuario user = CapaNegocio.Usuario.TraerUnUsuario(cuil);
-
             txtApellido.Text = user.Apellido;
             txtContraseña.Text = user.Password;
             txtCuil.Text = user.Cuil.ToString();
@@ -219,18 +236,43 @@ namespace Kost
             user.Mail = txtMail.Text;
             user.Nacimiento = dtpNacimiento.Value;
 
-            if (user.ModificarUsuario())
+            if (eraMozo)
             {
-                CapaNegocio.Funciones.mOk(this, "Los cambios al usuario se guardaron correctamente");
-                dgvUsuarios.DataSource = Usuario.ListarTodos();
-                banderaGuardar = true;
-                Clear();
-                pnlUsuario.Enabled = false;
+                if(Usuario.CrearUsuario(user.Cuil, user.User, user.Password, user.Nivel))
+                {
+                    if (user.ModificarUsuario())
+                    {
+                        CapaNegocio.Funciones.mOk(this, "La carga del nuevo usuario y cambio de datos se realizo correctamente. ");
+                        dgvUsuarios.DataSource = Usuario.ListarTodos();
+                        banderaGuardar = true;
+                        Clear();
+                        pnlUsuario.Enabled = false;
+                    }
+                    else
+                    {
+                        Funciones.mError(this, "La modificacion de los datos anteriores falló.");
+                    }
+                }
+                else
+                {
+                    Funciones.mError(this, "La creacion del nuevo usuario falló.");
+                }
             }
             else
             {
-                CapaNegocio.Funciones.mError(this, user.Mensaje);
-            }
+                if (user.ModificarUsuario())
+                {
+                    CapaNegocio.Funciones.mOk(this, "Los cambios al usuario se guardaron correctamente. ");
+                    dgvUsuarios.DataSource = Usuario.ListarTodos();
+                    banderaGuardar = true;
+                    Clear();
+                    pnlUsuario.Enabled = false;
+                }
+                else
+                {
+                    CapaNegocio.Funciones.mError(this, user.Mensaje);
+                }
+            }            
 
             dgvUsuarios.DataSource = Usuario.ListarTodos();
         }

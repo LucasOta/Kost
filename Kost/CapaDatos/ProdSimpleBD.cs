@@ -27,10 +27,12 @@ namespace CapaDatos
 
                 if (reader.HasRows)
                 {
+                    cx.Cerrar();
                     return true;
                 }
                 else
                 {
+                    cx.Cerrar();
                     return false;
                 }
             }

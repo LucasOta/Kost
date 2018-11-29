@@ -27,10 +27,12 @@ namespace CapaDatos
 
                 if (!reader.HasRows)
                 {
+                    cx.Cerrar();
                     return false;
                 }
                 else
                 {
+                    cx.Cerrar();
                     return true;
                 }
             }
@@ -185,6 +187,31 @@ namespace CapaDatos
                 mozo = null;
             }
             return mozo;
+        }
+
+        public static Boolean CrearMozo(long cuil)
+        {
+            try
+            {
+                string sql = "INSERT INTO Mozos (cuilMozo, baja) values (@cuilMozo, 0)";
+
+                Conexion cx = new Conexion();
+                cx.SetComandoTexto();
+                cx.SetSQL(sql);
+
+                cx.sqlCmd.Parameters.Add("cuilMozo", SqlDbType.BigInt);
+                cx.sqlCmd.Parameters[0].Value = cuil;
+
+                cx.Abrir();
+                cx.sqlCmd.ExecuteNonQuery();
+                cx.Cerrar();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

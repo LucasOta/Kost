@@ -17,12 +17,18 @@ namespace CapaNegocio
 
 
         //Constructores
-        public Usuario() { }
+        public Usuario()
+        {
+            User = "";
+            Password = "";
+            Nivel = 1;
+        }
 
         public Usuario(string consuser, string conspassword, int consnivel, string pnombre, string papellido, string pdireccion, string pmail, long pcuil, DateTime pnacimiento)
         {
             Error = false;
             Mensaje = "";
+            Cuil = pcuil;
             this.Validar(consuser);
             user = consuser;
             password = conspassword;
@@ -33,16 +39,28 @@ namespace CapaNegocio
                 if (!Error)
                 {
                     this.ExistePersonaCargada(pcuil);
-                    if (Error)
+                    if (!Error)
                     {
                         Nombre = pnombre;
                         Apellido = papellido;
                         Direccion = pdireccion;
-                        Mail = pmail;
-                        Cuil = pcuil;
+                        Mail = pmail;                        
                         Nacimiento = pnacimiento;
 
                         GuardarUser();
+                    }
+                    else
+                    {
+                        if (CapaDatos.UsuarioBD.ExisteCuil(Cuil))
+                        {
+                            this.Error = true;
+                            this.Mensaje = "Usuario no activo";
+                        }
+                        else
+                        {
+                            this.Error = true;
+                            this.Mensaje = "Mozo no activo";
+                        }
                     }                    
                 }
             }
@@ -170,6 +188,11 @@ namespace CapaNegocio
 
         public static int InicioSesion(string user, string pass) {
             return CapaDatos.UsuarioBD.InicioSesion(user, pass);
+        }
+
+        public static Boolean CrearUsuario(long cuil, string usuario, string contrasenia, int nivel)
+        {
+            return UsuarioBD.CrearUsuario(cuil, contrasenia, nivel, usuario);
         }
     }
 }

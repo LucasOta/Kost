@@ -89,7 +89,7 @@
             this.btnIniciarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(51)))), ((int)(((byte)(59)))));
             this.btnIniciarSesion.Location = new System.Drawing.Point(697, 362);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Size = new System.Drawing.Size(237, 35);
+            this.btnIniciarSesion.Size = new System.Drawing.Size(237, 40);
             this.btnIniciarSesion.TabIndex = 3;
             this.btnIniciarSesion.Text = "Iniciar Sesión";
             this.btnIniciarSesion.UseVisualStyleBackColor = false;
