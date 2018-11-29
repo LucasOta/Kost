@@ -199,6 +199,17 @@ namespace CapaNegocio
             }
         }
 
+        public static Boolean Eliminar_Detalles_de_Comanda(int nroComanda) {
+            Boolean resultado = false;
+            DataTable detalles = TraerTodosDetalles(nroComanda);
+            foreach (DataRow det in detalles.Rows)
+            {
+               resultado = Eliminar((int)det["nroDetalle"], (int)det["codProd"], (int)det["cantidad"]);
+                if (!resultado) { break; }
+            }
+            return resultado;
+        }
+
         public static DataTable TraerTodosDetalles(int nroComanda)
         {
             return CapaDatos.DetalleBD.TraerTodosDetalles(nroComanda);

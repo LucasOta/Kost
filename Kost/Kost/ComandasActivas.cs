@@ -52,15 +52,15 @@ namespace Kost
         }
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
-        {
-            
+        {            
             if (CapaNegocio.Funciones.RowSeleccionado(dgvComandasActivas.SelectedRows.Count, "una comanda", "eliminarla.", this))
             {                
-                if (CapaNegocio.Funciones.mConsulta(this, "¿Esta seguro de que desea eliminar la comanda?"))
+                if (CapaNegocio.Funciones.mConsulta(this, "¿Está seguro de que desea eliminar la comanda?"))
                 {
                     int nroC = Convert.ToInt32(dgvComandasActivas.CurrentRow.Cells["N_Comanda"].Value);
                     if (CapaNegocio.Comanda.Eliminar(nroC))
                     {
+                        if(Detalle.Eliminar_Detalles_de_Comanda(nroC))
                         Funciones.mOk(this, "Se eliminó correctamente la comanda.");
                         dgvComandasActivas.DataSource = CapaNegocio.Comanda.ComandasActivas();
                     }
