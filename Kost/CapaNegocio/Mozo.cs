@@ -38,7 +38,7 @@ namespace CapaNegocio
                     if (CapaDatos.MozoBD.Existe(Cuil))
                     {
                         this.Error = true;
-                        this.Mensaje = "Mozo no activo";
+                        this.Mensaje = "Mozo no activo";                        
                     }
                     else
                     {
