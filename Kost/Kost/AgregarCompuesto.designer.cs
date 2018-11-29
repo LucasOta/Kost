@@ -30,9 +30,6 @@
         {
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvComponentes = new System.Windows.Forms.DataGridView();
-            this.Insumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CodProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.cbxComponente = new System.Windows.Forms.ComboBox();
@@ -48,6 +45,10 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblPrecio = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CodProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Insumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComponentes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +56,7 @@
             // 
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(717, 487);
+            this.btnEliminar.Location = new System.Drawing.Point(313, 372);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(90, 32);
             this.btnEliminar.TabIndex = 9;
@@ -69,48 +70,25 @@
             this.dgvComponentes.AllowUserToDeleteRows = false;
             this.dgvComponentes.AllowUserToResizeColumns = false;
             this.dgvComponentes.AllowUserToResizeRows = false;
+            this.dgvComponentes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvComponentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComponentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CodProd,
             this.Insumo,
-            this.Cantidad,
-            this.CodProd});
-            this.dgvComponentes.Location = new System.Drawing.Point(437, 128);
+            this.Cantidad});
+            this.dgvComponentes.Location = new System.Drawing.Point(438, 87);
             this.dgvComponentes.MultiSelect = false;
             this.dgvComponentes.Name = "dgvComponentes";
             this.dgvComponentes.ReadOnly = true;
             this.dgvComponentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvComponentes.Size = new System.Drawing.Size(371, 311);
+            this.dgvComponentes.Size = new System.Drawing.Size(371, 427);
             this.dgvComponentes.TabIndex = 7;
-            // 
-            // Insumo
-            // 
-            this.Insumo.DataPropertyName = "nombre";
-            this.Insumo.HeaderText = "Insumo";
-            this.Insumo.Name = "Insumo";
-            this.Insumo.ReadOnly = true;
-            this.Insumo.Width = 160;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.DataPropertyName = "cantidad";
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 160;
-            // 
-            // CodProd
-            // 
-            this.CodProd.DataPropertyName = "codProdSimple";
-            this.CodProd.HeaderText = "Codigo Producto";
-            this.CodProd.Name = "CodProd";
-            this.CodProd.ReadOnly = true;
-            this.CodProd.Visible = false;
             // 
             // btnAgregar
             // 
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(717, 449);
+            this.btnAgregar.Location = new System.Drawing.Point(313, 334);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(90, 32);
             this.btnAgregar.TabIndex = 8;
@@ -120,23 +98,23 @@
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(683, 81);
+            this.txtCantidad.Location = new System.Drawing.Point(255, 287);
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(125, 27);
+            this.txtCantidad.Size = new System.Drawing.Size(148, 27);
             this.txtCantidad.TabIndex = 6;
             // 
             // cbxComponente
             // 
             this.cbxComponente.FormattingEnabled = true;
-            this.cbxComponente.Location = new System.Drawing.Point(558, 81);
+            this.cbxComponente.Location = new System.Drawing.Point(32, 287);
             this.cbxComponente.Name = "cbxComponente";
-            this.cbxComponente.Size = new System.Drawing.Size(119, 29);
+            this.cbxComponente.Size = new System.Drawing.Size(217, 29);
             this.cbxComponente.TabIndex = 5;
             // 
             // lblComponentes
             // 
             this.lblComponentes.AutoSize = true;
-            this.lblComponentes.Location = new System.Drawing.Point(433, 84);
+            this.lblComponentes.Location = new System.Drawing.Point(28, 261);
             this.lblComponentes.Name = "lblComponentes";
             this.lblComponentes.Size = new System.Drawing.Size(122, 21);
             this.lblComponentes.TabIndex = 51;
@@ -156,7 +134,7 @@
             this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelar.Location = new System.Drawing.Point(125, 484);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(106, 33);
+            this.btnCancelar.Size = new System.Drawing.Size(106, 32);
             this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -240,9 +218,43 @@
             this.lblPrecio.TabIndex = 49;
             this.lblPrecio.Text = "Precio";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(251, 261);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 21);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "Cantidad";
+            // 
+            // CodProd
+            // 
+            this.CodProd.DataPropertyName = "codProdSimple";
+            this.CodProd.HeaderText = "Codigo Producto";
+            this.CodProd.Name = "CodProd";
+            this.CodProd.ReadOnly = true;
+            this.CodProd.Visible = false;
+            // 
+            // Insumo
+            // 
+            this.Insumo.DataPropertyName = "nombre";
+            this.Insumo.HeaderText = "Insumo";
+            this.Insumo.Name = "Insumo";
+            this.Insumo.ReadOnly = true;
+            this.Insumo.Width = 200;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "cantidad";
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 127;
+            // 
             // AgregarCompuesto
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.dgvComponentes);
             this.Controls.Add(this.btnAgregar);
@@ -288,8 +300,9 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Insumo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CodProd;
     }
 }

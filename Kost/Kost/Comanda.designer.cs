@@ -45,12 +45,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblTituloTotal = new System.Windows.Forms.Label();
             this.dgvComanda = new System.Windows.Forms.DataGridView();
-            this.N_Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioUni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNumeroMesa = new System.Windows.Forms.Label();
             this.lblMozo = new System.Windows.Forms.Label();
             this.lblNumeroComanda = new System.Windows.Forms.Label();
@@ -61,13 +55,19 @@
             this.btnCerrarComanda = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPrecioFinal = new System.Windows.Forms.Label();
+            this.N_Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioUni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlDetalle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComanda)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDescuento
             // 
-            this.txtDescuento.Location = new System.Drawing.Point(713, 196);
+            this.txtDescuento.Location = new System.Drawing.Point(706, 196);
             this.txtDescuento.Name = "txtDescuento";
             this.txtDescuento.Size = new System.Drawing.Size(109, 27);
             this.txtDescuento.TabIndex = 11;
@@ -75,7 +75,7 @@
             // lblTituloDescuento
             // 
             this.lblTituloDescuento.AutoSize = true;
-            this.lblTituloDescuento.Location = new System.Drawing.Point(607, 199);
+            this.lblTituloDescuento.Location = new System.Drawing.Point(600, 199);
             this.lblTituloDescuento.Name = "lblTituloDescuento";
             this.lblTituloDescuento.Size = new System.Drawing.Size(95, 21);
             this.lblTituloDescuento.TabIndex = 33;
@@ -135,7 +135,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(234, 180);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(93, 27);
+            this.btnCancelar.Size = new System.Drawing.Size(93, 32);
             this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -152,7 +152,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(234, 145);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(93, 27);
+            this.btnGuardar.Size = new System.Drawing.Size(93, 32);
             this.btnGuardar.TabIndex = 7;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -205,7 +205,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(709, 243);
+            this.lblTotal.Location = new System.Drawing.Point(702, 243);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(59, 21);
             this.lblTotal.TabIndex = 12;
@@ -214,7 +214,7 @@
             // lblTituloTotal
             // 
             this.lblTituloTotal.AutoSize = true;
-            this.lblTituloTotal.Location = new System.Drawing.Point(642, 243);
+            this.lblTituloTotal.Location = new System.Drawing.Point(635, 243);
             this.lblTituloTotal.Name = "lblTituloTotal";
             this.lblTituloTotal.Size = new System.Drawing.Size(53, 21);
             this.lblTituloTotal.TabIndex = 24;
@@ -227,6 +227,7 @@
             this.dgvComanda.AllowUserToOrderColumns = true;
             this.dgvComanda.AllowUserToResizeColumns = false;
             this.dgvComanda.AllowUserToResizeRows = false;
+            this.dgvComanda.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvComanda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComanda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.N_Detalle,
@@ -241,56 +242,6 @@
             this.dgvComanda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComanda.Size = new System.Drawing.Size(820, 150);
             this.dgvComanda.TabIndex = 0;
-            // 
-            // N_Detalle
-            // 
-            this.N_Detalle.DataPropertyName = "nroDetalle";
-            this.N_Detalle.Frozen = true;
-            this.N_Detalle.HeaderText = "N° Detalle";
-            this.N_Detalle.Name = "N_Detalle";
-            this.N_Detalle.ReadOnly = true;
-            this.N_Detalle.Width = 120;
-            // 
-            // Codigo_Producto
-            // 
-            this.Codigo_Producto.DataPropertyName = "codProd";
-            this.Codigo_Producto.Frozen = true;
-            this.Codigo_Producto.HeaderText = "Cód. Producto";
-            this.Codigo_Producto.Name = "Codigo_Producto";
-            this.Codigo_Producto.ReadOnly = true;
-            this.Codigo_Producto.Width = 160;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.DataPropertyName = "cantidad";
-            this.Cantidad.Frozen = true;
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.DataPropertyName = "descripProd";
-            this.Descripcion.Frozen = true;
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 200;
-            // 
-            // precioUni
-            // 
-            this.precioUni.DataPropertyName = "precioUni";
-            this.precioUni.Frozen = true;
-            this.precioUni.HeaderText = "Precio";
-            this.precioUni.Name = "precioUni";
-            this.precioUni.ReadOnly = true;
-            // 
-            // Subtotal
-            // 
-            this.Subtotal.Frozen = true;
-            this.Subtotal.HeaderText = "Subtotal";
-            this.Subtotal.Name = "Subtotal";
-            this.Subtotal.ReadOnly = true;
             // 
             // lblNumeroMesa
             // 
@@ -384,10 +335,10 @@
             this.btnAtras.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAtras.Image = ((System.Drawing.Image)(resources.GetObject("btnAtras.Image")));
             this.btnAtras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAtras.Location = new System.Drawing.Point(689, 494);
+            this.btnAtras.Location = new System.Drawing.Point(723, 479);
             this.btnAtras.Margin = new System.Windows.Forms.Padding(4);
             this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(132, 32);
+            this.btnAtras.Size = new System.Drawing.Size(90, 40);
             this.btnAtras.TabIndex = 10;
             this.btnAtras.Text = "Atrás";
             this.btnAtras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -402,10 +353,10 @@
             this.btnCerrarComanda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarComanda.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarComanda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCerrarComanda.Location = new System.Drawing.Point(646, 454);
+            this.btnCerrarComanda.Location = new System.Drawing.Point(636, 431);
             this.btnCerrarComanda.Margin = new System.Windows.Forms.Padding(4);
             this.btnCerrarComanda.Name = "btnCerrarComanda";
-            this.btnCerrarComanda.Size = new System.Drawing.Size(175, 32);
+            this.btnCerrarComanda.Size = new System.Drawing.Size(175, 40);
             this.btnCerrarComanda.TabIndex = 9;
             this.btnCerrarComanda.Text = "Cerrar Comanda";
             this.btnCerrarComanda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -415,7 +366,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(592, 288);
+            this.label1.Location = new System.Drawing.Point(585, 288);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 21);
             this.label1.TabIndex = 34;
@@ -424,11 +375,61 @@
             // lblPrecioFinal
             // 
             this.lblPrecioFinal.AutoSize = true;
-            this.lblPrecioFinal.Location = new System.Drawing.Point(709, 288);
+            this.lblPrecioFinal.Location = new System.Drawing.Point(702, 288);
             this.lblPrecioFinal.Name = "lblPrecioFinal";
             this.lblPrecioFinal.Size = new System.Drawing.Size(59, 21);
             this.lblPrecioFinal.TabIndex = 35;
             this.lblPrecioFinal.Text = "$ XXXX";
+            // 
+            // N_Detalle
+            // 
+            this.N_Detalle.DataPropertyName = "nroDetalle";
+            this.N_Detalle.Frozen = true;
+            this.N_Detalle.HeaderText = "N° Detalle";
+            this.N_Detalle.Name = "N_Detalle";
+            this.N_Detalle.ReadOnly = true;
+            this.N_Detalle.Width = 120;
+            // 
+            // Codigo_Producto
+            // 
+            this.Codigo_Producto.DataPropertyName = "codProd";
+            this.Codigo_Producto.Frozen = true;
+            this.Codigo_Producto.HeaderText = "Cód. Producto";
+            this.Codigo_Producto.Name = "Codigo_Producto";
+            this.Codigo_Producto.ReadOnly = true;
+            this.Codigo_Producto.Width = 150;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "cantidad";
+            this.Cantidad.Frozen = true;
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.DataPropertyName = "descripProd";
+            this.Descripcion.Frozen = true;
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 220;
+            // 
+            // precioUni
+            // 
+            this.precioUni.DataPropertyName = "precioUni";
+            this.precioUni.Frozen = true;
+            this.precioUni.HeaderText = "Precio";
+            this.precioUni.Name = "precioUni";
+            this.precioUni.ReadOnly = true;
+            // 
+            // Subtotal
+            // 
+            this.Subtotal.Frozen = true;
+            this.Subtotal.HeaderText = "Subtotal";
+            this.Subtotal.Name = "Subtotal";
+            this.Subtotal.ReadOnly = true;
             // 
             // Comanda
             // 
@@ -486,13 +487,13 @@
         private System.Windows.Forms.Label lblPrecioTitulo;
         private System.Windows.Forms.Label lblPrecioUnitario;
         private System.Windows.Forms.Label lblPrecioProducto;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPrecioFinal;
         private System.Windows.Forms.DataGridViewTextBoxColumn N_Detalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo_Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioUni;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subtotal;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblPrecioFinal;
     }
 }

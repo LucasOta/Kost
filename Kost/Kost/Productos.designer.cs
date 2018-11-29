@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Productos));
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnAgregarCompuesto = new System.Windows.Forms.Button();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
-            this.btnAgregarSimple = new System.Windows.Forms.Button();
-            this.btnVerStock = new System.Windows.Forms.Button();
-            this.btnAdmCategorias = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,39 +40,54 @@
             this.Precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.compuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAgregarSimple = new System.Windows.Forms.Button();
+            this.btnVerStock = new System.Windows.Forms.Button();
+            this.btnAdmCategorias = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // btnModificar
             // 
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.Location = new System.Drawing.Point(8, 482);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(182, 40);
+            this.btnModificar.Size = new System.Drawing.Size(203, 40);
             this.btnModificar.TabIndex = 3;
             this.btnModificar.Text = "Modificar Producto";
+            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.Location = new System.Drawing.Point(196, 482);
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEliminar.Location = new System.Drawing.Point(217, 482);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(182, 40);
+            this.btnEliminar.Size = new System.Drawing.Size(189, 40);
             this.btnEliminar.TabIndex = 4;
-            this.btnEliminar.Text = "Eliminar Producto";
+            this.btnEliminar.Text = " Eliminar Producto";
+            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnAgregarCompuesto
             // 
             this.btnAgregarCompuesto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarCompuesto.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarCompuesto.Image")));
+            this.btnAgregarCompuesto.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnAgregarCompuesto.Location = new System.Drawing.Point(8, 402);
             this.btnAgregarCompuesto.Name = "btnAgregarCompuesto";
-            this.btnAgregarCompuesto.Size = new System.Drawing.Size(182, 54);
+            this.btnAgregarCompuesto.Size = new System.Drawing.Size(203, 54);
             this.btnAgregarCompuesto.TabIndex = 1;
-            this.btnAgregarCompuesto.Text = "Agregar Producto Compuesto";
+            this.btnAgregarCompuesto.Text = " Agregar Producto Compuesto";
+            this.btnAgregarCompuesto.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnAgregarCompuesto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAgregarCompuesto.UseVisualStyleBackColor = true;
             this.btnAgregarCompuesto.Click += new System.EventHandler(this.btnAgregarCompuesto_Click);
             // 
@@ -100,39 +113,6 @@
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductos.Size = new System.Drawing.Size(809, 388);
             this.dgvProductos.TabIndex = 0;
-            // 
-            // btnAgregarSimple
-            // 
-            this.btnAgregarSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarSimple.Location = new System.Drawing.Point(196, 402);
-            this.btnAgregarSimple.Name = "btnAgregarSimple";
-            this.btnAgregarSimple.Size = new System.Drawing.Size(182, 54);
-            this.btnAgregarSimple.TabIndex = 2;
-            this.btnAgregarSimple.Text = "Agregar Producto Simple";
-            this.btnAgregarSimple.UseVisualStyleBackColor = true;
-            this.btnAgregarSimple.Click += new System.EventHandler(this.btnAgregarSimple_Click);
-            // 
-            // btnVerStock
-            // 
-            this.btnVerStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerStock.Location = new System.Drawing.Point(384, 482);
-            this.btnVerStock.Name = "btnVerStock";
-            this.btnVerStock.Size = new System.Drawing.Size(182, 40);
-            this.btnVerStock.TabIndex = 5;
-            this.btnVerStock.Text = "Ver Stock";
-            this.btnVerStock.UseVisualStyleBackColor = true;
-            this.btnVerStock.Click += new System.EventHandler(this.btnVerStock_Click);
-            // 
-            // btnAdmCategorias
-            // 
-            this.btnAdmCategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdmCategorias.Location = new System.Drawing.Point(635, 402);
-            this.btnAdmCategorias.Name = "btnAdmCategorias";
-            this.btnAdmCategorias.Size = new System.Drawing.Size(182, 54);
-            this.btnAdmCategorias.TabIndex = 6;
-            this.btnAdmCategorias.Text = "Administrar Categorías";
-            this.btnAdmCategorias.UseVisualStyleBackColor = true;
-            this.btnAdmCategorias.Click += new System.EventHandler(this.btnAdmCategorias_Click);
             // 
             // ID
             // 
@@ -189,6 +169,47 @@
             this.compuesto.Name = "compuesto";
             this.compuesto.ReadOnly = true;
             this.compuesto.Visible = false;
+            // 
+            // btnAgregarSimple
+            // 
+            this.btnAgregarSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarSimple.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarSimple.Image")));
+            this.btnAgregarSimple.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnAgregarSimple.Location = new System.Drawing.Point(217, 402);
+            this.btnAgregarSimple.Name = "btnAgregarSimple";
+            this.btnAgregarSimple.Size = new System.Drawing.Size(195, 54);
+            this.btnAgregarSimple.TabIndex = 2;
+            this.btnAgregarSimple.Text = "Agregar Producto Simple";
+            this.btnAgregarSimple.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btnAgregarSimple.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAgregarSimple.UseVisualStyleBackColor = true;
+            this.btnAgregarSimple.Click += new System.EventHandler(this.btnAgregarSimple_Click);
+            // 
+            // btnVerStock
+            // 
+            this.btnVerStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerStock.Image = ((System.Drawing.Image)(resources.GetObject("btnVerStock.Image")));
+            this.btnVerStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVerStock.Location = new System.Drawing.Point(412, 482);
+            this.btnVerStock.Name = "btnVerStock";
+            this.btnVerStock.Size = new System.Drawing.Size(123, 40);
+            this.btnVerStock.TabIndex = 5;
+            this.btnVerStock.Text = "Ver Stock";
+            this.btnVerStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerStock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVerStock.UseVisualStyleBackColor = true;
+            this.btnVerStock.Click += new System.EventHandler(this.btnVerStock_Click);
+            // 
+            // btnAdmCategorias
+            // 
+            this.btnAdmCategorias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdmCategorias.Location = new System.Drawing.Point(635, 402);
+            this.btnAdmCategorias.Name = "btnAdmCategorias";
+            this.btnAdmCategorias.Size = new System.Drawing.Size(182, 54);
+            this.btnAdmCategorias.TabIndex = 6;
+            this.btnAdmCategorias.Text = "Administrar Categorías";
+            this.btnAdmCategorias.UseVisualStyleBackColor = true;
+            this.btnAdmCategorias.Click += new System.EventHandler(this.btnAdmCategorias_Click);
             // 
             // Productos
             // 

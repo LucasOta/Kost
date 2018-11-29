@@ -56,10 +56,10 @@
             this.btnIrAComanda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIrAComanda.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIrAComanda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIrAComanda.Location = new System.Drawing.Point(690, 492);
+            this.btnIrAComanda.Location = new System.Drawing.Point(685, 483);
             this.btnIrAComanda.Margin = new System.Windows.Forms.Padding(4);
             this.btnIrAComanda.Name = "btnIrAComanda";
-            this.btnIrAComanda.Size = new System.Drawing.Size(132, 32);
+            this.btnIrAComanda.Size = new System.Drawing.Size(132, 40);
             this.btnIrAComanda.TabIndex = 15;
             this.btnIrAComanda.Text = "Ir a Comanda";
             this.btnIrAComanda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -134,9 +134,9 @@
             this.pnlComanda.Controls.Add(this.cbxMesa);
             this.pnlComanda.Controls.Add(this.lblMesa);
             this.pnlComanda.Controls.Add(this.label6);
-            this.pnlComanda.Location = new System.Drawing.Point(571, 229);
+            this.pnlComanda.Location = new System.Drawing.Point(565, 229);
             this.pnlComanda.Name = "pnlComanda";
-            this.pnlComanda.Size = new System.Drawing.Size(251, 193);
+            this.pnlComanda.Size = new System.Drawing.Size(251, 205);
             this.pnlComanda.TabIndex = 14;
             // 
             // btnCancelar
@@ -149,7 +149,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(154, 162);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(93, 27);
+            this.btnCancelar.Size = new System.Drawing.Size(93, 32);
             this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -166,7 +166,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(154, 127);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(93, 27);
+            this.btnGuardar.Size = new System.Drawing.Size(93, 32);
             this.btnGuardar.TabIndex = 7;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

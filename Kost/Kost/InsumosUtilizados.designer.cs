@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.dgvInsumosUtilizados = new System.Windows.Forms.DataGridView();
+            this.dtpInsumosUtilizados = new System.Windows.Forms.DateTimePicker();
+            this.lblProducto = new System.Windows.Forms.Label();
             this.codProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Insumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtpInsumosUtilizados = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInsumosUtilizados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,17 +43,36 @@
             this.dgvInsumosUtilizados.AllowUserToDeleteRows = false;
             this.dgvInsumosUtilizados.AllowUserToResizeColumns = false;
             this.dgvInsumosUtilizados.AllowUserToResizeRows = false;
+            this.dgvInsumosUtilizados.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvInsumosUtilizados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInsumosUtilizados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codProd,
             this.Insumo,
             this.Cantidad});
-            this.dgvInsumosUtilizados.Location = new System.Drawing.Point(3, 68);
+            this.dgvInsumosUtilizados.Location = new System.Drawing.Point(3, 65);
             this.dgvInsumosUtilizados.Name = "dgvInsumosUtilizados";
             this.dgvInsumosUtilizados.ReadOnly = true;
             this.dgvInsumosUtilizados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInsumosUtilizados.Size = new System.Drawing.Size(818, 446);
+            this.dgvInsumosUtilizados.Size = new System.Drawing.Size(818, 449);
             this.dgvInsumosUtilizados.TabIndex = 16;
+            // 
+            // dtpInsumosUtilizados
+            // 
+            this.dtpInsumosUtilizados.Location = new System.Drawing.Point(621, 17);
+            this.dtpInsumosUtilizados.Name = "dtpInsumosUtilizados";
+            this.dtpInsumosUtilizados.Size = new System.Drawing.Size(200, 27);
+            this.dtpInsumosUtilizados.TabIndex = 18;
+            this.dtpInsumosUtilizados.ValueChanged += new System.EventHandler(this.dtpInsumosUtilizados_ValueChanged);
+            // 
+            // lblProducto
+            // 
+            this.lblProducto.AutoSize = true;
+            this.lblProducto.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProducto.Location = new System.Drawing.Point(20, 17);
+            this.lblProducto.Name = "lblProducto";
+            this.lblProducto.Size = new System.Drawing.Size(226, 30);
+            this.lblProducto.TabIndex = 31;
+            this.lblProducto.Text = "Insumos Utilizados";
             // 
             // codProd
             // 
@@ -67,7 +87,7 @@
             this.Insumo.HeaderText = "Insumo";
             this.Insumo.Name = "Insumo";
             this.Insumo.ReadOnly = true;
-            this.Insumo.Width = 385;
+            this.Insumo.Width = 422;
             // 
             // Cantidad
             // 
@@ -75,20 +95,13 @@
             this.Cantidad.HeaderText = "Catidad Utilizada";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 385;
-            // 
-            // dtpInsumosUtilizados
-            // 
-            this.dtpInsumosUtilizados.Location = new System.Drawing.Point(3, 17);
-            this.dtpInsumosUtilizados.Name = "dtpInsumosUtilizados";
-            this.dtpInsumosUtilizados.Size = new System.Drawing.Size(200, 27);
-            this.dtpInsumosUtilizados.TabIndex = 18;
-            this.dtpInsumosUtilizados.ValueChanged += new System.EventHandler(this.dtpInsumosUtilizados_ValueChanged);
+            this.Cantidad.Width = 252;
             // 
             // InsumosUtilizados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.dtpInsumosUtilizados);
             this.Controls.Add(this.dgvInsumosUtilizados);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -97,6 +110,7 @@
             this.Size = new System.Drawing.Size(825, 530);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInsumosUtilizados)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -106,5 +120,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Insumo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.Label lblProducto;
     }
 }

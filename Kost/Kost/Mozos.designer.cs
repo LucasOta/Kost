@@ -62,6 +62,7 @@
             this.dgvMozos.AllowUserToDeleteRows = false;
             this.dgvMozos.AllowUserToResizeColumns = false;
             this.dgvMozos.AllowUserToResizeRows = false;
+            this.dgvMozos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvMozos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMozos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NyA,
@@ -249,7 +250,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(298, 386);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(93, 27);
+            this.btnCancelar.Size = new System.Drawing.Size(93, 32);
             this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -263,10 +264,10 @@
             this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(298, 351);
+            this.btnGuardar.Location = new System.Drawing.Point(298, 349);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(93, 27);
+            this.btnGuardar.Size = new System.Drawing.Size(93, 32);
             this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -277,7 +278,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(141, 0);
+            this.label6.Location = new System.Drawing.Point(158, 6);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 22);
             this.label6.TabIndex = 6;
