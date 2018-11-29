@@ -33,6 +33,7 @@
             this.lblProducto = new System.Windows.Forms.Label();
             this.codProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Insumo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInsumosUtilizados)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +49,7 @@
             this.dgvInsumosUtilizados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codProd,
             this.Insumo,
+            this.Unidad,
             this.Cantidad});
             this.dgvInsumosUtilizados.Location = new System.Drawing.Point(3, 65);
             this.dgvInsumosUtilizados.Name = "dgvInsumosUtilizados";
@@ -76,7 +78,7 @@
             // 
             // codProd
             // 
-            this.codProd.DataPropertyName = "codProd";
+            this.codProd.DataPropertyName = "codProdSimple";
             this.codProd.HeaderText = "Código";
             this.codProd.Name = "codProd";
             this.codProd.ReadOnly = true;
@@ -89,9 +91,16 @@
             this.Insumo.ReadOnly = true;
             this.Insumo.Width = 422;
             // 
+            // Unidad
+            // 
+            this.Unidad.DataPropertyName = "U_Medida";
+            this.Unidad.HeaderText = "Unidad";
+            this.Unidad.Name = "Unidad";
+            this.Unidad.ReadOnly = true;
+            // 
             // Cantidad
             // 
-            this.Cantidad.DataPropertyName = "cantidad";
+            this.Cantidad.DataPropertyName = "Cantidad";
             this.Cantidad.HeaderText = "Catidad Utilizada";
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
@@ -117,9 +126,10 @@
         #endregion
         private System.Windows.Forms.DataGridView dgvInsumosUtilizados;
         private System.Windows.Forms.DateTimePicker dtpInsumosUtilizados;
+        private System.Windows.Forms.Label lblProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn codProd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Insumo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Unidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.Label lblProducto;
     }
 }

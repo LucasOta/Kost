@@ -81,7 +81,7 @@ namespace Kost
                 CapaNegocio.Comanda comm = new CapaNegocio.Comanda(Convert.ToInt32(cbxMesa.SelectedValue), Convert.ToInt64(cbxMozo.SelectedValue), DateTime.Now);
                 if (!comm.Error)
                 {
-                    CapaNegocio.Funciones.mOk(this, "Se guardo la comanda exitosamente");
+                    CapaNegocio.Funciones.mOk(this, "Se guardó la comanda exitosamente");
                     dgvComandasActivas.DataSource = CapaNegocio.Comanda.ComandasActivas();
                     Clear();
                     pnlComanda.Enabled = false;
@@ -120,7 +120,7 @@ namespace Kost
         public void Clear()
         {
             cbxMesa.SelectedValue = 1;
-            cbxMozo.SelectedIndex = 1;
+            //cbxMozo.SelectedIndex = 1;
         }
 
         private void GuardarModificacion()

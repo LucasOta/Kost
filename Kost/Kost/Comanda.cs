@@ -154,6 +154,11 @@ namespace Kost
             lblPrecioUnitario.Text = "";
             txtCantidad.Text = "";
             txtDescuento.Text = "0";
+
+            btnCerrarComanda.Enabled = true;
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
         }
 
         private void GuardarModificacion()

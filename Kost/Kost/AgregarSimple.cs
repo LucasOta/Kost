@@ -20,7 +20,7 @@ namespace Kost
         }
 
 
-        //Clicks
+        //Botones
         private void btnAtras_Click_1(object sender, EventArgs e)
         {
             Clear();
@@ -31,7 +31,7 @@ namespace Kost
         {
             if (banderaGuardar)
             {
-                ps = new CapaNegocio.ProdSimple(0, chxInsumo.Checked,  txtNombre.Text, float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat), Convert.ToInt32(cbxCategoria.SelectedValue), txtDescripcion.Text, false, Convert.ToInt32(cbxCategoria.SelectedValue), Convert.ToDouble(txtContenido.Text));
+                ps = new CapaNegocio.ProdSimple(0, chxInsumo.Checked,  txtNombre.Text, float.Parse(txtPrecio.Text, CultureInfo.InvariantCulture.NumberFormat), Convert.ToInt32(cbxCategoria.SelectedValue), txtDescripcion.Text, false, Convert.ToInt32(cbxU_Medida.SelectedValue), Convert.ToDouble(txtContenido.Text));
                 
                 if (ps.Error)
                 {
@@ -114,34 +114,12 @@ namespace Kost
 
         public void CargarCBX_Unidades()
         {
-            //Harcodeo de Unidades
-            DataTable unidades = new DataTable();
+            DataTable categorias;
+            categorias = CapaNegocio.Unidad.ListarTodos();
 
-            unidades.Clear();
-            unidades.Columns.Add("U_Medida");
-            unidades.Columns.Add("Id_Unidad");
-
-            DataRow row;
-            
-            row = unidades.NewRow();
-            row["U_Medida"] = "Unidad";
-            row["Id_Unidad"] = 1;
-            unidades.Rows.Add(row);
-
-            row = unidades.NewRow();
-            row["U_Medida"] = "Gramos";
-            row["Id_Unidad"] = 2;
-            unidades.Rows.Add(row);
-
-            row = unidades.NewRow();
-            row["U_Medida"] = "Mililitros";
-            row["Id_Unidad"] = 3;
-            unidades.Rows.Add(row);
-
-
-            cbxU_Medida.DataSource = unidades.DefaultView;
-            cbxU_Medida.ValueMember = "Id_Unidad";
-            cbxU_Medida.DisplayMember = "U_Medida";
+            cbxU_Medida.DataSource = categorias.DefaultView;
+            cbxU_Medida.ValueMember = "idUnidad";
+            cbxU_Medida.DisplayMember = "unidad";
             cbxU_Medida.BindingContext = this.BindingContext;
         }
 

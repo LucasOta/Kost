@@ -54,6 +54,7 @@
     <Compile Include="ProductoCompuestoBD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReporteBD.cs" />
+    <Compile Include="UnidadBD.cs" />
     <Compile Include="UsuarioBD.cs" />
   </ItemGroup>
   <ItemGroup>

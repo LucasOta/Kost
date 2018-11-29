@@ -31,7 +31,35 @@ namespace Kost
 
         public void CargarDGV()
         {
-            dgvInsumosUtilizados.DataSource = Reportes.InsumosUtilizados(dtpInsumosUtilizados.Value);
+            DataTable productos = Reportes.InsumosUtilizados(dtpInsumosUtilizados.Value);
+            productos.Columns.Add("U_Medida");
+            productos.Columns.Add("Cantidad");
+
+
+            foreach (DataRow row in productos.Rows)
+            {
+                switch (((int)row["unidad"]))
+                {
+                    case 1:
+                        row["U_Medida"] = "Kilos";
+                        row["Cantidad"] = (int)row["cantidad"] / 1000;
+                        break;
+                    case 2:
+                        row["U_Medida"] = "Unidades";
+                        row["Cantidad"] = row["cantidad"];
+                        break;
+                    case 3:
+                        row["U_Medida"] = "Litros";
+                        row["Cantidad"] = (int)row["cantidad"] / 1000;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            productos.Columns.Remove("unidad");
+
+            dgvInsumosUtilizados.DataSource = productos;
+            dgvInsumosUtilizados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         public void ActualizarPantalla()

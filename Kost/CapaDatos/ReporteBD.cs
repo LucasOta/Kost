@@ -43,15 +43,25 @@ namespace CapaDatos
         {
             DataTable insumosUtilizados = new DataTable("insumosUtilizados");
 
-            string sql = "SELECT P.codProd, P.nombre, SUM(S.contenido) AS cantidad " +
-                         "FROM ProdSimples S INNER JOIN Composicion Comp " +
-                                    "ON S.codProdSimple = Comp.codProdSimple INNER JOIN ProdCompuestos PC " +
-                                    "ON Comp.codProdCompuesto = PC.codProdCompuesto INNER JOIN Productos P " +
-                                    "ON P.codProd = S.codProdSimple INNER JOIN  Detalle D " +
-                                    "ON D.codProd = PC.codProdCompuesto INNER JOIN Comandas C " +
-                                    "ON C.nroComanda = D.nroComanda " +
-                         "WHERE  convert(varchar, C.fecha, 105) = @fecha " +
-                         "GROUP BY S.codProdSimple, P.codProd, P.nombre;";
+            string sql ="SELECT PS.codProdSimple, P.nombre, PS.unidad, SUM(D.cantidad) AS cantidad " +
+                        "FROM Comandas C INNER JOIN Detalle D " +
+                            "ON C.nroComanda = D.nroComanda INNER JOIN Productos P " +
+                            "ON D.codProd = P.codProd INNER JOIN ProdSimples PS " +
+                            "ON P.codProd = PS.codProdSimple " +
+                        "WHERE C.baja = 0 AND convert(varchar, C.fecha, 105) = @fecha " +
+                        "GROUP BY PS.codProdSimple, P.nombre, PS.unidad " +
+
+                        "UNION " +
+
+                        "SELECT PS.codProdSimple, P.nombre, PS.unidad, SUM(D.cantidad * Comp.cantidad) AS cantidad " +
+                        "FROM ProdCompuestos PC INNER JOIN Composicion Comp " +
+                            "ON PC.codProdCompuesto = Comp.codProdCompuesto INNER JOIN ProdSimples PS " +
+                            "ON Comp.codProdSimple = PS.codProdSimple INNER JOIN Productos P " +
+                            "ON PS.codProdSimple = P.codProd INNER JOIN Detalle D " +
+                            "ON D.codProd = PC.codProdCompuesto INNER JOIN Comandas C " +
+                            "ON C.nroComanda = D.nroComanda " +
+                        "WHERE C.baja = 0 AND convert(varchar, C.fecha, 105) = @fecha " +
+                        "GROUP BY PS.codProdSimple, P.nombre, PS.unidad; ";
 
             try
             {
