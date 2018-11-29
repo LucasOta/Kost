@@ -50,6 +50,7 @@
     <Compile Include="PersonaBD.cs" />
     <Compile Include="ProdSimpleBD.cs" />
     <Compile Include="ProductoBD.cs" />
+    <Compile Include="ProductoCompuestoBD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReporteBD.cs" />
     <Compile Include="UsuarioBD.cs" />
