@@ -35,7 +35,7 @@ namespace Kost
                 {
                     if(usuario.Mensaje == "Usuario no activo")
                     {
-                        if (CapaNegocio.Funciones.mConsulta(this, "Existe un Usuario no activo con este cuil, ¿Desea ver esos datos para soobreescribirlos?, de ser la respuesta no se creara un nuevo usuario con los datos que ingreso"))
+                        if (CapaNegocio.Funciones.mConsulta(this, "Existe un usuario no activo con este cuil. ¿Desea ver esos datos para soobreescribirlos? De ser la respuesta no, se creará un nuevo usuario con los datos ingresados."))
                         {
                             banderaGuardar = false;
                             eraMozo = false;
@@ -49,7 +49,7 @@ namespace Kost
                         }
                     }else if(usuario.Mensaje == "Mozo no activo")
                     {
-                        if(CapaNegocio.Funciones.mConsulta(this, "Existe un Mozo no activo con este cuil, ¿Desea ver los datos que habia guardados en el sistema?, de ser la respuesta no, se creara un nuevo mozo con los datos que ingreso.")){
+                        if(CapaNegocio.Funciones.mConsulta(this, "Existe un mozo no activo con este cuil. ¿Desea ver los datos que habia guardados en el sistema? De ser la respuesta no, se creará un nuevo mozo con los datos ingresados.")){
                             banderaGuardar = false;
                             Persona.TraerUnaPersona(usuario.Cuil, user);
                             eraMozo = true;
