@@ -248,5 +248,42 @@ namespace CapaNegocio
             }
             return 0;
         }
+
+        public static Boolean hay_stock(int codProd, int cant) {
+            Boolean resultado = true;
+            ProdSimple ps = new ProdSimple();
+
+            if (ProductoBD.es_Compuesto(codProd))
+            {
+                foreach (DataRow item in ProdCompuesto.TraerComposicion(codProd).Rows)
+                {
+                    ProdSimple.TraerUnSimple((int)item["codProdSimple"], ps);
+                    if (ps.Unidad == 2)
+                    {
+                        if (ps.Stock < (cant * (int)item["cantidad"]))
+                        {
+                            resultado = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (ps.Stock < (cant * (int)item["cantidad"]) / 1000)
+                        {
+                            resultado = false;
+                            break;
+                        }
+                    }
+                    
+                }
+            }
+            else {                
+                ProdSimple.TraerUnSimple(codProd, ps);
+                if (ps.Stock < cant) {
+                    resultado = false;
+                }
+            }
+            return resultado;
+        }
     }
 }

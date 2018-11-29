@@ -27,8 +27,6 @@ namespace CapaNegocio
             {
                 return false;
             }
-            // MessageBox.Show(actual, mensaje, "ADVERTENCIA", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-            // MessageBox.Show ("Do you want to exit?", "My Application",  MessageBoxButtons.YesNo, MessageBoxIcon.Question)  
         }
         public static void mAdvertencia(UserControl actual, string mensaje)
         {

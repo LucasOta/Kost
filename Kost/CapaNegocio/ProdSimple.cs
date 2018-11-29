@@ -11,7 +11,7 @@ namespace CapaNegocio
     public class ProdSimple : Producto
     {
         private int codProdSimple;
-        private int stock;
+        private double stock;
         private bool insumo;
         private int unidad;
         private double contenido;
@@ -55,7 +55,7 @@ namespace CapaNegocio
             }
         }
 
-        public int Stock
+        public double Stock
         {
             get
             {
@@ -151,7 +151,7 @@ namespace CapaNegocio
             DataRow rowps = prods.Rows[0];
 
             p.CodProdSimple = Convert.ToInt32(rowps["codProdSimple"].ToString());
-            p.Stock = Convert.ToInt32(rowps["stock"].ToString());
+            p.Stock = Convert.ToDouble(rowps["stock"].ToString());
             p.Unidad = Convert.ToInt32(rowps["unidad"].ToString());
             p.Contenido = Convert.ToDouble(rowps["contenido"].ToString());
             if ((rowps["insumo"].ToString()).Equals("True"))

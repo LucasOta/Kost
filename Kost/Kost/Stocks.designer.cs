@@ -42,11 +42,11 @@
             this.lblTituloNombre = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
-            this.btnAtras = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAtras = new System.Windows.Forms.Button();
             this.pnlProducto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.SuspendLayout();
@@ -89,7 +89,7 @@
             this.btnQuitar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuitar.Location = new System.Drawing.Point(252, 157);
             this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(82, 30);
+            this.btnQuitar.Size = new System.Drawing.Size(86, 30);
             this.btnQuitar.TabIndex = 12;
             this.btnQuitar.Text = "Quitar";
             this.btnQuitar.UseVisualStyleBackColor = true;
@@ -101,7 +101,7 @@
             this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.Location = new System.Drawing.Point(165, 157);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(82, 30);
+            this.btnAgregar.Size = new System.Drawing.Size(86, 30);
             this.btnAgregar.TabIndex = 11;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -122,7 +122,7 @@
             // 
             this.txtCantidad.Location = new System.Drawing.Point(164, 124);
             this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(170, 27);
+            this.txtCantidad.Size = new System.Drawing.Size(174, 27);
             this.txtCantidad.TabIndex = 0;
             // 
             // lblDescripcion
@@ -200,25 +200,6 @@
             this.dgvProductos.Size = new System.Drawing.Size(800, 239);
             this.dgvProductos.TabIndex = 4;
             // 
-            // btnAtras
-            // 
-            this.btnAtras.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAtras.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnAtras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAtras.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAtras.Image = ((System.Drawing.Image)(resources.GetObject("btnAtras.Image")));
-            this.btnAtras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAtras.Location = new System.Drawing.Point(717, 477);
-            this.btnAtras.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(93, 40);
-            this.btnAtras.TabIndex = 7;
-            this.btnAtras.Text = "Atrás";
-            this.btnAtras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAtras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAtras.UseVisualStyleBackColor = true;
-            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
-            // 
             // ID
             // 
             this.ID.DataPropertyName = "codProdSimple";
@@ -250,6 +231,25 @@
             this.Cantidad.Name = "Cantidad";
             this.Cantidad.ReadOnly = true;
             this.Cantidad.Width = 150;
+            // 
+            // btnAtras
+            // 
+            this.btnAtras.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAtras.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnAtras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAtras.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtras.Image = ((System.Drawing.Image)(resources.GetObject("btnAtras.Image")));
+            this.btnAtras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAtras.Location = new System.Drawing.Point(717, 477);
+            this.btnAtras.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAtras.Name = "btnAtras";
+            this.btnAtras.Size = new System.Drawing.Size(93, 40);
+            this.btnAtras.TabIndex = 7;
+            this.btnAtras.Text = "Atrás";
+            this.btnAtras.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAtras.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // Stocks
             // 

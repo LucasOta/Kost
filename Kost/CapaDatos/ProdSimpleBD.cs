@@ -86,7 +86,7 @@ namespace CapaDatos
             }
         }
 
-        public static Boolean Modificar(int pCod, int pStock, bool pInsumo, int pUnidad, double pContenido)
+        public static Boolean Modificar(int pCod, double pStock, bool pInsumo, int pUnidad, double pContenido)
         {
             string sql = "UPDATE ProdSimples SET stock=@stock, insumo=@insumo, unidad=@unidad, " +
                 "contenido=@contenido WHERE codProdSimple=@codProd and baja=0";
@@ -258,7 +258,7 @@ namespace CapaDatos
             return ds;
         }
 
-        public static Boolean ActualizarStock(int pCod, int pStock)
+        public static Boolean ActualizarStock(int pCod, double pStock)
         {
             string sql = "UPDATE ProdSimples SET stock = @stock WHERE codProdSimple = @codProd";
 
@@ -269,8 +269,8 @@ namespace CapaDatos
                 Cx.SetComandoTexto();
                 Cx.SetSQL(sql);
 
-                Cx.sqlCmd.Parameters.Add("stock", SqlDbType.Int);
-                Cx.sqlCmd.Parameters[0].Value = pStock;
+                Cx.sqlCmd.Parameters.Add("stock", SqlDbType.Float);
+                Cx.sqlCmd.Parameters[0].Value = (float) pStock;
 
                 Cx.sqlCmd.Parameters.Add("codProd", SqlDbType.Int);
                 Cx.sqlCmd.Parameters[1].Value = pCod;
@@ -289,7 +289,6 @@ namespace CapaDatos
                 return false;
             }
         }
-
 
         public static Boolean ActualizarStock(int pCod, Int32 cant, Boolean suma) //si suma = true suma el stock, sino lo resta
         {
@@ -330,7 +329,6 @@ namespace CapaDatos
                 return false;
             }
         }
-
 
         public static DataTable TraerUnidades()
         {

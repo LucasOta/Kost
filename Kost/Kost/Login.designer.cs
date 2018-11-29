@@ -111,9 +111,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(255)))), ((int)(((byte)(243)))));
             this.label1.Location = new System.Drawing.Point(12, 531);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 22);
+            this.label1.Size = new System.Drawing.Size(106, 22);
             this.label1.TabIndex = 12;
-            this.label1.Text = "V 18.10.4 (8am)";
+            this.label1.Text = "V 18.11.29";
             // 
             // btnCerrar
             // 

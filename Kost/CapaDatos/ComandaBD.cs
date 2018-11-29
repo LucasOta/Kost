@@ -269,12 +269,11 @@ namespace CapaDatos
                 {
                     nombre = "";
                 }
+                Cx.Cerrar();
                 return nombre;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-
                 return "";
             }
         }

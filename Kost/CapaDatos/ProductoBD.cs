@@ -110,7 +110,7 @@ namespace CapaDatos
                 Cx.Abrir();
 
                 Cx.SetTransaccion();
-                
+
                 Object nro = Cx.sqlCmd.ExecuteScalar();
                 int id_transaccion = Convert.ToInt32(nro);
 
@@ -410,7 +410,6 @@ namespace CapaDatos
             return ds;
         }
 
-
         public static Boolean es_Compuesto(int codProd)
         {
 
@@ -429,13 +428,14 @@ namespace CapaDatos
                 SqlDataReader reader = Cx.sqlCmd.ExecuteReader();
                 Boolean aux = false;
 
-                if (reader.Read()) {
+                if (reader.Read())
+                {
                     if ((bool)reader["compuesto"])
                     {
                         aux = true;
                     }
                 }
-                
+
                 Cx.Cerrar();
                 return aux;
             }
@@ -446,6 +446,6 @@ namespace CapaDatos
                 return false;
             }
         }
-    }
+    }                
 }
 

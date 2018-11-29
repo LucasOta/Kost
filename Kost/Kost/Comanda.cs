@@ -96,18 +96,25 @@ namespace Kost
                 }
                 else
                 {
-                    CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.Text, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
-                    if (!detal.Error)
+                    if (Producto.hay_stock(Convert.ToInt32(cbxProducto.SelectedValue), Convert.ToInt32(txtCantidad.Text)))
                     {
-                        CargarDGV();
-                        CalcularTotal();
-                        Clear();
-                        pnlDetalle.Enabled = false;
-                        btnCerrarComanda.Enabled = true;
+                        CapaNegocio.Detalle detal = new CapaNegocio.Detalle(numeroComanda, Convert.ToInt32(cbxProducto.SelectedValue), cbxProducto.Text, Convert.ToInt32(txtCantidad.Text), float.Parse(lblPrecioProducto.Text.Replace("$", "")));
+                        if (!detal.Error)
+                        {
+                            CargarDGV();
+                            CalcularTotal();
+                            Clear();
+                            pnlDetalle.Enabled = false;
+                            btnCerrarComanda.Enabled = true;
+                        }
+                        else
+                        {
+                            CapaNegocio.Funciones.mError(this, detal.Mensaje);
+                        }
                     }
                     else
                     {
-                        CapaNegocio.Funciones.mError(this, detal.Mensaje);
+                        Funciones.mError(this, "No hay stock suficiente para cargar este producto.");
                     }
                 }
                

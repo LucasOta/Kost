@@ -56,7 +56,7 @@ namespace CapaNegocio
         }
 
 
-        //Funcione
+        //Funciones
         protected void GuardarPC()
         {
             if (ProductoBD.Guardar(Nombre, DescProd, IdCategoria, PrecioVenta, true, 0, false, 0, 0) > 0)
@@ -80,11 +80,6 @@ namespace CapaNegocio
         {
             return CapaDatos.ProductoCompuestoBD.GuardarComposicionMod(CodCom, CodSim, Cant);
         }
-
-        //public static Boolean Eliminar(int CodPC)
-        //{
-        //    return ProductoCompuestoBD.Eliminar(CodPC);
-        //}
 
         public static Boolean EliminarComposicion(int CodCom, int CodSim, int Cant)
         {

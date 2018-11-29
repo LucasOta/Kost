@@ -39,42 +39,7 @@ namespace CapaDatos
                 return true; //Habría que ver qué mandar si hay un error con la conexión
             }
         }
-
-//        public static Boolean ExisteComposicion(int codProdSimpl, int cantidad)
-//        {
-//            string sql = "SELECT baja FROM Composicion WHERE codProdCompuesto =  @codProdSimpl AND codProdSimple = @codProdSimpl AND cantidad = @cantidad";
-//            try
-//            {
-//                Conexion cx = new Conexion();
-//                cx.SetComandoTexto();
-//                cx.SetSQL(sql);
-
-//                cx.sqlCmd.Parameters.Add("@codProdSimpl", SqlDbType.Int);
-//                cx.sqlCmd.Parameters[0].Value = codProdSimpl;
-
-//                cx.sqlCmd.Parameters.Add("@cantidad", SqlDbType.Int);
-//                cx.sqlCmd.Parameters[1].Value = cantidad;
-
-//                cx.Abrir();
-//                SqlDataReader reader = cx.sqlCmd.ExecuteReader();
-
-//                if (reader.HasRows)
-//                {
-//                    return true;
-//                }
-//                else
-//                {
-//                    return false;
-//                }
-//            }
-//#pragma warning disable CS0168 // La variable 'e' se ha declarado pero nunca se usa
-//            catch (Exception e)
-//#pragma warning restore CS0168 // La variable 'e' se ha declarado pero nunca se usa
-//            {
-//                return true; //Habría que ver qué mandar si hay un error con la conexión
-//            }
-//        }
-
+        
         public static bool Guardar(int pCod, Conexion con)
         {
             string sql = "INSERT INTO ProdCompuestos (codProdCompuesto, baja) values (@pCod, 0)";
